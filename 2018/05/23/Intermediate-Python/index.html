@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="sql,algorithm,interview,leetcode," />
+  <meta name="keywords" content="Python," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="???">
-<meta name="keywords" content="sql,algorithm,interview,leetcode">
+<meta name="description" content="Datacamp course notes on data visualization.">
+<meta name="keywords" content="Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Try">
-<meta property="og:url" content="http://yoursite.com/2018/04/22/try/index.html">
+<meta property="og:title" content="DataCamp - Intermediate Python">
+<meta property="og:url" content="http://yoursite.com/2018/05/23/Intermediate-Python/index.html">
 <meta property="og:site_name" content="Joanna">
-<meta property="og:description" content="???">
+<meta property="og:description" content="Datacamp course notes on data visualization.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-04-23T07:57:49.289Z">
+<meta property="og:updated_time" content="2018-05-25T22:36:53.237Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Try">
-<meta name="twitter:description" content="???">
+<meta name="twitter:title" content="DataCamp - Intermediate Python">
+<meta name="twitter:description" content="Datacamp course notes on data visualization.">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/22/try/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/23/Intermediate-Python/"/>
 
 
 
 
 
-  <title>Try | Joanna</title>
+  <title>DataCamp - Intermediate Python | Joanna</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/22/try/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/Intermediate-Python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Joanna">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Try</h1>
+          <h1 class="post-title" itemprop="name headline">DataCamp - Intermediate Python</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-22T16:49:39-07:00">
-                2018-04-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-23T23:44:11-07:00">
+                2018-05-23
               </time>
             
 
@@ -305,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tech/" itemprop="url" rel="index">
-                    <span itemprop="name">Tech</span>
+                  <a href="/categories/Course-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Course Notes</span>
                   </a>
                 </span>
 
@@ -323,8 +323,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/04/22/try/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/04/22/try/" itemprop="commentCount"></span>
+                <a href="/2018/05/23/Intermediate-Python/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/23/Intermediate-Python/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -332,7 +332,7 @@
 
           
           
-             <span id="/2018/04/22/try/" class="leancloud_visitors" data-flag-title="Try">
+             <span id="/2018/05/23/Intermediate-Python/" class="leancloud_visitors" data-flag-title="DataCamp - Intermediate Python">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -363,20 +363,38 @@
       
 
       
-        <p>???<br><a id="more"></a></p>
-<h1 id="Chapter-5"><a href="#Chapter-5" class="headerlink" title="Chapter 5"></a>Chapter 5</h1><h3 id="Question-1"><a href="#Question-1" class="headerlink" title="Question 1"></a>Question 1</h3><p><strong>Using basic statistical properties of the variance, as well as single-variable calculus, derive (5.6). In other words, prove that $\alpha$ given by (5.6) does indeed minimize \(Var({\alpha}X+(1−\alpha)Y)\).</strong></p>
-<p>We know from the statistical properties of the variance that:<br>$$Var({\alpha}X+(1−\alpha)Y)=\alpha^2\sigma_X^2+2\alpha(1-\alpha)\sigma_{XY}+(1-\alpha)^2\sigma_Y^2$$<br>In order to find the turning point of this function, let the first derivative of the right hand side of the above equation relative to $\alpha$ equals to zero:<br>$$\frac{\partial}{\partial\alpha}Var({\alpha}X+(1−\alpha)Y)=2\alpha\sigma_X^2+2\sigma_{XY}-4\alpha\sigma_{XY}-2\sigma_Y^2+2\alpha\sigma_Y^2=0$$<br>which is equivalent to:<br>$$\alpha=\frac{\sigma_Y^2-\sigma_{XY}}{\sigma_X^2+\sigma_Y^2-2\sigma_{XY}}$$<br>Now we can check whether the alpha value at this point is the minimum, which is equivalent to check whether the second derivative of $Var({\alpha}X(1−\alpha)Y)$ is positive:<br>$$\frac{\partial^2}{\partial\alpha^2}Var({\alpha}X+(1−\alpha)Y)=2\sigma_X^2+2\sigma_Y^2-4\sigma_{XY}=2(\sigma_X-\sigma_Y)^2\ge0$$</p>
-<p>With the above deduction process we can prove that $\alpha$ given by (5.6) does indeed minimize $Var({\alpha}X+(1−\alpha)Y)$</p>
-<h3 id="Question-3"><a href="#Question-3" class="headerlink" title="Question 3"></a>Question 3</h3><p><strong>We now review k-fold cross-validation.</strong></p>
-<p>(a) <strong>Explain how k-fold cross-validation is implemented.</strong></p>
-<p>The k-fold cross-validation involves randomly dividing the set of observations into k groups, or folds, of approximately equal size. Then, we treat the first fold as validation dataset, and train the model on the remaining k-1 foldss. After that, we compute the mean squared error ($MSE_1$) on the observations in the validation set.This procedure is then repeated k times. For each time, a diﬀerent group of observations will be treated as a validation set. This process results in k estimates of the test error, $MSE_1$, $MSE_2$,…, $MSE_k$. The k-fold cross-validation estimate is computed by averaging these values:</p>
-<p>$$CV_{(k)}=\frac{1}{k}\sum_{i=1}^kMSE_i$$</p>
-<p>(b) <strong>What are the advantages and disadvantages of k-fold cross-validation relative to:</strong></p>
-<p><strong>i. The validation set approach?</strong></p>
-<p>The validation set approach has two disadvatages when comparing to the k-fold cross-validation method:</p>
-<p>Firstly, k-fold cross validation can reduce the high variability in test error rate when using the validation set approach by performing the validation multiple times with different folds of data to reduce the randomness in selecting training and testing dataset.</p>
-<p>Secondly, k-fold cross validation also reduce the bias when using the validation set approach, in which the training set is typically around half the size of the original dataset. In contrast, instead of only fitting the data with one subset of data, k-fold cross validation repeatedly fit the data k times on different subsets of the original dataset, and thus reduce the probability of overestimating the test error. </p>
-<p><strong>ii. LOOCV?</strong></p>
+        <p>Datacamp course notes on data visualization.<br><a id="more"></a></p>
+<h1 id="Data-Visualization"><a href="#Data-Visualization" class="headerlink" title="Data Visualization"></a>Data Visualization</h1><h3 id="Matplotlib"><a href="#Matplotlib" class="headerlink" title="Matplotlib"></a>Matplotlib</h3><h5 id="Line-graph"><a href="#Line-graph" class="headerlink" title="Line graph"></a>Line graph</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">year = [<span class="number">1950</span>, <span class="number">1970</span>, <span class="number">1990</span>, <span class="number">2010</span>]</span><br><span class="line">pop = [<span class="number">2.519</span>, <span class="number">3.692</span>, <span class="number">5.263</span>, <span class="number">6.972</span>]</span><br><span class="line">plt.plot(year, pop) <span class="comment">#(x, y)</span></span><br><span class="line">plt.show()<span class="comment"># before this step, you can add labels or other things to customize your plot.</span></span><br></pre></td></tr></table></figure>
+<h5 id="Scatter-plot"><a href="#Scatter-plot" class="headerlink" title="Scatter plot"></a>Scatter plot</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">year = [<span class="number">1950</span>, <span class="number">1970</span>, <span class="number">1990</span>, <span class="number">2010</span>]</span><br><span class="line">pop = [<span class="number">2.519</span>, <span class="number">3.692</span>, <span class="number">5.263</span>, <span class="number">6.972</span>]</span><br><span class="line">plt.scatter(year, pop, s = pop, c = col, alpha = <span class="number">0.8</span>) <span class="comment"># s controls the size of the circle, c controls the color of the bubbles, alpha controls the opaqueness(0-1)</span></span><br><span class="line">plt.xscale(<span class="string">'log'</span>) <span class="comment"># show x-axis on a logarithmic scale</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h5 id="Histogram"><a href="#Histogram" class="headerlink" title="Histogram"></a>Histogram</h5><ul>
+<li>Explore dataset</li>
+<li>Get idea about distribution<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment"># bins = 10 by default, the more the bins, the more detailed of the contour</span></span><br><span class="line">plt.hist(values, bins = <span class="number">3</span>)</span><br><span class="line">plt.show()</span><br><span class="line">plt.clf()<span class="comment"># this cleans up the graph so that you can start fresh</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Customization"><a href="#Customization" class="headerlink" title="Customization"></a>Customization</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">year = [<span class="number">1950</span>, <span class="number">1970</span>, <span class="number">1990</span>, <span class="number">2010</span>]</span><br><span class="line">pop = [<span class="number">2.519</span>, <span class="number">3.692</span>, <span class="number">5.263</span>, <span class="number">6.972</span>]</span><br><span class="line">plt.plot(year, pop) <span class="comment">#(x, y)</span></span><br><span class="line">plt.xlabel(<span class="string">'Year'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Population'</span>)</span><br><span class="line">plt.title(<span class="string">'World Population Projections'</span>)</span><br><span class="line">plt.yticks([<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>],[<span class="string">'0'</span>, <span class="string">'2B'</span>, <span class="string">'4B'</span>, <span class="string">'6B'</span>, <span class="string">'8B'</span>, <span class="string">'10B'</span>]) <span class="comment">#specify the intervales on y axis and also the number show</span></span><br><span class="line">plt.text(<span class="number">1550</span>, <span class="number">71</span>, <span class="string">'India'</span>) <span class="comment">#show text at a cetain (x,y)</span></span><br><span class="line">plt.grid(<span class="keyword">True</span>) <span class="comment">#show gridlines</span></span><br><span class="line">plt.show()<span class="comment"># before this step, you can add labels or other things to customize your plot.</span></span><br></pre></td></tr></table></figure>
+<h1 id="Dictionaries"><a href="#Dictionaries" class="headerlink" title="Dictionaries"></a>Dictionaries</h1><ul>
+<li>make it easier to connect two lists without using index as a bridge</li>
+<li><p>syntax: <code>{key1:value1, key2:value2 ...}</code>. <code>dict_name[key]</code> will return the corresponding value</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">world = &#123;<span class="string">'a'</span>:<span class="number">1</span>, <span class="string">'b'</span>:<span class="number">2</span>, <span class="string">'c'</span>:<span class="number">3</span>&#125;</span><br><span class="line">world[<span class="string">'a'</span>] <span class="comment"># will return 1</span></span><br><span class="line"></span><br><span class="line">europe = &#123;<span class="string">'spain'</span>:<span class="string">'madrid'</span>, <span class="string">'france'</span>:<span class="string">'paris'</span>, <span class="string">'germany'</span>:<span class="string">'berlin'</span>, <span class="string">'norway'</span>:<span class="string">'oslo'</span> &#125;</span><br><span class="line"><span class="comment"># print out the keys</span></span><br><span class="line">europe.keys()</span><br><span class="line"></span><br><span class="line"><span class="comment"># To add data into the existing dictionary</span></span><br><span class="line">world[<span class="string">'d'</span>] = <span class="number">4</span></span><br><span class="line"><span class="string">'d'</span> <span class="keyword">in</span> world <span class="comment">#this will return True</span></span><br><span class="line"><span class="comment"># To update data in a dictionary</span></span><br><span class="line">world[<span class="string">'d'</span>] = <span class="number">5</span></span><br><span class="line"><span class="comment"># To delete a pair of values</span></span><br><span class="line"><span class="keyword">del</span>(world[<span class="string">'d'</span>])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>keys have to be unique. </p>
+</li>
+<li>keys have to be “immutable” objects. “Immutable” means that the objects’ content cannot be changed after they are created. e.g. strings, booleans, integers. But lists are mutable object, since you can change its content after its creation.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">world = &#123;<span class="number">0</span>:<span class="string">'hello'</span>, <span class="keyword">True</span>:<span class="string">'dear'</span>, <span class="string">'two'</span>:<span class="string">'world'</span>&#125; <span class="comment">#a valid dictionary</span></span><br><span class="line"></span><br><span class="line">&#123;[<span class="string">'just'</span>, <span class="string">'to'</span>, <span class="string">'test'</span>]: <span class="string">'value'</span>&#125; <span class="comment">#invalid dictionary</span></span><br><span class="line"></span><br><span class="line">europe = &#123;<span class="string">'spain'</span>:<span class="string">'madrid'</span>, <span class="string">'france'</span>:<span class="string">'paris'</span>, <span class="string">'germany'</span>:<span class="string">'berlin'</span>, <span class="string">'norway'</span>:<span class="string">'oslo'</span> &#125;</span><br><span class="line"><span class="comment"># print out the keys</span></span><br><span class="line">europe.keys()</span><br></pre></td></tr></table></figure>
+<h3 id="List-vs-Dictionary"><a href="#List-vs-Dictionary" class="headerlink" title="List vs Dictionary"></a>List vs Dictionary</h3><ul>
+<li>Similarity: select, update and remove: []</li>
+<li>Difference: list is indexed by range of numbers, while dictionary is indexed by unique keys.</li>
+<li>for list, it should be used when there is:</li>
+</ul>
+<ol>
+<li>Collection of values</li>
+<li>where the order matters</li>
+<li>want to easily select entire subsets</li>
+</ol>
+<ul>
+<li>for dictionary, it should be used when you need to lookup table with unique keys, and want the process to be quick.</li>
+</ul>
 
       
     </div>
@@ -394,13 +412,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/sql/" rel="tag"># sql</a>
-          
-            <a href="/tags/algorithm/" rel="tag"># algorithm</a>
-          
-            <a href="/tags/interview/" rel="tag"># interview</a>
-          
-            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+            <a href="/tags/Python/" rel="tag"># Python</a>
           
         </div>
       
@@ -413,15 +425,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/05/23/Intro-to-Python/" rel="next" title="DataCamp - Intro to Python">
+                <i class="fa fa-chevron-left"></i> DataCamp - Intro to Python
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/22/hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -556,7 +568,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-5"><span class="nav-number">1.</span> <span class="nav-text">Chapter 5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Question-1"><span class="nav-number">1.0.1.</span> <span class="nav-text">Question 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Question-3"><span class="nav-number">1.0.2.</span> <span class="nav-text">Question 3</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-Visualization"><span class="nav-number">1.</span> <span class="nav-text">Data Visualization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Matplotlib"><span class="nav-number">1.0.1.</span> <span class="nav-text">Matplotlib</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Line-graph"><span class="nav-number">1.0.1.0.1.</span> <span class="nav-text">Line graph</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Scatter-plot"><span class="nav-number">1.0.1.0.2.</span> <span class="nav-text">Scatter plot</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Histogram"><span class="nav-number">1.0.1.0.3.</span> <span class="nav-text">Histogram</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Customization"><span class="nav-number">1.0.2.</span> <span class="nav-text">Customization</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dictionaries"><span class="nav-number">2.</span> <span class="nav-text">Dictionaries</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#List-vs-Dictionary"><span class="nav-number">2.0.1.</span> <span class="nav-text">List vs Dictionary</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
