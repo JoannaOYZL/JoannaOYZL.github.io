@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Datacamp course notes on writing functions and error handling.">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DataCamp - Python Data Science Toolbox (Part1)">
+<meta property="og:url" content="http://yoursite.com/2018/05/28/Python-DS-Toolbox1/index.html">
+<meta property="og:site_name" content="Joanna">
+<meta property="og:description" content="Datacamp course notes on writing functions and error handling.">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-05-29T23:36:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DataCamp - Python Data Science Toolbox (Part1)">
+<meta name="twitter:description" content="Datacamp course notes on writing functions and error handling.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/28/Python-DS-Toolbox1/"/>
+
+
+
+
+
+  <title>DataCamp - Python Data Science Toolbox (Part1) | Joanna</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joanna</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/28/Python-DS-Toolbox1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joanna">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joanna">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DataCamp - Python Data Science Toolbox (Part1)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-28T11:44:11-07:00">
+                2018-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Course-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Course Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/28/Python-DS-Toolbox1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/28/Python-DS-Toolbox1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/05/28/Python-DS-Toolbox1/" class="leancloud_visitors" data-flag-title="DataCamp - Python Data Science Toolbox (Part1)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Datacamp course notes on writing functions and error handling.<br><a id="more"></a></p>
+<h1 id="User-Defined-Funtions"><a href="#User-Defined-Funtions" class="headerlink" title="User-Defined Funtions"></a>User-Defined Funtions</h1><h3 id="Defining-a-function"><a href="#Defining-a-function" class="headerlink" title="Defining a function"></a>Defining a function</h3><p><strong>Return</strong><br>If we don’t want to directly print the value, but want to return the value and assign it to a value: use return.<br><em>Note: It is important to remember that assigning a variable to a function that prints a value but does not return a value will results in that variable being of type <code>NoneType</code>.</em></p>
+<p><strong>Docstrings</strong></p>
+<ul>
+<li>desctibe what your function does</li>
+<li>serve as documentation for your function</li>
+<li>placed in the immediate line after the function header, in between triple double quotes <code>&quot;&quot;&quot;</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">square</span><span class="params">(value)</span>:</span></span><br><span class="line">    <span class="string">"""Return the square of a value"""</span> <span class="comment"># Docstring</span></span><br><span class="line">    new_value = value ** <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> new_value</span><br><span class="line">num = square(<span class="number">4</span>)</span><br><span class="line">print(num)</span><br></pre></td></tr></table></figure>
+<h3 id="Multiple-function-parameters-and-returns"><a href="#Multiple-function-parameters-and-returns" class="headerlink" title="Multiple function parameters and returns"></a>Multiple function parameters and returns</h3><p>To have multiple parameters, simply accept more than 1 parameters when defining the funtion. The number of arguments in the functions equals to teh number of parameters.</p>
+<p>To have multiple returns, we need to use Tuples.<br>Tuples:</p>
+<ul>
+<li>Like a list - can contain multiple values</li>
+<li>Immutable - can’t modify values, this means you cannot update the element in the tuple with  <code>x[0] = a</code></li>
+<li>Constructe using parentheses ()</li>
+</ul>
+<p>Unpack a tuple into several variables<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">even_nums = (<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>)</span><br><span class="line">a, b, c = even_nums</span><br><span class="line">print(a) <span class="comment">#will return 2</span></span><br></pre></td></tr></table></figure></p>
+<p>Accessing tuple elements as with lists using zero-indexing<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(even_nums[<span class="number">1</span>])</span><br><span class="line">second_num = even_nums[<span class="number">1</span>]</span><br></pre></td></tr></table></figure></p>
+<p>Example<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">raise_both</span><span class="params">(value1, value2)</span> # <span class="title">Function</span> <span class="title">header</span></span></span><br><span class="line"><span class="function">    """<span class="title">Raise</span> <span class="title">value1</span> <span class="title">to</span> <span class="title">the</span> <span class="title">power</span> <span class="title">of</span> <span class="title">value2</span> <span class="title">and</span> <span class="title">vice</span> <span class="title">versa</span>"""</span></span><br><span class="line">    new_value1 = value1 ** value2 # Function body</span><br><span class="line">    new_value2 = value2 ** value1</span><br><span class="line">    new_tuple = (new_value1, new_value2)</span><br><span class="line">    <span class="keyword">return</span> new_tuple</span><br></pre></td></tr></table></figure></p>
+<h3 id="Case-Study-tweeter-language-counts"><a href="#Case-Study-tweeter-language-counts" class="headerlink" title="Case Study: tweeter language counts"></a>Case Study: tweeter language counts</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define count_entries()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_entries</span><span class="params">(df, col_name)</span>:</span></span><br><span class="line">    <span class="string">"""Return a dictionary with counts of </span></span><br><span class="line"><span class="string">    occurrences as value for each key."""</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Initialize an empty dictionary: langs_count</span></span><br><span class="line">    langs_count = &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Extract column from DataFrame: col</span></span><br><span class="line">    col = df[col_name]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Iterate over lang column in DataFrame</span></span><br><span class="line">    <span class="keyword">for</span> entry <span class="keyword">in</span> col:</span><br><span class="line"></span><br><span class="line">        <span class="comment"># If the language is in langs_count, add 1</span></span><br><span class="line">        <span class="keyword">if</span> entry <span class="keyword">in</span> langs_count.keys():</span><br><span class="line">            langs_count[entry] += <span class="number">1</span></span><br><span class="line">        <span class="comment"># Else add the language to langs_count, set the value to 1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            langs_count[entry] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Return the langs_count dictionary</span></span><br><span class="line">    <span class="keyword">return</span>(langs_count)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Call count_entries(): result</span></span><br><span class="line">result = count_entries(tweets_df, <span class="string">'lang'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the result</span></span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
+<h1 id="Scope-and-User-Defined-Functions"><a href="#Scope-and-User-Defined-Functions" class="headerlink" title="Scope and User-Defined Functions"></a>Scope and User-Defined Functions</h1><p><em>Scope</em> is the part of the program where an object or name may be accessible, sinnce not all objects are accessible everywhere in a script.</p>
+<ul>
+<li>Global scope: defined in the main body of a script or python program</li>
+<li>Local scope: defined inside a function. Once the execution is done, any name inside the local scope cease to exist</li>
+<li>Built-in scope: names in the pre-defined built-ins module that python provides, such as <code>print()</code> and <code>sum()</code></li>
+</ul>
+<p>The sequence of scopes that Python will look in when calling a name is: local scope -&gt; Enclosing functions (if any) -&gt; global scope -&gt; built-in scope. (<strong>LEGB Rule</strong>)</p>
+<p><strong>Examples</strong><br>First we define a function:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">square</span><span class="params">(value)</span>:</span></span><br><span class="line">    <span class="string">"""Return the square of a value"""</span></span><br><span class="line">    new_value = value ** <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> new_value</span><br><span class="line">new_value <span class="comment">#will return error</span></span><br></pre></td></tr></table></figure></p>
+<p>We cannot access the variable <code>new_value</code> outside the function, since this variable is defined only within the local scope of the function, and is not defined globally.</p>
+<p>Below, we define the name globally before defining and calling the function.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">new_value = <span class="number">10</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">square</span><span class="params">(value)</span>:</span></span><br><span class="line">    <span class="string">"""Return the square of a value"""</span></span><br><span class="line">    new_value = value ** <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> new_value</span><br><span class="line">square(<span class="number">3</span>) <span class="comment">#results in 9</span></span><br><span class="line">new_value <span class="comment">#will return 10</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Anytime we call the name in the global scope, we will access the name in the global scope. </li>
+<li>Anytime we call the name in the local scope of the function, Python will look first in the local scope (that’s why <code>square(3)</code> results in 9 instead of 10). If Python cannot find the name in the local scope, it will then, and only then, look in the global scope.</li>
+</ul>
+<p>Below, we access new_val, which is defined globally, within the function square. Note that the global value accessed is the value at the time the function is <em>called</em>, not the value when the function is <em>defined</em>. </p>
+<p>Thus, if we reassigned a value to <code>new_val</code>, and call the function square again, we can see that the new value of <code>new_val</code> is accessed.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">new_val = <span class="number">10</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">square</span><span class="params">(value)</span>:</span></span><br><span class="line">    <span class="string">"""Return the square of a value"""</span></span><br><span class="line">    new_value2 = new_val ** <span class="number">2</span> <span class="comment">#referring to the name `new_val` in the global scope</span></span><br><span class="line">    <span class="keyword">return</span> new_value2</span><br><span class="line">square(<span class="number">3</span>) <span class="comment">#results in 100</span></span><br><span class="line">new_val = <span class="number">20</span> </span><br><span class="line">square(<span class="number">3</span>) <span class="comment">#will return 400</span></span><br></pre></td></tr></table></figure></p>
+<p>What if we want to alter the value of a global name within a function call? We can use <code>global</code> to specify that.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">new_val = <span class="number">10</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">square</span><span class="params">(value)</span>:</span></span><br><span class="line">    <span class="string">"""Return the square of a value"""</span></span><br><span class="line">    <span class="keyword">global</span> new_val <span class="comment"># this is the variable that we wishe to access and alter</span></span><br><span class="line">    new_val = new_val ** <span class="number">2</span> <span class="comment">#referring to the name `new_val` in the global scope</span></span><br><span class="line">    <span class="keyword">return</span> new_val</span><br><span class="line">square(<span class="number">3</span>) <span class="comment">#results in 100</span></span><br><span class="line">new_val <span class="comment">#returns 100</span></span><br></pre></td></tr></table></figure></p>
+<p>Another example<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">num = <span class="number">5</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func2</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">global</span> num</span><br><span class="line">    double_num = num * <span class="number">2</span></span><br><span class="line">    num = <span class="number">6</span></span><br><span class="line">    print(double_num)</span><br><span class="line">func2() <span class="comment">#will return 10</span></span><br><span class="line">num <span class="comment">#will return 6</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Nested-functions"><a href="#Nested-functions" class="headerlink" title="Nested functions"></a>Nested functions</h3><p>It helps when multiple similar computations are needed.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mod2plus5</span><span class="params">(x1, x2, x3)</span>:</span></span><br><span class="line">    <span class="string">"""Returns the remainder plys 5 of three values."""</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">(x)</span>:</span></span><br><span class="line">        <span class="string">"""Returns the remainder plus 5 of a value."""</span></span><br><span class="line">        <span class="keyword">return</span> x % <span class="number">2</span> + <span class="number">5</span></span><br><span class="line">    <span class="keyword">return</span> (inner(x1), inner(x2), inner(x3))</span><br><span class="line">print(mod2plus5(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>))</span><br></pre></td></tr></table></figure></p>
+<p>Also, it can be used to return a function:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">raise_val</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="string">"""Return the inner function."""</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">(x)</span>:</span></span><br><span class="line">        <span class="string">"""Raise x to the power of n."""</span></span><br><span class="line">        raised = x ** n</span><br><span class="line">        <span class="keyword">return</span> raised</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line"></span><br><span class="line">square = raise_val(<span class="number">2</span>)</span><br><span class="line">cube = raise_val(<span class="number">3</span>)</span><br><span class="line">print(square(<span class="number">2</span>), cube(<span class="number">4</span>)) <span class="comment"># 4, 64</span></span><br></pre></td></tr></table></figure></p>
+<p>Using <code>nonlocal</code> to access and alter names in an enlosing scope:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">outer</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""Prints the value of n."""</span></span><br><span class="line">    n = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">nonlocal</span> n <span class="comment"># same as global, to access and alter the name in the enclosing scope</span></span><br><span class="line">        n = <span class="number">2</span></span><br><span class="line">        print(n)</span><br><span class="line">    </span><br><span class="line">    inner()</span><br><span class="line">    print(n)</span><br><span class="line"></span><br><span class="line">outer() <span class="comment">#returns 2, instead of 1</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="Default-and-Flexible-Arguements"><a href="#Default-and-Flexible-Arguements" class="headerlink" title="Default and Flexible Arguements"></a>Default and Flexible Arguements</h1><h3 id="Add-a-default-argument"><a href="#Add-a-default-argument" class="headerlink" title="Add a default argument:"></a>Add a default argument:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">power</span><span class="params">(number, pow = <span class="number">1</span>)</span>:</span></span><br><span class="line">    <span class="string">"""Raise number to the power of pow"""</span></span><br><span class="line">    new_value = number ** pow</span><br><span class="line">    <span class="keyword">return</span> new_value</span><br><span class="line">power(<span class="number">9</span> ,<span class="number">2</span>) <span class="comment"># 81</span></span><br><span class="line">power(<span class="number">9</span>) <span class="comment">#9 with default pow = 1</span></span><br></pre></td></tr></table></figure>
+<h3 id="Flexible-arguments"><a href="#Flexible-arguments" class="headerlink" title="Flexible arguments"></a>Flexible arguments</h3><p>We use flexible arguments when we are not sure about the specific arguments added to the function with <code>*args</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_all</span><span class="params">(*args)</span>:</span></span><br><span class="line">    <span class="string">"""Sum all values in the *args together, irrespective of how many they are."""</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Initialize sum</span></span><br><span class="line">    sum_all = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Accumulate the sum</span></span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> args:</span><br><span class="line">        sum_all += num</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> sum_all</span><br><span class="line">add_all(<span class="number">1</span>) <span class="comment"># 1</span></span><br><span class="line">add_all(<span class="number">1</span>, <span class="number">2</span>) <span class="comment"># 3</span></span><br><span class="line">add_all(<span class="number">5</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">20</span>) <span class="comment"># 50</span></span><br></pre></td></tr></table></figure></p>
+<p>We can also pass arbitrary number of keyword arguments with <code>**kwargs</code>, which is arguments preceded by identifiers. (dictionary)<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define report_status</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">report_status</span><span class="params">(**kwargs)</span>:</span></span><br><span class="line">    <span class="string">"""Print out the status of a movie character."""</span></span><br><span class="line"></span><br><span class="line">    print(<span class="string">"\nBEGIN: REPORT\n"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Iterate over the key-value pairs of kwargs</span></span><br><span class="line">    <span class="keyword">for</span> key, value <span class="keyword">in</span> kwargs.items():</span><br><span class="line">        <span class="comment"># Print out the keys and values, separated by a colon ':'</span></span><br><span class="line">        print(key + <span class="string">": "</span> + value)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"\nEND REPORT"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># First call to report_status()</span></span><br><span class="line">report_status(name = <span class="string">'luke'</span>, </span><br><span class="line">              affiliation = <span class="string">'jedi'</span>, </span><br><span class="line">              status = <span class="string">'missing'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Second call to report_status()</span></span><br><span class="line">report_status(name = <span class="string">"anakin"</span>,</span><br><span class="line">              affiliation = <span class="string">"sith lord"</span>, </span><br><span class="line">              status = <span class="string">"deceased"</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Case-study"><a href="#Case-study" class="headerlink" title="Case study"></a>Case study</h3><p>Generate the previous function to count the occurance in any column in the dataframe.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define count_entries()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_entries</span><span class="params">(df, *args)</span>:</span></span><br><span class="line">    <span class="string">"""Return a dictionary with counts of</span></span><br><span class="line"><span class="string">    occurrences as value for each key."""</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#Initialize an empty dictionary: cols_count</span></span><br><span class="line">    cols_count = &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Iterate over column names in args</span></span><br><span class="line">    <span class="keyword">for</span> col_name <span class="keyword">in</span> args:</span><br><span class="line">    </span><br><span class="line">        <span class="comment"># Extract column from DataFrame: col</span></span><br><span class="line">        col = df[col_name]</span><br><span class="line">    </span><br><span class="line">        <span class="comment"># Iterate over the column in DataFrame</span></span><br><span class="line">        <span class="keyword">for</span> entry <span class="keyword">in</span> col:</span><br><span class="line">    </span><br><span class="line">            <span class="comment"># If entry is in cols_count, add 1</span></span><br><span class="line">            <span class="keyword">if</span> entry <span class="keyword">in</span> cols_count.keys():</span><br><span class="line">                cols_count[entry] += <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">            <span class="comment"># Else add the entry to cols_count, set the value to 1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                cols_count[entry] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Return the cols_count dictionary</span></span><br><span class="line">    <span class="keyword">return</span> cols_count</span><br><span class="line"></span><br><span class="line"><span class="comment"># Call count_entries(): result1</span></span><br><span class="line">result1 = count_entries(tweets_df, <span class="string">'lang'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Call count_entries(): result2</span></span><br><span class="line">result2 = count_entries(tweets_df, <span class="string">'lang'</span>, <span class="string">'source'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print result1 and result2</span></span><br><span class="line">print(result1)</span><br><span class="line">print(result2)</span><br></pre></td></tr></table></figure></p>
+<h1 id="Lambda-Functions-amp-Error-Handling"><a href="#Lambda-Functions-amp-Error-Handling" class="headerlink" title="Lambda Functions &amp; Error-Handling"></a>Lambda Functions &amp; Error-Handling</h1><h3 id="Lambda-Functions"><a href="#Lambda-Functions" class="headerlink" title="Lambda Functions"></a>Lambda Functions</h3><p>Lambda allows you to write a function in a quick and potentially dirty way.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">raise_to_power = <span class="keyword">lambda</span> x, y: x ** y</span><br><span class="line">raise_to_power(<span class="number">2</span>, <span class="number">3</span>) <span class="comment">#returns 8</span></span><br></pre></td></tr></table></figure>
+<p><code>map()</code></p>
+<ul>
+<li>takes two arguments: <code>map(func, seq)</code></li>
+<li>applies the function the all elements in the sequence</li>
+<li>In this case, the function does not even need to have a name, and is thus referred as anonymous function.<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nums = [<span class="number">48</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">21</span>, <span class="number">1</span>]</span><br><span class="line">square_all = map(<span class="keyword">lambda</span> num: num ** <span class="number">2</span>, nums)</span><br><span class="line">print(square_all) <span class="comment"># can only show that this is a map object, but cannot see the content in this object.</span></span><br><span class="line">print(list(square_all)) <span class="comment">#this turn the results to a list and thus is printable. [2304, 36, 81, 441, 1]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>filter()</code></p>
+<ul>
+<li>filter out elements from a list that don’t satisfy certain criteria<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create a list of strings: fellowship</span></span><br><span class="line">fellowship = [<span class="string">'frodo'</span>, <span class="string">'samwise'</span>, <span class="string">'merry'</span>, <span class="string">'aragorn'</span>, <span class="string">'legolas'</span>, <span class="string">'boromir'</span>, <span class="string">'gimli'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use filter() to apply a lambda function over fellowship: result</span></span><br><span class="line">result = filter(<span class="keyword">lambda</span> member: len(member) &gt; <span class="number">6</span>, fellowship)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Convert result to a list: result_list</span></span><br><span class="line">result_list = list(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Convert result into a list and print it</span></span><br><span class="line">print(result_list)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>reduce()</code></p>
+<ul>
+<li>useful for performing some computation on a list and returns <em>a single value</em> as a result</li>
+<li>need to be imported from the <code>functools</code> module before use<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import reduce from functools</span></span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce </span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a list of strings: stark</span></span><br><span class="line">stark = [<span class="string">'robb'</span>, <span class="string">'sansa'</span>, <span class="string">'arya'</span>, <span class="string">'eddard'</span>, <span class="string">'jon'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use reduce() to apply a lambda function over stark: result</span></span><br><span class="line">result = reduce(<span class="keyword">lambda</span> item1, item2: item1 + item2, stark)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the result</span></span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Error-Handling"><a href="#Error-Handling" class="headerlink" title="Error Handling"></a>Error Handling</h3><p>We should endeavor to produce useful error messages for the functions that we write: catch exceptions during execution with <code>try</code> &amp; <code>except</code> clause</p>
+<ul>
+<li>Runs the code following <code>try</code></li>
+<li>If there’s an exception, run the code following <code>except</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sqrt</span><span class="params">(x)</span></span></span><br><span class="line"><span class="function">    """<span class="title">Returns</span> <span class="title">the</span> <span class="title">square</span> <span class="title">root</span> <span class="title">of</span> <span class="title">a</span> <span class="title">number</span>."""</span></span><br><span class="line"><span class="function">    <span class="title">try</span>:</span></span><br><span class="line">        <span class="keyword">return</span> x ** <span class="number">0.5</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        print(<span class="string">'x must be an int or float'</span>)</span><br><span class="line"></span><br><span class="line">sqrt(<span class="number">4</span>) <span class="comment">#2.0</span></span><br><span class="line">sqrt(<span class="number">10.0</span>) <span class="comment">#3.162277...</span></span><br><span class="line">sqrt(<span class="string">'hi'</span>) <span class="comment">#'x must be an int or float'</span></span><br></pre></td></tr></table></figure>
+<p>If we only wish to catch type errors, and let other errors pass through: (more errors can be specified - refer to online documentation)<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sqrt</span><span class="params">(x)</span></span></span><br><span class="line"><span class="function">    """<span class="title">Returns</span> <span class="title">the</span> <span class="title">square</span> <span class="title">root</span> <span class="title">of</span> <span class="title">a</span> <span class="title">number</span>."""</span></span><br><span class="line"><span class="function">    <span class="title">try</span>:</span></span><br><span class="line">        <span class="keyword">return</span> x ** <span class="number">0.5</span></span><br><span class="line">    <span class="keyword">except</span> TypeError:</span><br><span class="line">        print(<span class="string">'x must be an int or float'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>If we don’t want our function to work when some specific criteria are met, we can manually raise an error with an if clause (e.g. the input must be positive):<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sqrt</span><span class="params">(x)</span></span></span><br><span class="line"><span class="function">    """<span class="title">Returns</span> <span class="title">the</span> <span class="title">square</span> <span class="title">root</span> <span class="title">of</span> <span class="title">a</span> <span class="title">number</span>."""</span></span><br><span class="line"><span class="function">    <span class="title">if</span> <span class="title">x</span> &lt; 0:</span></span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">'x must be non-negative'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">return</span> x ** <span class="number">0.5</span></span><br><span class="line">    <span class="keyword">except</span> TypeError:</span><br><span class="line">        print(<span class="string">'x must be an int or float'</span>)</span><br><span class="line">sqrt(<span class="number">-2</span>) <span class="comment">#will return a value error and a error message saying that 'x must be non-negative'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Case-Study"><a href="#Case-Study" class="headerlink" title="Case Study"></a>Case Study</h3><ol>
+<li><p>Filtering out all the retweets</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Select retweets from the Twitter DataFrame: result</span></span><br><span class="line">result = filter(<span class="keyword">lambda</span> x: x[<span class="number">0</span>:<span class="number">2</span>] == <span class="string">'RT'</span>, tweets_df[<span class="string">'text'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create list from filter object result: res_list</span></span><br><span class="line">res_list = list(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print all retweets in res_list</span></span><br><span class="line"><span class="keyword">for</span> tweet <span class="keyword">in</span> res_list:</span><br><span class="line">    print(tweet)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Add a <code>try-except</code> block to the function defined in previous case</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define count_entries()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_entries</span><span class="params">(df, col_name=<span class="string">'lang'</span>)</span>:</span></span><br><span class="line">    <span class="string">"""Return a dictionary with counts of</span></span><br><span class="line"><span class="string">    occurrences as value for each key."""</span></span><br><span class="line">    cols_count = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Add try block</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        col = df[col_name]</span><br><span class="line">        <span class="keyword">for</span> entry <span class="keyword">in</span> col:</span><br><span class="line">            <span class="keyword">if</span> entry <span class="keyword">in</span> cols_count.keys():</span><br><span class="line">                cols_count[entry] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                cols_count[entry] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> cols_count</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Add except block</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        print(<span class="string">'The DataFrame does not have a '</span> + col_name + <span class="string">' column.'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Call count_entries(): result1</span></span><br><span class="line">result1 = count_entries(tweets_df, <span class="string">'lang'</span>)</span><br><span class="line">print(result1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Call count_entries(): result2</span></span><br><span class="line">result2 = count_entries(tweets_df, <span class="string">'lang1'</span>) <span class="comment">#error message in except</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Raise a <code>ValueError</code> with if clause.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define count_entries()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_entries</span><span class="params">(df, col_name=<span class="string">'lang'</span>)</span>:</span></span><br><span class="line">    <span class="string">"""Return a dictionary with counts of</span></span><br><span class="line"><span class="string">    occurrences as value for each key."""</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Raise a ValueError if col_name is NOT in DataFrame</span></span><br><span class="line">    <span class="keyword">if</span> col_name <span class="keyword">not</span> <span class="keyword">in</span> df.columns:</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">'The DataFrame does not have a '</span> + col_name + <span class="string">' column.'</span>)</span><br><span class="line"></span><br><span class="line">    cols_count = &#123;&#125;</span><br><span class="line">    col = df[col_name]</span><br><span class="line">    <span class="keyword">for</span> entry <span class="keyword">in</span> col:</span><br><span class="line">        <span class="keyword">if</span> entry <span class="keyword">in</span> cols_count.keys():</span><br><span class="line">            cols_count[entry] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            cols_count[entry] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> cols_count</span><br><span class="line">result1 = count_entries(tweets_df, <span class="string">'lang'</span>)</span><br><span class="line">print(result1)</span><br><span class="line">count_entries(tweets_df, <span class="string">'lang1'</span>) <span class="comment"># ValueError with specified message</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/23/Intermediate-Python/" rel="next" title="DataCamp - Intermediate Python">
+                <i class="fa fa-chevron-left"></i> DataCamp - Intermediate Python
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Joanna</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#User-Defined-Funtions"><span class="nav-number">1.</span> <span class="nav-text">User-Defined Funtions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Defining-a-function"><span class="nav-number">1.0.1.</span> <span class="nav-text">Defining a function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multiple-function-parameters-and-returns"><span class="nav-number">1.0.2.</span> <span class="nav-text">Multiple function parameters and returns</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Case-Study-tweeter-language-counts"><span class="nav-number">1.0.3.</span> <span class="nav-text">Case Study: tweeter language counts</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Scope-and-User-Defined-Functions"><span class="nav-number">2.</span> <span class="nav-text">Scope and User-Defined Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nested-functions"><span class="nav-number">2.0.1.</span> <span class="nav-text">Nested functions</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Default-and-Flexible-Arguements"><span class="nav-number">3.</span> <span class="nav-text">Default and Flexible Arguements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-a-default-argument"><span class="nav-number">3.0.1.</span> <span class="nav-text">Add a default argument:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flexible-arguments"><span class="nav-number">3.0.2.</span> <span class="nav-text">Flexible arguments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Case-study"><span class="nav-number">3.0.3.</span> <span class="nav-text">Case study</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lambda-Functions-amp-Error-Handling"><span class="nav-number">4.</span> <span class="nav-text">Lambda Functions &amp; Error-Handling</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Lambda-Functions"><span class="nav-number">4.0.1.</span> <span class="nav-text">Lambda Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-Handling"><span class="nav-number">4.0.2.</span> <span class="nav-text">Error Handling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Case-Study"><span class="nav-number">4.0.3.</span> <span class="nav-text">Case Study</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joanna</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz',
+        appKey: 'cDbeqqCJt4dq4hu7C9GaCrHB',
+        placeholder: 'Leave your comment here',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz", "cDbeqqCJt4dq4hu7C9GaCrHB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
