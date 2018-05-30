@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Datacamp course notes on iteratiors, list comprehensions and generators.">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DataCamp - Python Data Science Toolbox (Part2)">
+<meta property="og:url" content="http://yoursite.com/2018/05/29/Python-DS-Toolbox2/index.html">
+<meta property="og:site_name" content="Joanna">
+<meta property="og:description" content="Datacamp course notes on iteratiors, list comprehensions and generators.">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-05-30T23:23:46.603Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DataCamp - Python Data Science Toolbox (Part2)">
+<meta name="twitter:description" content="Datacamp course notes on iteratiors, list comprehensions and generators.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/29/Python-DS-Toolbox2/"/>
+
+
+
+
+
+  <title>DataCamp - Python Data Science Toolbox (Part2) | Joanna</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joanna</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/29/Python-DS-Toolbox2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joanna">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joanna">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DataCamp - Python Data Science Toolbox (Part2)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-29T16:38:18-07:00">
+                2018-05-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Course-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Course Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/29/Python-DS-Toolbox2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/29/Python-DS-Toolbox2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/05/29/Python-DS-Toolbox2/" class="leancloud_visitors" data-flag-title="DataCamp - Python Data Science Toolbox (Part2)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Datacamp course notes on iteratiors, list comprehensions and generators.<br><a id="more"></a></p>
+<h1 id="Iterators"><a href="#Iterators" class="headerlink" title="Iterators"></a>Iterators</h1><h2 id="For-loop"><a href="#For-loop" class="headerlink" title="For loop"></a>For loop</h2><p>We can use a for loop to loop over a list, a string, or over a range object. The reason why we can iterate over these objects is that they are <em>iterables</em>. </p>
+<p>Iterables:</p>
+<ul>
+<li>Examples: Lists, strings, dictionaris, file connections are all iterables.</li>
+<li>Definition: An object with an associated <code>iter()</code> method.</li>
+<li>Applying <code>iter()</code> to an iterable creates an iterator. This is actually what the for loop is doing under the hood.</li>
+</ul>
+<p>Iterator:</p>
+<ul>
+<li>Definition: An object with an associated <code>next()</code> method that produces the consecutive values.</li>
+</ul>
+<p>To sum up, </p>
+<ul>
+<li>an <em>iterable</em> is an object that can return an iterator, </li>
+<li>while an <em>iterator</em> is an object that keeps state and produces the next value when you call next() on it.</li>
+</ul>
+<p>To create an iterator from an iterable, all we need to do is to use the function <code>iter()</code> and pass in the iterable.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">word = <span class="string">'Da'</span> <span class="comment"># 'word' is a iterable</span></span><br><span class="line">it = iter(word) <span class="comment"># 'it' is an iterator</span></span><br><span class="line">next(it) <span class="comment">#returns 'D', which is the first letter in the string.</span></span><br><span class="line">next(it) <span class="comment">#returns 'a', which is the second letter in the string</span></span><br><span class="line">next(it) <span class="comment">#no letters left. it throws a iteration stop error</span></span><br><span class="line"></span><br><span class="line">print(*it) <span class="comment">#unpacks all elements of an iterator</span></span><br><span class="line">print(*it) <span class="comment">#note that this can only be called once</span></span><br></pre></td></tr></table></figure></p>
+<p>To iterate over dictionaries, <code>for key, value in my_dict.items():</code> is necessary when calling the for loop.</p>
+<p>To iterate over file connections:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">file = open(<span class="string">'file.txt'</span>)</span><br><span class="line">it = iter(file)</span><br><span class="line">print(next(it)) <span class="comment">#print the first line of the txt file</span></span><br><span class="line">print(next(it)) <span class="comment">#print the second line of the txt file</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Using-enumerate"><a href="#Using-enumerate" class="headerlink" title="Using enumerate():"></a>Using enumerate():</h2><p><code>enumerate()</code> is a function that takes any iterable as an object, such as a list, and returns a special enumerate object, which consists of pairs containing the elements of the original iterable, along with their index within the iterable. We can use the function <code>list</code> to turn this enumerator object into <strong>a list of tuples (index, element)</strong>, and print it to see what it contains.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">avengers = [<span class="string">'hawkeye'</span>, <span class="string">'iron man'</span>, <span class="string">'thor'</span>, <span class="string">'quicksilver'</span>]</span><br><span class="line">e = enumerate(avengers)</span><br><span class="line">print(type(e)) <span class="comment">#class 'enumerate'</span></span><br><span class="line">e_list = list(e)</span><br><span class="line">print(e_list) <span class="comment">#[(0, 'hawkeye'), (1, 'iron man'), (2, 'thor'), (3, 'quicksilver')]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index, value <span class="keyword">in</span> enumerate(avengers, start = <span class="number">10</span>): <span class="comment"># start specifies the index of the first element in the list</span></span><br><span class="line">    print(index, value)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Using-zip"><a href="#Using-zip" class="headerlink" title="Using zip()"></a>Using zip()</h2><p><code>zip()</code> accepts an arbitrary number of iterables and returns <strong>a iterator of tuples (list1_element1, list2_element1, list3_element1)</strong>.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">avengers = [<span class="string">'hawkeye'</span>, <span class="string">'iron man'</span>, <span class="string">'thor'</span>, <span class="string">'quicksilver'</span>]</span><br><span class="line">names = [<span class="string">'barton'</span>, <span class="string">'stark'</span>, <span class="string">'odinson'</span>, <span class="string">'maximoff'</span>]</span><br><span class="line">z = zip(avengers, names)</span><br><span class="line">print(type(z)) <span class="comment">#class 'zip'</span></span><br><span class="line">z_list = list(z)</span><br><span class="line">print(z_list) <span class="comment">#[('hawkeye', 'barton'), ('iron man', 'stark'), ('thor', 'odinson'), ('quicksilver', 'maximoff')]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> z1, z2 <span class="keyword">in</span> zip(avengers, names):</span><br><span class="line">    print(z1, z2)</span><br><span class="line"></span><br><span class="line"><span class="comment">#or simply use the splat operator</span></span><br><span class="line">print(*z) <span class="comment">#('hawkeye', 'barton'), ('iron man', 'stark'), ('thor', 'odinson'), ('quicksilver', 'maximoff')</span></span><br><span class="line">avengers, names = zip(*z) <span class="comment">#avengers = ('hawkeye', 'iron man', 'thor', 'quicksilver'), names = ('barton', 'stark', 'odinson', 'maximoff')</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Using-iterators-to-load-large-files"><a href="#Using-iterators-to-load-large-files" class="headerlink" title="Using iterators to load large files"></a>Using iterators to load large files</h2><p>When the file is too large to be hold in the memory, we can load the data in chunks. We can perform the desired operations on one chunk, store the result, disgard the chunk and then load the next chunk of data. An iterator is helpful in this case.</p>
+<p>We use pandas function: <code>read_csv()</code> and specify the chunk with <code>chunksize</code>.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">result = []</span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> pd.read_csv(<span class="string">'data.csv'</span>, chunksize = <span class="number">1000</span>):</span><br><span class="line">    result.append(sum(chunk[<span class="string">'x'</span>]))<span class="comment"># we want to get the sum of column x</span></span><br><span class="line">total = sum(result)</span><br><span class="line">print(total)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Another way</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">total = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> pd.read_csv(<span class="string">'data.csv'</span>, chunksize = <span class="number">1000</span>):</span><br><span class="line">    total += sum(chunk[<span class="string">'x'</span>]) <span class="comment"># we want to get the sum of column x</span></span><br><span class="line">print(total)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Applying-the-trick-in-the-tweeter-case"><a href="#Applying-the-trick-in-the-tweeter-case" class="headerlink" title="Applying the trick in the tweeter case"></a>Applying the trick in the tweeter case</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define count_entries()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_entries</span><span class="params">(csv_file, c_size, colname)</span>:</span></span><br><span class="line">    <span class="string">"""Return a dictionary with counts of</span></span><br><span class="line"><span class="string">    occurrences as value for each key."""</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Initialize an empty dictionary: counts_dict</span></span><br><span class="line">    counts_dict = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Iterate over the file chunk by chunk</span></span><br><span class="line">    <span class="keyword">for</span> chunk <span class="keyword">in</span> pd.read_csv(csv_file, chunksize = c_size):</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Iterate over the column in DataFrame</span></span><br><span class="line">        <span class="keyword">for</span> entry <span class="keyword">in</span> chunk[colname]:</span><br><span class="line">            <span class="keyword">if</span> entry <span class="keyword">in</span> counts_dict.keys():</span><br><span class="line">                counts_dict[entry] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                counts_dict[entry] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Return counts_dict</span></span><br><span class="line">    <span class="keyword">return</span> counts_dict</span><br><span class="line"></span><br><span class="line"><span class="comment"># Call count_entries(): result_counts</span></span><br><span class="line">result_counts = count_entries(<span class="string">'tweets.csv'</span>, <span class="number">10</span>, <span class="string">'lang'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print result_counts</span></span><br><span class="line">print(result_counts)</span><br></pre></td></tr></table></figure>
+<h1 id="List-Comprehensions"><a href="#List-Comprehensions" class="headerlink" title="List Comprehensions"></a>List Comprehensions</h1><p>List comprehension can collapse for loops for building lists into a single line. It create lists from other lists, DataFrame columns, etc., and is more efficient than a for loop since it only takes a single line of code.</p>
+<p>Required Components:</p>
+<ol>
+<li>Iterable</li>
+<li>Iterator variable (represent members of iterable)</li>
+<li>Output expression</li>
+</ol>
+<p>When we have a list of number and we want to create a new list of numbers, which is the same as the old list except that each number has 1 added to it. Instead of using a for loop in multiple lines, we can use list comprehension to finish this operation in one line as follows:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">nums = [<span class="number">12</span>, <span class="number">8</span>, <span class="number">21</span>, <span class="number">3</span>, <span class="number">16</span>]</span><br><span class="line">new_nums = [num + <span class="number">1</span> <span class="keyword">for</span> num <span class="keyword">in</span> nums] <span class="comment">#[output expression + iterator variable + iterable]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#The above line is the same as:</span></span><br><span class="line">new_nums = []</span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">    new_nums.append(num + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>List comprehension is not restricted to lists, and can be used on any iterables.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># List comprehension with range()</span></span><br><span class="line">result = [num <span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">11</span>)]</span><br><span class="line">print(result) <span class="comment">#[0, 1, 2, ..., 10]</span></span><br></pre></td></tr></table></figure></p>
+<p>We can also replace nested loops with list comprehensions:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pairs_1 = []</span><br><span class="line"><span class="keyword">for</span> num1 <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> num2 <span class="keyword">in</span> range(<span class="number">6</span>, <span class="number">8</span>):</span><br><span class="line">        pairs_1.append(num1, num2)</span><br><span class="line">print(paris_1) <span class="comment">#[(0, 6), (0, 7), (1, 6), (1, 7)]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># To perform the above code in list comprehension</span></span><br><span class="line">pairs_2 = [(num1, num2) <span class="keyword">for</span> num1 <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">2</span>) </span><br><span class="line">                        <span class="keyword">for</span> num2 <span class="keyword">in</span> range(<span class="number">6</span>, <span class="number">8</span>)] <span class="comment">#less readability</span></span><br><span class="line">print(pairs_2) <span class="comment">#[(0, 6), (0, 7), (1, 6), (1, 7)]</span></span><br></pre></td></tr></table></figure></p>
+<p>To create a matrix by list comprehension:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create a 5 x 5 matrix using a list of lists: matrix</span></span><br><span class="line">matrix = [[col <span class="keyword">for</span> col <span class="keyword">in</span> range(<span class="number">5</span>)] <span class="keyword">for</span> row <span class="keyword">in</span> range(<span class="number">5</span>)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the matrix</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> matrix:</span><br><span class="line">    print(row)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Advanced-Comprehensions"><a href="#Advanced-Comprehensions" class="headerlink" title="Advanced Comprehensions"></a>Advanced Comprehensions</h2><p>Conditionals on the iterable:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[num ** <span class="number">2</span> <span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">10</span>) <span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">0</span>]</span><br></pre></td></tr></table></figure></p>
+<p>Conditionals on the output expression:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[num ** <span class="number">2</span> <span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">0</span> <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br></pre></td></tr></table></figure></p>
+<p>Dictionary comprehensions to create dictionaries:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pos_neg = &#123;num: -num <span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">9</span>)&#125;</span><br><span class="line">print(pos_neg)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Generators"><a href="#Generators" class="headerlink" title="Generators"></a>Generators</h3><p>Generator is very similar to a list comprehension, except that it is not stored in the memory and does not construct a list. But we can still iterate over the generator to produce elements of list as required. It becomes very useful when you don’t want to store the entire list in the memory.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># list comprehension</span></span><br><span class="line">[<span class="number">2</span> * num <span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># generator</span></span><br><span class="line">(<span class="number">2</span> * num <span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line">result = (num <span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">6</span>))</span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> result:</span><br><span class="line">    print(num) <span class="comment">#print element by element</span></span><br><span class="line">print(list(result)) <span class="comment">#print a list of the elements</span></span><br><span class="line">print(next(result)) <span class="comment">#just like an iterator</span></span><br></pre></td></tr></table></figure></p>
+<p>Let’s say we want to iterate through a large number of integers from 0 to 10 ** 1000000:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(num <span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">10</span> ** <span class="number">1000000</span>)) <span class="comment">#this can be easily done since it has not created an entire list</span></span><br></pre></td></tr></table></figure></p>
+<p>We can also apply conditions to generators:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">even_num = (num <span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">10</span>) <span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
+<h4 id="Generator-Functions"><a href="#Generator-Functions" class="headerlink" title="Generator Functions"></a>Generator Functions</h4><p>Generator functions are functions that, when called, produce generator objects. It yields a sequence of values instead of returning a single value. It is defined just as other functions, except that it generates a value with <code>yield</code> in steadt of <code>return</code> at the end.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">num_sequence</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="string">"""Generate values from 0 to n."""</span></span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; n:</span><br><span class="line">        <span class="keyword">yield</span> i</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">result = num_squence(<span class="number">5</span>)</span><br><span class="line">print(type(result)) <span class="comment">#class 'generator'</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> result:</span><br><span class="line">    print(item)</span><br></pre></td></tr></table></figure></p>
+<p>Another example:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create a list of strings</span></span><br><span class="line">lannister = [<span class="string">'cersei'</span>, <span class="string">'jaime'</span>, <span class="string">'tywin'</span>, <span class="string">'tyrion'</span>, <span class="string">'joffrey'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define generator function get_lengths</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_lengths</span><span class="params">(input_list)</span>:</span></span><br><span class="line">    <span class="string">"""Generator function that yields the</span></span><br><span class="line"><span class="string">    length of the strings in input_list."""</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Yield the length of a string</span></span><br><span class="line">    <span class="keyword">for</span> person <span class="keyword">in</span> input_list:</span><br><span class="line">        <span class="keyword">yield</span> len(person)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the values generated by get_lengths()</span></span><br><span class="line"><span class="keyword">for</span> value <span class="keyword">in</span> get_lengths(lannister):</span><br><span class="line">    print(value)</span><br></pre></td></tr></table></figure></p>
+<p><code>.item()</code> and <code>range()</code> actually also creates generators behind the scenes when they are called.</p>
+<h1 id="Case-Study-World-bank-data"><a href="#Case-Study-World-bank-data" class="headerlink" title="Case Study: World bank data"></a>Case Study: World bank data</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define lists2dict()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lists2dict</span><span class="params">(list1, list2)</span>:</span></span><br><span class="line">    <span class="string">"""Return a dictionary where list1 provides</span></span><br><span class="line"><span class="string">    the keys and list2 provides the values."""</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Zip lists: zipped_lists</span></span><br><span class="line">    zipped_lists = zip(list1, list2)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create a dictionary: rs_dict</span></span><br><span class="line">    rs_dict = dict(zipped_lists)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Return the dictionary</span></span><br><span class="line">    <span class="keyword">return</span> rs_dict</span><br><span class="line"></span><br><span class="line"><span class="comment"># Call lists2dict: rs_fxn</span></span><br><span class="line">rs_fxn = lists2dict(feature_names, row_vals)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print rs_fxn</span></span><br><span class="line">print(rs_fxn)</span><br></pre></td></tr></table></figure>
+<p>Turn dictionary into dataframe<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import the pandas package</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Turn list of lists into list of dicts: list_of_dicts</span></span><br><span class="line">list_of_dicts = [lists2dict(feature_names, sublist) <span class="keyword">for</span> sublist <span class="keyword">in</span> row_lists]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Turn list of dicts into a DataFrame: df</span></span><br><span class="line">df = pd.DataFrame(list_of_dicts)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the head of the DataFrame</span></span><br><span class="line">print(df.head())</span><br></pre></td></tr></table></figure></p>
+<h2 id="Writing-a-generator-to-load-data-line-by-line"><a href="#Writing-a-generator-to-load-data-line-by-line" class="headerlink" title="Writing a generator to load data line by line:"></a>Writing a generator to load data line by line:</h2><p>Use a generator to load a file line by line. If the data is streaming, which means if more data is added to the dataset while you doing the operation, it will read and process the file until all lines are exhausted.</p>
+<p>Context manager: The csv file <code>&#39;world_dev_ind.csv&#39;</code> is in the current directory for your use. To begin, you need to open a connection to this file using what is known as a context manager. For example, the command <code>with open(&#39;datacamp.csv&#39;) as datacamp</code> binds the csv file <code>&#39;datacamp.csv&#39;</code> as <code>datacamp</code> in the context manager. Here, the <code>with</code> statement is the context manager, and its purpose is to ensure that resources are efficiently allocated when opening a connection to a file.</p>
+<p>Rough thoughts:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Open a connection to the file</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'world_dev_ind.csv'</span>) <span class="keyword">as</span> file:</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Skip the column names (tell python to read from the next row)</span></span><br><span class="line">    file.readline()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Initialize an empty dictionary: counts_dict</span></span><br><span class="line">    counts_dict = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Process only the first 1000 rows</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1000</span>):</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Split the current line into a list: line</span></span><br><span class="line">        line = file.readline().split(<span class="string">','</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Get the value for the first column: first_col</span></span><br><span class="line">        first_col = line[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># If the column value is in the dict, increment its value</span></span><br><span class="line">        <span class="keyword">if</span> first_col <span class="keyword">in</span> counts_dict.keys():</span><br><span class="line">            counts_dict[first_col] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Else, add to the dict and set value to 1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            counts_dict[first_col] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the resulting dictionary</span></span><br><span class="line">print(counts_dict)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define read_large_file()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_large_file</span><span class="params">(file_object)</span>:</span></span><br><span class="line">    <span class="string">"""A generator function to read a large file lazily."""</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Loop indefinitely until the end of the file</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Read a line from the file: data</span></span><br><span class="line">        data = file_object.readline()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Break if this is the end of the file</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Yield the line of data</span></span><br><span class="line">        <span class="keyword">yield</span> data</span><br><span class="line">        </span><br><span class="line"><span class="comment"># Open a connection to the file</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'world_dev_ind.csv'</span>) <span class="keyword">as</span> file:</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create a generator object for the file: gen_file</span></span><br><span class="line">    gen_file = read_large_file(file)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Print the first three lines of the file</span></span><br><span class="line">    print(next(gen_file))</span><br><span class="line">    print(next(gen_file))</span><br><span class="line">    print(next(gen_file))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize an empty dictionary: counts_dict</span></span><br><span class="line">counts_dict = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Open a connection to the file</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'world_dev_ind.csv'</span>) <span class="keyword">as</span> file:</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Iterate over the generator from read_large_file()</span></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> read_large_file(file):</span><br><span class="line"></span><br><span class="line">        row = line.split(<span class="string">','</span>)</span><br><span class="line">        first_col = row[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> first_col <span class="keyword">in</span> counts_dict.keys():</span><br><span class="line">            counts_dict[first_col] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            counts_dict[first_col] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Print            </span></span><br><span class="line">print(counts_dict)</span><br></pre></td></tr></table></figure>
+<h2 id="Writing-an-iterator-to-load-data-in-chunks"><a href="#Writing-an-iterator-to-load-data-in-chunks" class="headerlink" title="Writing an iterator to load data in chunks"></a>Writing an iterator to load data in chunks</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define plot_pop()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_pop</span><span class="params">(filename, country_code)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Initialize reader object: urb_pop_reader</span></span><br><span class="line">    urb_pop_reader = pd.read_csv(filename, chunksize=<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Initialize empty DataFrame: data</span></span><br><span class="line">    data = pd.DataFrame()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Iterate over each DataFrame chunk</span></span><br><span class="line">    <span class="keyword">for</span> df_urb_pop <span class="keyword">in</span> urb_pop_reader:</span><br><span class="line">        <span class="comment"># Check out specific country: df_pop_ceb</span></span><br><span class="line">        df_pop_ceb = df_urb_pop[df_urb_pop[<span class="string">'CountryCode'</span>] == country_code]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Zip DataFrame columns of interest: pops</span></span><br><span class="line">        pops = zip(df_pop_ceb[<span class="string">'Total Population'</span>],</span><br><span class="line">                    df_pop_ceb[<span class="string">'Urban population (% of total)'</span>])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Turn zip object into list: pops_list</span></span><br><span class="line">        pops_list = list(pops)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Use list comprehension to create new DataFrame column 'Total Urban Population'</span></span><br><span class="line">        df_pop_ceb[<span class="string">'Total Urban Population'</span>] = [int(tup[<span class="number">0</span>] * tup[<span class="number">1</span>]) <span class="keyword">for</span> tup <span class="keyword">in</span> pops_list]</span><br><span class="line">    </span><br><span class="line">        <span class="comment"># Append DataFrame chunk to data: data</span></span><br><span class="line">        data = data.append(df_pop_ceb)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Plot urban population data</span></span><br><span class="line">    data.plot(kind=<span class="string">'scatter'</span>, x=<span class="string">'Year'</span>, y=<span class="string">'Total Urban Population'</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the filename: fn</span></span><br><span class="line">fn = <span class="string">'ind_pop_data.csv'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Call plot_pop for country code 'CEB'</span></span><br><span class="line">plot_pop(<span class="string">'ind_pop_data.csv'</span>, <span class="string">'CEB'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Call plot_pop for country code 'ARB'</span></span><br><span class="line">plot_pop(<span class="string">'ind_pop_data.csv'</span>, <span class="string">'ARB'</span>)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/28/Python-DS-Toolbox1/" rel="next" title="DataCamp - Python Data Science Toolbox (Part1)">
+                <i class="fa fa-chevron-left"></i> DataCamp - Python Data Science Toolbox (Part1)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Joanna</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Iterators"><span class="nav-number">1.</span> <span class="nav-text">Iterators</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#For-loop"><span class="nav-number">1.1.</span> <span class="nav-text">For loop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-enumerate"><span class="nav-number">1.2.</span> <span class="nav-text">Using enumerate():</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-zip"><span class="nav-number">1.3.</span> <span class="nav-text">Using zip()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-iterators-to-load-large-files"><span class="nav-number">1.4.</span> <span class="nav-text">Using iterators to load large files</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Applying-the-trick-in-the-tweeter-case"><span class="nav-number">1.4.1.</span> <span class="nav-text">Applying the trick in the tweeter case</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#List-Comprehensions"><span class="nav-number">2.</span> <span class="nav-text">List Comprehensions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Advanced-Comprehensions"><span class="nav-number">2.1.</span> <span class="nav-text">Advanced Comprehensions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Generators"><span class="nav-number">2.1.1.</span> <span class="nav-text">Generators</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Generator-Functions"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">Generator Functions</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Case-Study-World-bank-data"><span class="nav-number">3.</span> <span class="nav-text">Case Study: World bank data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Writing-a-generator-to-load-data-line-by-line"><span class="nav-number">3.1.</span> <span class="nav-text">Writing a generator to load data line by line:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Writing-an-iterator-to-load-data-in-chunks"><span class="nav-number">3.2.</span> <span class="nav-text">Writing an iterator to load data in chunks</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joanna</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz',
+        appKey: 'cDbeqqCJt4dq4hu7C9GaCrHB',
+        placeholder: 'Leave your comment here',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz", "cDbeqqCJt4dq4hu7C9GaCrHB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
