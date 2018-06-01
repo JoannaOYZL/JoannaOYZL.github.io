@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Datacamp course notes on web scraping and APIs in Python.">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DataCamp - Importing Data (Part 2)">
+<meta property="og:url" content="http://yoursite.com/2018/05/31/Importing-Data2/index.html">
+<meta property="og:site_name" content="Joanna">
+<meta property="og:description" content="Datacamp course notes on web scraping and APIs in Python.">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-06-01T17:43:43.817Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DataCamp - Importing Data (Part 2)">
+<meta name="twitter:description" content="Datacamp course notes on web scraping and APIs in Python.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/31/Importing-Data2/"/>
+
+
+
+
+
+  <title>DataCamp - Importing Data (Part 2) | Joanna</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joanna</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/31/Importing-Data2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joanna">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joanna">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DataCamp - Importing Data (Part 2)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-31T15:12:50-07:00">
+                2018-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Course-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Course Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/31/Importing-Data2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/31/Importing-Data2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/05/31/Importing-Data2/" class="leancloud_visitors" data-flag-title="DataCamp - Importing Data (Part 2)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Datacamp course notes on web scraping and APIs in Python.<br><a id="more"></a></p>
+<h1 id="Web-Scraping"><a href="#Web-Scraping" class="headerlink" title="Web Scraping"></a>Web Scraping</h1><h2 id="Importing-files-from-online-website"><a href="#Importing-files-from-online-website" class="headerlink" title="Importing files from online website"></a>Importing files from online website</h2><h3 id="CSV-File"><a href="#CSV-File" class="headerlink" title="CSV File"></a>CSV File</h3><p>The urllib package provides a high-level interface for fetching data across the web.<br><code>urlopen()</code> - accepts URLs instead of file names<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import package</span></span><br><span class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span> urlretrieve</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import pandas</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Assign url of file: url</span></span><br><span class="line">url = <span class="string">'https://s3.amazonaws.com/assets.datacamp.com/production/course_1606/datasets/winequality-red.csv'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Save file locally</span></span><br><span class="line">urlretrieve(url, <span class="string">'winequality-red.csv'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read file into a DataFrame and print its head</span></span><br><span class="line">df = pd.read_csv(<span class="string">'winequality-red.csv'</span>, sep=<span class="string">';'</span>)</span><br><span class="line">print(df.head())</span><br><span class="line"></span><br><span class="line"><span class="comment"># OR using the online file directly without downloading</span></span><br><span class="line">df = pd.read_csv(url, sep = <span class="string">';'</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Excel-File"><a href="#Excel-File" class="headerlink" title="Excel File"></a>Excel File</h3><p><em>Note that the output of <code>pd.read_excel()</code> is a Python dictionary with sheet names as keys and corresponding DataFrames as corresponding values.</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import package</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Assign url of file: url</span></span><br><span class="line">url = <span class="string">'http://s3.amazonaws.com/assets.datacamp.com/course/importing_data_into_r/latitude.xls'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Read in all sheets of Excel file: xl</span></span><br><span class="line">xl = pd.read_excel(url, sheetname = <span class="keyword">None</span>) <span class="comment">#set sheetname = None to load in all the sheets. xl </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the sheetnames to the shell</span></span><br><span class="line">print(xl.keys())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the head of the first sheet (using its name, NOT its index)</span></span><br><span class="line">print(xl[<span class="string">'1700'</span>].head())</span><br></pre></td></tr></table></figure></p>
+<h2 id="HTTP-Requests"><a href="#HTTP-Requests" class="headerlink" title="HTTP Requests"></a>HTTP Requests</h2><p>Going to a website = sending HTTP GET request. <code>urlretrieve()</code> performs a GET request, and helps save the HTML(HyperText Markup Language) data locally</p>
+<p>GET requests using urllib<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import packages</span></span><br><span class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span> urlopen, Request</span><br><span class="line"></span><br><span class="line"><span class="comment"># Specify the url</span></span><br><span class="line">url = <span class="string">"http://www.datacamp.com/teach/documentation"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># This packages the request: request</span></span><br><span class="line">request = Request(url)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Sends the request and catches the response: response</span></span><br><span class="line">response = urlopen(request)<span class="comment">#this will return an http reponse object</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the datatype of response</span></span><br><span class="line">print(type(response))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Extract the response: html</span></span><br><span class="line">html = response.read() <span class="comment">#returns the html as a string</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the html</span></span><br><span class="line">print(html)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Be polite and close the response!</span></span><br><span class="line">response.close()</span><br></pre></td></tr></table></figure></p>
+<p>GET requests using requests<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import package</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="comment"># Specify the url: url</span></span><br><span class="line">url = <span class="string">"http://www.datacamp.com/teach/documentation"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Packages the request, send the request and catch the response: r</span></span><br><span class="line">r = requests.get(url)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Extract the response: text</span></span><br><span class="line">text = r.text</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the html</span></span><br><span class="line">print(text)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Web-Scraping-in-Python"><a href="#Web-Scraping-in-Python" class="headerlink" title="Web Scraping in Python"></a>Web Scraping in Python</h2><p>HTML data is a mix of unstructured and structured data. Therefore, we need to parse it and extract structured data from it with a Python package <code>BeautifulSoup</code>.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">'https//www.crummy.com/software/BeautifulSoup/'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Package the request, send the request and catch the response</span></span><br><span class="line">r = requests.get(url)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Extracts the response as html</span></span><br><span class="line">html_doc = r.text</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a BeautifulSoup object from the HTML</span></span><br><span class="line">soup = BeautifulSoup(html_doc)</span><br><span class="line"></span><br><span class="line"><span class="comment">#make the html property indented into a readable manner</span></span><br><span class="line">print(soup.prettify()) </span><br><span class="line"></span><br><span class="line"><span class="comment">#get the title</span></span><br><span class="line">print(soup.title) </span><br><span class="line"></span><br><span class="line"><span class="comment">#get the text</span></span><br><span class="line">print(soup.get_text()) </span><br><span class="line"></span><br><span class="line"><span class="comment">#to extract url of all the hyperlinks in the html</span></span><br><span class="line"><span class="keyword">for</span> link <span class="keyword">in</span> soup.find_all(<span class="string">'a'</span>): <span class="comment">#find all '&lt;a&gt;' tags which define hyperlinks</span></span><br><span class="line">	print(link.get(<span class="string">'href'</span>))</span><br></pre></td></tr></table></figure></p>
+<h2 id="Extracting-data-from-APIs"><a href="#Extracting-data-from-APIs" class="headerlink" title="Extracting data from APIs"></a>Extracting data from APIs</h2><p>API stands for Application Programming Interface, and is a set of protocols and routines for building and interacting with software applications. Simply put, it’s a bunch of code that allows two software programs to communicate with each other. We need APIs to interact with all kinds of applications like Twitter, Instagram and so on.</p>
+<p>Connecting to an API in Python<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">'http://www.omdbapi.com/?t=hackers'</span></span><br><span class="line">r = requests.get(url)</span><br><span class="line">json_data = r.json()</span><br><span class="line"><span class="keyword">for</span> key, value <span class="keyword">in</span> json_data.items():</span><br><span class="line">	print(key + <span class="string">':'</span>, value)</span><br></pre></td></tr></table></figure></p>
+<p>The components of the above <code>url</code>:</p>
+<ul>
+<li>http: making an HTTP request</li>
+<li><a href="http://www.omdbapi.com" target="_blank" rel="noopener">www.omdbapi.com</a>: querying the OMDB API</li>
+<li>?t=hackers: it’s a query string that is aimed at returning data for a movie with title (t) ‘Hackers’</li>
+</ul>
+<p>Wikipedia API<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import package</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="comment"># Assign URL to variable: url</span></span><br><span class="line">url = <span class="string">'https://en.wikipedia.org/w/api.php?action=query&amp;prop=extracts&amp;format=json&amp;exintro=&amp;titles=pizza'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Package the request, send the request and catch the response: r</span></span><br><span class="line">r = requests.get(url)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Decode the JSON data into a dictionary: json_data</span></span><br><span class="line">json_data = r.json()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the Wikipedia page extract</span></span><br><span class="line">pizza_extract = json_data[<span class="string">'query'</span>][<span class="string">'pages'</span>][<span class="string">'24768'</span>][<span class="string">'extract'</span>]</span><br><span class="line">print(pizza_extract)</span><br></pre></td></tr></table></figure></p>
+<p>Twitter API</p>
+<ul>
+<li>Create a twitter account</li>
+<li>Create a twitter app</li>
+<li>Keys and Access Tokens and copy API Key, API Secret, Access Token and Access Token Secret. These are the key credentials that will allow you to have access to the twitter</li>
+</ul>
+<p>Set up authentication credentials<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import package</span></span><br><span class="line"><span class="keyword">import</span> tweepy</span><br><span class="line"></span><br><span class="line"><span class="comment"># Store OAuth authentication credentials in relevant variables</span></span><br><span class="line">access_token = <span class="string">"1092294848-aHN7DcRP9B4VMTQIhwqOYiB14YkW92fFO8k8EPy"</span></span><br><span class="line">access_token_secret = <span class="string">"X4dHmhPfaksHcQ7SCbmZa2oYBBVSD2g8uIHXsp5CTaksx"</span></span><br><span class="line">consumer_key = <span class="string">"nZ6EA0FxZ293SxGNg8g8aP0HM"</span></span><br><span class="line">consumer_secret = <span class="string">"fJGEodwe3KiKUnsYJC3VRndj7jevVvXbK2D5EiJ2nehafRgA6i"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Pass OAuth details to tweepy's OAuth handler</span></span><br><span class="line">auth = tweepy.OAuthHandler(consumer_key, consumer_secret)</span><br><span class="line">auth.set_access_token(access_token, access_token_secret)</span><br></pre></td></tr></table></figure></p>
+<p>Streaming tweets<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Initialize Stream listener</span></span><br><span class="line">l = MyStreamListener()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create you Stream object with authentication</span></span><br><span class="line">stream = tweepy.Stream(auth, l)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Filter Twitter Streams to capture data by the keywords:</span></span><br><span class="line">stream.filter(track = [<span class="string">'clinton'</span>, <span class="string">'trump'</span>, <span class="string">'sanders'</span>, <span class="string">'cruz'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import package</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># String of path to file: tweets_data_path</span></span><br><span class="line">tweets_data_path = <span class="string">'tweets.txt'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize empty list to store tweets: tweets_data</span></span><br><span class="line">tweets_data = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># Open connection to file</span></span><br><span class="line">tweets_file = open(tweets_data_path, <span class="string">"r"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read in tweets and store in list: tweets_data</span></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> tweets_file:</span><br><span class="line">    tweet = json.loads(line)</span><br><span class="line">    tweets_data.append(tweet)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Close connection to file</span></span><br><span class="line">tweets_file.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the keys of the first tweet dict</span></span><br><span class="line">print(tweets_data[<span class="number">0</span>].keys())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import package</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build DataFrame of tweet texts and languages</span></span><br><span class="line">df = pd.DataFrame(tweets_data, columns = [<span class="string">'text'</span>, <span class="string">'lang'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print head of DataFrame</span></span><br><span class="line">print(df.head())</span><br></pre></td></tr></table></figure></p>
+<p>Twitter text analysis: count how many tweets contain the words <code>&#39;clinton&#39;</code>, <code>&#39;trump&#39;</code>, <code>&#39;sanders&#39;</code> and <code>&#39;cruz&#39;</code>.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">word_in_text</span><span class="params">(word, tweet)</span>:</span></span><br><span class="line">	<span class="string">"""tell you whether the first argument (a word) occurs within the 2nd argument (a tweet)"""</span></span><br><span class="line">    word = word.lower()</span><br><span class="line">    text = tweet.lower()</span><br><span class="line">    match = re.search(word, tweet)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> match:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize list to store tweet counts</span></span><br><span class="line">[clinton, trump, sanders, cruz] = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Iterate through df, counting the number of tweets in which each candidate is mentioned</span></span><br><span class="line"><span class="keyword">for</span> index, row <span class="keyword">in</span> df.iterrows():</span><br><span class="line">    clinton += word_in_text(<span class="string">'clinton'</span>, row[<span class="string">'text'</span>])</span><br><span class="line">    trump += word_in_text(<span class="string">'trump'</span>, row[<span class="string">'text'</span>])</span><br><span class="line">    sanders += word_in_text(<span class="string">'sanders'</span>, row[<span class="string">'text'</span>])</span><br><span class="line">    cruz += word_in_text(<span class="string">'cruz'</span>, row[<span class="string">'text'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import packages</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set seaborn style</span></span><br><span class="line">sns.set(color_codes=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a list of labels:cd</span></span><br><span class="line">cd = [<span class="string">'clinton'</span>, <span class="string">'trump'</span>, <span class="string">'sanders'</span>, <span class="string">'cruz'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot histogram</span></span><br><span class="line">ax = sns.barplot(cd, [clinton, trump, sanders, cruz])</span><br><span class="line">ax.set(ylabel=<span class="string">"count"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p>A standard form for transferring data through APIs is the JSON file format. JSON is short for JavaScript Object Notation, which aroused out of the growing need for real-time server-to-browser communication that wouldn’t necessarily rely on Flash or Java. JSON is human readable and is close to the structure of a python dictionary.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="comment"># Load JSON: json_data</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"a_movie.json"</span>) <span class="keyword">as</span> json_file:</span><br><span class="line">    json_data = json.load(json_file)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print each key-value pair in json_data</span></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> json_data.keys():</span><br><span class="line">    print(k + <span class="string">': '</span>, json_data[k])</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/31/Data-Cleaning/" rel="next" title="DataCamp - Cleaning Data in Python">
+                <i class="fa fa-chevron-left"></i> DataCamp - Cleaning Data in Python
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Joanna</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-Scraping"><span class="nav-number">1.</span> <span class="nav-text">Web Scraping</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Importing-files-from-online-website"><span class="nav-number">1.1.</span> <span class="nav-text">Importing files from online website</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSV-File"><span class="nav-number">1.1.1.</span> <span class="nav-text">CSV File</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Excel-File"><span class="nav-number">1.1.2.</span> <span class="nav-text">Excel File</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Requests"><span class="nav-number">1.2.</span> <span class="nav-text">HTTP Requests</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-Scraping-in-Python"><span class="nav-number">1.3.</span> <span class="nav-text">Web Scraping in Python</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extracting-data-from-APIs"><span class="nav-number">1.4.</span> <span class="nav-text">Extracting data from APIs</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joanna</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz',
+        appKey: 'cDbeqqCJt4dq4hu7C9GaCrHB',
+        placeholder: 'Leave your comment here',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz", "cDbeqqCJt4dq4hu7C9GaCrHB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
