@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Datacamp course notes on pandas foundation.">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DataCamp - Pandas Foundation">
+<meta property="og:url" content="http://yoursite.com/2018/06/05/Pandas Foundation/index.html">
+<meta property="og:site_name" content="Joanna">
+<meta property="og:description" content="Datacamp course notes on pandas foundation.">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-06-07T16:18:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DataCamp - Pandas Foundation">
+<meta name="twitter:description" content="Datacamp course notes on pandas foundation.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/05/Pandas Foundation/"/>
+
+
+
+
+
+  <title>DataCamp - Pandas Foundation | Joanna</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joanna</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/05/Pandas Foundation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joanna">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joanna">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DataCamp - Pandas Foundation</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-05T15:51:40-07:00">
+                2018-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Course-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Course Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/05/Pandas Foundation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/06/05/Pandas Foundation/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/06/05/Pandas Foundation/" class="leancloud_visitors" data-flag-title="DataCamp - Pandas Foundation">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Datacamp course notes on pandas foundation.<br><a id="more"></a></p>
+<h1 id="Data-Ingestion-amp-Inspection"><a href="#Data-Ingestion-amp-Inspection" class="headerlink" title="Data Ingestion &amp; Inspection"></a>Data Ingestion &amp; Inspection</h1><h2 id="Basic-Concepts-of-Pandas-DataFrames"><a href="#Basic-Concepts-of-Pandas-DataFrames" class="headerlink" title="Basic Concepts of Pandas DataFrames"></a>Basic Concepts of Pandas DataFrames</h2><p>Pandas DataFrame is a tabular data structure with columns and rows. Rows are labeled by a data structure called index, which is tabled lists of labels that permit fast look up and powerful relational operations</p>
+<p>Columns are also labeld by a list index. Each column is a specialized data structure called a panda series, which is a 1-d labeled numpy array. DataFrame is a 2-d numpy array.</p>
+<p>Each series has its own head method and inherit its name attributes from its column. To extract the numerical values of the series, we use the <code>.values</code> attribute</p>
+<p>Assigning NAs to every third element/row in the last column<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">AAPL.iloc[::<span class="number">3</span>, <span class="number">-1</span>] = np.nan</span><br></pre></td></tr></table></figure></p>
+<h3 id="Create-DataFrames"><a href="#Create-DataFrames" class="headerlink" title="Create DataFrames"></a>Create DataFrames</h3><p>Create dataframe by combining lists<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Zip the 2 lists together into one list of (key,value) tuples: zipped</span></span><br><span class="line">zipped = list(zip(list_keys, list_values))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Inspect the list using print()</span></span><br><span class="line">print(zipped)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build a dictionary with the zipped list: data</span></span><br><span class="line">data = dict(zipped)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build and inspect a DataFrame from the dictionary: df</span></span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line">print(df)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Rename dataframe</span></span><br><span class="line">list_labels = [<span class="string">'year'</span>, <span class="string">'artist'</span>, <span class="string">'song'</span>, <span class="string">'chart weeks'</span>]</span><br><span class="line">df.columns = list_labels</span><br></pre></td></tr></table></figure></p>
+<p>Creating dataframe by converting dictionaries<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Make a string with the value 'PA': state</span></span><br><span class="line">state = <span class="string">'PA'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Construct a dictionary: data</span></span><br><span class="line">data = &#123;<span class="string">'state'</span>:state, <span class="string">'city'</span>:cities&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Construct a DataFrame from dictionary data: df</span></span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the DataFrame</span></span><br><span class="line">print(df)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Importing-and-Exporting-Data"><a href="#Importing-and-Exporting-Data" class="headerlink" title="Importing and Exporting Data"></a>Importing and Exporting Data</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">colnames = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]</span><br><span class="line">pd.read_csv(filepath,</span><br><span class="line">            header = <span class="keyword">None</span>, <span class="comment">#prevents pandas from assuming the first line as the column labels. header = 0 means the first row is the header</span></span><br><span class="line">            names = col_names,</span><br><span class="line">            na_values = &#123;<span class="string">'sunspots'</span>:[<span class="string">'-1'</span>]&#125;, <span class="comment">#replace all value -1 in the column sunspots with na</span></span><br><span class="line">            parse_dates = [[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>]], <span class="comment">#originally there were three columns: year, month, day at column 0,1,2, with this argument, they are aggregated into one column inferring dates. Or we can simply write parse_dates = True</span></span><br><span class="line">            delimiter = <span class="string">' '</span>,</span><br><span class="line">            comment = <span class="string">'#'</span>, <span class="comment">#indicate the comment part starts with #</span></span><br><span class="line">            index_col = <span class="number">0</span> <span class="comment">#set the first column as row index</span></span><br><span class="line">            )</span><br><span class="line">sunspots.to_csv(<span class="string">'sunspots.tsv'</span>, sep = <span class="string">'\t'</span>)</span><br><span class="line">sunspots.to_excel(<span class="string">'sunspots.xlsx'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Ploting-the-data"><a href="#Ploting-the-data" class="headerlink" title="Ploting the data"></a>Ploting the data</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">appl.plot() <span class="comment">#plots all columns at once against the row index</span></span><br><span class="line">appl[[<span class="string">'open'</span>, <span class="string">'close'</span>]].plot(color = <span class="string">'b'</span>, <span class="comment">#blue</span></span><br><span class="line">                  style = <span class="string">'.-'</span>, <span class="comment">#or '.', '-'</span></span><br><span class="line">                  legend = <span class="keyword">True</span>)</span><br><span class="line">plt.yscale(<span class="string">'log'</span>) <span class="comment">#log y axis</span></span><br><span class="line">plt.axis((<span class="string">'2001'</span>, <span class="string">'2002'</span>, <span class="number">0</span>, <span class="number">100</span>))</span><br><span class="line">plt.savefig(<span class="string">'aapl.png'</span>) <span class="comment">#suffix can also be .jpg, .pdf</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h1 id="Exploratory-Data-Analysis"><a href="#Exploratory-Data-Analysis" class="headerlink" title="Exploratory Data Analysis"></a>Exploratory Data Analysis</h1><p>Iris data set: 150 observations, 4 features each</p>
+<ul>
+<li>Sepal length, width, Petal length and width.</li>
+<li>3 Species: setosa, versicolor, virginica</li>
+</ul>
+<h2 id="Visual-EDA"><a href="#Visual-EDA" class="headerlink" title="Visual EDA"></a>Visual EDA</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">iris = pd.read_csv(<span class="string">'iris.csv'</span>, index_col = <span class="number">0</span>)</span><br><span class="line">iris.shape</span><br><span class="line">iris.head()</span><br><span class="line">iris.plot(kind = <span class="string">'scatter'</span>, x = <span class="string">'sepal_length'</span>, y = <span class="string">'sepal_width'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Make subplots</span></span><br><span class="line">cols = [<span class="string">'weight'</span>, <span class="string">'mpg'</span>]</span><br><span class="line">df[cols].plot(kind = <span class="string">'box'</span>, subplots = <span class="keyword">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Scatter plot: <code>kind = &#39;scatter&#39;</code></li>
+<li>Boxplot: <code>kind = &#39;box&#39;</code></li>
+<li>Histogram: <code>kind = &#39;hist&#39;</code>.<ol>
+<li>bins(integer): number of intervals or bins</li>
+<li>range(tuple): extrema of bins (min, max)</li>
+<li>normed(boolean): whether to normalize to one</li>
+<li>cumulative(boolean): compute Cumulative Distribution Function(CDF)</li>
+</ol>
+</li>
+</ul>
+<p><em>Note: There are three different DataFrame plot idioms:</em></p>
+<ul>
+<li><code>iris.plot(kind = &#39;hist&#39;)</code></li>
+<li><code>iris.plt.hist()</code></li>
+<li><code>iris.hist()</code><br>Their syntax and results also differ from each other.</li>
+</ul>
+<p>Formatting the plots. Plotting PDF, CDF<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This formats the plots such that they appear on separate rows</span></span><br><span class="line">fig, axes = plt.subplots(nrows = <span class="number">2</span>, ncols = <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot the PDF</span></span><br><span class="line">df.fraction.plot(ax = axes[<span class="number">0</span>], <span class="comment">#plot will appear in the first row</span></span><br><span class="line">                 kind = <span class="string">'hist'</span>, </span><br><span class="line">                 normed = <span class="keyword">True</span>, <span class="comment">#needs for pdf</span></span><br><span class="line">                 bins = <span class="number">30</span>, </span><br><span class="line">                 range = (<span class="number">0</span>,<span class="number">.3</span>))</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot the CDF</span></span><br><span class="line">df.fraction.plot(ax = axes[<span class="number">1</span>], <span class="comment">#plot will appear in the second row</span></span><br><span class="line">                 kind = <span class="string">'hist'</span>, </span><br><span class="line">                 normed = <span class="keyword">True</span>, </span><br><span class="line">                 cumulative = <span class="keyword">True</span>, <span class="comment">#needs for cdf</span></span><br><span class="line">                 bins = <span class="number">30</span>, </span><br><span class="line">                 range = (<span class="number">0</span>,<span class="number">.3</span>)</span><br><span class="line">                 alpha = <span class="number">0.3</span>) <span class="comment">#transparency</span></span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot boxplot with filtering</span></span><br><span class="line">titanic.loc[titanic[<span class="string">'pclass'</span>] == <span class="number">1</span>].plot(ax = axes[<span class="number">0</span>], y = <span class="string">'fare'</span>, kind = <span class="string">'box'</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Statistical-EDA"><a href="#Statistical-EDA" class="headerlink" title="Statistical EDA"></a>Statistical EDA</h2><p><code>.describe()</code> for numeric values: count, mean, std, min, 25%, median, 75%, max<br><code>.describe()</code> for categorical values: </p>
+<ul>
+<li>count, which is the number of non-null entries </li>
+<li>unique, number of distinct values</li>
+<li>top, most frequent category</li>
+<li>freq, number of occurences of top<br><code>.unique()</code> returns the unique values in a column<br><code>.mean()</code>: <code>.mean(axis = &#39;columns&#39;)</code> computes the mean across all columns per row.<br><code>.std()</code><br><code>.median()</code><br><code>.quantile(q)</code> where q = (0, 1). To calculate intern-quartile range (IQR): q = [0.25, 0.75]. We can also use boxplot to visualy understand the quartile.<br><code>.min()</code>, <code>.max()</code><br><code>.count()</code></li>
+</ul>
+<p>Filtering by species<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">indices = iris[<span class="string">'species'</span>] == <span class="string">'setosa'</span></span><br><span class="line">setosa = iris.loc[indices, :]</span><br><span class="line"></span><br><span class="line">describe_all = iris.describe()</span><br><span class="line">describe_setosa = setosa.describe()</span><br><span class="line">error_setosa = <span class="number">100</span> * np.abs(describe_setosa - describe_all)</span><br><span class="line">error_setose = error_setosa/describe_setosa</span><br></pre></td></tr></table></figure></p>
+<h1 id="Time-Series-in-Pandas"><a href="#Time-Series-in-Pandas" class="headerlink" title="Time Series in Pandas"></a>Time Series in Pandas</h1><p><code>read_csv()</code> function can read strings into datetime objects with argument <code>parse_dates = True</code>. The date will be stored as <code>yyyy-mm-dd hh:mm:ss</code>. In time series data, it is also useful to set the date column as index, so that we can perform date time slicing easily.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">sales = pd.read_csv(<span class="string">'sales-feb-2016.csv'</span>,</span><br><span class="line">            parse_date = <span class="keyword">True</span>,</span><br><span class="line">            index_col = <span class="string">'Date'</span>)</span><br><span class="line">sales.loc[<span class="string">'2015-02-19 11:00:00'</span>, <span class="string">'Company'</span>]</span><br><span class="line">sales.loc[<span class="string">'2015-2-5'</span>] <span class="comment">#select all rows on this day</span></span><br><span class="line"><span class="comment">#Alternatively</span></span><br><span class="line">sales.loc[<span class="string">'February 5, 2015'</span>]</span><br><span class="line">sales.loc[<span class="string">'2015-Feb-5'</span>]</span><br><span class="line"></span><br><span class="line">sales.loc[<span class="string">'2015-2'</span>] <span class="comment">#select the entire month</span></span><br><span class="line">sales.loc[<span class="string">'2015'</span>] <span class="comment">#select the entire year</span></span><br><span class="line"></span><br><span class="line">sales.loc[<span class="string">'2015-2-5'</span>:<span class="string">'2015-2-10'</span>] <span class="comment">#time window</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Convert strings to pandas datetime object</span></span><br><span class="line">time_format = <span class="string">'%Y-%m-%d %H:%M'</span></span><br><span class="line">evening_2_11 = pd.to_datetime([<span class="string">'2015-2-11 20:00'</span>,</span><br><span class="line">                               <span class="string">'2015-2-11 21:00'</span>,</span><br><span class="line">                               <span class="string">'2015-2-11 22:00'</span>,</span><br><span class="line">                               <span class="string">'2015-2-11 23:00'</span>,],</span><br><span class="line">                               format = time_format)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reindexing dataframe</span></span><br><span class="line">sales.reindex(evening_2_11) <span class="comment">#find matching date index in sales and return corresponding rows, the unmatched index will return NaN in the row cells</span></span><br><span class="line">sales.reindex(evening_2_11, method = <span class="string">'ffill'</span>) <span class="comment">#forward fill the nas with the previous record</span></span><br><span class="line">sales.reindex(evening_2_11, method = <span class="string">'bfill'</span>) <span class="comment">#backward fill the nas with the next record</span></span><br><span class="line">sales.reindex(evening_2_11).interpolate(how = <span class="string">'linear'</span>) <span class="comment">#fill Nas with linear approximated values</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Resampling-pandas-time-series"><a href="#Resampling-pandas-time-series" class="headerlink" title="Resampling pandas time series"></a>Resampling pandas time series</h2><p>Resampling here is a statistical method used over different time intervals.<br>Downsampling reduce datetime rows to slower frequency<br>Upsampling increase datetime rows to faster frequency<br>List of most frequently used resampling input:<br><code>&#39;min&#39;</code>, <code>&#39;T&#39;</code>: minute<br><code>&#39;H&#39;</code>: hour<br><code>&#39;D&#39;</code>: day<br><code>&#39;B&#39;</code>: business day<br><code>&#39;W&#39;</code>: week<br><code>&#39;M&#39;</code>: month<br><code>&#39;Q&#39;</code>: quarter<br><code>&#39;A&#39;</code>: year</p>
+<p>Downsampling<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Aggregation</span></span><br><span class="line"></span><br><span class="line">daily_mean = sales.resample(<span class="string">'D'</span>).mean() <span class="comment">#'D' represents day. daily average sales</span></span><br><span class="line"></span><br><span class="line">daily_sum = sales.resample(<span class="string">'D'</span>).sum().max() <span class="comment">#highest daily total</span></span><br><span class="line"></span><br><span class="line">sales.resample(<span class="string">'W'</span>).count() <span class="comment">#weekly sales records</span></span><br><span class="line"></span><br><span class="line">sales.loc[:, <span class="string">'Unites'</span>].resample(<span class="string">'2W'</span>).sum() <span class="comment">#2 week interval sum</span></span><br><span class="line"></span><br><span class="line">population.resample(<span class="string">'A'</span>).first()<span class="comment"># the population at year interval</span></span><br><span class="line">population.resample(<span class="string">'A'</span>).first().interpolate(how = <span class="string">'linear'</span>) <span class="comment">#simulate the linear model and fill the NAs with the simulated values</span></span><br></pre></td></tr></table></figure></p>
+<p>Upsampling<br>The below example upsamples the daily records to 4-hour interval records.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">two_days = sales.loc[<span class="string">'2015-2-4'</span>:<span class="string">'2015-2-5'</span>, <span class="string">'Units'</span>]</span><br><span class="line">two_days.resample(<span class="string">'4H'</span>).ffill() <span class="comment">#extract a 4 hour interval and fill the nas with forward fill</span></span><br></pre></td></tr></table></figure></p>
+<p>Rolling time window by <code>.rolling()</code>. For example, with a Series <code>hourly_data</code>, <code>hourly_data.rolling(window=24).mean()</code> would compute new values for each hourly point, based on a 24-hour window stretching out <strong>behind</strong> each point. The frequency of the output data is the same: it is still hourly. Such an operation is useful for smoothing time series data.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Extract data from 2010-Aug-01 to 2010-Aug-15: unsmoothed</span></span><br><span class="line">unsmoothed = df[<span class="string">'Temperature'</span>][<span class="string">'2010-Aug-01'</span>:<span class="string">'2010-Aug-15'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply a rolling mean with a 24 hour window: smoothed</span></span><br><span class="line">smoothed = unsmoothed.rolling(window = <span class="number">24</span>).mean()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a new DataFrame with columns smoothed and unsmoothed: august</span></span><br><span class="line">august = pd.DataFrame(&#123;<span class="string">'smoothed'</span>:smoothed, <span class="string">'unsmoothed'</span>:unsmoothed&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot both smoothed and unsmoothed data using august.plot().</span></span><br><span class="line">august.plot()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<h2 id="Manipulating-pandas-time-series"><a href="#Manipulating-pandas-time-series" class="headerlink" title="Manipulating pandas time series"></a>Manipulating pandas time series</h2><ol>
+<li><p>String methods<br><code>.str.upper()</code> can convert the string to upper case.<br><code>.str.contains(&#39;a&#39;)</code> can search the key word a, and returns a boolean series. Therefore, with <code>.str.contains(&#39;a&#39;).sum()</code> we can count the number of the records that contain ‘a’.<br><code>.str.string()</code> can strip extra whitespace</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">times_tz_none = pd.to_datetime( la[<span class="string">'Date (MM/DD/YYYY)'</span>] + <span class="string">' '</span> + la[<span class="string">'Wheels-off Time'</span>] )</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Datetime methods<br><code>.dt.hour</code> can extract the hour of the datetime value as a series<br><code>.dt.tz_localize(&#39;US/Central&#39;)</code> and <code>.dt.tz_convert(&#39;US/Eastern&#39;)</code> can convert the time zone. First use localize then use convert.</p>
+</li>
+</ol>
+<h2 id="Visualizing-pandas-time-series"><a href="#Visualizing-pandas-time-series" class="headerlink" title="Visualizing pandas time series"></a>Visualizing pandas time series</h2><p>Style format string:</p>
+<ul>
+<li>color (k: black), (b: blue), (g: green), (r: red), (c: cyan)</li>
+<li>marker (.: dot), (o: circle), (*: star), (s: square), (+: plus)</li>
+<li>line type (-: solid), (:dotted), (–: dashed)</li>
+</ul>
+<p>area plot :<code>kind = &#39;area&#39;</code></p>
+<p>To plot plots separately: <code>subplot = True</code></p>
+<p>Before plotting time series data, make sure the set the index to datetime object.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Convert the 'Date' column into a collection of datetime objects: df.Date</span></span><br><span class="line">df.Date = pd.to_datetime(df.Date)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the index to be the converted 'Date' column</span></span><br><span class="line">df.set_index(<span class="string">'Date'</span>, inplace = <span class="keyword">True</span>) <span class="comment">#inplace = True will automatically replace the original index without further assignment</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Re-plot the DataFrame to see that the axis is now datetime aware!</span></span><br><span class="line">df.plot()</span><br><span class="line">plt.show()</span><br><span class="line">plt.clf() <span class="comment">#clean the graph</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="Case-Study"><a href="#Case-Study" class="headerlink" title="Case Study"></a>Case Study</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df_headers = pd.read_csv(<span class="string">'data.csv'</span>, header = <span class="keyword">None</span>)</span><br><span class="line">print(df_headers.head())</span><br></pre></td></tr></table></figure>
+<p>pandas has been imported in the workspace as <code>pd</code>, and the file <code>NOAA_QCLCD_2011_hourly_13904.txt</code> has been parsed and loaded into a DataFrame <code>df</code>. The comma separated string of column names, <code>column_labels</code>, and list of columns to drop, <code>list_to_drop</code>, have also been loaded for you.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Split on the comma to create a list: column_labels_list</span></span><br><span class="line">column_labels_list = column_labels.split(<span class="string">','</span>)</span><br><span class="line">df.columns = column_labels_list</span><br><span class="line"></span><br><span class="line"><span class="comment"># Remove the appropriate columns: df_dropped</span></span><br><span class="line">df_dropped = df.drop(list_to_drop, axis = <span class="string">'columns'</span>)</span><br><span class="line">print(df_dropped.head())</span><br></pre></td></tr></table></figure></p>
+<p>Convert the index into datetime object<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Convert the date column to string: df_dropped['date']</span></span><br><span class="line">df_dropped[<span class="string">'date'</span>] = df_dropped[<span class="string">'date'</span>].astype(str)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Pad leading zeros to the Time column: df_dropped['Time']</span></span><br><span class="line">df_dropped[<span class="string">'Time'</span>] = df_dropped[<span class="string">'Time'</span>].apply(<span class="keyword">lambda</span> x:<span class="string">'&#123;:0&gt;4&#125;'</span>.format(x)) <span class="comment">#add leading zeros so each value is 4 digit</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Concatenate the new date and Time columns: date_string</span></span><br><span class="line">date_string = df_dropped.date + df_dropped.Time</span><br><span class="line"></span><br><span class="line"><span class="comment"># Convert the date_string Series to datetime: date_times</span></span><br><span class="line">date_times = pd.to_datetime(date_string, format = <span class="string">'%Y%m%d%H%M'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the index to be the new date_times container: df_clean</span></span><br><span class="line">df_clean = df_dropped.set_index(date_times)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the output of df_clean.head()</span></span><br><span class="line">print(df_clean.head())</span><br></pre></td></tr></table></figure></p>
+<p>Convert temperature columns into numeric values<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Convert the dry_bulb_faren column to numeric values: df_clean['dry_bulb_faren']</span></span><br><span class="line">df_clean[<span class="string">'dry_bulb_faren'</span>] = pd.to_numeric(df_clean[<span class="string">'dry_bulb_faren'</span>], errors = <span class="string">'coerce'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Convert the wind_speed and dew_point_faren columns to numeric values</span></span><br><span class="line">df_clean[<span class="string">'wind_speed'</span>] = pd.to_numeric(df_clean[<span class="string">'wind_speed'</span>], errors = <span class="string">'coerce'</span>)</span><br><span class="line">df_clean[<span class="string">'dew_point_faren'</span>] = pd.to_numeric(df_clean[<span class="string">'dew_point_faren'</span>], errors = <span class="string">'coerce'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>Now the data is clean, we can start EDA.<br><strong>Statistical EDA:</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Print the median of the dry_bulb_faren column</span></span><br><span class="line">print(df_clean.dry_bulb_faren.median())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the median of the dry_bulb_faren column for the time range '2011-Apr':'2011-Jun'</span></span><br><span class="line">print(df_clean.loc[<span class="string">'2011-Apr'</span>:<span class="string">'2011-Jun'</span>, <span class="string">'dry_bulb_faren'</span>].median())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the median of the dry_bulb_faren column for the month of January</span></span><br><span class="line">print(df_clean.loc[<span class="string">'2011-Jan'</span>, <span class="string">'dry_bulb_faren'</span>].median())</span><br></pre></td></tr></table></figure></p>
+<p><code>.reset_index()</code> can set the index back to 0-based indexing<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Downsample df_clean by day and aggregate by mean: daily_mean_2011</span></span><br><span class="line">daily_mean_2011 = df_clean.resample(<span class="string">'D'</span>).mean()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Extract the dry_bulb_faren column from daily_mean_2011 using .values: daily_temp_2011</span></span><br><span class="line">daily_temp_2011 = daily_mean_2011.dry_bulb_faren.values</span><br><span class="line"></span><br><span class="line"><span class="comment"># Downsample df_climate by day and aggregate by mean: daily_climate</span></span><br><span class="line">daily_climate = df_climate.resample(<span class="string">'D'</span>).mean()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Extract the Temperature column from daily_climate using .reset_index(): daily_temp_climate</span></span><br><span class="line">daily_temp_climate = daily_climate.reset_index().Temperature <span class="comment">#note that we reset the index to start from 0 so that we can calculate the difference between two series in the next step</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute the difference between the two arrays and print the mean difference</span></span><br><span class="line">difference = daily_temp_2011 - daily_temp_climate</span><br><span class="line">print(difference.mean())</span><br></pre></td></tr></table></figure></p>
+<p><strong>Sunny or cloudy?</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Select days that are sunny: sunny</span></span><br><span class="line">sunny = df_clean[df_clean.sky_condition == <span class="string">'CLR'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select days that are overcast: overcast</span></span><br><span class="line">overcast = df_clean[df_clean.sky_condition.str.contains(<span class="string">'OVC'</span>)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Resample sunny and overcast, aggregating by maximum daily temperature</span></span><br><span class="line">sunny_daily_max = sunny.resample(<span class="string">'D'</span>).max()</span><br><span class="line">overcast_daily_max = overcast.resample(<span class="string">'D'</span>).max()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the difference between the mean of sunny_daily_max and overcast_daily_max</span></span><br><span class="line">print(sunny_daily_max.mean() - overcast_daily_max.mean())</span><br></pre></td></tr></table></figure></p>
+<p><strong>Correlation between visibility and temperature:</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import matplotlib.pyplot as plt</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select the visibility and dry_bulb_faren columns and resample them: weekly_mean</span></span><br><span class="line">weekly_mean = df_clean[[<span class="string">'visibility'</span>,<span class="string">'dry_bulb_faren'</span>]].resample(<span class="string">'W'</span>).mean()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the output of weekly_mean.corr()</span></span><br><span class="line">print(weekly_mean.corr())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot weekly_mean with subplots=True</span></span><br><span class="line">weekly_mean.plot(subplots = <span class="keyword">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><strong>Daily hours of clear sky</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create a Boolean Series for sunny days: sunny</span></span><br><span class="line">sunny = df_clean.sky_condition == <span class="string">'CLR'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Resample the Boolean Series by day and compute the sum: sunny_hours</span></span><br><span class="line">sunny_hours = sunny.resample(<span class="string">'D'</span>).sum()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Resample the Boolean Series by day and compute the count: total_hours</span></span><br><span class="line">total_hours = sunny.resample(<span class="string">'D'</span>).count()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Divide sunny_hours by total_hours: sunny_fraction</span></span><br><span class="line">sunny_fraction = sunny_hours / total_hours</span><br><span class="line"></span><br><span class="line"><span class="comment"># Make a box plot of sunny_fraction</span></span><br><span class="line">sunny_fraction.plot(kind = <span class="string">'box'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><strong>Heat or humidity</strong><br>Dew point is a measure of relative humidity based on pressure and temperature. A dew point above 65 is considered uncomfortable while a temperature above 90 is also considered uncomfortable.</p>
+<p>In this exercise, you will explore the maximum temperature and dew point of each month. The columns of interest are ‘dew_point_faren’ and ‘dry_bulb_faren’. After resampling them appropriately to get the <em>maximum temperature and dew point in each month</em>, generate a histogram of these values as subplots. Uncomfortably, you will notice that the maximum dew point is above 65 every month!<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Resample dew_point_faren and dry_bulb_faren by Month, aggregating the maximum values: monthly_max</span></span><br><span class="line">monthly_max = df_clean[[<span class="string">'dew_point_faren'</span>, <span class="string">'dry_bulb_faren'</span>]].resample(<span class="string">'M'</span>).max()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Generate a histogram with bins=8, alpha=0.5, subplots=True</span></span><br><span class="line">monthly_max.plot(kind = <span class="string">'hist'</span>, bins = <span class="number">8</span>, alpha = <span class="number">0.5</span>, subplots = <span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show the plot</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><strong>Probability of high temperatures</strong><br>We already know that 2011 was hotter than the climate normals for the previous thirty years. In this final exercise, you will compare the maximum temperature in August 2011 against that of the August 2010 climate normals. More specifically, you will use a CDF plot to determine the probability of the 2011 daily maximum temperature in August being above the 2010 climate normal value. To do this, you will leverage the data manipulation, filtering, resampling, and visualization skills you have acquired throughout this course.</p>
+<p>The two DataFrames <code>df_clean</code> and <code>df_climate</code> are available in the workspace. Your job is to select the maximum temperature in August in <code>df_climate</code>, and then maximum daily temperatures in August 2011. You will then filter out the days in August 2011 that were above the August 2010 maximum, and use this to construct a CDF plot.</p>
+<p>Once you’ve generated the CDF, notice how it shows that there was a 50% probability of the 2011 daily maximum temperature in August being 5 degrees above the 2010 climate normal value!<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Extract the maximum temperature in August 2010 from df_climate: august_max</span></span><br><span class="line">august_max = df_climate.loc[<span class="string">'2010-Aug'</span>,<span class="string">'Temperature'</span>].max()</span><br><span class="line">print(august_max)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Resample the August 2011 temperatures in df_clean by day and aggregate the maximum value: august_2011</span></span><br><span class="line">august_2011 = df_clean.loc[<span class="string">'2011-Aug'</span>, <span class="string">'dry_bulb_faren'</span>].resample(<span class="string">'D'</span>).max()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Filter out days in august_2011 where the value exceeded august_max: august_2011_high</span></span><br><span class="line">august_2011_high = august_2011[august_2011 &gt; august_max]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Construct a CDF of august_2011_high</span></span><br><span class="line">august_2011_high.plot(kind = <span class="string">'hist'</span>, cumulative = <span class="keyword">True</span>, normed = <span class="keyword">True</span>, bins = <span class="number">25</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Display the plot</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/31/Importing-Data2/" rel="next" title="DataCamp - Importing Data (Part 2)">
+                <i class="fa fa-chevron-left"></i> DataCamp - Importing Data (Part 2)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Joanna</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-Ingestion-amp-Inspection"><span class="nav-number">1.</span> <span class="nav-text">Data Ingestion &amp; Inspection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-Concepts-of-Pandas-DataFrames"><span class="nav-number">1.1.</span> <span class="nav-text">Basic Concepts of Pandas DataFrames</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-DataFrames"><span class="nav-number">1.1.1.</span> <span class="nav-text">Create DataFrames</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Importing-and-Exporting-Data"><span class="nav-number">1.2.</span> <span class="nav-text">Importing and Exporting Data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ploting-the-data"><span class="nav-number">1.3.</span> <span class="nav-text">Ploting the data</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exploratory-Data-Analysis"><span class="nav-number">2.</span> <span class="nav-text">Exploratory Data Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Visual-EDA"><span class="nav-number">2.1.</span> <span class="nav-text">Visual EDA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Statistical-EDA"><span class="nav-number">2.2.</span> <span class="nav-text">Statistical EDA</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Time-Series-in-Pandas"><span class="nav-number">3.</span> <span class="nav-text">Time Series in Pandas</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Resampling-pandas-time-series"><span class="nav-number">3.1.</span> <span class="nav-text">Resampling pandas time series</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Manipulating-pandas-time-series"><span class="nav-number">3.2.</span> <span class="nav-text">Manipulating pandas time series</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Visualizing-pandas-time-series"><span class="nav-number">3.3.</span> <span class="nav-text">Visualizing pandas time series</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Case-Study"><span class="nav-number">4.</span> <span class="nav-text">Case Study</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joanna</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz',
+        appKey: 'cDbeqqCJt4dq4hu7C9GaCrHB',
+        placeholder: 'Leave your comment here',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz", "cDbeqqCJt4dq4hu7C9GaCrHB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
