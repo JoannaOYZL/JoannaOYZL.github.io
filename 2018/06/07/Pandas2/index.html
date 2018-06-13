@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Datacamp course notes on pandas including extracting and transforming data, advanced indexing, rearranging and reshaping data, and grouping data.">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DataCamp - Pandas Foundation 2">
+<meta property="og:url" content="http://yoursite.com/2018/06/07/Pandas2/index.html">
+<meta property="og:site_name" content="Joanna">
+<meta property="og:description" content="Datacamp course notes on pandas including extracting and transforming data, advanced indexing, rearranging and reshaping data, and grouping data.">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-06-13T22:03:18.578Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DataCamp - Pandas Foundation 2">
+<meta name="twitter:description" content="Datacamp course notes on pandas including extracting and transforming data, advanced indexing, rearranging and reshaping data, and grouping data.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/07/Pandas2/"/>
+
+
+
+
+
+  <title>DataCamp - Pandas Foundation 2 | Joanna</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joanna</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/07/Pandas2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joanna">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joanna">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DataCamp - Pandas Foundation 2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-07T09:23:01-07:00">
+                2018-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Course-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Course Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/07/Pandas2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/06/07/Pandas2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/06/07/Pandas2/" class="leancloud_visitors" data-flag-title="DataCamp - Pandas Foundation 2">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Datacamp course notes on pandas including extracting and transforming data, advanced indexing, rearranging and reshaping data, and grouping data.<br><a id="more"></a></p>
+<h1 id="Extracting-and-Transforming-Data"><a href="#Extracting-and-Transforming-Data" class="headerlink" title="Extracting and Transforming Data"></a>Extracting and Transforming Data</h1><h2 id="Indexing-DataFrames"><a href="#Indexing-DataFrames" class="headerlink" title="Indexing DataFrames"></a>Indexing DataFrames</h2><p>Find the row position and column position of a certain (x, y)<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment"># Assign the row position of election.loc['Bedford']: x</span></span><br><span class="line">x = np.arange(election.iloc[:, <span class="number">0</span>].count())[election.index == <span class="string">'Bedford'</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Assign the column position of election['winner']: y</span></span><br><span class="line">y = np.arange(election.iloc[<span class="number">0</span>, :].count())[election.columns == <span class="string">'winner'</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the boolean equivalence</span></span><br><span class="line">print(election.iloc[x, y] == election.loc[<span class="string">'Bedford'</span>, <span class="string">'winner'</span>]) <span class="comment">#returns True</span></span><br></pre></td></tr></table></figure></p>
+<p>Difference between <code>df[&#39;eggs&#39;]</code> and <code>df[[&#39;eggs&#39;]]</code> is that the former yields a panda series, the latter yields a dataframe.</p>
+<p>To slice the row labels in reverse order:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Slice the row labels 'Perry' to 'Potter': p_counties</span></span><br><span class="line">p_counties = election.loc[<span class="string">'Perry'</span>:<span class="string">'Potter'</span>, :]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Slice the row labels 'Potter' to 'Perry' in reverse order: p_counties_rev</span></span><br><span class="line">p_counties_rev = election.loc[<span class="string">'Potter'</span>:<span class="string">'Perry'</span>:<span class="number">-1</span>, :]</span><br></pre></td></tr></table></figure></p>
+<h2 id="Filtering-DataFrames"><a href="#Filtering-DataFrames" class="headerlink" title="Filtering DataFrames"></a>Filtering DataFrames</h2><p><code>&amp;</code>, <code>|</code> can be used to combine conditions for filtering.</p>
+<p>Select non-zero entries:</p>
+<ul>
+<li><code>df.loc[:, df.all()]</code> exclude all the columns with zero entries</li>
+<li><code>df.loc[:, df.any()]</code> exclude all columns with only zero entries</li>
+</ul>
+<p>Select non-null entries:</p>
+<ul>
+<li><code>df.loc[:, df.isnull().any()]</code> returns any columns that have at least one NaN value</li>
+<li><code>df.loc[:, df.notnull().all()]</code> returns all columns that have no Nan values</li>
+</ul>
+<p>Drop rows with any NaNs:</p>
+<ul>
+<li><code>df.dropna(how = &#39;any&#39;)</code> drops all the rows that have at least one NaN value</li>
+<li><code>df.dropna(how = &#39;all&#39;)</code> drops all the rows that have only NaN values</li>
+</ul>
+<p>Drop columns with NaNs:</p>
+<ul>
+<li><code>titanic.dropna(thresh = 1000, axis = &#39;columns&#39;)</code> drops columns from the full dataset that have more than 1000 missing values</li>
+</ul>
+<p>Modifying a column based on another<br><code>df.eggs[df.salt &gt; 55] += 5</code> add 5 to the value in column ‘eggs’ if the value in the column ‘salt’ is greater than 55.</p>
+<h2 id="Transforming-DataFrames"><a href="#Transforming-DataFrames" class="headerlink" title="Transforming DataFrames"></a>Transforming DataFrames</h2><p>When transforming the dataframe, we should first try to achieved the desired performance with vectorized functions, since it’s much faster than for-loops. Notice that <code>.apply()</code> and <code>.map()</code> also perform Python for-loops over the data stored in a pandas Series or DataFrame. </p>
+<p>To convert sales numbers into dozens unit: </p>
+<ul>
+<li><code>df.floordiv(12)</code> will apply to every entries in the dataframe</li>
+<li><code>np.floor_divide(df, 12)</code> performs the same function, but is from numpy package</li>
+</ul>
+<p>Or if we want to write a function to perform the same function:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dozens</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> n//<span class="number">12</span> <span class="comment">#floor divide</span></span><br><span class="line">df.apply(dozens)</span><br><span class="line"></span><br><span class="line"><span class="comment">#or use the lambda function</span></span><br><span class="line">df.apply(<span class="keyword">lambda</span> n: n//<span class="number">12</span>)</span><br></pre></td></tr></table></figure></p>
+<p>To transform string:</p>
+<ul>
+<li><code>.str.upper()</code></li>
+</ul>
+<p>To transform index, there is no apply method, but map method:</p>
+<ul>
+<li><code>df.index.str.upper()</code> or <code>df.index.map(str.upper)</code> is the same</li>
+</ul>
+<p>The <code>.map()</code> method is used to transform values according to a Python dictionary look-up. The example below use dictionary to map the values for a new column according to the value of the existing column <code>&#39;winner&#39;</code>.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create the dictionary: red_vs_blue</span></span><br><span class="line">red_vs_blue = &#123;<span class="string">'Obama'</span>:<span class="string">'blue'</span>, <span class="string">'Romney'</span>:<span class="string">'red'</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use the dictionary to map the 'winner' column to the new column: election['color']</span></span><br><span class="line">election[<span class="string">'color'</span>] = election.winner.map(red_vs_blue)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the output of election.head()</span></span><br><span class="line">print(election.head())</span><br></pre></td></tr></table></figure></p>
+<p>To transform the data into zscore:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import zscore from scipy.stats</span></span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> zscore </span><br><span class="line"></span><br><span class="line"><span class="comment"># Call zscore with election['turnout'] as input: turnout_zscore</span></span><br><span class="line">turnout_zscore = zscore(election[<span class="string">'turnout'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the type of turnout_zscore</span></span><br><span class="line">print(type(turnout_zscore)) <span class="comment">#1-d numpy array</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Assign turnout_zscore to a new column: election['turnout_zscore']</span></span><br><span class="line">election[<span class="string">'turnout_zscore'</span>] = turnout_zscore</span><br></pre></td></tr></table></figure></p>
+<p>If we cannot performed the desired operations with the vectorized functions, we can always use for loops.</p>
+<hr>
+<h1 id="Advanced-Indexing"><a href="#Advanced-Indexing" class="headerlink" title="Advanced Indexing"></a>Advanced Indexing</h1><p>Pandas Data Structures</p>
+<ul>
+<li><p>Key building blocks:</p>
+<ol>
+<li><p>Indexes: Sequence of labels. Itself also has a name attribute, which can be accessed and modified through <code>.index.name</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assign the string 'MONTHS' to sales.index.name</span></span><br><span class="line">sales.index.name = <span class="string">'MONTHS'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Assign the string 'PRODUCTS' to sales.columns.name </span></span><br><span class="line">sales.columns.name = <span class="string">'PRODUCTS'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Series: 1D array with index</p>
+</li>
+<li>DataFrames: 2D array with Series as columns</li>
+</ol>
+</li>
+<li>Indexes:<ul>
+<li>Immutable (like dictionary keys). <em>Note: it can be modified only when you change the index all at once</em></li>
+<li>Homogeneous in data type (like NumPy arrays)<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create the list of new indexes: new_idx</span></span><br><span class="line">new_idx = [i.upper() <span class="keyword">for</span> i <span class="keyword">in</span> sales.index]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Assign new_idx to sales.index</span></span><br><span class="line">sales.index = new_idx</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Hierarchical-indexing"><a href="#Hierarchical-indexing" class="headerlink" title="Hierarchical indexing"></a>Hierarchical indexing</h2><p>We can use two index columns <code>&#39;A&#39;</code> and <code>&#39;B&#39;</code> together to uniquely identify each row by <code>.set_index([&#39;A&#39;, &#39;B&#39;])</code>, and then sort the index by <code>.sort_index()</code>. Sorting the index is very useful for indexing and slicing, as is shown in the following exaple<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Creating hierarchical index</span></span><br><span class="line">stocks = stocks.set_index([<span class="string">'Symbol'</span>, <span class="string">'Date'</span>]) <span class="comment">#hierarchical order</span></span><br><span class="line">print(stocks.index.name) <span class="comment">#returns None</span></span><br><span class="line">print(stocks.index.names) <span class="comment">#returns ['Symbol', 'Date']</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Sorting index</span></span><br><span class="line">stocks = stocks.sort_index()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Indexing</span></span><br><span class="line">stocks.loc[(<span class="string">'CSCO'</span>, <span class="string">'2016-10-04'</span>)]</span><br><span class="line">stocks.loc[(<span class="string">'CSCO'</span>, <span class="string">'2016-10-04'</span>), <span class="string">'Volume'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Slicing (Outermost index)</span></span><br><span class="line">stocks.loc[<span class="string">'AAPL'</span>]</span><br><span class="line">stocks.loc[<span class="string">'CSCO'</span>:<span class="string">'MSFT'</span>]</span><br><span class="line">stocks.loc[([<span class="string">'CSCO'</span>:<span class="string">'MSFT'</span>], <span class="string">'2016-10-05'</span>), :]</span><br><span class="line">stocks.loc[([<span class="string">'CSCO'</span>:<span class="string">'MSFT'</span>], <span class="string">'2016-10-05'</span>), <span class="string">'Close'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Slicing (Innermost index)</span></span><br><span class="line">stocks.loc[(<span class="string">'CSCO'</span>, [<span class="string">'2016-10-05'</span>, <span class="string">'2016-10-03'</span>]), :]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Slicing (Both indexes)</span></span><br><span class="line">stocks.loc[(slice(<span class="keyword">None</span>), slice(<span class="string">'2016-10-03'</span>, <span class="string">'2016-10-04'</span>)), :] <span class="comment">#select all symbols for the two days</span></span><br><span class="line"><span class="comment"># We need to use slice() here because the tuple used for the index does not recognize slicing with columns natively.</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="Rearranging-and-Reshaping-Data"><a href="#Rearranging-and-Reshaping-Data" class="headerlink" title="Rearranging and Reshaping Data"></a>Rearranging and Reshaping Data</h1><h2 id="Pivoting-DataFrames"><a href="#Pivoting-DataFrames" class="headerlink" title="Pivoting DataFrames"></a>Pivoting DataFrames</h2><p>Pivoting can extract cell values to column and row names by the <code>.pivot()</code> method.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df.pivot(index = <span class="string">'A'</span>, <span class="comment"># column 'A' for row index labels</span></span><br><span class="line">         columns = <span class="string">'B'</span>, <span class="comment"># column 'B' for column labels</span></span><br><span class="line">         values = <span class="string">'C'</span>) <span class="comment"># column 'C' for value. If we leave out this argument, all remaining columns will be used values</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Stacking-and-Unstacking-DataFrames"><a href="#Stacking-and-Unstacking-DataFrames" class="headerlink" title="Stacking and Unstacking DataFrames"></a>Stacking and Unstacking DataFrames</h2><p>We can perform stacking and unstacking when the dataframe has a hierarchical index.</p>
+<p>Unstacking is to make the data frame shorter and wider, while stacking is to make the data frame longer and thinner.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">trials = trials.set_index([<span class="string">'treatment'</span>, <span class="string">'gender'</span>])</span><br><span class="line">trials.unstack(level = <span class="string">'gender'</span>) <span class="comment">#to specify the index that we want to move to column names. can create hierarchical columns</span></span><br><span class="line">trials.unstack(level = <span class="number">1</span>) <span class="comment">#same as above</span></span><br><span class="line"></span><br><span class="line">trials.stack(level = <span class="string">'gender'</span>) <span class="comment">#reverse the above operation, and create hierarchical index</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># To switch the order of hierarchical index:</span></span><br><span class="line">swapped = stacked.swaplevel(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">sorted_trails = swapped.sort_index()</span><br></pre></td></tr></table></figure>
+<h2 id="Melting-DataFrame"><a href="#Melting-DataFrame" class="headerlink" title="Melting DataFrame"></a>Melting DataFrame</h2><p>Melting can put column names back into cell values by <code>pd.melt()</code>.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pd.melt(df, id_vars = [<span class="string">'col_to_be_fixed'</span>], <span class="comment">#the square brackets are necessary here</span></span><br><span class="line">            value_vars = [<span class="string">'col_to_be_cell_values'</span>],<span class="comment">#the square brackets are necessary here</span></span><br><span class="line">            var_name = <span class="string">'value_vars_name'</span>,</span><br><span class="line">            value_name = <span class="string">'values_name'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>Example:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Reset the index: visitors_by_city_weekday</span></span><br><span class="line">visitors_by_city_weekday = visitors_by_city_weekday.reset_index() <span class="comment">#so that we can have the original index column separated out as normal column</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Melt visitors_by_city_weekday: visitors</span></span><br><span class="line">visitors = pd.melt(visitors_by_city_weekday, id_vars = [<span class="string">'weekday'</span>], value_name = <span class="string">'visitors'</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Obtaining-key-value-pairs-with-melt"><a href="#Obtaining-key-value-pairs-with-melt" class="headerlink" title="Obtaining key-value pairs with melt()"></a>Obtaining key-value pairs with melt()</h3><p>Sometimes, all you need is some key-value pairs, and the context does not matter. If said context is in the index, you can easily obtain what you want. For example, in the <code>users</code> DataFrame, the <code>visitors</code> and <code>signups</code> columns lend themselves well to being represented as key-value pairs. So if you created a hierarchical index with <code>&#39;city&#39;</code> and <code>&#39;weekday&#39;</code> columns as the index, you can easily extract key-value pairs for the <code>&#39;visitors&#39;</code> and <code>&#39;signups&#39;</code> columns by melting users and specifying <code>col_level = 0</code>.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set the new index: users_idx</span></span><br><span class="line">users_idx = users.set_index([<span class="string">'city'</span>, <span class="string">'weekday'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Obtain the key-value pairs: kv_pairs</span></span><br><span class="line">kv_pairs = pd.melt(users_idx, col_level = <span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Pivot-Tables"><a href="#Pivot-Tables" class="headerlink" title="Pivot Tables"></a>Pivot Tables</h2><p>Pivot tables are useful when the identifier columns are duplicate and the corresponding value needs aggregation to perform pivoting. The default setting is to take the average.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df.pivot_table(index = <span class="string">'col_to_be_row_index'</span>,</span><br><span class="line">               columns = <span class="string">'col_to_be_column_index'</span>,</span><br><span class="line">               values = <span class="string">'col_to_be_values'</span>,</span><br><span class="line">               aggfunc = <span class="string">'count'</span>, <span class="comment">#can also be aggfunc = len (no ''), sum (no '')</span></span><br><span class="line">               margins = <span class="keyword">True</span>) <span class="comment">#shows the sum of each column at the margin</span></span><br></pre></td></tr></table></figure></p>
+<p>Tips:</p>
+<ol>
+<li>To verify df1 is equal to df2: <code>df1.equals(df2)</code></li>
+</ol>
+<hr>
+<h1 id="Grouping-Data"><a href="#Grouping-Data" class="headerlink" title="Grouping Data"></a>Grouping Data</h1><h2 id="Categoricals-and-Groupby"><a href="#Categoricals-and-Groupby" class="headerlink" title="Categoricals and Groupby"></a>Categoricals and Groupby</h2><p>The logic behind <code>sales.groupby(&#39;weekday&#39;).count()</code>:</p>
+<ul>
+<li>Split by ‘weekday’</li>
+<li>Apply count() function on each group</li>
+<li>Combine counts per group</li>
+</ul>
+<p>Groupby also work together with many other reducing functions such as mean(), std(), sum(), first(), last(), min(), max().<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sales = pd.DataFrame(</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">'weekday'</span>:[<span class="string">'Sun'</span>, <span class="string">'Sun'</span>, <span class="string">'Mon'</span>, <span class="string">'Mon'</span>],</span><br><span class="line">            <span class="string">'city'</span>:[<span class="string">'Austin'</span>, <span class="string">'Dallas'</span>, <span class="string">'Austin'</span>, <span class="string">'Dallas'</span>],</span><br><span class="line">            <span class="string">'bread'</span>:[<span class="number">139</span>, <span class="number">237</span>, <span class="number">326</span>, <span class="number">456</span>],</span><br><span class="line">            <span class="string">'butter'</span>:[<span class="number">20</span>, <span class="number">45</span>, <span class="number">70</span>, <span class="number">98</span>]</span><br><span class="line">        &#125;</span><br><span class="line">) <span class="comment">#index start from 0</span></span><br><span class="line">sales.groupby(<span class="string">'weekday'</span>).count() <span class="comment">#count the bread and butter on Mon and Sun respectively</span></span><br><span class="line"></span><br><span class="line">sales.groupby(<span class="string">'weekday'</span>)[[<span class="string">'bread'</span>, <span class="string">'butter'</span>]].sum() <span class="comment">#sum the bread on Mon and Sun respectively</span></span><br><span class="line"></span><br><span class="line">sales.groupby([<span class="string">'weekday'</span>, <span class="string">'city'</span>])[<span class="string">'bread'</span>].sum() <span class="comment">#multilevel groupby, index sorted automatically</span></span><br></pre></td></tr></table></figure></p>
+<p>We can also other panda series as the groupby criteria:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">customers = pd.Series([<span class="string">'Dave'</span>, <span class="string">'Alice'</span>, <span class="string">'Bob'</span>, <span class="string">'Alice'</span>]) <span class="comment">#same as sales' index, which start from zero</span></span><br><span class="line">sales.groupby(customers)[<span class="string">'bread'</span>].sum() <span class="comment">#treat the series as a column in the dataframe fitting corresponding index</span></span><br></pre></td></tr></table></figure></p>
+<p>Categorical data’s advantages:</p>
+<ol>
+<li>Uses less memory</li>
+<li>Speeds up operations like groupby()</li>
+</ol>
+<p><code>.unique()</code> method can return all the unique categorical values in a column.<br><code>.value_counts()</code> method can return the counts of each unique categorical values.<br><code>.astype(&#39;category&#39;)</code> method can convert a column into categorical</p>
+<h2 id="Groupby-and-Aggregation"><a href="#Groupby-and-Aggregation" class="headerlink" title="Groupby and Aggregation"></a>Groupby and Aggregation</h2><p>Using the <code>.agg()</code> method, we can perform multiple aggregation function at once.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sales.groupby(<span class="string">'city'</span>)[[<span class="string">'bread'</span>, <span class="string">'butter'</span>]].agg([<span class="string">'max'</span>, <span class="string">'sum'</span>])</span><br></pre></td></tr></table></figure></p>
+<p>The result is displayed using a multi-level column index</p>
+<p>Besides the built-in reducing functions, <code>.agg()</code> also accepts defined new functions.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">data_range</span><span class="params">(series)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> series.max() - series.min()</span><br><span class="line">sales.groupby(<span class="string">'weekday'</span>)[[<span class="string">'bread'</span>, <span class="string">'butter'</span>]].agg(data_range)</span><br></pre></td></tr></table></figure></p>
+<p>The <code>.agg()</code> method also accepts dictionaries, which can help specify different aggregation function used for each column.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sales.groupby(customers)[[<span class="string">'bread'</span>, <span class="string">'butter'</span>]].agg(&#123;<span class="string">'bread'</span>:<span class="string">'sum'</span>, <span class="string">'butter'</span>: data_range&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>Example:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Group titanic by 'pclass': by_class</span></span><br><span class="line">by_class = titanic.groupby(<span class="string">'pclass'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select 'age' and 'fare'</span></span><br><span class="line">by_class_sub = by_class[[<span class="string">'age'</span>,<span class="string">'fare'</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Aggregate by_class_sub by 'max' and 'median': aggregated</span></span><br><span class="line">aggregated = by_class_sub.agg([<span class="string">'max'</span>, <span class="string">'median'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the maximum age in each class</span></span><br><span class="line">print(aggregated.loc[:, (<span class="string">'age'</span>,<span class="string">'max'</span>)])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the median fare in each class</span></span><br><span class="line">print(aggregated.loc[:, (<span class="string">'fare'</span>, <span class="string">'median'</span>)])</span><br></pre></td></tr></table></figure></p>
+<p>To use datetime object as groupby criterion:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Read file: sales</span></span><br><span class="line">sales = pd.read_csv(<span class="string">'sales.csv'</span>, index_col = <span class="string">'Date'</span>, parse_dates = <span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a groupby object: by_day</span></span><br><span class="line">by_day = sales.groupby(sales.index.strftime(<span class="string">'%a'</span>)) <span class="comment">#by weekday</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create sum: units_sum</span></span><br><span class="line">units_sum = by_day[<span class="string">'Units'</span>].sum()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print units_sum</span></span><br><span class="line">print(units_sum)</span><br></pre></td></tr></table></figure></p>
+<p>Tips:<br> <code>.strftime()</code> method can convert datetime object into desired format, such as day of week (<code>%a</code>:abbreviated, <code>%A</code>:full name), day of month (<code>%d</code>), month (<code>%b</code>:abbreviated, <code>%B</code>:full name) and year (<code>%y</code>:abb., <code>%Y</code>:full), etc.</p>
+<h2 id="Groupby-and-Transformation"><a href="#Groupby-and-Transformation" class="headerlink" title="Groupby and Transformation"></a>Groupby and Transformation</h2><p>We often want to group data and apply distinct transformation to distinct group. Instead of aggregating after grouping, we can apply a transformation instead. It changes dataframe entries according to a specified function in place without changing the index. As an example, we can compute the z-score here.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">zscore</span><span class="params">(series)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (series - series.mean()) / series.std()</span><br><span class="line">zscore(auto[<span class="string">'mpg'</span>]).head() <span class="comment">#apply the function to the column 'mpg'. In this way, we normalized each value based on all the values in the column</span></span><br><span class="line">auto.groupby(<span class="string">'yr'</span>)[<span class="string">'mpg'</span>].transform(zscore).head() <span class="comment">#using a groupby and transform, we normalized each value based on all the values of the specific year that the value belongs to.</span></span><br></pre></td></tr></table></figure></p>
+<p>If the desired function to perform is too complicated for <code>.transform()</code>, we can use <code>.apply()</code> instead.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">zscore_with_year_and_name</span><span class="params">(group)</span>:</span></span><br><span class="line">    df = pd.DataFrame(</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">'mpg'</span>:zscore(group[<span class="string">'mpg'</span>]),</span><br><span class="line">            <span class="string">'year'</span>:group[<span class="string">'yr'</span>],</span><br><span class="line">            <span class="string">'name'</span>:group[<span class="string">'name'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> df</span><br><span class="line">auto.groupby(<span class="string">'yr'</span>).apply(zscore_with_year_and_name).head()</span><br></pre></td></tr></table></figure></p>
+<h3 id="Filling-Missing-Data-imputation-by-Group"><a href="#Filling-Missing-Data-imputation-by-Group" class="headerlink" title="Filling Missing Data (imputation) by Group"></a>Filling Missing Data (imputation) by Group</h3><p>Many statistical and machine learning packages cannot determine the best action to take when missing data entries are encountered. Dealing with missing data is natural in pandas (both in using the default behavior and in defining a custom behavior). We’ve practiced using the <code>.dropna()</code> method to drop missing values. Now, we will practice imputing missing values. We can use <code>.groupby()</code> and <code>.transform()</code> to fill missing data appropriately for each group.</p>
+<p>In a way, imputing missing values intelligently is always preferrable to dropping them entirely!</p>
+<p>Our job is to fill in missing <code>&#39;age&#39;</code> values for passengers on the Titanic with the median age from their <code>&#39;gender&#39;</code> and <code>&#39;pclass&#39;</code>. To do this, you’ll group by the <code>&#39;sex&#39;</code> and <code>&#39;pclass&#39;</code> columns and transform each group with a custom function to call <code>.fillna()</code> and impute the median value.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create a groupby object: by_sex_class</span></span><br><span class="line">by_sex_class = titanic.groupby([<span class="string">'sex'</span>, <span class="string">'pclass'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Write a function that imputes median</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">impute_median</span><span class="params">(series)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> series.fillna(series.median())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Impute age and assign to titanic['age']</span></span><br><span class="line">titanic.age = by_sex_class.age.transform(impute_median)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the output of titanic.tail(10)</span></span><br><span class="line">print(titanic.tail(<span class="number">10</span>))</span><br></pre></td></tr></table></figure></p>
+<h2 id="Groupby-and-Filtering"><a href="#Groupby-and-Filtering" class="headerlink" title="Groupby and Filtering"></a>Groupby and Filtering</h2><p>We already know how to perform calculation for a certain column after grouping. But what if we want to filter the column by a certain criterion before aggregating? For example, we may want to know all the Chevorlet car’s <code>&#39;mpg&#39;</code> mean by year, and all the non-Chevorlet car’s <code>&#39;mpg&#39;</code> mean by year.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">splitting = auto.groupby(<span class="string">'yr'</span>)</span><br><span class="line">type(splitting) <span class="comment">#groupby object</span></span><br><span class="line">type(splitting.groups) <span class="comment">#dict</span></span><br><span class="line">print(splitting.groups.keys()) <span class="comment">#returns the group by criterion: yr. Its values are the corresponding rows in the orginal df</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># We can iterate over the splitting object and carry out filtering and computations</span></span><br><span class="line"><span class="keyword">for</span> group_name, group <span class="keyword">in</span> splitting: <span class="comment">#key and value</span></span><br><span class="line">    avg = group.loc[group[<span class="string">'name'</span>].str.contains(<span class="string">'chevrolet'</span>), <span class="string">'mpg'</span>].mean()</span><br><span class="line">    print(group_name, avg)</span><br><span class="line"></span><br><span class="line"><span class="comment"># To simplify the process, we can rewrite the above for loop as a dictionary comprehension</span></span><br><span class="line">chevy_means = &#123;year:group.loc[group[<span class="string">'name'</span>].str.contains(<span class="string">'chevrolet'</span>), <span class="string">'mpg'</span>].mean() <span class="keyword">for</span> year, group <span class="keyword">in</span> splitting&#125;</span><br><span class="line">pd.Series(chevy_means) <span class="comment">#all the mean 'mpg' for chevrolet car</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Boolean groupby</span></span><br><span class="line">chevy = auto[<span class="string">'name'</span>].str.contains(<span class="string">'chevrolet'</span>) <span class="comment">#boolean series with same index in the groupby</span></span><br><span class="line">auto.groupby([<span class="string">'yr'</span>, chevy])[<span class="string">'mpg'</span>].mean() <span class="comment">#returns for both chevy and non-chevy</span></span><br></pre></td></tr></table></figure></p>
+<p>Another example: analyze survival rates from the ‘C’ deck, which contained the most passengers, based on ‘sex’ group.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create a groupby object using titanic over the 'sex' column: by_sex</span></span><br><span class="line">by_sex = titanic.groupby(<span class="string">'sex'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Defining function: c_deck_survival</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">c_deck_survival</span><span class="params">(gr)</span>:</span></span><br><span class="line">    c_passengers = gr[<span class="string">'cabin'</span>].str.startswith(<span class="string">'C'</span>).fillna(<span class="keyword">False</span>) <span class="comment">#cabin c, fill all the NaN with False</span></span><br><span class="line">    <span class="keyword">return</span> gr.loc[c_passengers, <span class="string">'survived'</span>].mean()</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Call by_sex.apply with the function c_deck_survival and print the result</span></span><br><span class="line">c_surv_by_sex = by_sex.apply(c_deck_survival)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the survival rates</span></span><br><span class="line">print(c_surv_by_sex)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Filtering-and-Grouping-with-filter"><a href="#Filtering-and-Grouping-with-filter" class="headerlink" title="Filtering and Grouping with .filter()"></a>Filtering and Grouping with <code>.filter()</code></h3><p>We can also use groupby with the <code>.filter()</code> method to remove whole groups of rows from a DataFrame based on a boolean condition.<br>In this exercise, you’ll take the February sales data and remove entries from companies that purchased less than 35 Units in the whole month.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Read the CSV file into a DataFrame: sales</span></span><br><span class="line">sales = pd.read_csv(<span class="string">'sales.csv'</span>, index_col=<span class="string">'Date'</span>, parse_dates=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Group sales by 'Company': by_company</span></span><br><span class="line">by_company = sales.groupby(<span class="string">'Company'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute the sum of the 'Units' of by_company: by_com_sum</span></span><br><span class="line">by_com_sum = by_company[<span class="string">'Units'</span>].sum()</span><br><span class="line">print(by_com_sum)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Filter 'Units' where the sum is &gt; 35: by_com_filt</span></span><br><span class="line">by_com_filt = by_company.filter(<span class="keyword">lambda</span> g: g[<span class="string">'Units'</span>].sum() &gt; <span class="number">35</span>)</span><br><span class="line">print(by_com_filt)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Filtering-and-Grouping-with-map"><a href="#Filtering-and-Grouping-with-map" class="headerlink" title="Filtering and Grouping with .map()"></a>Filtering and Grouping with <code>.map()</code></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create the Boolean Series: under10</span></span><br><span class="line">under10 = (titanic[<span class="string">'age'</span>] &lt; <span class="number">10</span>).map(&#123;<span class="keyword">True</span>:<span class="string">'under 10'</span>, <span class="keyword">False</span>:<span class="string">'over 10'</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Group by under10 and compute the survival rate</span></span><br><span class="line">survived_mean_1 = titanic.groupby(under10).survived.mean()</span><br><span class="line">print(survived_mean_1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Group by under10 and pclass and compute the survival rate</span></span><br><span class="line">survived_mean_2 = titanic.groupby([under10, <span class="string">'pclass'</span>]).survived.mean()</span><br><span class="line">print(survived_mean_2)</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Case-Study"><a href="#Case-Study" class="headerlink" title="Case Study"></a>Case Study</h1><h2 id="Using-value-counts-for-ranking"><a href="#Using-value-counts-for-ranking" class="headerlink" title="Using .value_counts() for ranking"></a>Using .value_counts() for ranking</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Select the 'NOC' column of medals: country_names</span></span><br><span class="line">country_names = medals.NOC</span><br><span class="line"></span><br><span class="line"><span class="comment"># Count the number of medals won by each country: medal_counts</span></span><br><span class="line">medal_counts = country_names.value_counts()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print top 15 countries ranked by medals</span></span><br><span class="line">print(medal_counts.head(<span class="number">15</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="Using-pivot-table-to-count-medals-by-type"><a href="#Using-pivot-table-to-count-medals-by-type" class="headerlink" title="Using .pivot_table() to count medals by type"></a>Using .pivot_table() to count medals by type</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Construct the pivot table: counted</span></span><br><span class="line">counted = medals.pivot_table(index = <span class="string">'NOC'</span>, columns = <span class="string">'Medal'</span>, values = <span class="string">'Athlete'</span>, aggfunc = <span class="string">'count'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the new column: counted['totals']</span></span><br><span class="line">counted[<span class="string">'totals'</span>] = counted.sum(axis = <span class="string">'columns'</span>) <span class="comment">#row sum</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Sort counted by the 'totals' column</span></span><br><span class="line">counted = counted.sort_values(<span class="string">'totals'</span>, ascending = <span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the top 15 rows of counted</span></span><br><span class="line">print(counted.head(<span class="number">15</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="Applying-drop-duplicates"><a href="#Applying-drop-duplicates" class="headerlink" title="Applying .drop_duplicates()"></a>Applying <code>.drop_duplicates()</code></h2><p>The duplicates can be dropped using the .drop_duplicates() method, leaving behind the unique observations.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Select columns: ev_gen</span></span><br><span class="line">ev_gen = medals.loc[:, [<span class="string">'Event_gender'</span>, <span class="string">'Gender'</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Drop duplicate pairs: ev_gen_uniques</span></span><br><span class="line">ev_gen_uniques = ev_gen.drop_duplicates()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print ev_gen_uniques</span></span><br><span class="line">print(ev_gen_uniques)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Finding-possible-errors-with-groupby"><a href="#Finding-possible-errors-with-groupby" class="headerlink" title="Finding possible errors with .groupby()"></a>Finding possible errors with <code>.groupby()</code></h2><p>You will now use .groupby() to continue your exploration. Your job is to group by ‘Event_gender’ and ‘Gender’ and count the rows.</p>
+<p>You will see that there is only one suspicious row: This is likely a data error.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Group medals by the two columns: medals_by_gender</span></span><br><span class="line">medals_by_gender = medals.groupby([<span class="string">'Event_gender'</span>, <span class="string">'Gender'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a DataFrame with a group count: medal_count_by_gender</span></span><br><span class="line">medal_count_by_gender = medals_by_gender.count()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print medal_count_by_gender</span></span><br><span class="line">print(medal_count_by_gender)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Locating-suspicious-data"><a href="#Locating-suspicious-data" class="headerlink" title="Locating suspicious data"></a>Locating suspicious data</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create the Boolean Series: sus</span></span><br><span class="line">sus = (medals.Event_gender == <span class="string">'W'</span>) &amp; (medals.Gender == <span class="string">'Men'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a DataFrame with the suspicious row: suspect</span></span><br><span class="line">suspect = medals[sus]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print suspect</span></span><br><span class="line">print(suspect)</span><br></pre></td></tr></table></figure>
+<p><code>.idxmax()</code> and <code>.idxmin()</code> can return the row or column label where maximum or minimum value is located. By default, it returns the row label, but to compare column wise, we can specify <code>.idxmax(axis = &#39;columns&#39;)</code></p>
+<h2 id="Using-nunique-to-rank-by-distinct-sports"><a href="#Using-nunique-to-rank-by-distinct-sports" class="headerlink" title="Using .nunique() to rank by distinct sports"></a>Using <code>.nunique()</code> to rank by distinct sports</h2><p>You may want to know which countries won medals in the most distinct sports. The .nunique() method is the principal aggregation here. Given a categorical Series S, S.nunique() returns the number of distinct categories.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Group medals by 'NOC': country_grouped</span></span><br><span class="line">country_grouped = medals.groupby(<span class="string">'NOC'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute the number of distinct sports in which each country won medals: Nsports</span></span><br><span class="line">Nsports = country_grouped.Sport.nunique()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Sort the values of Nsports in descending order</span></span><br><span class="line">Nsports = Nsports.sort_values(ascending = <span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the top 15 rows of Nsports</span></span><br><span class="line">print(Nsports.head(<span class="number">15</span>))</span><br></pre></td></tr></table></figure></p>
+<h2 id="Using-boolean-series-to-filter-the-result-isin"><a href="#Using-boolean-series-to-filter-the-result-isin" class="headerlink" title="Using boolean series to filter the result (.isin())"></a>Using boolean series to filter the result (<code>.isin()</code>)</h2><p>To aggregate the number of distinct sports in which the USA and the USSR won medals during the Cold War years<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Extract all rows for which the 'Edition' is between 1952 &amp; 1988: during_cold_war</span></span><br><span class="line">during_cold_war = (medals.Edition &gt;= <span class="number">1952</span>) &amp; (medals.Edition &lt;= <span class="number">1988</span>) <span class="comment">#boolean series</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Extract rows for which 'NOC' is either 'USA' or 'URS': is_usa_urs</span></span><br><span class="line">is_usa_urs = medals.NOC.isin([<span class="string">'USA'</span>, <span class="string">'URS'</span>]) <span class="comment">#boolean series</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Use during_cold_war and is_usa_urs to create the DataFrame: cold_war_medals</span></span><br><span class="line">cold_war_medals = medals[during_cold_war &amp; is_usa_urs]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Group cold_war_medals by 'NOC'</span></span><br><span class="line">country_grouped = cold_war_medals.groupby(<span class="string">'NOC'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create Nsports</span></span><br><span class="line">Nsports = country_grouped.Sport.nunique().sort_values(ascending = <span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print Nsports</span></span><br><span class="line">print(Nsports)</span><br></pre></td></tr></table></figure></p>
+<p>For this exercise, you want to see which country, the USA or the USSR, won the most medals consistently over the Cold War period.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create the pivot table: medals_won_by_country</span></span><br><span class="line">medals_won_by_country = medals.pivot_table(index = <span class="string">'Edition'</span>, columns = <span class="string">'NOC'</span>, values = <span class="string">'Athlete'</span>, aggfunc = <span class="string">'count'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Slice medals_won_by_country: cold_war_usa_usr_medals</span></span><br><span class="line">cold_war_usa_usr_medals = medals_won_by_country.loc[<span class="number">1952</span>:<span class="number">1988</span>, [<span class="string">'USA'</span>, <span class="string">'URS'</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create most_medals: winner for each yer</span></span><br><span class="line">most_medals = cold_war_usa_usr_medals.idxmax(axis = <span class="string">'columns'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print most_medals.value_counts() </span></span><br><span class="line">print(most_medals.value_counts())</span><br></pre></td></tr></table></figure></p>
+<h2 id="Reshaping-DataFrames-for-Visualization"><a href="#Reshaping-DataFrames-for-Visualization" class="headerlink" title="Reshaping DataFrames for Visualization"></a>Reshaping DataFrames for Visualization</h2><p>To visualize the medal counts by ‘Edition’ for the USA. The DataFrame has been pre-loaded for you as medals.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create the DataFrame: usa</span></span><br><span class="line">usa = medals.loc[medals.NOC == <span class="string">'USA'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Group usa by ['Edition', 'Medal'] and aggregate over 'Athlete'</span></span><br><span class="line">usa_medals_by_year = usa.groupby([<span class="string">'Edition'</span>, <span class="string">'Medal'</span>])[<span class="string">'Athlete'</span>].count()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reshape usa_medals_by_year by unstacking</span></span><br><span class="line">usa_medals_by_year = usa_medals_by_year.unstack(level = <span class="string">'Medal'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot the DataFrame usa_medals_by_year</span></span><br><span class="line">usa_medals_by_year.plot()</span><br><span class="line">usa_medals_by_year.plot(kind = <span class="string">'area'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p>You may have noticed that the medals are ordered according to a lexicographic (dictionary) ordering: Bronze &lt; Gold &lt; Silver. However, you would prefer an ordering consistent with the Olympic rules: Bronze &lt; Silver &lt; Gold.</p>
+<p>You can achieve this using Categorical types. In this final exercise, after redefining the ‘Medal’ column of the DataFrame medals, you will repeat the area plot from the previous exercise to see the new ordering.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Redefine 'Medal' as an ordered categorical</span></span><br><span class="line">medals.Medal = pd.Categorical(values = medals.Medal,</span><br><span class="line">                              categories = [<span class="string">'Bronze'</span>, <span class="string">'Silver'</span>, <span class="string">'Gold'</span>],</span><br><span class="line">                              ordered = <span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the DataFrame: usa</span></span><br><span class="line">usa = medals[medals.NOC == <span class="string">'USA'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Group usa by 'Edition', 'Medal', and 'Athlete'</span></span><br><span class="line">usa_medals_by_year = usa.groupby([<span class="string">'Edition'</span>, <span class="string">'Medal'</span>])[<span class="string">'Athlete'</span>].count()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reshape usa_medals_by_year by unstacking</span></span><br><span class="line">usa_medals_by_year = usa_medals_by_year.unstack(level=<span class="string">'Medal'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create an area plot of usa_medals_by_year</span></span><br><span class="line">usa_medals_by_year.plot.area()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/05/Pandas Foundation/" rel="next" title="DataCamp - Pandas Foundation">
+                <i class="fa fa-chevron-left"></i> DataCamp - Pandas Foundation
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/07/Mergin-DF-with-Pandas/" rel="prev" title="DataCamp - Merging DataFrames with Pandas">
+                DataCamp - Merging DataFrames with Pandas <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Joanna</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Extracting-and-Transforming-Data"><span class="nav-number">1.</span> <span class="nav-text">Extracting and Transforming Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Indexing-DataFrames"><span class="nav-number">1.1.</span> <span class="nav-text">Indexing DataFrames</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Filtering-DataFrames"><span class="nav-number">1.2.</span> <span class="nav-text">Filtering DataFrames</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transforming-DataFrames"><span class="nav-number">1.3.</span> <span class="nav-text">Transforming DataFrames</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Advanced-Indexing"><span class="nav-number">2.</span> <span class="nav-text">Advanced Indexing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hierarchical-indexing"><span class="nav-number">2.1.</span> <span class="nav-text">Hierarchical indexing</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Rearranging-and-Reshaping-Data"><span class="nav-number">3.</span> <span class="nav-text">Rearranging and Reshaping Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pivoting-DataFrames"><span class="nav-number">3.1.</span> <span class="nav-text">Pivoting DataFrames</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stacking-and-Unstacking-DataFrames"><span class="nav-number">3.2.</span> <span class="nav-text">Stacking and Unstacking DataFrames</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Melting-DataFrame"><span class="nav-number">3.3.</span> <span class="nav-text">Melting DataFrame</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Obtaining-key-value-pairs-with-melt"><span class="nav-number">3.3.1.</span> <span class="nav-text">Obtaining key-value pairs with melt()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pivot-Tables"><span class="nav-number">3.4.</span> <span class="nav-text">Pivot Tables</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Grouping-Data"><span class="nav-number">4.</span> <span class="nav-text">Grouping Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Categoricals-and-Groupby"><span class="nav-number">4.1.</span> <span class="nav-text">Categoricals and Groupby</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Groupby-and-Aggregation"><span class="nav-number">4.2.</span> <span class="nav-text">Groupby and Aggregation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Groupby-and-Transformation"><span class="nav-number">4.3.</span> <span class="nav-text">Groupby and Transformation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Filling-Missing-Data-imputation-by-Group"><span class="nav-number">4.3.1.</span> <span class="nav-text">Filling Missing Data (imputation) by Group</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Groupby-and-Filtering"><span class="nav-number">4.4.</span> <span class="nav-text">Groupby and Filtering</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Filtering-and-Grouping-with-filter"><span class="nav-number">4.4.1.</span> <span class="nav-text">Filtering and Grouping with .filter()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Filtering-and-Grouping-with-map"><span class="nav-number">4.4.2.</span> <span class="nav-text">Filtering and Grouping with .map()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Case-Study"><span class="nav-number">5.</span> <span class="nav-text">Case Study</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-value-counts-for-ranking"><span class="nav-number">5.1.</span> <span class="nav-text">Using .value_counts() for ranking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-pivot-table-to-count-medals-by-type"><span class="nav-number">5.2.</span> <span class="nav-text">Using .pivot_table() to count medals by type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Applying-drop-duplicates"><span class="nav-number">5.3.</span> <span class="nav-text">Applying .drop_duplicates()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Finding-possible-errors-with-groupby"><span class="nav-number">5.4.</span> <span class="nav-text">Finding possible errors with .groupby()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Locating-suspicious-data"><span class="nav-number">5.5.</span> <span class="nav-text">Locating suspicious data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-nunique-to-rank-by-distinct-sports"><span class="nav-number">5.6.</span> <span class="nav-text">Using .nunique() to rank by distinct sports</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-boolean-series-to-filter-the-result-isin"><span class="nav-number">5.7.</span> <span class="nav-text">Using boolean series to filter the result (.isin())</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reshaping-DataFrames-for-Visualization"><span class="nav-number">5.8.</span> <span class="nav-text">Reshaping DataFrames for Visualization</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joanna</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz',
+        appKey: 'cDbeqqCJt4dq4hu7C9GaCrHB',
+        placeholder: 'Leave your comment here',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz", "cDbeqqCJt4dq4hu7C9GaCrHB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

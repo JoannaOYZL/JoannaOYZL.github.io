@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Datacamp course notes on merging dataset with pandas.">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DataCamp - Merging DataFrames with Pandas">
+<meta property="og:url" content="http://yoursite.com/2018/06/07/Mergin-DF-with-Pandas/index.html">
+<meta property="og:site_name" content="Joanna">
+<meta property="og:description" content="Datacamp course notes on merging dataset with pandas.">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-06-13T21:58:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DataCamp - Merging DataFrames with Pandas">
+<meta name="twitter:description" content="Datacamp course notes on merging dataset with pandas.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/07/Mergin-DF-with-Pandas/"/>
+
+
+
+
+
+  <title>DataCamp - Merging DataFrames with Pandas | Joanna</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joanna</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/07/Mergin-DF-with-Pandas/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joanna">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joanna">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DataCamp - Merging DataFrames with Pandas</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-07T09:23:01-07:00">
+                2018-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Course-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Course Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/07/Mergin-DF-with-Pandas/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/06/07/Mergin-DF-with-Pandas/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/06/07/Mergin-DF-with-Pandas/" class="leancloud_visitors" data-flag-title="DataCamp - Merging DataFrames with Pandas">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Datacamp course notes on merging dataset with pandas.<br><a id="more"></a></p>
+<h1 id="Preparing-Data"><a href="#Preparing-Data" class="headerlink" title="Preparing Data"></a>Preparing Data</h1><h2 id="Reading-Multiple-Files"><a href="#Reading-Multiple-Files" class="headerlink" title="Reading Multiple Files"></a>Reading Multiple Files</h2><p>pandas provides the following tools for loading in datasets:</p>
+<ul>
+<li>pd.read_csv for CSV files<ul>
+<li>dataframe = pd.read_csv(filepath)</li>
+<li>dozens of optional input parameters</li>
+</ul>
+</li>
+<li>Other data import tools:<ul>
+<li>pd.read_excel()</li>
+<li>pd.read_html()</li>
+<li>pd.read_json()</li>
+</ul>
+</li>
+</ul>
+<p>To reading multiple data files, we can use a <strong>for loop</strong>:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">filenames = [<span class="string">'sales-jan-2015.csv'</span>, <span class="string">'sales-feb-2015.csv'</span>]</span><br><span class="line">dataframes = []</span><br><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> filenames:</span><br><span class="line">    dataframes.append(pd.read_csv(f))</span><br><span class="line">dataframes[<span class="number">0</span>] <span class="comment">#'sales-jan-2015.csv'</span></span><br><span class="line">dataframes[<span class="number">1</span>] <span class="comment">#'sales-feb-2015.csv'</span></span><br></pre></td></tr></table></figure></p>
+<p>Or simply a <strong>list comprehension</strong>:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">filenames = [<span class="string">'sales-jan-2015.csv'</span>, <span class="string">'sales-feb-2015.csv'</span>]</span><br><span class="line">dataframes = [pd.read_csv(f) <span class="keyword">for</span> f <span class="keyword">in</span> filenames]</span><br></pre></td></tr></table></figure></p>
+<p>Or using <strong>glob</strong> to load in files with similar names:<br><code>glob()</code> will create a iterable object: ‘filenames’, containing all matching filenames in the current directory.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line">filenames = glob(<span class="string">'sales*.csv'</span>) <span class="comment">#match any strings that start with prefix 'sales' and end with the suffix '.csv'</span></span><br><span class="line">dataframes = [pd.read_csv(f) <span class="keyword">for</span> f <span class="keyword">in</span> filenames]</span><br></pre></td></tr></table></figure></p>
+<p>Another example:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> medal <span class="keyword">in</span> medal_types:</span><br><span class="line"></span><br><span class="line">    file_name = <span class="string">"%s_top5.csv"</span> % medal</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Read file_name into a DataFrame: medal_df</span></span><br><span class="line">    medal_df = pd.read_csv(file_name, index_col = <span class="string">'Country'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Append medal_df to medals</span></span><br><span class="line">    medals.append(medal_df)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Concatenate medals: medals</span></span><br><span class="line">medals = pd.concat(medals, keys = [<span class="string">'bronze'</span>, <span class="string">'silver'</span>, <span class="string">'gold'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print medals in entirety</span></span><br><span class="line">print(medals)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Reindexing-DataFrames"><a href="#Reindexing-DataFrames" class="headerlink" title="Reindexing DataFrames"></a>Reindexing DataFrames</h2><p>The index is a privileged column in Pandas providing convenient access to Series or DataFrame rows.<br>‘indexes’ vs. ‘indices’</p>
+<ul>
+<li>indices: many index labels within a index data structure</li>
+<li>indexes: many pandas index data structures.</li>
+</ul>
+<p>We can access the index directly by <code>.index</code> attribute. To reindex a dataframe, we can use <code>.reindex()</code>:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ordered = [<span class="string">'Jan'</span>, <span class="string">'Apr'</span>, <span class="string">'Jul'</span>, <span class="string">'Oct'</span>]</span><br><span class="line">w_mean2 = w_mean.reindex(ordered)</span><br><span class="line">w_mean3 = w_mean.reindex(w_max.index)</span><br></pre></td></tr></table></figure></p>
+<p>Note that here we can also use other dataframe’s index to reindex the current dataframe. If there are indices that do not exist in the current dataframe, the row will show NaN, which can be dropped via <code>.dropna()</code> eaisly. <strong>This is normally the first step after merging the dataframes.</strong> Also, we can use forward-fill or backward-fill to fill in the Nas by chaining <code>.ffill()</code> or <code>.bfill()</code> after the reindexing.</p>
+<p>To sort the index in alphabetical order, we can use <code>.sort_index()</code> and <code>.sort_index(ascending = False)</code>.</p>
+<p>To sort the dataframe using the values of a certain column, we can use <code>.sort_values(&#39;colname&#39;)</code></p>
+<h2 id="Arithmetic-with-Series-amp-DataFrames"><a href="#Arithmetic-with-Series-amp-DataFrames" class="headerlink" title="Arithmetic with Series &amp; DataFrames"></a>Arithmetic with Series &amp; DataFrames</h2><p>Scalar Mutiplication<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">weather = pd.read_csv(<span class="string">'file.csv'</span>, </span><br><span class="line">                      index_col = <span class="string">'Date'</span>, parse_dates = <span class="keyword">True</span>)</span><br><span class="line">weather.loc[<span class="string">'2013-7-1'</span>:<span class="string">'2013-7-7'</span>, <span class="string">'Precipitation'</span>] * <span class="number">2.54</span> <span class="comment">#broadcasting: the multiplication is applied to all elements in the dataframe</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Divide"><a href="#Divide" class="headerlink" title="Divide()"></a>Divide()</h3><p>If we want to get the max and the min temperature column all divided by the mean temperature column<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">week1_range = weather.loc[<span class="string">'2013-07-01'</span>:<span class="string">'2013-07-07'</span>,</span><br><span class="line">                          [<span class="string">'Min TemperatureF'</span>, <span class="string">'Max TemperatureF'</span>]]</span><br><span class="line">week1_mean = weather.loc[<span class="string">'2013-07-01'</span>:<span class="string">'2013-07-07'</span>,</span><br><span class="line">                         <span class="string">'Mean TemperatureF'</span>]</span><br></pre></td></tr></table></figure></p>
+<p>Here, we cannot directly divide the <code>week1_range</code> by <code>week1_mean</code>, which will confuse python. Instead, we use <code>.divide()</code> to perform this operation.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">week1_range.divide(week1_mean, axis = <span class="string">'rows'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>This will broadcast the series <code>week1_mean</code> values across each row to produce the desired ratios.</p>
+<p>To compute the percentage change along a time series, we can subtract the previous day’s value from the current day’s value and dividing by the previous day’s value. The <code>.pct_change()</code> method does precisely this computation for us.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">week1_mean.pct_change() * <span class="number">100</span> <span class="comment"># *100 for percent value.</span></span><br><span class="line"><span class="comment"># The first row will be NaN since there is no previous entry.</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Add"><a href="#Add" class="headerlink" title="Add()"></a>Add()</h3><p>How arithmetic operations work between distinct Series or DataFrames with non-aligned indexes? When we add two panda Series, the index of the sum is the union of the row indices from the original two Series. <em>Arithmetic operations between Panda Series are carried out for rows with common index values.</em> If the indices are not in one of the two dataframe, the row will have NaN.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bronze + silver</span><br><span class="line">bronze.add(silver) <span class="comment">#same as above</span></span><br><span class="line">bronze.add(silver, fill_value = <span class="number">0</span>) <span class="comment">#this will avoid the appearance of NaNs</span></span><br><span class="line">bronze.add(silver, fill_value = <span class="number">0</span>).add(gold, fill_value = <span class="number">0</span>) <span class="comment">#chain the method to add more</span></span><br></pre></td></tr></table></figure></p>
+<p>Tips:<br>To replace a certain string in the column name:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#replace 'F' with 'C'</span></span><br><span class="line">temps_c.columns = temps_c.columns.str.replace(<span class="string">'F'</span>, <span class="string">'C'</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Multiply"><a href="#Multiply" class="headerlink" title="Multiply()"></a>Multiply()</h3><p>In this exercise, stock prices in US Dollars for the S&amp;P 500 in 2015 have been obtained from Yahoo Finance.</p>
+<p>Using the daily exchange rate to Pounds Sterling, your task is to convert both the Open and Close column prices.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import pandas</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read 'sp500.csv' into a DataFrame: sp500</span></span><br><span class="line">sp500 = pd.read_csv(<span class="string">'sp500.csv'</span>, parse_dates = <span class="keyword">True</span>, index_col = <span class="string">'Date'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read 'exchange.csv' into a DataFrame: exchange</span></span><br><span class="line">exchange = pd.read_csv(<span class="string">'exchange.csv'</span>, parse_dates = <span class="keyword">True</span>, index_col = <span class="string">'Date'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Subset 'Open' &amp; 'Close' columns from sp500: dollars</span></span><br><span class="line">dollars = sp500[[<span class="string">'Open'</span>, <span class="string">'Close'</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the head of dollars</span></span><br><span class="line">print(dollars.head())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Convert dollars to pounds: pounds</span></span><br><span class="line">pounds = dollars.multiply(exchange[<span class="string">'GBP/USD'</span>], axis = <span class="string">'rows'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the head of pounds</span></span><br><span class="line">print(pounds.head())</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="Concatenating-Data"><a href="#Concatenating-Data" class="headerlink" title="Concatenating Data"></a>Concatenating Data</h1><h2 id="Appending-and-Concatenating-Series"><a href="#Appending-and-Concatenating-Series" class="headerlink" title="Appending and Concatenating Series"></a>Appending and Concatenating Series</h2><p>We can also stack Series on top of one anothe by appending and concatenating using <code>.append()</code> and <code>pd.concat()</code>.</p>
+<p><code>.append()</code></p>
+<ul>
+<li><code>.append()</code> is a Series and DataFrame <em>method</em></li>
+<li>syntax: <code>s1.append(s2)</code>. Stacks rows of s2 below s1</li>
+<li>Stacks rows without adjusting index values by default. <ul>
+<li>To discard the old index when appending, we can chain <code>.reset_index(drop = True)</code> after appending,</li>
+</ul>
+</li>
+</ul>
+<p><code>concat()</code></p>
+<ul>
+<li><code>concat()</code> is a pandas module <em>function</em>, and accepts a list or sequance of several Series or DataFrames to concatenate.</li>
+<li>symtax: <code>pd.concat([s1, s2, s3])</code></li>
+<li>While the <code>.append()</code> method can only stack vertically (or row_wise), the function <code>concat()</code> is more flexible, and can concatenate both vertically and horizontally. <ul>
+<li><code>axis = &#39;rows&#39;</code> stacks vertically, <code>axis = &#39;columns&#39;</code> stacks horizontally</li>
+</ul>
+</li>
+<li>Concat without adjusting index values by default.<ul>
+<li>To discard the old index when appending, we can specify argument <code>ignore_index = True</code> in the funtion.</li>
+</ul>
+</li>
+</ul>
+<p>When stacking multiple Series, <code>pd.concat()</code> is in fact equivalent to chaining method calls to <code>.append()</code><br><code>result1 = pd.concat([s1, s2, s3])</code> = <code>result2 = s1.append(s2).append(s3)</code></p>
+<p>Append then concat<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Initialize empty list: units</span></span><br><span class="line">units = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build the list of Series</span></span><br><span class="line"><span class="keyword">for</span> month <span class="keyword">in</span> [jan, feb, mar]:</span><br><span class="line">    units.append(month[<span class="string">'Units'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Concatenate the list: quarter1</span></span><br><span class="line">quarter1 = pd.concat(units, axis = <span class="string">'rows'</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Appending-and-Concatenating-DataFrames"><a href="#Appending-and-Concatenating-DataFrames" class="headerlink" title="Appending and Concatenating DataFrames"></a>Appending and Concatenating DataFrames</h2><p><code>df1.append(df2)</code></p>
+<ul>
+<li>By default, the dataframes are stacked row-wise (vertically). <ul>
+<li>If the two dataframes have identical index names and column names, then the appended result would also display identical index and column names.</li>
+<li>If the two dataframes have different index and column names: <ul>
+<li>If there is a index that exist in both dataframes, there will be two rows of this particular index, one shows the original value in df1, one in df2. Different columns are unioned into one table. NaNs are filled into the values that come from the other dataframe. </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><code>pd.concat([df1, df2])</code></p>
+<ul>
+<li>By default, the dataframes are stacked row-wise (vertically). <ul>
+<li>If the two dataframes have identical index names and column names, then the appended result would also display identical index and column names.</li>
+</ul>
+</li>
+<li>If we use <code>pd.concat([df1, df2], axis = 1)</code> or <code>pd.concat([df1, df2], axis = &#39;columns&#39;)</code> stacks dataframe columns horizontally on the right.<ul>
+<li>If there is a index that exist in both dataframes, the row will get populated with values from both dataframes when concatenating.</li>
+</ul>
+</li>
+</ul>
+<p>Example: Reading multiple files to build a DataFrame.<br>It is often convenient to build a large DataFrame by parsing many files as DataFrames and concatenating them all at once. You’ll do this here with three files, but, in principle, this approach can be used to combine data from dozens or hundreds of files.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">medal = []</span><br><span class="line">medal_types = [<span class="string">'bronze'</span>, <span class="string">'silver'</span>, <span class="string">'gold'</span>]</span><br><span class="line"><span class="keyword">for</span> medal <span class="keyword">in</span> medal_types:</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create the file name: file_name</span></span><br><span class="line">    file_name = <span class="string">"%s_top5.csv"</span> % medal</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Create list of column names: columns</span></span><br><span class="line">    columns = [<span class="string">'Country'</span>, medal]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Read file_name into a DataFrame: df</span></span><br><span class="line">    medal_df = pd.read_csv(file_name, header = <span class="number">0</span>, index_col = <span class="string">'Country'</span>, names = columns)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Append medal_df to medals</span></span><br><span class="line">    medals.append(medal_df)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Concatenate medals horizontally: medals</span></span><br><span class="line">medals = pd.concat(medals, axis = <span class="string">'columns'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print medals</span></span><br><span class="line">print(medals)</span><br></pre></td></tr></table></figure></p>
+<p>The expression <code>&quot;%s_top5.csv&quot; % medal</code> evaluates as a string with the value of <code>medal</code> replacing <code>%s</code> in the format string.</p>
+<h2 id="Concatenation-Keys-amp-MultiIndexes"><a href="#Concatenation-Keys-amp-MultiIndexes" class="headerlink" title="Concatenation, Keys &amp; MultiIndexes"></a>Concatenation, Keys &amp; MultiIndexes</h2><p>In order to differentiate data from different dataframe but with same column names and index:</p>
+<ul>
+<li><p>we can use <code>keys</code> to create a multilevel index. The order of the list of keys should match the order of the list of dataframe when concatenating.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Concatenating vertically</span></span><br><span class="line">rain1314 = pd.concat([rain2013, rain2014], key = [<span class="number">2013</span>, <span class="number">2014</span>], axis = <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Slicing the out-most index</span></span><br><span class="line">print(rain1314.loc[<span class="number">2014</span>])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>or we can concat the columns to the right of the dataframe with argument <code>axis = 1</code> or <code>axis = columns</code>. To avoid repeated column indices, again we need to specify <code>keys</code> to create a multi-level column index.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Concatenating horizontally</span></span><br><span class="line">rain1314 = pd.concat([rain2013, rain2014], key = [<span class="number">2013</span>, <span class="number">2014</span>], axis = <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Slicing the outer-most column index</span></span><br><span class="line">print(rain1314[<span class="number">2014</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Slicing the inner column index</span></span><br><span class="line">idx = pd.IndexSlice</span><br><span class="line">print(rain1314[idx[:, <span class="string">'Jan'</span>], :])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>or use a dictionary instead. In that case, the dictionary keys are automatically treated as values for the <code>keys</code> in building a multi-index on the columns.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rain_dict = &#123;<span class="number">2013</span>:rain2013, <span class="number">2014</span>:rain2014&#125;</span><br><span class="line">rain1314 = pd.concat(rain_dict, axis = <span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
+<p>Another example:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Make the list of tuples: month_list</span></span><br><span class="line">month_list = [(<span class="string">'january'</span>, jan), (<span class="string">'february'</span>, feb), (<span class="string">'march'</span>, mar)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create an empty dictionary: month_dict</span></span><br><span class="line">month_dict = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> month_name, month_data <span class="keyword">in</span> month_list:</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Group month_data: month_dict[month_name]</span></span><br><span class="line">    month_dict[month_name] = month_data.groupby(<span class="string">'Company'</span>).sum()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Concatenate data in month_dict: sales</span></span><br><span class="line">sales = pd.concat(month_dict)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print sales</span></span><br><span class="line">print(sales) <span class="comment">#outer-index=month, inner-index=company</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Print all sales by Mediacore</span></span><br><span class="line">idx = pd.IndexSlice</span><br><span class="line">print(sales.loc[idx[:, <span class="string">'Mediacore'</span>], :])</span><br></pre></td></tr></table></figure></p>
+<h2 id="Outer-amp-Inner-Joins"><a href="#Outer-amp-Inner-Joins" class="headerlink" title="Outer &amp; Inner Joins"></a>Outer &amp; Inner Joins</h2><p>We can stack dataframes vertically using <code>append()</code>, and stack dataframes either vertically or horizontally using <code>pd.concat()</code>. <code>pd.concat()</code> is also able to align dataframes cleverly with respect to their indexes.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">A = np.arange(<span class="number">8</span>).reshape(<span class="number">2</span>, <span class="number">4</span>) + <span class="number">0.1</span></span><br><span class="line">B = np.arange(<span class="number">6</span>).reshape(<span class="number">2</span>, <span class="number">3</span>) + <span class="number">0.2</span></span><br><span class="line">C = np.arange(<span class="number">12</span>).reshape(<span class="number">3</span>, <span class="number">4</span>) + <span class="number">0.3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Since A and B have same number of rows, we can stack them horizontally together</span></span><br><span class="line">np.hstack([B, A]) <span class="comment">#B on the left, A on the right</span></span><br><span class="line">np.concatenate([B, A], axis = <span class="number">1</span>) <span class="comment">#same as above</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Since A and C have same number of columns, we can stack them vertically</span></span><br><span class="line">np.vstack([A, C])</span><br><span class="line">np.concatenate([A, C], axis = <span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
+<p>A ValueError exception is raised when the arrays have different size along the concatenation axis</p>
+<p>Joining tables involves meaningfully gluing indexed rows together.<br><em>Note: we don’t need to specify the join-on column here, since concatenation refers to the index directly</em></p>
+<ul>
+<li>Outer join preserves the indices in the original tables filling null values for missing rows.<ul>
+<li>Union of index sets (all labels, no repetition)</li>
+<li>Missing fields filled with NaN</li>
+</ul>
+</li>
+<li>Inner join has only index labels common to both tables<ul>
+<li>Intersection of index sets<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">pd.concat([population, unemployment], axis = <span class="number">1</span>, join = <span class="string">'outer'</span>)</span><br><span class="line">pd.concat([population, unemployment], </span><br><span class="line">          keys = [<span class="string">'pop'</span>, <span class="string">'unemploy'</span>], axis = <span class="number">1</span>, join = <span class="string">'inner'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Resampling and concatenating</span></span><br><span class="line"><span class="comment"># Resample and tidy china: china_annual</span></span><br><span class="line">china_annual = china.resample(<span class="string">'A'</span>).pct_change(<span class="number">10</span>).dropna()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Resample and tidy us: us_annual</span></span><br><span class="line">us_annual = us.resample(<span class="string">'A'</span>).pct_change(<span class="number">10</span>).dropna()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Concatenate china_annual and us_annual: gdp</span></span><br><span class="line">gdp = pd.concat([china_annual, us_annual], join = <span class="string">'inner'</span>, axis = <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Resample gdp and print</span></span><br><span class="line">print(gdp.resample(<span class="string">'10A'</span>).last())</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="Merging-Data"><a href="#Merging-Data" class="headerlink" title="Merging Data"></a>Merging Data</h1><p>Very often, we need to combine DataFrames either along multiple columns or along columns other than the index, where merging will be used.</p>
+<p><code>merge()</code> function extends <code>concat()</code> with the ability to align rows using multiple columns.</p>
+<h2 id="Inner-join"><a href="#Inner-join" class="headerlink" title="Inner join"></a>Inner join</h2><ul>
+<li><p>Merge all columns that occur in both dataframes: <code>pd.merge(population, cities)</code>. It performs <strong>inner join</strong>, which glues together only rows that match in the joining column of <strong>BOTH</strong> dataframes.</p>
+</li>
+<li><p>Merge on a particular column or columns that occur in both dataframes: <code>pd.merge(bronze, gold, on = [&#39;NOC&#39;, &#39;country&#39;])</code>.<br>We can further tailor the column names with <code>suffixes = [&#39;_bronze&#39;, &#39;_gold&#39;]</code> to replace the suffixed <code>_x</code> and <code>_y</code></p>
+</li>
+<li><p>When the columns to join on have different labels: <code>pd.merge(counties, cities, left_on = &#39;CITY NAME&#39;, right_on = &#39;City&#39;)</code>. This way, both columns used to join on will be retained.</p>
+</li>
+</ul>
+<h2 id="Left-join-amp-Right-join"><a href="#Left-join-amp-Right-join" class="headerlink" title="Left join &amp; Right join"></a>Left join &amp; Right join</h2><p>It keeps all rows of the left dataframe in the merged dataframe. </p>
+<ul>
+<li>For rows in the left dataframe with matches in the right dataframe, non-joining columns of right dataframe are appended to left dataframe.</li>
+<li>For rows in the left dataframe with no matches in the right dataframe, non-joining columns are filled with nulls.</li>
+</ul>
+<p>And vice versa for right join.</p>
+<h2 id="Outer-join"><a href="#Outer-join" class="headerlink" title="Outer join"></a>Outer join</h2><p>Outer join is a union of all rows from the left and right dataframes.</p>
+<p>Besides using <code>pd.merge()</code>, we can also use pandas built-in method <code>.join()</code> to join datasets.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># By default, it performs left-join using the index, the order of the index of the joined dataset also matches with the left dataframe's index</span></span><br><span class="line">population.join(unemployment) </span><br><span class="line"></span><br><span class="line"><span class="comment"># it can also performs a right-join, the order of the index of the joined dataset also matches with the right dataframe's index</span></span><br><span class="line">population.join(unemployment, how = <span class="string">'right'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># inner-join</span></span><br><span class="line">population.join(unemployment, how = <span class="string">'inner'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># outer-join, sorts the combined index</span></span><br><span class="line">population.join(unemployment, how = <span class="string">'outer'</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Which-merging-joining-method-should-we-use"><a href="#Which-merging-joining-method-should-we-use" class="headerlink" title="Which merging/joining method should we use?"></a>Which merging/joining method should we use?</h2><p><strong>The simpler the better.</strong></p>
+<ul>
+<li>To stack two Series or DataFrames <em>vertically</em>: <code>df1.append(df2)</code></li>
+<li>To stack many <em>horizontally</em> or vertically, or perform simple inner/outer joins <em>on indexes</em>: <code>pd.concat([df1, df2])</code></li>
+<li>To perform simple left/right/inner/outer joins <em>on indexes</em>: <code>df1.join(df2)</code></li>
+<li>To perform many joins <em>on multiple columns</em>: <code>pd.merge([df1, df2])</code></li>
+</ul>
+<h2 id="Ordered-merges"><a href="#Ordered-merges" class="headerlink" title="Ordered merges"></a>Ordered merges</h2><p>We often want to merge dataframes whose columns have natural orderings, like date-time columns.</p>
+<h3 id="merge-ordered"><a href="#merge-ordered" class="headerlink" title="merge_ordered()"></a>merge_ordered()</h3><p><code>pd.merge_ordered()</code> can join two datasets with respect to their original order. The merged dataframe has rows sorted lexicographically accoridng to the column ordering in the input dataframes. By default, it performs <strong>outer-join</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge_ordered(hardware, software, on = [<span class="string">'Date'</span>, <span class="string">'Company'</span>], suffixes = [<span class="string">'_hardware'</span>, <span class="string">'_software'</span>], fill_method = <span class="string">'ffill'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>To distinguish data from different orgins, we can specify <code>suffixes</code> in the arguments.</p>
+<p><code>merge_ordered()</code> can also perform forward-filling for missing values in the merged dataframe. <em>Note: <code>ffill</code> is not that useful for missing values at the beginning of the dataframe</em></p>
+<h3 id="merge-asof"><a href="#merge-asof" class="headerlink" title="merge_asof()??"></a>merge_asof()??</h3><p>Similar to <code>pd.merge_ordered()</code>, the <code>pd.merge_asof()</code> function will also merge values in order using the <code>on</code> column, but for each row in the left DataFrame, only rows from the right DataFrame whose <code>&#39;on&#39;</code> column values are <strong>less</strong> than the left value will be kept.</p>
+<p>This function can be use to align disparate datetime frequencies without having to first resample.</p>
+<p>Here, you’ll merge monthly oil prices (US dollars) into a full automobile fuel efficiency dataset. The oil and automobile DataFrames have been pre-loaded as <code>oil</code> and <code>auto</code>. The first 5 rows of each have been printed in the IPython Shell for you to explore.</p>
+<p>These datasets will align such that the first price of the year will be broadcast into the rows of the automobiles DataFrame. This is considered correct since by the start of any given year, most automobiles for that year will have already been manufactured.</p>
+<hr>
+<h1 id="Case-Study-Medals-in-the-Summer-Olympics"><a href="#Case-Study-Medals-in-the-Summer-Olympics" class="headerlink" title="Case Study: Medals in the Summer Olympics"></a>Case Study: Medals in the Summer Olympics</h1><p>You have a sequence of files <code>summer_1896.csv</code>, <code>summer_1900.csv</code>, …, <code>summer_2008.csv</code>, one for each Olympic edition (year).</p>
+<p>You will build up a dictionary <code>medals_dict</code> with the Olympic editions (years) as keys and DataFrames as values.</p>
+<p>The dictionary is built up inside a loop over the <code>year</code> of each Olympic edition (from the Index of <code>editions</code>).</p>
+<p>Once the dictionary of DataFrames is built up, you will combine the DataFrames using <code>pd.concat()</code>.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import pandas</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create empty dictionary: medals_dict</span></span><br><span class="line">medals_dict = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> year <span class="keyword">in</span> editions[<span class="string">'Edition'</span>]:</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create the file path: file_path</span></span><br><span class="line">    file_path = <span class="string">'summer_&#123;:d&#125;.csv'</span>.format(year)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Load file_path into a DataFrame: medals_dict[year]</span></span><br><span class="line">    medals_dict[year] = pd.read_csv(file_path)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Extract relevant columns: medals_dict[year]</span></span><br><span class="line">    medals_dict[year] = medals_dict[year][[<span class="string">'Athlete'</span>, <span class="string">'NOC'</span>, <span class="string">'Medal'</span>]]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Assign year to column 'Edition' of medals_dict</span></span><br><span class="line">    medals_dict[year][<span class="string">'Edition'</span>] = year</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Concatenate medals_dict: medals</span></span><br><span class="line">medals = pd.concat(medals_dict, ignore_index = <span class="keyword">True</span>) <span class="comment">#ignore_index reset the index from 0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Print first and last 5 rows of medals</span></span><br><span class="line">print(medals.head())</span><br><span class="line">print(medals.tail())</span><br></pre></td></tr></table></figure></p>
+<p>Counting medals by country/edition in a pivot table<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Construct the pivot_table: medal_counts</span></span><br><span class="line">medal_counts = medals.pivot_table(index = <span class="string">'Edition'</span>,</span><br><span class="line">                                  columns = <span class="string">'NOC'</span>,</span><br><span class="line">                                  values = <span class="string">'Athlete'</span>,</span><br><span class="line">                                  aggfunc = <span class="string">'count'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>Computing fraction of medals per Olympic edition and the percentage change in fraction of medals won<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set Index of editions: totals</span></span><br><span class="line">totals = editions.set_index(<span class="string">'Edition'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reassign totals['Grand Total']: totals</span></span><br><span class="line">totals = totals[<span class="string">'Grand Total'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Divide medal_counts by totals: fractions</span></span><br><span class="line">fractions = medal_counts.divide(totals, axis = <span class="string">'rows'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print first &amp; last 5 rows of fractions</span></span><br><span class="line">print(fractions.head())</span><br><span class="line">print(fractions.tail())</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="Expanding-Windows"><a href="#Expanding-Windows" class="headerlink" title="Expanding Windows"></a>Expanding Windows</h2><p>(<a href="http://pandas.pydata.org/pandas-docs/stable/computation.html#expanding-windows" target="_blank" rel="noopener">http://pandas.pydata.org/pandas-docs/stable/computation.html#expanding-windows</a>)<br>A common alternative to rolling statistics is to use an expanding window, which <strong>yields the value of the statistic with all the data available up to that point in time</strong>.</p>
+<p>These follow a similar interface to <code>.rolling</code>, with the <code>.expanding</code> method returning an Expanding object.</p>
+<p>As these calculations are a special case of rolling statistics, they are implemented in pandas such that the following two calls are equivalent:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.rolling(window = len(df), min_periods = <span class="number">1</span>).mean()[:<span class="number">5</span>]</span><br><span class="line">df.expanding(min_periods = <span class="number">1</span>).mean()[:<span class="number">5</span>]</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>To see if there is a host country advantage, you first want to see how the fraction of medals won changes from edition to edition.</p>
+<p>The expanding mean provides a way to see this down each column. It is the value of the mean with all the data available up to that point in time.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Apply the expanding mean: mean_fractions</span></span><br><span class="line">mean_fractions = fractions.expanding().mean()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute the percentage change: fractions_change</span></span><br><span class="line">fractions_change = mean_fractions.pct_change() * <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Reset the index of fractions_change: fractions_change</span></span><br><span class="line">fractions_change = fractions_change.reset_index()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print first &amp; last 5 rows of fractions_change</span></span><br><span class="line">print(fractions_change.head())</span><br><span class="line">print(fractions_change.tail())</span><br></pre></td></tr></table></figure>
+<p>Reshaping for analysis<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import pandas</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reshape fractions_change: reshaped</span></span><br><span class="line">reshaped = pd.melt(fractions_change, </span><br><span class="line">                   id_vars = <span class="string">'Edition'</span>,</span><br><span class="line">                   value_name = <span class="string">'Change'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print reshaped.shape and fractions_change.shape</span></span><br><span class="line">print(reshaped.shape, fractions_change.shape)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Extract rows from reshaped where 'NOC' == 'CHN': chn</span></span><br><span class="line">chn = reshaped[reshaped.NOC == <span class="string">'CHN'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print last 5 rows of chn with .tail()</span></span><br><span class="line">print(chn.tail())</span><br></pre></td></tr></table></figure></p>
+<p>Visualization<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import pandas</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Merge reshaped and hosts: merged</span></span><br><span class="line">merged = pd.merge(reshaped, hosts, how = <span class="string">'inner'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print first 5 rows of merged</span></span><br><span class="line">print(merged.head())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set Index of merged and sort it: influence</span></span><br><span class="line">influence = merged.set_index(<span class="string">'Edition'</span>).sort_index()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print first 5 rows of influence</span></span><br><span class="line">print(influence.head())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import pyplot</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Extract influence['Change']: change</span></span><br><span class="line">change = influence[<span class="string">'Change'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Make bar plot of change: ax</span></span><br><span class="line">ax = change.plot(kind = <span class="string">'bar'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Customize the plot to improve readability</span></span><br><span class="line">ax.set_ylabel(<span class="string">"% Change of Host Country Medal Count"</span>)</span><br><span class="line">ax.set_title(<span class="string">"Is there a Host Country Advantage?"</span>)</span><br><span class="line">ax.set_xticklabels(editions[<span class="string">'City'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Display the plot</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/07/Pandas2/" rel="next" title="DataCamp - Pandas Foundation 2">
+                <i class="fa fa-chevron-left"></i> DataCamp - Pandas Foundation 2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Joanna</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Preparing-Data"><span class="nav-number">1.</span> <span class="nav-text">Preparing Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reading-Multiple-Files"><span class="nav-number">1.1.</span> <span class="nav-text">Reading Multiple Files</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reindexing-DataFrames"><span class="nav-number">1.2.</span> <span class="nav-text">Reindexing DataFrames</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Arithmetic-with-Series-amp-DataFrames"><span class="nav-number">1.3.</span> <span class="nav-text">Arithmetic with Series &amp; DataFrames</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Divide"><span class="nav-number">1.3.1.</span> <span class="nav-text">Divide()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add"><span class="nav-number">1.3.2.</span> <span class="nav-text">Add()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multiply"><span class="nav-number">1.3.3.</span> <span class="nav-text">Multiply()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Concatenating-Data"><span class="nav-number">2.</span> <span class="nav-text">Concatenating Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Appending-and-Concatenating-Series"><span class="nav-number">2.1.</span> <span class="nav-text">Appending and Concatenating Series</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Appending-and-Concatenating-DataFrames"><span class="nav-number">2.2.</span> <span class="nav-text">Appending and Concatenating DataFrames</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Concatenation-Keys-amp-MultiIndexes"><span class="nav-number">2.3.</span> <span class="nav-text">Concatenation, Keys &amp; MultiIndexes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Outer-amp-Inner-Joins"><span class="nav-number">2.4.</span> <span class="nav-text">Outer &amp; Inner Joins</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Merging-Data"><span class="nav-number">3.</span> <span class="nav-text">Merging Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Inner-join"><span class="nav-number">3.1.</span> <span class="nav-text">Inner join</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Left-join-amp-Right-join"><span class="nav-number">3.2.</span> <span class="nav-text">Left join &amp; Right join</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Outer-join"><span class="nav-number">3.3.</span> <span class="nav-text">Outer join</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Which-merging-joining-method-should-we-use"><span class="nav-number">3.4.</span> <span class="nav-text">Which merging/joining method should we use?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ordered-merges"><span class="nav-number">3.5.</span> <span class="nav-text">Ordered merges</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#merge-ordered"><span class="nav-number">3.5.1.</span> <span class="nav-text">merge_ordered()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#merge-asof"><span class="nav-number">3.5.2.</span> <span class="nav-text">merge_asof()??</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Case-Study-Medals-in-the-Summer-Olympics"><span class="nav-number">4.</span> <span class="nav-text">Case Study: Medals in the Summer Olympics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Expanding-Windows"><span class="nav-number">4.1.</span> <span class="nav-text">Expanding Windows</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joanna</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz',
+        appKey: 'cDbeqqCJt4dq4hu7C9GaCrHB',
+        placeholder: 'Leave your comment here',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz", "cDbeqqCJt4dq4hu7C9GaCrHB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
