@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Product,Data Science,Analytics," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Reading notes on the book Lean Analytics: Use Data to Build a Better Startup Faster">
+<meta name="keywords" content="Product,Data Science,Analytics">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DataCamp - Reading Notes on Lean Analytics">
+<meta property="og:url" content="http://yoursite.com/2018/06/13/Lean-Analytics/index.html">
+<meta property="og:site_name" content="Joanna">
+<meta property="og:description" content="Reading notes on the book Lean Analytics: Use Data to Build a Better Startup Faster">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006lr8qAly1fsba1lzpefj30ws16etui.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006lr8qAly1fsbamswujmj30iy0g4q69.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006lr8qAly1fsbay9fs70j30im0in0xo.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006lr8qAly1fskukjii45j30xe0gs0y1.jpg">
+<meta property="og:updated_time" content="2018-07-05T21:14:18.358Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DataCamp - Reading Notes on Lean Analytics">
+<meta name="twitter:description" content="Reading notes on the book Lean Analytics: Use Data to Build a Better Startup Faster">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006lr8qAly1fsba1lzpefj30ws16etui.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/13/Lean-Analytics/"/>
+
+
+
+
+
+  <title>DataCamp - Reading Notes on Lean Analytics | Joanna</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joanna</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/13/Lean-Analytics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joanna">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joanna">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DataCamp - Reading Notes on Lean Analytics</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-13T20:23:05-07:00">
+                2018-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reading-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Reading Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/13/Lean-Analytics/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/06/13/Lean-Analytics/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/06/13/Lean-Analytics/" class="leancloud_visitors" data-flag-title="DataCamp - Reading Notes on Lean Analytics">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Reading notes on the book <em>Lean Analytics: Use Data to Build a Better Startup Faster</em><br><a id="more"></a></p>
+<h1 id="PART-ONE-Stop-Lying-to-Yourself"><a href="#PART-ONE-Stop-Lying-to-Yourself" class="headerlink" title="PART ONE: Stop Lying to Yourself"></a>PART ONE: Stop Lying to Yourself</h1><h2 id="Chapter-1-We’re-All-Liars"><a href="#Chapter-1-We’re-All-Liars" class="headerlink" title="Chapter 1: We’re All Liars"></a>Chapter 1: We’re All Liars</h2><p>Small lies and delusions are essential to entrepreneur. They create your reality distortion field. They are a necessary part of being an entrepreneur. But if you start believing your own hype, you won’t survive.</p>
+<p>You need to lie to yourself, but not to the point where you’re jeopardizing your business.</p>
+<p><em>That’s where data comes in.</em></p>
+<p>Guts matter; you’ve just got to test them. Instincts are experiments. Data is proof.</p>
+<pre><code>&quot;If you can&apos;t measure it, you can&apos;t manage it.&quot; -- Peter Drucker
+</code></pre><h3 id="Case-Study-Airbnb-Photography"><a href="#Case-Study-Airbnb-Photography" class="headerlink" title="Case Study: Airbnb Photography"></a>Case Study: Airbnb Photography</h3><ul>
+<li><p>Airbnb started with a hypothesis: “Hosts with professional photography will get more business. And hosts will sign up for professional photography as a service.” <strong>(gut instincts)</strong></p>
+</li>
+<li><p>Test the hypothesis: <em>Concierge Minimum Viable Product (MVP)</em></p>
+</li>
+</ul>
+<p><em>The Minimum Viable Product</em> is the smallest thing you can build that will create the value you’ve promised to your market.</p>
+<p>If you’re considering building a ride-sharing service, for example, you can try to connect drivers and passengers the old-fashioned way: by hand.</p>
+<p><strong>Advantages:</strong></p>
+<ol>
+<li>run things behind the scenes for the first few customers lets you check whether the need is real;</li>
+<li>helps you understand which things people really use and refine your process before writing a line of code or hiring a single employee</li>
+</ol>
+<ul>
+<li><p>Test results: professionally photographed listings got two to three times more bookings than the market average. <strong>(validated hypothesis)</strong></p>
+</li>
+<li><p>Experiement further, measure the results (by photo shoots, since it had already proven with its Concierge MVP that more professional photographs meant more bookings.), and adjust along the way:</p>
+<ol>
+<li>It watermarked photos to add authenticity.</li>
+<li>It got customer service to offer professional photography as a service when renters or potential renters called in. </li>
+<li>It increased the requirements on photo quality.</li>
+</ol>
+</li>
+</ul>
+<h4 id="Summary"><a href="#Summary" class="headerlink" title="Summary:"></a>Summary:</h4><p>Sometimes, growth comes from an aspect of your business you don’t expect. When you think you’ve found a worthwhile idea, decide how to test it quickly, with minimal investment. Define what success looks like beforehand, and know what you’re going to do if your hunch is right.</p>
+<hr>
+<h2 id="Chapter-2-How-to-Keep-Score"><a href="#Chapter-2-How-to-Keep-Score" class="headerlink" title="Chapter 2: How to Keep Score"></a>Chapter 2: How to Keep Score</h2><p>In a startup, the purpose of analytics is to <em>find your way to the right product and market before the money runs out</em>.</p>
+<h3 id="What-Makes-a-Good-Mertic"><a href="#What-Makes-a-Good-Mertic" class="headerlink" title="What Makes a Good Mertic?"></a>What Makes a Good Mertic?</h3><p>Rule of thumb:</p>
+<ol>
+<li>Comparative: being able to compare a metric across time periods, group of users, or competitors, etc. helps you understand which way things are moving.</li>
+<li>Understandable: easy for people to remember and discuss.</li>
+<li>A ratio or a rate:<ul>
+<li>Easier to act on: distance vs. speed (distance per hour) = informational vs. actionable</li>
+<li>Inherently comparative: daily metric/monthly average metric -&gt; possible trumpet or spikes or long-term trend</li>
+<li>Good for comparing factors that are somehow opposed, or for which there’s an inherent tension: e.g. distance/# of traffic tickets. The faster you drive, the more distance you cover—but the more tickets you get. (whether or not you to break the speed limit.)</li>
+</ul>
+</li>
+<li><strong>Changes the way you behave</strong>: (most important)<br> <em>What will you do differently based on changes in the metric?</em><ul>
+<li>“Accounting” metrics, like daily sales revenue, show you how close you are to an ideal model and whether your actual results are converging on your business plan.</li>
+<li>“Experimental” metrics, like the results of a test, help you to optimize the product, pricing, or market.</li>
+</ul>
+</li>
+</ol>
+<p>if you want to change behavior, your metric must be <strong>tied to the behavioral change you want</strong>. If you measure something and it’s not attached to a goal, in turn changing your behavior, you’re wasting your time. (salesperson spend more time on persuading the customer for a good rating in the survey, which did not happen)</p>
+<p>Metrics come in pairs.</p>
+<ul>
+<li><em>Conversion rate</em> (the percentage of people who buy something) is tied to <em>time-to-purchase</em> (how long it takes someone to buy something). Together, they tell you a lot about your cash flow.</li>
+<li><em>Viral coefficient</em> (the number of people a user successfully invites to your service) and <em>viral cycle time</em> (how long it takes them to invite others) drive your adoption rate.</li>
+</ul>
+<h3 id="How-to-chooose-the-right-metrics"><a href="#How-to-chooose-the-right-metrics" class="headerlink" title="How to chooose the right metrics?"></a>How to chooose the right metrics?</h3><ol>
+<li><p><strong>Qualitative versus quantitative metrics</strong></p>
+<ul>
+<li>Qualitative metrics are unstructured, anecdotal, revealing, and hard to aggregate; </li>
+<li>Quantitative metrics involve numbers and statistics, and provide hard numbers but less insight.<br>If quantitative data answers “what” and “how much,” qualitative data answers “why.” Quantitative data abhors emotion; qualitative data marinates in it.</li>
+</ul>
+</li>
+<li><p><strong>Vanity versus actionable metrics</strong></p>
+<ul>
+<li>Vanity metrics might make you feel good, but they don’t change how you act. </li>
+<li><p>Actionable metrics change your behavior by helping you pick a course of action.<br><em>What will you do differently based on changes in the metric?</em></p>
+<p>e.g.</p>
+<p><strong>Vanity metrics:</strong></p>
+</li>
+</ul>
+<ol>
+<li><p><em>“total signups”</em>: The number can only increase over time. It tells us nothing about what those users are doing or whether they’re valuable to us.</p>
+</li>
+<li><p><em>“total active users”</em>: a little better if you are defining the active user well. It still increase over time.</p>
+</li>
+<li><p><em>“# of hits”</em>: problematic if your site has many objects. Count people instead.</p>
+</li>
+<li><p><em>“# of page views”</em>: counts number of times someone requests a page, should count people instead.</p>
+</li>
+<li><p><em>“# of visits”</em>: Is this one person who visits a hundred times, or are a hundred people visiting once?</p>
+</li>
+<li><p><em>“# of unique visitors”</em>: only shows you how many people saw your home page. It tells you nothing about what they did, why they stuck around, or if they left.</p>
+</li>
+<li><p><em>“# of followers/friends/likes”</em>: Counting followers and friends is nothing more than a popularity contest, unless you can get them to do something useful for you.</p>
+</li>
+<li><p><em>“#Time of site/number of pages”</em>: poor substitute for actual engagement or activity unless your business is tied to this behavior. If customers spend a lot of time on your support or complaints pages, that’s probably a bad thing.</p>
+</li>
+<li><p><em>“Emails collected”</em>: collected does not mean opened and acted on what’s inside them. Send test emails to registered subscribers instead to check.</p>
+</li>
+<li><p><em>“# of downloads”</em>: though it affects ranking in app stores, it does not lead to read value. Measure activations, account creations, or something else.</p>
+<p><strong>Actionable metrics:</strong></p>
+</li>
+<li><p><em>“% of active users”</em>: This is a critical metric because it tells us about the level of engagement your users have with your product. It tells you whether the change you put into effect just now is working or not.</p>
+</li>
+<li><p><em>“# of users acquired over a specific time period”</em>: this can help you compare different marketing approaches (fb campaign, reddit campaign, google adwords campaign in different weeks), and choose among them (actionable).</p>
+</li>
+</ol>
+</li>
+<li><p><strong>Exploratory versus reporting metrics</strong></p>
+<ul>
+<li>Exploratory metrics are speculative and try to find unknown insights to give you the upper hand</li>
+<li><p>Reporting metrics keep you abreast of normal, managerial, day-to-day operations.</p>
+<h4 id="Four-kinds-of-information-Rumsfeld’s-quadrants"><a href="#Four-kinds-of-information-Rumsfeld’s-quadrants" class="headerlink" title="Four kinds of information (Rumsfeld’s quadrants):"></a>Four kinds of information (Rumsfeld’s quadrants):</h4></li>
+</ul>
+<ol>
+<li>Things we know we know: are FACTS that may be wrong and should be checked against data.</li>
+<li>Things we know we don’t know: are QUESTIONS we can answer by reporting, which we should baseline and automate. <strong>(Reporting: We know we don’t know the value of the metric, so we go find out.)</strong></li>
+<li>Things we don’t know we know: are INTUITION, which we should quantify and teach to improve effectiveness and efficiency.</li>
+<li><p>Things we don’t know we don’t know: are EXPLORATION, which is where unfair advantage and interesting epiphanies live. <strong>(Most relevent to startups in early stages: exploring to discover something new that will help you disrupt a market.)</strong></p>
+<p>Analytics has a role to play in all four of Runsfeld’s quadrants:</p>
+</li>
+</ol>
+<ul>
+<li><p>It can check our facts and assumptions—such as open rates or conversion rates—to be sure we’re not kidding ourselves, and check that our business plans are accurate.</p>
+</li>
+<li><p>It can test our intuitions, turning hypotheses into evidence.</p>
+</li>
+<li><p>It can provide the data for our spreadsheets, waterfall charts, and board meetings.</p>
+</li>
+<li><p>It can help us find the nugget of opportunity on which to build a business.</p>
+<h4 id="Case-Study-Circle-of-Moms-discovered-an-“unknown-unknown”-that-led-to-a-big-success"><a href="#Case-Study-Circle-of-Moms-discovered-an-“unknown-unknown”-that-led-to-a-big-success" class="headerlink" title="Case Study: Circle of Moms (discovered an “unknown unknown” that led to a big success)"></a>Case Study: Circle of Moms (discovered an “unknown unknown” that led to a big success)</h4><p>Circle of Friends was a social graph application in the right place at the right time—with the wrong market.</p>
+<p>By analyzing patterns of engagement and desirable behavior, then finding out what those users had in common, the company found the right market for its offering.</p>
+<p>Once the company had found its target, it focused—all the way to changing its name. Pivot hard or go home, and be prepared to burn some bridges.</p>
+<p><em>There’s a “critical mass” of engagement necessary for any community to take off. Mild success may not give you escape velocity. As a result, it’s better to have fervent engagement with a smaller, more easily addressable target market. Virality requires focus.</em></p>
+</li>
+</ul>
+</li>
+<li><p><strong>Leading versus lagging metrics</strong></p>
+<ul>
+<li>Leading metrics give you a predictive understanding of the future; </li>
+<li>lagging metrics explain the past. </li>
+<li><p><em>Leading metrics are better</em> because you still have time to act on them—the horse hasn’t left the barn yet.</p>
+<p>e.g.</p>
+<p><strong>Leading metrics</strong>:</p>
+</li>
+</ul>
+<ol>
+<li><em>Current number of prospects in your sales funnel</em> gives you a sense of how many new customers you’ll acquire in the future.</li>
+<li><em>Volume of customer complaints</em>: the number of support calls that happen in a day, the number of customer complaints in a 90-day period, etc. These are leading indicators of churn: if complaints are increasing, it’s likely that more customers will stop using your product or service. You can also dig deeper into them to see the reasons behind and address those issues.</li>
+<li><p><em>New qualified leads</em>: they let you predict sales success ahead of time. For B2B, you also need a good understanding of conversion rate and sales-cycle length. Only then can you make a realistic estimate of how much new business you’ll book.</p>
+<p><strong>Lagging metrics</strong>:</p>
+</li>
+<li><p><em>Churn</em> (which is the number of customers who leave in a given time period) gives you an indication that there’s a problem—but by the time you’re able to collect the data and identify the problem, it’s too late. We can indeed act on this metric (work to improve churn and then measure it again), but it’s akin to closing the barn door after the horses have left. New horses won’t leave, but you’ve already lost a few.</p>
+</li>
+<li><em>Account cancellation or product returns</em>: Both are important metrics—but they measure after the fact. They pinpoint problems, but only after it’s too late to avert the loss of a customer.</li>
+<li><p><em>Quarterly new product bookings</em></p>
+<p>In some cases, a lagging metric for one group within a company is a leading metric for another. The number of quarterlt bookings is a lagging metric for salespeople (the contracts are signed already), but for the finance department that’s focused on collecting payment, they’re a leading indicator of expected revenue (since the revenue hasn’t yet been realized).</p>
+<p><em><strong>Ultimately, you need to decide whether the thing you’re tracking helps you make better decisions sooner.</strong></em> As we’ve said, a real metric has to be actionable. Lagging and leading metrics can both be actionable, but leading indicators show you what will happen, reducing your cycle time and making you leaner.</p>
+</li>
+</ol>
+</li>
+<li><p><strong>Correlated versus causal metrics</strong></p>
+<ul>
+<li>If two metrics change together, they’re correlated, </li>
+<li>If one metric causes another metric to change, they’re causal.</li>
+<li><p>If you find a causal relationship between something you want (like revenue) and something you can control (like which ad you show), then you can change the future.</p>
+<p>Usually, causations aren’t simple one-to-one relationships. Many factors conspire to cause something. You’ll get several independent metrics, each of which “explains” a portion of the behavior of the dependent metric. But even a degree of causality is valuable.</p>
+<p>Correlation does not indicate causality. You prove causality by finding a correlation, then running an experiment in which you control the other variables and measure the difference. This is hard to do because no two users are identical; it’s often impossible to subject a statistically significant number of people to a properly controlled experiment in the real world.</p>
+<p>For companies like Google and Microsoft who have a big enough sample of users, they can run a reliable test without controlling all the other variables, because eventually the impact of the other variables is relatively unimportant. But for the average startup, you’ll need to run simpler tests that experiment with only a few things, and then compare how that changed the business.</p>
+<p>Correlations can help you predict what will happen. But finding the cause of something means you can change it. Sometimes, you may have to settle for the former—but you should always be trying to discover the latter. </p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="Moving-Targets"><a href="#Moving-Targets" class="headerlink" title="Moving Targets"></a>Moving Targets</h3><p>When picking a goal early on, we must know that we are chasing a moving target, because you really don’t know how to define success. </p>
+<p>Sometimes there’s a huge gulf between what you assume and what users actually do. You might think that people will play your multiplayer game, only to discover that they’re using you as a photo upload service. Unlikely? That’s how Flickr got started.</p>
+<p>Sometimes, however, the differences are subtler. You might assume your product has to be used daily to succeed, only to find out that’s not so.</p>
+<p>In these situations, it’s reasonable to update your metrics and goals accordingly, provided that you’re able to prove the value created.</p>
+<h4 id="Case-Study-HighScore-House"><a href="#Case-Study-HighScore-House" class="headerlink" title="Case Study: HighScore House"></a>Case Study: HighScore House</h4><p>HighScore House drew an early, audacious line in the sand—which it couldn’t hit.</p>
+<p>The team experimented quickly to improve the number of active users but couldn’t move the needle enough.</p>
+<p>They picked up the phone and spoke to customers, realizing that they were creating value for a segment of users with lower usage metrics.</p>
+<p><em>Summary</em>:</p>
+<ol>
+<li>Know your customers. All the numbers in the world can’t explain why something is happening. Interact with them directly.</li>
+<li>Make early assumptions and set targets for what you think success looks like, but don’t experiment yourself into oblivion. Use qualitative data to understand what value you’re creating and adjust only if the new line in the sand reflects how customers (in specific segments) are using your product.</li>
+</ol>
+<h3 id="Segments-Cohorts-A-B-Testing-and-Multivariate-Analysis"><a href="#Segments-Cohorts-A-B-Testing-and-Multivariate-Analysis" class="headerlink" title="Segments, Cohorts, A/B Testing and Multivariate Analysis"></a>Segments, Cohorts, A/B Testing and Multivariate Analysis</h3><p>Testing is at the heart of Lean Analytics. Testing usually involves comparing two things against each other through segmentation, cohort analysis, or A/B testing.</p>
+<h4 id="Segmentation"><a href="#Segmentation" class="headerlink" title="Segmentation"></a>Segmentation</h4><ul>
+<li>A segment is simply a group that shares some common characteristic.</li>
+</ul>
+<p>On websites, you segment visitors according to a range of technical and demographic information, then compare one segment to another. Find the reasons behidn the unusual issues, and try to discover why.</p>
+<h4 id="Cohort-Analysis"><a href="#Cohort-Analysis" class="headerlink" title="Cohort Analysis"></a>Cohort Analysis</h4><ul>
+<li><p>Cohort analysis compares similar groups over time, which is also called <em>longitudinal</em> studies. Users who join you in the first week will have a different experience from those who join later on. </p>
+</li>
+<li><p>Each group of users is a cohort—participants in an experiment across their lifecycle. You can compare cohorts against one another to see if, on the whole, key metrics are getting better over time.</p>
+</li>
+</ul>
+<p>If you simply look at the revenue across time, you can’t learn much, sicne you are mingling the purchases of a customer who’s been around for five months with those of a brand new one. </p>
+<p>But if we break out the revenue by month in which that customer group started using the site, we can have a better understanding of how each customer group is contributing to the total revenue.</p>
+<p>Or we can break out the revenue by the number of months they’ve used the system, and see how each cohort’s contribution goes across the time.</p>
+<p><em><strong>This kind of reporting allows you to see patterns clearly against the lifecycle of a customer, rather than slicing across all customers blindly without accounting for the natural cycle a customer undergoes.</strong></em> Cohort analysis can be done for revenue, churn, viral word of mouth, support costs, or any other metric you care about.</p>
+<h4 id="A-B-Testing-and-Multivariate-Analysis"><a href="#A-B-Testing-and-Multivariate-Analysis" class="headerlink" title="A/B Testing and Multivariate Analysis"></a>A/B Testing and Multivariate Analysis</h4><ul>
+<li><p>Cohort experiments that compare groups are called <em>longitudinal</em> studies, since the data is collected along the natural lifespan of a customer group. By contrast, studies in which different groups of test subjects are given different experiences at the same time are called <em>cross-sectional</em> studies.</p>
+</li>
+<li><p>When we’re comparing one attribute of a subject’s experience, such as link color, and assuming everything else is equal, we’re doing <em><strong>A/B testing</strong></em>.</p>
+</li>
+</ul>
+<p>You can test everything about your product, but it’s best to focus on the critical steps and assumptions.</p>
+<p>A/B tests seem relatively simple, but they have a problem. Unless you’re a huge web property—like Bing or Google—with enough traffic to run a test on a single factor like link color or page speed and get an answer quickly, <strong>you’ll have more things to test than you have traffic.</strong></p>
+<ul>
+<li>Rather than running a series of separate tests one after the other—which will delay your learning cycle—you can analyze them all at once to see which correlates with a result using a technique called <em><strong>multivariate analysis</strong></em>. This relies on statistical analysis of the results to see which of many factors correlates strongly with an improvement in a key metric.</li>
+</ul>
+<p>The Circle of Life for analytical startups</p>
+<p><img src="http://ww1.sinaimg.cn/large/006lr8qAly1fsba1lzpefj30ws16etui.jpg" alt=""></p>
+<hr>
+<h2 id="Chapter-3-Deciding-What-to-Do-with-Your-Life"><a href="#Chapter-3-Deciding-What-to-Do-with-Your-Life" class="headerlink" title="Chapter 3: Deciding What to Do with Your Life"></a>Chapter 3: Deciding What to Do with Your Life</h2><p>We need to find the business that works (Lean Canvas) and also the business that we want to work on (Bud Caddell’s three criteria).</p>
+<h3 id="The-Lean-Canvas"><a href="#The-Lean-Canvas" class="headerlink" title="The Lean Canvas"></a>The Lean Canvas</h3><p>The Lean Canvas is a one-page visual business plan that’s ongoing and actionable. As you can see in the below figure, it consists of nine boxes organized on a single sheet of paper, designed to walk you through the most important aspects of any business.<br><img src="http://ww1.sinaimg.cn/large/006lr8qAly1fsbamswujmj30iy0g4q69.jpg" alt=""></p>
+<p>The Lean Canvas is fantastic at identifying the areas of biggest risk and enforcing intellectual honesty. When you’re trying to decide if you’ve got a real business opportunity, Ash says you should consider the following:</p>
+<ol>
+<li><p><strong>Problem</strong>: Have you identified real problems people know they have?</p>
+</li>
+<li><p><strong>Customer segments</strong>: Do you know your target markets? Do you know how to target messages to them as distinct groups?</p>
+</li>
+<li><p><strong>Unique value proposition</strong>: Have you found a clear, distinctive, memorable way to explain why you’re better or different?</p>
+</li>
+<li><p><strong>Solution</strong>: Can you solve the problems in the right way?</p>
+</li>
+<li><p><strong>Channels</strong>: How will you get your product or service to your customers, and their money back to you?</p>
+</li>
+<li><p><strong>Revenue streams</strong>: Where will the money come from? Will it be one-time or recurring? The result of a direct transaction (e.g., buying a meal) or something indirect (magazine subscriptions)?</p>
+</li>
+<li><p><strong>Cost structure</strong>: What are the direct, variable, and indirect costs you’ll have to pay for when you run the business?</p>
+</li>
+<li><p><strong>Metrics</strong>: Do you know what numbers to track to understand if you’re making progress?</p>
+</li>
+<li><p><strong>Unfair advantage</strong>: What is the “force multiplier” that will make your efforts have greater impact than your competitors?</p>
+</li>
+</ol>
+<h3 id="What-Should-You-Work-On"><a href="#What-Should-You-Work-On" class="headerlink" title="What Should You Work On?"></a>What <em>Should</em> You Work On?</h3><p>The Lean Canvas provides a formal framework to help you choose and steer your business. But there’s another, more human, side to all of this.</p>
+<p><em>Do you want to do it?</em></p>
+<p>If you’re going to survive as a founder, you have to find the intersection of demand (for your product), ability (for you to make it), and desire (for you to care about it).</p>
+<p><em>Don’t start a business you’re going to hate. Life is too short, and your weariness will show.</em></p>
+<p>Bud Caddell’s diagram</p>
+<p><img src="http://ww1.sinaimg.cn/large/006lr8qAly1fsbay9fs70j30im0in0xo.jpg" alt=""></p>
+<p>Ask yourself three questions when launching a new venture:</p>
+<ol>
+<li><p><em>Can I do this thing I’m hoping to do, well?</em> Never start a company on a level playing field—that’s where everyone else is standing. Don’t launch a new product or enter a new market unless your existing product and market affords you an unfair advantage.</p>
+</li>
+<li><p><em>whether you like doing this thing.</em> You need to believe in what you’re doing so that you’ll keep at it and ride</p>
+</li>
+<li><p><em>be sure you can make money doing it.</em> This is about the market’s need. This is by far the most important of the three; the other two are easy, because they’re up to you. But now you have to figure out if anyone will pay you for what you can and want to build.</p>
+</li>
+</ol>
+<h2 id="Chapter-4-Data-Driven-Versus-Data-Informed"><a href="#Chapter-4-Data-Driven-Versus-Data-Informed" class="headerlink" title="Chapter 4: Data-Driven Versus Data-Informed"></a>Chapter 4: Data-Driven Versus Data-Informed</h2><p>Rather than be a slave to the data, these critics say, we should use it as a tool. We should be data-informed, not data-driven.</p>
+<p><em>Humans do inspiration; machines do validation.</em></p>
+<p>Optimization is all about finding the lowest or highest values of a particular function, i.e. the local maximum.<br>Math is good at optimizing a known system; humans are good at finding a new one. Put another way, change favors local maxima; innovation favors global disruption.</p>
+<p>Machine-only optimization suffers from similar limitations as evolution. If you’re optimizing for local maxima, you might be missing a bigger, more important opportunity. It’s your job to be the intelligent designer to data’s evolution.</p>
+<p>Ultimately, quantitative data is great for testing hypotheses, but it’s lousy for generating new ones unless combined with human introspection.</p>
+<h3 id="How-to-Think-Like-a-Data-Scientist"><a href="#How-to-Think-Like-a-Data-Scientist" class="headerlink" title="How to Think Like a Data Scientist"></a>How to Think Like a Data Scientist</h3><p>10 common pitfalls that entrepreneurs should avoid as they dig into the data their startups capture.</p>
+<ol>
+<li>Assuming the data is clean. (issues behind NAs and values with high frequencies)</li>
+<li>Not normalizing. (comparing counts to totals)</li>
+<li>Excluding outliers. (for qualitative analysis)</li>
+<li>Including outliers. (for model building)</li>
+<li>Ignoring seasonality. (time of day, day of week, monthly changes in patterns)</li>
+<li>Ignoring size when reporting growth. (from 1 to 2 = double)</li>
+<li>Data vomit. (too much info displayed on the dashboard)</li>
+<li>Metrics that cry wolf. (Too sensitive thresholds)</li>
+<li>The “Not Collected Here” syndrome. (Focusing solely on the data sources that we have, ignoring external sources)</li>
+<li>Focusing on noise. (Fail to look at the bigger picture)</li>
+</ol>
+<h3 id="Lean-Startup-and-Big-Vision"><a href="#Lean-Startup-and-Big-Vision" class="headerlink" title="Lean Startup and Big Vision"></a>Lean Startup and Big Vision</h3><p>How do you have a minimum viable product and a hugely compelling vision at the same time?</p>
+<p>Big, hairy and audacious vision is important, but it has to reconcile with the step-by-step, always-questioning approach of Lean Startup. You need to think of Lean Startup as the process you use to move toward and achieve your vision.</p>
+<p>We sometimes remind early-stage founders that, in many ways, they aren’t building a product. <em>They’re building a tool to learn what product to build.</em></p>
+<hr>
+<h1 id="PART-TWO-Finding-the-Right-Metric-for-Right-Now"><a href="#PART-TWO-Finding-the-Right-Metric-for-Right-Now" class="headerlink" title="PART TWO: Finding the Right Metric for Right Now"></a>PART TWO: Finding the Right Metric for Right Now</h1><h2 id="Chapter-5-Analytics-Frameworks"><a href="#Chapter-5-Analytics-Frameworks" class="headerlink" title="Chapter 5: Analytics Frameworks"></a>Chapter 5: Analytics Frameworks</h2><h3 id="Dave-McClure’s-Pirate-Metrics"><a href="#Dave-McClure’s-Pirate-Metrics" class="headerlink" title="Dave McClure’s Pirate Metrics"></a>Dave McClure’s Pirate Metrics</h3><p>McClure categorizes the metrics a startup needs to watch into acquisition, activation, retention, revenue, and referral—AARRR.</p>
+<p>The table below shows our interpretation of his model, describing the five steps through which users, customers, or visitors must progress in order for your company to extract all the value from them. Value comes not only from a transaction (revenue) but also from their role as marketers (referral) and content creators (retention).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Element</th>
+<th style="text-align:center">Function</th>
+<th style="text-align:center">Relevant metrics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>Acquisition</strong></td>
+<td style="text-align:center">Generate attention through a variety of means, both organic and inorganic</td>
+<td style="text-align:center">Traffic, mentions, cost per click, search results, cost of acquisition, open rate</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Activation</strong></td>
+<td style="text-align:center">Turn the resulting drive-by visitors into users who are somehow enrolled</td>
+<td style="text-align:center">enrollments, signups, completed onboarding process, used the service at least once, subscriptions</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Retention</strong></td>
+<td style="text-align:center">Convince users to come back repeatedly, exhibiting sticky behavior</td>
+<td style="text-align:center">engagement, time since last visit, daily and monthly active use, churns</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Revenue</strong></td>
+<td style="text-align:center">Business outcomes (which vary by your business model: purchases, ad clicks, content creation, subscriptions, etc.)</td>
+<td style="text-align:center">Customer lifetime value, conversion rate, shopping cart size, click-through revenue</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Referral</strong></td>
+<td style="text-align:center">Viral and word-of-mouth invitations to other potential users</td>
+<td style="text-align:center">Invites sent, viral coefficient, viral cycle time</td>
+</tr>
+</tbody>
+</table>
+<p>These five elements don’t necessarily follow a strict order—users may refer others before they spend money, for example, or may return several times before signing up—but the list is a good framework for thinking about how a business needs to grow.</p>
+<h3 id="Eric-Ries’s-Engines-of-growth"><a href="#Eric-Ries’s-Engines-of-growth" class="headerlink" title="Eric Ries’s Engines of growth"></a>Eric Ries’s Engines of growth</h3><p>Eric Ries talks about three engines that drive the growth of a startup. Each of these has associated key performance indicators (KPIs).</p>
+<h4 id="Sticky-Engine"><a href="#Sticky-Engine" class="headerlink" title="Sticky Engine"></a>Sticky Engine</h4><p>The sticky engine focuses on getting users to return, and to keep using your product. (retention phase in McClure’s framework)</p>
+<p>The fundamental KPI for stickiness is <strong>customer retention</strong>. <em>Churn rates</em> and <em>usage frequency</em> are other important metrics to track. </p>
+<p>Long-term stickiness often comes from the value users create for themselves as they use the service (gmail, evernote, game account).</p>
+<p>In terms of frequency, we also need to track metrics like <em>time since last visit</em>. If you have methods of driving return visits such as email notifications or updates, then <em>email open rates</em> and <em>click-through rates</em> matter, too.</p>
+<h4 id="Virality-Engine"><a href="#Virality-Engine" class="headerlink" title="Virality Engine"></a>Virality Engine</h4><p>Virality is all about getting the word out. </p>
+<p>The key metric for this engine is the <strong>viral coefficient</strong>—the number of new users that each user brings on. Because this is compounding (the users they bring, in turn, bring their own users), the metric measures how many users are brought in with each viral cycle. Growth comes from a viral coefficient of greater than one, but you also have to factor in churn and loss. The bigger the coefficient, the faster you grow.</p>
+<p>Measuring viral coefficient isn’t enough. You also need to measure the actions that make up the cycle. e.g. Users sign up - connect to email - send invites to friends - friends sign up. Those distinct stages all contribute to virality, so measuring actions is how you tweak the viral engine—by changing the message, simplifying the signup process, and so on.</p>
+<h4 id="Paid-Engine"><a href="#Paid-Engine" class="headerlink" title="Paid Engine"></a>Paid Engine</h4><p>The third engine of growth is payment. It’s usually premature to turn this engine on before you know that your product is sticky and viral.</p>
+<p>e.g. </p>
+<ol>
+<li>focus on a beta group first (stickiness)</li>
+<li>invite friends to play (viriality)</li>
+<li>players make in-app purchase to enhance in-game experience (payment).</li>
+</ol>
+<p>Getting paid is, in some ways, the ultimate metric for identifying a sustainable business model. If <em>money earned from customers</em> &gt; <em>money spent on acquring customers</em>: sustainable</p>
+<p>Revenue helps growth only when you funnel some of the money generated from revenue <em>back into acquisition</em>.</p>
+<p>Then you have a machine that you can tune to grow the business over time.</p>
+<p>Measure the balance between:</p>
+<ul>
+<li><strong>Customer lifetime value (CLV)</strong></li>
+<li><strong>Customer acquisition cost (CAC)</strong></li>
+</ul>
+<p>but the equation for success isn’t that simple. You still need to worry about cash flow and growth rate, which are driven by <em>how long it takes a customer to pay off</em>. One way to measure this is <strong>time to customer breakeven</strong>—that is, how much time it will take to recoup the acquisition cost of a customer.</p>
+<h3 id="Ash-Maurya’s-Lean-Canvas"><a href="#Ash-Maurya’s-Lean-Canvas" class="headerlink" title="Ash Maurya’s Lean Canvas"></a>Ash Maurya’s Lean Canvas</h3><p>Mentioned before in Chapter 3.</p>
+<h3 id="Sean-Ellis’s-Startup-Growth-Pyramid"><a href="#Sean-Ellis’s-Startup-Growth-Pyramid" class="headerlink" title="Sean Ellis’s Startup Growth Pyramid"></a>Sean Ellis’s Startup Growth Pyramid</h3><p>His Startup Growth Pyramid, shown in the Figure below, focuses on what to do after you’ve achieved product/market fit.</p>
+<p><img src="http://ww1.sinaimg.cn/large/006lr8qAly1fskukjii45j30xe0gs0y1.jpg" alt=""></p>
+<p>The question this poses a of course, is how do you know if you’ve achieved product/market fit? Sean devised a simple survey that you can send customers (available at survey.io) to determine if you’re ready for accelerated growth. The most important question in the survey is “How would you feel if you could no longer use this product or service?” In Sean’s experience, if 40% of people (or more) say they’d be very disappointed to lose the service, you’ve found a fit, and now it’s time to scale.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Product/" rel="tag"># Product</a>
+          
+            <a href="/tags/Data-Science/" rel="tag"># Data Science</a>
+          
+            <a href="/tags/Analytics/" rel="tag"># Analytics</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/07/Mergin-DF-with-Pandas/" rel="next" title="DataCamp - Merging DataFrames with Pandas">
+                <i class="fa fa-chevron-left"></i> DataCamp - Merging DataFrames with Pandas
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/28/SQL-Leetcode/" rel="prev" title="Note for LeetCode in SQL">
+                Note for LeetCode in SQL <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Joanna</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PART-ONE-Stop-Lying-to-Yourself"><span class="nav-number">1.</span> <span class="nav-text">PART ONE: Stop Lying to Yourself</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-1-We’re-All-Liars"><span class="nav-number">1.1.</span> <span class="nav-text">Chapter 1: We’re All Liars</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Case-Study-Airbnb-Photography"><span class="nav-number">1.1.1.</span> <span class="nav-text">Case Study: Airbnb Photography</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Summary"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Summary:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-2-How-to-Keep-Score"><span class="nav-number">1.2.</span> <span class="nav-text">Chapter 2: How to Keep Score</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-Makes-a-Good-Mertic"><span class="nav-number">1.2.1.</span> <span class="nav-text">What Makes a Good Mertic?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-chooose-the-right-metrics"><span class="nav-number">1.2.2.</span> <span class="nav-text">How to chooose the right metrics?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Four-kinds-of-information-Rumsfeld’s-quadrants"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">Four kinds of information (Rumsfeld’s quadrants):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Case-Study-Circle-of-Moms-discovered-an-“unknown-unknown”-that-led-to-a-big-success"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">Case Study: Circle of Moms (discovered an “unknown unknown” that led to a big success)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Moving-Targets"><span class="nav-number">1.2.3.</span> <span class="nav-text">Moving Targets</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Case-Study-HighScore-House"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">Case Study: HighScore House</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Segments-Cohorts-A-B-Testing-and-Multivariate-Analysis"><span class="nav-number">1.2.4.</span> <span class="nav-text">Segments, Cohorts, A/B Testing and Multivariate Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Segmentation"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">Segmentation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cohort-Analysis"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">Cohort Analysis</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#A-B-Testing-and-Multivariate-Analysis"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">A/B Testing and Multivariate Analysis</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-3-Deciding-What-to-Do-with-Your-Life"><span class="nav-number">1.3.</span> <span class="nav-text">Chapter 3: Deciding What to Do with Your Life</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Lean-Canvas"><span class="nav-number">1.3.1.</span> <span class="nav-text">The Lean Canvas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-Should-You-Work-On"><span class="nav-number">1.3.2.</span> <span class="nav-text">What Should You Work On?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-4-Data-Driven-Versus-Data-Informed"><span class="nav-number">1.4.</span> <span class="nav-text">Chapter 4: Data-Driven Versus Data-Informed</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-Think-Like-a-Data-Scientist"><span class="nav-number">1.4.1.</span> <span class="nav-text">How to Think Like a Data Scientist</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lean-Startup-and-Big-Vision"><span class="nav-number">1.4.2.</span> <span class="nav-text">Lean Startup and Big Vision</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PART-TWO-Finding-the-Right-Metric-for-Right-Now"><span class="nav-number">2.</span> <span class="nav-text">PART TWO: Finding the Right Metric for Right Now</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-5-Analytics-Frameworks"><span class="nav-number">2.1.</span> <span class="nav-text">Chapter 5: Analytics Frameworks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dave-McClure’s-Pirate-Metrics"><span class="nav-number">2.1.1.</span> <span class="nav-text">Dave McClure’s Pirate Metrics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Eric-Ries’s-Engines-of-growth"><span class="nav-number">2.1.2.</span> <span class="nav-text">Eric Ries’s Engines of growth</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Sticky-Engine"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">Sticky Engine</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Virality-Engine"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">Virality Engine</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Paid-Engine"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">Paid Engine</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ash-Maurya’s-Lean-Canvas"><span class="nav-number">2.1.3.</span> <span class="nav-text">Ash Maurya’s Lean Canvas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sean-Ellis’s-Startup-Growth-Pyramid"><span class="nav-number">2.1.4.</span> <span class="nav-text">Sean Ellis’s Startup Growth Pyramid</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joanna</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz',
+        appKey: 'cDbeqqCJt4dq4hu7C9GaCrHB',
+        placeholder: 'Leave your comment here',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz", "cDbeqqCJt4dq4hu7C9GaCrHB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

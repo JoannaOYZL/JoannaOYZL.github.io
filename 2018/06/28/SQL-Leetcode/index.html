@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="sql,interview,leetcode," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Leetcode notes on SQL database.">
+<meta name="keywords" content="sql,interview,leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Note for LeetCode in SQL">
+<meta property="og:url" content="http://yoursite.com/2018/06/28/SQL-Leetcode/index.html">
+<meta property="og:site_name" content="Joanna">
+<meta property="og:description" content="Leetcode notes on SQL database.">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-07-20T20:50:34.413Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Note for LeetCode in SQL">
+<meta name="twitter:description" content="Leetcode notes on SQL database.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/28/SQL-Leetcode/"/>
+
+
+
+
+
+  <title>Note for LeetCode in SQL | Joanna</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joanna</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/28/SQL-Leetcode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joanna">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joanna">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Note for LeetCode in SQL</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-28T16:07:35-07:00">
+                2018-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Interview-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Interview Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/28/SQL-Leetcode/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/06/28/SQL-Leetcode/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/06/28/SQL-Leetcode/" class="leancloud_visitors" data-flag-title="Note for LeetCode in SQL">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Leetcode notes on SQL database.<br><a id="more"></a></p>
+<h3 id="175-Combine-Two-Tables"><a href="#175-Combine-Two-Tables" class="headerlink" title="175. Combine Two Tables"></a><a href="https://leetcode.com/problems/combine-two-tables/description/" target="_blank" rel="noopener">175. Combine Two Tables</a></h3><ul>
+<li>两张有一个相同key的表，要求输出结果保留其中一张表的全部信息，另一张表的对应信息有则加上，没有则留空</li>
+<li><p>方法一：left join</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> p.Address, p.LastName, a.City, a.State</span><br><span class="line"><span class="keyword">FROM</span> Person p</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> Address a</span><br><span class="line"><span class="keyword">ON</span> p.PersonId = a.PersonId</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">### [176. Second Highest Salary](https://leetcode.com/problems/second-highest-salary/description/)</span></span><br><span class="line"><span class="string">* 输出一张表中第二高的salary，如果没有第二高，则输出null</span></span><br><span class="line"><span class="string">* 关键在于如何在没有第二高的情况下输出null</span></span><br><span class="line"><span class="string">* 方法一：套subquery，先选第二高，然后再套一层subquery选上一层的全部结果，这样如果里面是空的话就会return null</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span><span class="keyword">sql</span></span><br><span class="line"><span class="keyword">SELECT</span> (</span><br><span class="line">	<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> Salary</span><br><span class="line">	<span class="keyword">FROM</span> Employee</span><br><span class="line">	<span class="keyword">ORDER</span> <span class="keyword">BY</span> Salary <span class="keyword">DESC</span></span><br><span class="line">	<span class="keyword">LIMIT</span> <span class="number">1</span>, <span class="number">1</span></span><br><span class="line">) <span class="keyword">as</span> SecondHighestSalary</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法二：用IFNULL(a, b), 如果a是null的话就return b</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">IFNULL</span> (</span><br><span class="line">	(</span><br><span class="line">		<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> Salary</span><br><span class="line">		<span class="keyword">FROM</span> Employee</span><br><span class="line">		<span class="keyword">ORDER</span> <span class="keyword">BY</span> Salary <span class="keyword">DESC</span></span><br><span class="line">		<span class="keyword">LIMIT</span> <span class="number">1</span>, <span class="number">1</span></span><br><span class="line">	), <span class="literal">NULL</span></span><br><span class="line">) <span class="keyword">AS</span> SecondHighestSalary</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法三：先选出最高的，在where写not in，然后再选最高的，也就是第二高的。（好处在于max()会自动return null）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">MAX</span>(Salary) <span class="keyword">as</span> SecondHighestSalary</span><br><span class="line"><span class="keyword">FROM</span> Employee</span><br><span class="line"><span class="keyword">WHERE</span> Salary <span class="keyword">NOT</span> <span class="keyword">IN</span> (<span class="keyword">SELECT</span> <span class="keyword">MAX</span>(Salary) <span class="keyword">FROM</span> Employee)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="180-Consecutive-Numbers"><a href="#180-Consecutive-Numbers" class="headerlink" title="180. Consecutive Numbers"></a><a href="https://leetcode.com/problems/consecutive-numbers/description/" target="_blank" rel="noopener">180. Consecutive Numbers</a></h3><ul>
+<li>找出表中所有连续出现三次的数字</li>
+<li>方法：用self-join把所有连续三次且相同的数字都放在一行，再用select distinct选出所有unique的数字<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> a.Num <span class="keyword">as</span> ConsecutiveNums</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">logs</span> a, <span class="keyword">logs</span> b, <span class="keyword">logs</span> c</span><br><span class="line"><span class="keyword">WHERE</span> a.Num = b.Num <span class="keyword">AND</span> b.Num = c.Num</span><br><span class="line"><span class="keyword">AND</span> a.Id = b.Id - <span class="number">1</span> <span class="keyword">AND</span> b.Id = c.Id - <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="181-Employees-Earning-More-Than-Their-Managers"><a href="#181-Employees-Earning-More-Than-Their-Managers" class="headerlink" title="181. Employees Earning More Than Their Managers"></a><a href="https://leetcode.com/problems/employees-earning-more-than-their-managers/description/" target="_blank" rel="noopener">181. Employees Earning More Than Their Managers</a></h3><ul>
+<li>一行record中既有职员id也有其supervisor的id，找出所有工资比其supervisor高的职员</li>
+<li>方法：self-join + where<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.Name <span class="keyword">as</span> Employee</span><br><span class="line"><span class="keyword">FROM</span> Employee a, Employee b</span><br><span class="line"><span class="keyword">WHERE</span> a.ManagerId = b.Id</span><br><span class="line"><span class="keyword">AND</span> a.Salary &gt; b.Salary</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>或者用join的写法<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.Name <span class="keyword">as</span> Employee</span><br><span class="line"><span class="keyword">FROM</span> Employee a <span class="keyword">JOIN</span> Employee b</span><br><span class="line"><span class="keyword">ON</span> a.ManagerId = b.Id</span><br><span class="line"><span class="keyword">WHERE</span> a.Salary &gt; b.Salary</span><br></pre></td></tr></table></figure></p>
+<h3 id="182-Duplicate-Emails"><a href="#182-Duplicate-Emails" class="headerlink" title="182. Duplicate Emails"></a><a href="https://leetcode.com/problems/duplicate-emails/description/" target="_blank" rel="noopener">182. Duplicate Emails</a></h3><ul>
+<li>找出表中所有重复的email</li>
+<li><p>我的方法：先groupby email来count每个email的数量，再选出所有count&gt;1的email</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Email</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">	<span class="keyword">SELECT</span> Email, <span class="keyword">COUNT</span>(<span class="keyword">Id</span>) <span class="keyword">as</span> n</span><br><span class="line">	<span class="keyword">FROM</span> Person</span><br><span class="line">	<span class="keyword">GROUP</span> <span class="keyword">BY</span> Email</span><br><span class="line">) a</span><br><span class="line"><span class="keyword">WHERE</span> a.n &gt; <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法二：用group by + having，更加简单和efficient</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Email</span><br><span class="line"><span class="keyword">FROM</span> Person</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> Email</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(Email) &gt; <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="183-Customers-Who-Never-Order"><a href="#183-Customers-Who-Never-Order" class="headerlink" title="183. Customers Who Never Order"></a><a href="https://leetcode.com/problems/customers-who-never-order/description/" target="_blank" rel="noopener">183. Customers Who Never Order</a></h3><ul>
+<li>选出所有在另一张表中没出现过的customer</li>
+<li><p>我的方法：left join之后选择所有null值对应的customer</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">Name</span> <span class="keyword">as</span> Customers</span><br><span class="line"><span class="keyword">FROM</span> Customers c <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> Orders o</span><br><span class="line"><span class="keyword">ON</span> c.Id = o.CustomerId</span><br><span class="line"><span class="keyword">WHERE</span> o.Id <span class="keyword">IS</span> <span class="literal">NULL</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法二：用subquery选出另一张表里所有的customer，然后用not in来筛选</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">Name</span> <span class="keyword">as</span> Customers</span><br><span class="line"><span class="keyword">FROM</span> Customers c</span><br><span class="line"><span class="keyword">WHERE</span> c.Id <span class="keyword">NOT</span> <span class="keyword">IN</span> (<span class="keyword">SELECT</span> o.CustomerId <span class="keyword">FROM</span> Orders o)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法三：基本想法同上，但用了另一种表达（搭桥法）<br>The EXISTS operator is used to test for the existence of any record in a subquery and returns <em>true if the subquery returns one or more records</em>.<br>只要在EXIST的subquery中加入跟外部表的联系，就可以通过subquery中的表来筛选外部表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">Name</span> <span class="keyword">as</span> Customers</span><br><span class="line"><span class="keyword">FROM</span> Customers c</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> (<span class="keyword">SELECT</span> <span class="number">1</span> <span class="keyword">FROM</span> Orders o <span class="keyword">WHERE</span> c.Id = o.CustomerId) </span><br><span class="line"><span class="comment">/* SELECT 1会对所有满足后面where条件的records都返回一个1，这里有两条records满足where condition，所以会返回两个1，而且这两个1是对应着c.Id的。 NOT EXISTS 则是选出所有subquery中没有对应的records。*/</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="184-Department-Highest-Salary"><a href="#184-Department-Highest-Salary" class="headerlink" title="184. Department Highest Salary"></a><a href="https://leetcode.com/problems/department-highest-salary/description/" target="_blank" rel="noopener">184. Department Highest Salary</a></h3><ul>
+<li>找到每个department中工资最高的人</li>
+<li><p>方法一：先groupby department选出每个department的max salary，然后用where IN查多个column，找到同时满足两个值的records</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> D.Name <span class="keyword">as</span> Department, E.Name <span class="keyword">as</span> Employee, E.Salary</span><br><span class="line"><span class="keyword">FROM</span> Employee E, Department D</span><br><span class="line"><span class="keyword">WHERE</span> E.DepartmentId = D.Id</span><br><span class="line"><span class="keyword">AND</span> (E.DepartmentId, Salary) <span class="keyword">IN</span> (</span><br><span class="line">	<span class="keyword">SELECT</span> DepartmentId, <span class="keyword">MAX</span>(Salary) <span class="keyword">AS</span> Salary</span><br><span class="line">	<span class="keyword">FROM</span> Employee</span><br><span class="line">	<span class="keyword">GROUP</span> <span class="keyword">BY</span> DepartmentId</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法二：用NOT EXISTS套subquery，不需要group by</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> D.Name <span class="keyword">AS</span> Department, E.Name <span class="keyword">AS</span> Employee, E.Salary</span><br><span class="line"><span class="keyword">FROM</span> Employee E, Department D</span><br><span class="line"><span class="keyword">WHERE</span> E.DepartmentId = D.Id</span><br><span class="line"><span class="keyword">AND</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> (</span><br><span class="line">	<span class="keyword">SELECT</span> <span class="number">1</span> </span><br><span class="line">	<span class="keyword">FROM</span> Employee E2 </span><br><span class="line">	<span class="keyword">WHERE</span> E2.Salary &gt; E.Salary <span class="comment">/*找比自己salary高的，如果找不到，就说明自己本身就是最大的，那就会not exist*/</span></span><br><span class="line">	<span class="keyword">AND</span> E.DepartmentId = E2.DepartmentId <span class="comment">/*限制只在相同department里面找*/</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>或者反过来想，直接用max function + where找出每个department中salary的最大值<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> D.Name <span class="keyword">AS</span> Department, E.Name <span class="keyword">AS</span> Employee, E.Salary</span><br><span class="line"><span class="keyword">FROM</span> Employee E, Department D</span><br><span class="line"><span class="keyword">WHERE</span> E.DepartmentId = D.Id</span><br><span class="line"><span class="keyword">AND</span> E.Salary = (</span><br><span class="line">	<span class="keyword">SELECT</span> <span class="keyword">MAX</span>(Salary)</span><br><span class="line">	<span class="keyword">FROM</span> Employee c</span><br><span class="line">	<span class="keyword">WHERE</span> E.DepartmentId = E2.DepartmentId</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>方法三：不用subquery，利用selfjoin + groupby count实现筛选 【易于变形】</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> D.Name <span class="keyword">as</span> Department, E.Name <span class="keyword">as</span> Employee, E.Salary</span><br><span class="line"><span class="keyword">FROM</span> Department D, Employee E, Employee E2  </span><br><span class="line"><span class="keyword">WHERE</span> D.ID = E.DepartmentId <span class="comment">/*inner join department和employee两个表*/</span></span><br><span class="line"><span class="keyword">AND</span> E.DepartmentId = E2.DepartmentId <span class="keyword">AND</span> E.Salary &lt;= E2.Salary <span class="comment">/*就employee表self join了相同部门所有salary&gt;=自己的*/</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> D.ID, E.Name <span class="comment">/*先group by，让后面的的count按每个department和name来count*/</span></span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> E2.Salary) = <span class="number">1</span> <span class="comment">/*只有本身是department最大值的records才会只有一个值（也就是自身）join上来，所以这里直接选择 COUNT(DISTINCT E2.Salary) = 1*/</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> D.Name <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>follow up：找second top salary<br>只需把<code>E.Salary &lt;= E2.Salary</code>改为<code>E.Salary &lt; E2.Salary</code>即可，这样self join之后的结果只会留下有且仅有一个比自己大的salary的record。</p>
+</li>
+<li><p>follow up: 找third top salary<br>在上面的基础上再改<code>COUNT(DISTINCT E2.Salary) = 2</code>，如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> D.Name <span class="keyword">as</span> Department, E.Name <span class="keyword">as</span> Employee, E.Salary</span><br><span class="line"><span class="keyword">FROM</span> Department D, Employee E, Employee E2  </span><br><span class="line"><span class="keyword">WHERE</span> D.ID = E.DepartmentId</span><br><span class="line"><span class="keyword">AND</span> E.DepartmentId = E2.DepartmentId <span class="keyword">AND</span> E.Salary &lt; E2.Salary </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> D.ID, E.Name </span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> E2.Salary) = <span class="number">2</span> </span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> D.Name <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="185-Department-Top-Three-Salaries"><a href="#185-Department-Top-Three-Salaries" class="headerlink" title="185. Department Top Three Salaries"></a><a href="https://leetcode.com/problems/department-top-three-salaries/description/" target="_blank" rel="noopener">185. Department Top Three Salaries</a></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> D.Name <span class="keyword">as</span> Department, E.Name <span class="keyword">as</span> Employee, E.Salary</span><br><span class="line"><span class="keyword">FROM</span> Employee E, Department D, Employee E2</span><br><span class="line"><span class="keyword">WHERE</span> E.DepartmentId = D.Id</span><br><span class="line"><span class="keyword">AND</span> E.DepartmentId = E2.DepartmentId <span class="keyword">AND</span> E.Salary &lt;= E2.Salary</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> D.Id, E.Name</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> E2.Salary) = <span class="number">1</span></span><br><span class="line"><span class="keyword">OR</span> <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> E2.Salary) = <span class="number">2</span></span><br><span class="line"><span class="keyword">OR</span> <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> E2.Salary) = <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h3 id="196-Delete-Duplicate-Emails"><a href="#196-Delete-Duplicate-Emails" class="headerlink" title="196. Delete Duplicate Emails"></a><a href="https://leetcode.com/problems/delete-duplicate-emails/description/" target="_blank" rel="noopener">196. Delete Duplicate Emails</a></h3><ul>
+<li>注意题目要求是delete已有的一张表中所有的duplicates，而不是让你在这张表上写个SELECT QUERY，所以此处需要直接update原表</li>
+<li>方法一：利用selfjoin找到所有Email相同但Id比当前record大的duplicates，然后全部删掉<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> b <span class="comment">/* 注意这里直接删掉了整个表b，也可以写成b.* */</span></span><br><span class="line"><span class="keyword">FROM</span> Person a, Person b</span><br><span class="line"><span class="keyword">WHERE</span> a.Email = b.Email</span><br><span class="line"><span class="keyword">AND</span> a.Id &lt; b.Id</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>方法二：用groupby email + min(id)选出所有符合条件的id，然后用NOT IN来作为WHERE条件，删除duplicates (在这里这样用并不好 因为要再套一层subquery)<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> Person</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">Id</span> <span class="keyword">NOT</span> <span class="keyword">IN</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> t.Id <span class="keyword">FROM</span> (</span><br><span class="line">    	<span class="keyword">SELECT</span> <span class="keyword">MIN</span>(<span class="keyword">Id</span>) <span class="keyword">AS</span> <span class="keyword">Id</span> <span class="keyword">FROM</span> Person <span class="keyword">GROUP</span> <span class="keyword">BY</span> Email</span><br><span class="line">    ) t</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<h3 id="197-Rising-Temperature"><a href="#197-Rising-Temperature" class="headerlink" title="197. Rising Temperature"></a><a href="https://leetcode.com/problems/rising-temperature/description/" target="_blank" rel="noopener">197. Rising Temperature</a></h3><ul>
+<li>找到所有温度高于前一天的record，并输出他们的id</li>
+<li><p>方法一：用DATEDIFF() + SELFJOIN</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> b.Id</span><br><span class="line"><span class="keyword">FROM</span> Weather a, Weather b</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">DATEDIFF</span>(b.RecordDate, a.RecordDate) = <span class="number">1</span></span><br><span class="line"><span class="keyword">AND</span> a.Temperature &lt; b.Temperature</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法二：在运算前用TO_DAYS()把日期转换为date格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> b.Id</span><br><span class="line"><span class="keyword">FROM</span> Weather a, Weather b</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">TO_DAYS</span>(b.RecordDate) - <span class="keyword">TO_DAYS</span>(a.RecordDate) = <span class="number">1</span></span><br><span class="line"><span class="keyword">AND</span> a.Temperature &lt; b.Temperature</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="569-Median-Employee-Salary"><a href="#569-Median-Employee-Salary" class="headerlink" title="569. Median Employee Salary"></a><a href="https://leetcode.com/problems/median-employee-salary/description/" target="_blank" rel="noopener">569. Median Employee Salary</a></h3><h3 id="570-Managers-with-at-Least-5-Direct-Reports"><a href="#570-Managers-with-at-Least-5-Direct-Reports" class="headerlink" title="570. Managers with at Least 5 Direct Reports"></a><a href="https://leetcode.com/problems/managers-with-at-least-5-direct-reports/description/" target="_blank" rel="noopener">570. Managers with at Least 5 Direct Reports</a></h3><ul>
+<li>一张表同时有employee id, employee name和manager id, 要输出所有手下有5个以上小弟的manager名字</li>
+<li>方法一：selfjoin所有的employee，然后groupby managerId,COUNT在相同managerId之下一共有多少个employee被join过来了<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.Name</span><br><span class="line"><span class="keyword">FROM</span> Employee a, Employee b</span><br><span class="line"><span class="keyword">WHERE</span> a.Id = b.ManagerId</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> b.ManagerId</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(b.Name) &gt;= <span class="number">5</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="574-Winning-Candidate"><a href="#574-Winning-Candidate" class="headerlink" title="574. Winning Candidate"></a><a href="https://leetcode.com/problems/winning-candidate/description/" target="_blank" rel="noopener">574. Winning Candidate</a></h3><ul>
+<li>一张candidate表，一张不记名投票表，找到投票表的票数第一并输出他的名字</li>
+<li>方法一：直接subquery就可以<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">Name</span></span><br><span class="line"><span class="keyword">FROM</span> Candidate</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">id</span> = (</span><br><span class="line">    <span class="keyword">SELECT</span> CandidateId</span><br><span class="line">    <span class="keyword">FROM</span> Vote</span><br><span class="line">    <span class="keyword">GROUP</span> <span class="keyword">BY</span> CandidateId</span><br><span class="line">    <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">COUNT</span>(<span class="keyword">id</span>) <span class="keyword">DESC</span></span><br><span class="line">    <span class="keyword">LIMIT</span> <span class="number">1</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="577-Employee-Bonus"><a href="#577-Employee-Bonus" class="headerlink" title="577. Employee Bonus"></a><a href="https://leetcode.com/problems/employee-bonus/description/" target="_blank" rel="noopener">577. Employee Bonus</a></h3><ul>
+<li>一张employee表一张bonus表，找到所有bonus低于1000的员工名称和其对应的bonus (trick在于也要输出所有bonus为null的员工)</li>
+<li>leftjoin保留所有bonus为null的员工，再在where里用OR define清楚condition即可<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.name, b.bonus</span><br><span class="line"><span class="keyword">FROM</span> Employee a</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> Bonus b</span><br><span class="line"><span class="keyword">ON</span> a.empId = b.empId</span><br><span class="line"><span class="keyword">WHERE</span> b.bonus &lt; <span class="number">1000</span></span><br><span class="line"><span class="keyword">OR</span> b.bonus <span class="keyword">IS</span> <span class="literal">NULL</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="578-Get-Highest-Answer-Rate-Question"><a href="#578-Get-Highest-Answer-Rate-Question" class="headerlink" title="578. Get Highest Answer Rate Question"></a><a href="https://leetcode.com/problems/get-highest-answer-rate-question/description/" target="_blank" rel="noopener">578. Get Highest Answer Rate Question</a></h3><ul>
+<li>有一张activity log表，里面对每一题都有show, answer, skip三种action。要求计算The highest answer rate (answer number’s ratio in show number in the same question)。这里隐含的条件是每一题都一定会先show再看是answer还是skip，所以对每一题来说，answer+skip的数量应该等于show的数量。</li>
+<li>方法一：遇到要count一个column里面不同值的数量的时候，可以用多个<code>SUM(CASE WHEN ... THEN 1 ELSE 0 END)</code>来实现。<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.question_id <span class="keyword">AS</span> survey_log</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">	<span class="keyword">SELECT</span> question_id,</span><br><span class="line">    <span class="keyword">SUM</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">action</span> = <span class="string">'show'</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) <span class="keyword">as</span> showcnt,</span><br><span class="line">    <span class="keyword">SUM</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">action</span> = <span class="string">'answer'</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) <span class="keyword">as</span> answercnt</span><br><span class="line">	<span class="keyword">FROM</span> survey_log</span><br><span class="line">	<span class="keyword">GROUP</span> <span class="keyword">BY</span> question_id</span><br><span class="line">) a</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> answercnt / (showcnt + answercnt) <span class="keyword">DESC</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Note：<code>GROUP BY COUNT + HAVING action = &#39;show&#39;</code>这个思路对于计算单个值的数量是可行的，但对于多个值并不方便，因为需要输出的往往不是这个计算出来的值，而是这个值对应的id，那在这种情况下就需要再想办法把值与id对应上，然后再选。</p>
+<ul>
+<li><p><strong>Follow up: How to dynamically change the order of the questions showing to the users to achieve the highest conversion rate</strong><br>先要确认answer这个action是否只是玩家选择回答这个问题，而不论回答结果对错。然后确认问题本身有没有难度分级，如果有的话之后的answer rate分级则应在现有的分级基础上再细分。<br>按answer rate给题目分级（其实应该还可以按照正确率再细分，但粗略地按照answer rate也可以），先把answer rate最高的题目排在前面，单个玩家answer次数越高则提供给这个玩家更难的题，题目难度慢慢增加，这样能让玩家不至于在刚开始的阶段就有很强的挫败感，且带给他们挑战感，能吸引他们继续玩下去。<br>如果玩家在某一个阶段一直skip，说明她觉得这个阶段的问题有些难，那一是可以考虑往回跳一个level，给上一个级别比较简单的题，然后再跳回当前的level。二是可以给一些rewards，比如增加这一题答对所得的分数，鼓励玩家不要skip，回答问题。只要玩家选择回答问题那么玩家就能知道这一题的正确答案是什么，之后隔一两题之后就重新给他出这道题，这样玩家就能答对之前答不对的题目，就可以慢慢完成这个level然后进入到下一个level。</p>
+</li>
+<li><p><strong>Follow up: What should we do to the questions with only a few ‘show’ records.</strong><br>检查这些题目一般出现在q_num几，了解为什么他们会被放在这个位置，如果是因为</p>
+</li>
+</ul>
+<h3 id="580-Count-Student-Number-in-Departments"><a href="#580-Count-Student-Number-in-Departments" class="headerlink" title="580. Count Student Number in Departments"></a><a href="https://leetcode.com/problems/count-student-number-in-departments/description/" target="_blank" rel="noopener">580. Count Student Number in Departments</a></h3><ul>
+<li>有一张student信息表和一张department表，common field是dept_id，要求输出每个department下有多少个学生(没有学生的也要输出)</li>
+<li>方法：leftjoin + count(specific field). count(specific field)在处理null的时候是直接不计入count的，如果不确定也可以用<code>count(if(s.student_id IS NULL, NULL, 1))</code> 但这里就有些多此一举了。<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> d.dept_name, <span class="keyword">COUNT</span>(s.student_id) <span class="keyword">AS</span> student_number</span><br><span class="line"><span class="keyword">FROM</span> department d</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> student s</span><br><span class="line"><span class="keyword">ON</span> d.dept_id = s.dept_id</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> d.dept_name</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> student_number <span class="keyword">DESC</span>, d.dept_name</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="584-Find-Customer-Referee"><a href="#584-Find-Customer-Referee" class="headerlink" title="584. Find Customer Referee"></a><a href="https://leetcode.com/problems/find-customer-referee/description/" target="_blank" rel="noopener">584. Find Customer Referee</a></h3><ul>
+<li><p>找出所有不是被id2 refer的customer (trick还是在于考虑referee_id为null的情况)</p>
+</li>
+<li><p>方法一：用where</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">name</span></span><br><span class="line"><span class="keyword">FROM</span> customer</span><br><span class="line"><span class="keyword">WHERE</span> referee_id != <span class="number">2</span> <span class="keyword">OR</span> referee_id <span class="keyword">IS</span> <span class="literal">NULL</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法二：用ifnull(a,b), a为expression, b为expression为null时填的值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">name</span> </span><br><span class="line"><span class="keyword">FROM</span> customer </span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">IFNULL</span>(referee_id,<span class="number">0</span>) != <span class="number">2</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="585-Investments-in-2016"><a href="#585-Investments-in-2016" class="headerlink" title="585. Investments in 2016"></a><a href="https://leetcode.com/problems/investments-in-2016/description/" target="_blank" rel="noopener">585. Investments in 2016</a></h3><ul>
+<li>输出满足TIV_2015这个field在其他record中有duplicate，但LAT LON又是unique combination的records</li>
+<li>这题主要在考check这一个fieldvalue在其他records中是否有duplicates，是否unique</li>
+<li><p>方法一：用GROUP BY + COUNT来确定是否是unique的，找duplicates就用NOT IN</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ROUND</span>(<span class="keyword">SUM</span>(TIV_2016),<span class="number">2</span>) <span class="keyword">AS</span> TIV_2016</span><br><span class="line"><span class="keyword">FROM</span> insurance</span><br><span class="line"><span class="keyword">WHERE</span> PID <span class="keyword">NOT</span> <span class="keyword">IN</span>( <span class="comment">/*这里最好用PID而不是TIV_2016来筛选，因为PID是unique identifier，不会出现重复值的问题*/</span></span><br><span class="line">	<span class="keyword">SELECT</span> PID</span><br><span class="line">	<span class="keyword">FROM</span> insurance</span><br><span class="line">	<span class="keyword">GROUP</span> <span class="keyword">BY</span> TIV_2015</span><br><span class="line">	<span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(PID) = <span class="number">1</span>) </span><br><span class="line"><span class="keyword">AND</span> PID <span class="keyword">IN</span> (</span><br><span class="line">	<span class="keyword">SELECT</span> PID</span><br><span class="line">	<span class="keyword">FROM</span> insurance</span><br><span class="line">	<span class="keyword">GROUP</span> <span class="keyword">BY</span> LAT, LON</span><br><span class="line">	<span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(PID) = <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法二：搭桥法，WHERE里再套WHERE条件，使WHERE里的条件能直接筛选外面</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ROUND</span>(<span class="keyword">SUM</span>(TIV_2016),<span class="number">2</span>) <span class="keyword">AS</span> TIV_2016</span><br><span class="line"><span class="keyword">FROM</span> insurance a</span><br><span class="line"><span class="keyword">WHERE</span> <span class="number">1</span> = (<span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*) <span class="keyword">FROM</span> insurance b <span class="keyword">WHERE</span> a.LAT = b.LAT <span class="keyword">AND</span> a.LON = b.LON) <span class="comment">/*第二个条件*/</span></span><br><span class="line"><span class="keyword">AND</span> <span class="number">1</span> &lt; (<span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*) <span class="keyword">FROM</span> insurance c <span class="keyword">WHERE</span> a.TIV_2015 = c.TIV_2015)<span class="comment">/*第一个条件*/</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="586-Customer-Placing-the-Largest-Number-of-Orders"><a href="#586-Customer-Placing-the-Largest-Number-of-Orders" class="headerlink" title="586. Customer Placing the Largest Number of Orders"></a><a href="https://leetcode.com/problems/customer-placing-the-largest-number-of-orders/description/" target="_blank" rel="noopener">586. Customer Placing the Largest Number of Orders</a></h3><ul>
+<li>找orders最多的customer（考虑如果有多个并列最多的情况）</li>
+<li><p>我的方法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> customer_number</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">	<span class="keyword">SELECT</span> customer_number, <span class="keyword">COUNT</span>(order_number) cnt</span><br><span class="line">	<span class="keyword">FROM</span> orders</span><br><span class="line">	<span class="keyword">GROUP</span> <span class="keyword">BY</span> customer_number</span><br><span class="line">	<span class="keyword">ORDER</span> <span class="keyword">BY</span> cnt <span class="keyword">DESC</span> <span class="comment">/*这个地方可以直接写COUNT 就不用再套一个subquery了*/</span></span><br><span class="line">	<span class="keyword">LIMIT</span> <span class="number">1</span></span><br><span class="line">) a</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>精简之后的版本：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> customer_number</span><br><span class="line"><span class="keyword">FROM</span> orders</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> customer_number</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">COUNT</span>(order_number) <span class="keyword">DESC</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Follow up: What if more than one customer have the largest number of orders, can you find all the customer_number in this case?</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> customer_number</span><br><span class="line"><span class="keyword">FROM</span> orders</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> customer_number</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(order_number) = (</span><br><span class="line">	<span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(order_number) cnt</span><br><span class="line">	<span class="keyword">FROM</span> orders</span><br><span class="line">	<span class="keyword">GROUP</span> <span class="keyword">BY</span> customer_number</span><br><span class="line">    <span class="keyword">ORDER</span> <span class="keyword">BY</span> cnt <span class="keyword">DESC</span></span><br><span class="line">    <span class="keyword">LIMIT</span> <span class="number">1</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="595-Big-Countries"><a href="#595-Big-Countries" class="headerlink" title="595. Big Countries"></a><a href="https://leetcode.com/problems/big-countries/description/" target="_blank" rel="noopener">595. Big Countries</a></h3><ul>
+<li>选出所有面积大于3m或者人口大于25m的城市<br>方法一：WHERE + OR<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">name</span>, population, area</span><br><span class="line"><span class="keyword">FROM</span> World</span><br><span class="line"><span class="keyword">WHERE</span> area &gt; <span class="number">3000000</span> <span class="keyword">OR</span> population &gt; <span class="number">25000000</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>方法二：UNION (Fatser than WHERE + OR)<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">name</span>, population, area</span><br><span class="line"><span class="keyword">FROM</span> World</span><br><span class="line"><span class="keyword">WHERE</span> area &gt; <span class="number">3000000</span></span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">name</span>, population, area</span><br><span class="line"><span class="keyword">FROM</span> World</span><br><span class="line"><span class="keyword">WHERE</span> population &gt; <span class="number">25000000</span></span><br></pre></td></tr></table></figure></p>
+<p>Strictly speaking, Using UNION is faster when it comes to cases like <strong>scan two different column like this</strong>.<br>如果用UNION ALL还会更快，但是这里不能有duplicates，所以只能用UNION。</p>
+<p>Suppose we are searching population and area, Given that MySQL usually uses one one index per table in a given query, so when it uses the 1st index rather than 2nd index, it would still have to do a table-scan to find rows that fit the 2nd index.</p>
+<p>When using UNION, each sub-query can use the index of its search, then combine the sub-query by UNION.</p>
+<h3 id="596-Classes-More-Than-5-Students"><a href="#596-Classes-More-Than-5-Students" class="headerlink" title="596. Classes More Than 5 Students"></a><a href="https://leetcode.com/problems/classes-more-than-5-students/description/" target="_blank" rel="noopener">596. Classes More Than 5 Students</a></h3><ul>
+<li>选出所有学生数量大于5的课程</li>
+<li>方法：groupby + count distinct。注意要distinct不然在这种没有主key的表里面会count duplicates<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">class</span></span><br><span class="line"><span class="keyword">FROM</span> courses</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">class</span></span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> student) &gt;= <span class="number">5</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="597-Friend-Requests-I-Overall-Acceptance-Rate"><a href="#597-Friend-Requests-I-Overall-Acceptance-Rate" class="headerlink" title="597. Friend Requests I: Overall Acceptance Rate"></a><a href="https://leetcode.com/problems/friend-requests-i-overall-acceptance-rate/description/" target="_blank" rel="noopener">597. Friend Requests I: Overall Acceptance Rate</a></h3><ul>
+<li>算overall acceptance rate (= total acceptance / total requests)</li>
+<li>Note1: 可能accepted requests里有原本requests中没有的，这里不管这个情况，直接total # of acceptance / total # of requests即可</li>
+<li>Note2: 可能会有duplicate requests或acceptance，这种要去掉</li>
+<li>Note3: 如果没有requests，直接输出0.00</li>
+</ul>
+<p>方法一：用CASE来处理Note3的情况，用COUNT(DISTINCT)+CONCAT来找所有unique combinations<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ROUND</span>(</span><br><span class="line">	(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> <span class="keyword">CONCAT</span>(sender_id, <span class="string">','</span>, send_to_id)) = <span class="number">0</span> <span class="keyword">THEN</span> <span class="number">0.00</span></span><br><span class="line">	<span class="keyword">ELSE</span> <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> <span class="keyword">CONCAT</span>(requester_id, <span class="string">','</span>, accepter_id)) / <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> <span class="keyword">CONCAT</span>(sender_id, <span class="string">','</span>, send_to_id))</span><br><span class="line">	<span class="keyword">END</span>)</span><br><span class="line">, <span class="number">2</span>) <span class="keyword">AS</span> accept_rate</span><br><span class="line"><span class="keyword">FROM</span> friend_request, request_accepted</span><br></pre></td></tr></table></figure></p>
+<p>简洁版本：<code>COUNT(DISTINCT a b)</code>可以直接找到两个field的所有unique combinations，所以不需要concat了<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ROUND</span>(</span><br><span class="line">	(<span class="keyword">CASE</span> </span><br><span class="line">	<span class="keyword">WHEN</span> <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> sender_id, send_to_id) = <span class="number">0</span> <span class="keyword">THEN</span> <span class="number">0.00</span></span><br><span class="line">	<span class="keyword">ELSE</span> <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> requester_id, accepter_id) / <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> sender_id, send_to_id)</span><br><span class="line">	<span class="keyword">END</span>)</span><br><span class="line">, <span class="number">2</span>) <span class="keyword">AS</span> accept_rate</span><br><span class="line"><span class="keyword">FROM</span> friend_request, request_accepted</span><br></pre></td></tr></table></figure></p>
+<p>方法二：用IFNULL()来处理Note3的情况，因为只要分母为0，accept_rate就会是null。用COUNT(DISTINCT a b)来找所有unique combinations。<strong>注意最外表直接没有写FROM，如果写了的话会出错</strong><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ROUND</span>(</span><br><span class="line">	<span class="keyword">IFNULL</span>(</span><br><span class="line">		(<span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> requester_id, accepter_id) <span class="comment">/*SELECT DISTINCT后面直接加两个column name就能选出所有unique combinations*/</span></span><br><span class="line">		<span class="keyword">FROM</span> request_accepted) </span><br><span class="line">		/ </span><br><span class="line">		(<span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> sender_id, send_to_id) </span><br><span class="line">		<span class="keyword">FROM</span> friend_request)</span><br><span class="line">	, <span class="number">0</span>)</span><br><span class="line">, <span class="number">2</span>) <span class="keyword">AS</span> accept_rate</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p><strong>Follow-up: Can you write a query to return the accept rate for every month?</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.mo, <span class="keyword">ROUND</span>(<span class="keyword">IFNULL</span>(acc_num/req_num, <span class="number">0</span>), <span class="number">2</span>) <span class="keyword">as</span> accept_rate</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">	(<span class="keyword">SELECT</span> <span class="keyword">MONTH</span>(accept_date) <span class="keyword">AS</span> mo, <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> requester_id, accepter_id) <span class="keyword">AS</span> acc_num</span><br><span class="line">	<span class="keyword">FROM</span> request_accepted</span><br><span class="line">	<span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">MONTH</span>(accept_date)</span><br><span class="line">	) a </span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> (<span class="comment">/*这里要用leftjoin是因为要保证即使某个月没有request只有accept，也要输出那个月的accept rate为0.0*/</span></span><br><span class="line">	<span class="keyword">SELECT</span> <span class="keyword">MONTH</span>(request_date) <span class="keyword">AS</span> mo, <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> sender_id, send_to_id) <span class="keyword">AS</span> req_num</span><br><span class="line">	<span class="keyword">FROM</span> friend_request</span><br><span class="line">	<span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">MONTH</span>(request_date)</span><br><span class="line">	) b</span><br><span class="line"><span class="keyword">ON</span> a.mo = b.mo)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Follow-up: How about the cumulative accept rate for every day?</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ROUND</span>(</span><br><span class="line">	<span class="keyword">ifnull</span>(</span><br><span class="line">	(<span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*)</span><br><span class="line">		<span class="keyword">FROM</span> </span><br><span class="line">		(<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> requester_id, accepter_id <span class="keyword">FROM</span> request_accepted) <span class="keyword">AS</span> A)/</span><br><span class="line">	(<span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*)</span><br><span class="line">		<span class="keyword">FROM</span></span><br><span class="line">		(<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> sender_id, send_to_id <span class="keyword">FROM</span> friend_request) <span class="keyword">AS</span> B),<span class="number">0</span>)</span><br><span class="line">	,<span class="number">2</span>) <span class="keyword">as</span> accept_rate;</span><br></pre></td></tr></table></figure>
+<p>SELECT requester_id, accepter_id, COUNT(*)<br>FROM request_accepted<br>GROUP BY requester_id, accepter_id;  </p>
+<p>SELECT requester_id, count(requester_id)+count(accepter_id) as num, accepter_id<br>FROM request_accepted<br>GROUP BY requester_id, accepter_id<br>HAVING num=max(num);</p>
+<p>#602<br>SELECT id, COUNT(*) as num<br>FROM<br>((SELECT requester_id AS id<br>FROM request_accepted)<br>UNION ALL<br>(SELECT accepter_id<br>FROM request_accepted)) T<br>GROUP BY id<br>ORDER BY num DESC<br>LIMIT 1;</p>
+<p>#603 consecutive available seats</p>
+<p>##selfjoin不明确时join结果是：每一行都join一行原数据</p>
+<p>##表非时间数据的diff可以用abs(a-b)=n</p>
+<p>##时间用datediff(a,b)<br>SELECT DISTINCT t.seat_id<br>FROM (<br>SELECT a.seat_id, a.free as free1, b.seat_id as s2, b.free as free2<br>FROM cinema a, cinema b<br>WHERE abs(a.seat_id-b.seat_id)=1<br>AND a.free=1 and b.free=1) t<br>ORDER BY seat_id;</p>
+<p>#Solution<br>SELECT DISTINCT a.seat_id<br>FROM cinema a JOIN cinema b<br>  ON abs(a.seat_id - b.seat_id) = 1<br>  AND a.free = true AND b.free = true<br>ORDER BY a.seat_id;</p>
+<p>#607 Sales Person<br>SELECT name<br>FROM salesperson<br>WHERE name not IN<br>(SELECT s.name<br>FROM salesperson s<br>LEFT JOIN orders o # left join may not be that necessary here. Because we use NOT IN here.<br>ON o.sales_id=s.sales_id<br>LEFT JOIN company c<br>ON c.com_id=o.com_id<br>WHERE c.name = ‘RED’);</p>
+<p>#608 Tree Node 分类题</p>
+<h2 id="Solution-1-using-union"><a href="#Solution-1-using-union" class="headerlink" title="Solution 1: using union"></a>Solution 1: using union</h2><p>(SELECT id, ‘Root’ as Type<br>FROM tree<br>WHERE p_id IS NULL)<br>UNION<br>(SELECT DISTINCT t1.id, ‘Inner’ as Type<br>FROM tree t1, tree t2<br>WHERE t1.id=t2.p_id<br>AND t1.id NOT IN (<br>SELECT id<br>FROM tree<br>WHERE p_id IS NULL)<br>)<br>UNION<br>(SELECT t2.id, ‘Leaf’ as Type<br>FROM tree t1, tree t2<br>WHERE t1.id=t2.p_id<br>AND t2.id NOT IN(SELECT DISTINCT t1.id<br>FROM tree t1, tree t2<br>WHERE t1.id=t2.p_id<br>AND t1.id NOT IN (<br>SELECT id<br>FROM tree<br>WHERE p_id IS NULL)<br>));</p>
+<p>##Solution 2: using case<br>SELECT id,<br>(CASE<br>WHEN p_id IS NULL THEN ‘Root’<br>WHEN id IN (SELECT p_id FROM tree) THEN ‘Inner’<br>ELSE ‘Leaf’<br>END) AS Type<br>FROM tree;</p>
+<p>##Solution 3: using if<br>SELECT id<br>IF(ISNULL(p_id),’Root’,<br>IF(id IN (SELECT p_id FROM tree),’Inner’,’Leaf’)) AS Type<br>FROM tree;</p>
+<p>#610 Triangle Judgement: IF<br>SELECT x,y,z,<br>(IF(x+y&gt;z AND x+z&gt;y AND y+z&gt;x, ‘Yes’, ‘No’)<br>) AS triangle<br>FROM triangle;</p>
+<p>#612 Shortest Distance in a Plane<br>SELECT Distance AS shortest<br>FROM (<br>SELECT p1.x x1, p1.y y1, p2.x x2, p2.y y2,<br>        ROUND(<br>            (SQRT(<br>                POWER(p1.x-p2.x,2)+POWER(p1.y-p2.y,2))),2) Distance<br>FROM point_2d p1, point_2d p2<br>WHERE p1.x!=p2.x or p1.y!=p2.y<br>ORDER BY Distance<br>LIMIT 1)t;</p>
+<p>#Put the min() inside of sqrt() will slightly improve the performance<br>SELECT ROUND(<br>            (SQRT(<br>                MIN(<br>                    POWER(p1.x-p2.x,2)+<br>                    POWER(p1.y-p2.y,2)<br>                    )<br>                )<br>            ),2) Distance<br>FROM point_2d p1, point_2d p2<br>WHERE p1.x!=p2.x or p1.y!=p2.y;</p>
+<p>#613 Shortest Distance in a Line<br>SELECT min(abs(p1.x-p2.x)) as Distance<br>FROM point p1, point p2<br>WHERE p1.x!=p2.x;</p>
+<p>#619 Biggest Single Number</p>
+<h2 id="用groupby-count-1来找duplicate"><a href="#用groupby-count-1来找duplicate" class="headerlink" title="用groupby+count=1来找duplicate"></a>用groupby+count=1来找duplicate</h2><p>SELECT num<br>FROM(<br>SELECT num<br>FROM number<br>GROUP BY num<br>HAVING count(*)=1) t<br>ORDER BY num DESC<br>LIMIT 1;#好像不会transform empty values to NULL</p>
+<p>select max(a.num) as num<br>from (select num<br>    from number<br>    group by num<br>    having count(*)=1) as a #max will transform empty values to NULL</p>
+<p>#620 Not Boring Movies: MOD(n,m)=n/m的余数<br>SELECT id, movie, description, rating<br>FROM cinema<br>WHERE MOD(id, 2)=1 AND description!=’boring’<br>ORDER BY rating DESC;</p>
+<p>#626 Exchange Seats: switch numbers using odd/even criteria: mod(value, denominator)<br>SELECT<br>    (CASE<br>        WHEN MOD(id, 2) != 0 AND id!=cnt THEN id + 1<br>        WHEN MOD(id, 2) != 0 AND id=cnt THEN id<br>        ELSE id-1<br>    END) AS id,<br>    student<br>FROM<br>    seat, (SELECT COUNT(*) AS cnt FROM seat)t #注意这里subquery的写法<br>ORDER BY id;</p>
+<p>#627 Swap Salary</p>
+<p>#177 Nth Highest Salary</p>
+<p>#180 Consecutive Numbers</p>
+<p>#184 Department Highest Salary</p>
+<p>#570 Managers with at Least</p>
+<p>#574 Winning Candidate</p>
+<p>#578 Get Highest Answer Rate Question</p>
+<p>#580 Count Student Number in Departments</p>
+<p>#585 Investments in 2016 </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sql/" rel="tag"># sql</a>
+          
+            <a href="/tags/interview/" rel="tag"># interview</a>
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/13/Lean-Analytics/" rel="next" title="DataCamp - Reading Notes on Lean Analytics">
+                <i class="fa fa-chevron-left"></i> DataCamp - Reading Notes on Lean Analytics
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/13/FB_SQL/" rel="prev" title="Facebook SQL Interview Questions">
+                Facebook SQL Interview Questions <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Joanna</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#175-Combine-Two-Tables"><span class="nav-number">1.</span> <span class="nav-text">175. Combine Two Tables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#180-Consecutive-Numbers"><span class="nav-number">2.</span> <span class="nav-text">180. Consecutive Numbers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#181-Employees-Earning-More-Than-Their-Managers"><span class="nav-number">3.</span> <span class="nav-text">181. Employees Earning More Than Their Managers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#182-Duplicate-Emails"><span class="nav-number">4.</span> <span class="nav-text">182. Duplicate Emails</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#183-Customers-Who-Never-Order"><span class="nav-number">5.</span> <span class="nav-text">183. Customers Who Never Order</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#184-Department-Highest-Salary"><span class="nav-number">6.</span> <span class="nav-text">184. Department Highest Salary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#185-Department-Top-Three-Salaries"><span class="nav-number">7.</span> <span class="nav-text">185. Department Top Three Salaries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#196-Delete-Duplicate-Emails"><span class="nav-number">8.</span> <span class="nav-text">196. Delete Duplicate Emails</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#197-Rising-Temperature"><span class="nav-number">9.</span> <span class="nav-text">197. Rising Temperature</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#569-Median-Employee-Salary"><span class="nav-number">10.</span> <span class="nav-text">569. Median Employee Salary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#570-Managers-with-at-Least-5-Direct-Reports"><span class="nav-number">11.</span> <span class="nav-text">570. Managers with at Least 5 Direct Reports</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#574-Winning-Candidate"><span class="nav-number">12.</span> <span class="nav-text">574. Winning Candidate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#577-Employee-Bonus"><span class="nav-number">13.</span> <span class="nav-text">577. Employee Bonus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#578-Get-Highest-Answer-Rate-Question"><span class="nav-number">14.</span> <span class="nav-text">578. Get Highest Answer Rate Question</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#580-Count-Student-Number-in-Departments"><span class="nav-number">15.</span> <span class="nav-text">580. Count Student Number in Departments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#584-Find-Customer-Referee"><span class="nav-number">16.</span> <span class="nav-text">584. Find Customer Referee</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#585-Investments-in-2016"><span class="nav-number">17.</span> <span class="nav-text">585. Investments in 2016</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#586-Customer-Placing-the-Largest-Number-of-Orders"><span class="nav-number">18.</span> <span class="nav-text">586. Customer Placing the Largest Number of Orders</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#595-Big-Countries"><span class="nav-number">19.</span> <span class="nav-text">595. Big Countries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#596-Classes-More-Than-5-Students"><span class="nav-number">20.</span> <span class="nav-text">596. Classes More Than 5 Students</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#597-Friend-Requests-I-Overall-Acceptance-Rate"><span class="nav-number">21.</span> <span class="nav-text">597. Friend Requests I: Overall Acceptance Rate</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-1-using-union"><span class="nav-number"></span> <span class="nav-text">Solution 1: using union</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用groupby-count-1来找duplicate"><span class="nav-number"></span> <span class="nav-text">用groupby+count=1来找duplicate</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joanna</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz',
+        appKey: 'cDbeqqCJt4dq4hu7C9GaCrHB',
+        placeholder: 'Leave your comment here',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz", "cDbeqqCJt4dq4hu7C9GaCrHB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

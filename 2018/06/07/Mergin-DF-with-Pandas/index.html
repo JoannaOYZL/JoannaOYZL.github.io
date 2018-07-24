@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Joanna">
 <meta property="og:description" content="Datacamp course notes on merging dataset with pandas.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-06-13T21:58:19.000Z">
+<meta property="og:updated_time" content="2018-06-13T22:13:42.532Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DataCamp - Merging DataFrames with Pandas">
 <meta name="twitter:description" content="Datacamp course notes on merging dataset with pandas.">
@@ -518,7 +518,8 @@
 <p>Counting medals by country/edition in a pivot table<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Construct the pivot_table: medal_counts</span></span><br><span class="line">medal_counts = medals.pivot_table(index = <span class="string">'Edition'</span>,</span><br><span class="line">                                  columns = <span class="string">'NOC'</span>,</span><br><span class="line">                                  values = <span class="string">'Athlete'</span>,</span><br><span class="line">                                  aggfunc = <span class="string">'count'</span>)</span><br></pre></td></tr></table></figure></p>
 <p>Computing fraction of medals per Olympic edition and the percentage change in fraction of medals won<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set Index of editions: totals</span></span><br><span class="line">totals = editions.set_index(<span class="string">'Edition'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reassign totals['Grand Total']: totals</span></span><br><span class="line">totals = totals[<span class="string">'Grand Total'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Divide medal_counts by totals: fractions</span></span><br><span class="line">fractions = medal_counts.divide(totals, axis = <span class="string">'rows'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print first &amp; last 5 rows of fractions</span></span><br><span class="line">print(fractions.head())</span><br><span class="line">print(fractions.tail())</span><br></pre></td></tr></table></figure></p>
 <hr>
-<h2 id="Expanding-Windows"><a href="#Expanding-Windows" class="headerlink" title="Expanding Windows"></a>Expanding Windows</h2><p>(<a href="http://pandas.pydata.org/pandas-docs/stable/computation.html#expanding-windows" target="_blank" rel="noopener">http://pandas.pydata.org/pandas-docs/stable/computation.html#expanding-windows</a>)<br>A common alternative to rolling statistics is to use an expanding window, which <strong>yields the value of the statistic with all the data available up to that point in time</strong>.</p>
+<h2 id="Expanding-Windows"><a href="#Expanding-Windows" class="headerlink" title="Expanding Windows"></a>Expanding Windows</h2><p><a href="http://pandas.pydata.org/pandas-docs/stable/computation.html#expanding-windows" target="_blank" rel="noopener">http://pandas.pydata.org/pandas-docs/stable/computation.html#expanding-windows</a></p>
+<p>A common alternative to rolling statistics is to use an expanding window, which <strong>yields the value of the statistic with all the data available up to that point in time</strong>.</p>
 <p>These follow a similar interface to <code>.rolling</code>, with the <code>.expanding</code> method returning an Expanding object.</p>
 <p>As these calculations are a special case of rolling statistics, they are implemented in pandas such that the following two calls are equivalent:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.rolling(window = len(df), min_periods = <span class="number">1</span>).mean()[:<span class="number">5</span>]</span><br><span class="line">df.expanding(min_periods = <span class="number">1</span>).mean()[:<span class="number">5</span>]</span><br></pre></td></tr></table></figure></p>
 <hr>
@@ -566,6 +567,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/13/Lean-Analytics/" rel="prev" title="DataCamp - Reading Notes on Lean Analytics">
+                DataCamp - Reading Notes on Lean Analytics <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -645,7 +650,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -656,7 +661,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>
@@ -667,7 +672,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>

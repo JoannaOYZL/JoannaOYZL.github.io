@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="sql,interview," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Notes on advanced SQL techniques.">
+<meta name="keywords" content="sql,interview">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Advanced SQL Techniques">
+<meta property="og:url" content="http://yoursite.com/2018/07/19/Advanced-SQL/index.html">
+<meta property="og:site_name" content="Joanna">
+<meta property="og:description" content="Notes on advanced SQL techniques.">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-07-24T05:54:30.851Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Advanced SQL Techniques">
+<meta name="twitter:description" content="Notes on advanced SQL techniques.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/19/Advanced-SQL/"/>
+
+
+
+
+
+  <title>Advanced SQL Techniques | Joanna</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joanna</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/Advanced-SQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joanna">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joanna">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Advanced SQL Techniques</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-19T17:30:40-07:00">
+                2018-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Course-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Course Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/19/Advanced-SQL/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/07/19/Advanced-SQL/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/07/19/Advanced-SQL/" class="leancloud_visitors" data-flag-title="Advanced SQL Techniques">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Notes on advanced SQL techniques.<br><a id="more"></a></p>
+<hr>
+<h2 id="SQL-Data-types"><a href="#SQL-Data-types" class="headerlink" title="SQL Data types"></a>SQL Data types</h2><p>数据看起来可能是Numeric的，但有可能里面有逗号或者货币符号，在存进database的时候就被当成了Non-numeric的，由于COUNT/SUM这类函数只有在numeric的时候才能用，data类的函数也只能用在明确是date/time的格式的数据，所以要注意这一点。</p>
+<h3 id="Changing-a-column’s-data-type"><a href="#Changing-a-column’s-data-type" class="headerlink" title="Changing a column’s data type"></a>Changing a column’s data type</h3><p><code>CAST(column_name AS integer)</code>, <code>column_name::integer</code> OR <code>CONVERT(integer, column_name)</code> can all do the trick.</p>
+<p>Example code:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CAST</span>(funding_total_usd <span class="keyword">AS</span> <span class="built_in">varchar</span>) funding_total_usd, </span><br><span class="line">       founded_at_clean::<span class="built_in">varchar</span> founded_at_clean</span><br><span class="line"><span class="keyword">FROM</span> tutorial.crunchbase_companies_clean_date</span><br></pre></td></tr></table></figure></p>
+<h3 id="SQL-Date-Format"><a href="#SQL-Date-Format" class="headerlink" title="SQL Date Format"></a>SQL Date Format</h3><p>存成YYYY-MM-DD的才好排序，MM-DD-YYYY会有排序问题。</p>
+<p>做日期/时间格式的数据的运算的时候，<code>date - date = interval</code>，<code>data - interval = date</code><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> companies.permalink,</span><br><span class="line">       companies.founded_at_clean,</span><br><span class="line">       acquisitions.acquired_at_cleaned,</span><br><span class="line">       acquisitions.acquired_at_cleaned - companies.founded_at_clean::<span class="keyword">timestamp</span> <span class="keyword">AS</span> time_to_acquisition</span><br><span class="line"><span class="keyword">FROM</span> tutorial.crunchbase_companies_clean_date companies</span><br><span class="line"><span class="keyword">JOIN</span> tutorial.crunchbase_acquisitions_clean_date acquisitions</span><br><span class="line"><span class="keyword">ON</span> acquisitions.company_permalink = companies.permalink</span><br><span class="line"><span class="keyword">WHERE</span> founded_at_clean <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br></pre></td></tr></table></figure></p>
+<p>也可以直接用<code>INTERVAL</code> function。下面的code是直接加1星期：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> companies.permalink,</span><br><span class="line">       companies.founded_at_clean,</span><br><span class="line">       companies.founded_at_clean::<span class="keyword">timestamp</span> +</span><br><span class="line">         <span class="built_in">INTERVAL</span> <span class="string">'1 week'</span> <span class="keyword">AS</span> plus_one_week</span><br><span class="line"><span class="keyword">FROM</span> tutorial.crunchbase_companies_clean_date companies</span><br><span class="line"><span class="keyword">WHERE</span> founded_at_clean <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br></pre></td></tr></table></figure></p>
+<p>如果需要当前的时间：<code>NOW()</code><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> companies.permalink,</span><br><span class="line">       companies.founded_at_clean,</span><br><span class="line">       <span class="keyword">NOW</span>() - companies.founded_at_clean::<span class="keyword">timestamp</span> <span class="keyword">AS</span> founded_time_ago</span><br><span class="line"><span class="keyword">FROM</span> tutorial.crunchbase_companies_clean_date companies</span><br><span class="line"> <span class="keyword">WHERE</span> founded_at_clean <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br></pre></td></tr></table></figure></p>
+<p><em>Practice question:</em><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- Write a query that counts the number of companies acquired within 3 years,</span></span><br><span class="line"><span class="comment">--- 5 years, and 10 years of being founded (in 3 separate columns). Include a </span></span><br><span class="line"><span class="comment">--- column for total companies acquired as well. Group by category and limit </span></span><br><span class="line"><span class="comment">--- to only rows with a founding date.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> companies.category_code,</span><br><span class="line">       <span class="keyword">COUNT</span>(companies.permalink) <span class="keyword">AS</span> total,</span><br><span class="line">       <span class="keyword">COUNT</span>(<span class="keyword">CASE</span></span><br><span class="line">                 <span class="keyword">WHEN</span> acquisitions.acquired_at_cleaned &lt;= companies.founded_at_clean::<span class="keyword">timestamp</span> + <span class="built_in">INTERVAL</span> <span class="string">'3 years'</span> <span class="keyword">THEN</span> <span class="number">1</span></span><br><span class="line">                 <span class="keyword">ELSE</span> <span class="literal">NULL</span></span><br><span class="line">             <span class="keyword">END</span>) <span class="keyword">AS</span> Y3,</span><br><span class="line">       <span class="keyword">COUNT</span>(<span class="keyword">CASE</span></span><br><span class="line">                 <span class="keyword">WHEN</span> acquisitions.acquired_at_cleaned &lt;= companies.founded_at_clean::<span class="keyword">timestamp</span> + <span class="built_in">INTERVAL</span> <span class="string">'5 years'</span> <span class="keyword">THEN</span> <span class="number">1</span></span><br><span class="line">                 <span class="keyword">ELSE</span> <span class="literal">NULL</span></span><br><span class="line">             <span class="keyword">END</span>) <span class="keyword">AS</span> Y5,</span><br><span class="line">       <span class="keyword">COUNT</span>(<span class="keyword">CASE</span></span><br><span class="line">                 <span class="keyword">WHEN</span> acquisitions.acquired_at_cleaned &lt;= companies.founded_at_clean::<span class="keyword">timestamp</span> + <span class="built_in">INTERVAL</span> <span class="string">'10 years'</span> <span class="keyword">THEN</span> <span class="number">1</span></span><br><span class="line">                 <span class="keyword">ELSE</span> <span class="literal">NULL</span></span><br><span class="line">             <span class="keyword">END</span>) <span class="keyword">AS</span> Y10</span><br><span class="line"><span class="keyword">FROM</span> tutorial.crunchbase_companies_clean_date <span class="keyword">AS</span> companies</span><br><span class="line"><span class="keyword">JOIN</span> tutorial.crunchbase_acquisitions_clean_date <span class="keyword">AS</span> acquisitions</span><br><span class="line">  <span class="keyword">ON</span> acquisitions.company_permalink = companies.permalink</span><br><span class="line"><span class="keyword">WHERE</span> founded_at_clean <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">2</span> <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="Data-Wrangling-with-SQL"><a href="#Data-Wrangling-with-SQL" class="headerlink" title="Data Wrangling with SQL"></a>Data Wrangling with SQL</h2><p><code>Data munging or data wrangling is loosely the process of manually converting or mapping data from one “raw” form into another format that allows for more convenient consumption of the data with the help of semi-automated tools.</code></p>
+<h3 id="Using-SQL-String-Functions-to-Clean-Data"><a href="#Using-SQL-String-Functions-to-Clean-Data" class="headerlink" title="Using SQL String Functions to Clean Data"></a>Using SQL String Functions to Clean Data</h3><h4 id="Cleaning-Strings"><a href="#Cleaning-Strings" class="headerlink" title="Cleaning Strings"></a>Cleaning Strings</h4><p><strong>LEFT, RIGHT and LENGTH</strong><br><code>LEFT(stirng, n)</code>: 取某一条string从左数1到第n个character<br><code>RIGHT(stirng, n)</code>: 取某一条string从右数1到第n个character</p>
+<p>sample code: 原本date是这个column是前面为日期，后面是自动附上的time stamp。这里因为知道每个cell的长度都是一样的，所以直接选定左右的数字便能把date和time拆开。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> incidnt_num,</span><br><span class="line">       <span class="built_in">date</span>,</span><br><span class="line">       <span class="keyword">LEFT</span>(<span class="built_in">date</span>, <span class="number">10</span>) <span class="keyword">AS</span> cleaned_date,</span><br><span class="line">       <span class="keyword">RIGHT</span>(<span class="built_in">date</span>, <span class="number">17</span>) <span class="keyword">AS</span> cleaned_time</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br></pre></td></tr></table></figure></p>
+<p><code>LENGTH(string)</code>: return string的长度</p>
+<p>sample code: 如果不确定每个cell的长度是否一致，只知道一边固定的长度，可以用LENGTH()来做减法<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> incidnt_num,</span><br><span class="line">       <span class="built_in">date</span>,</span><br><span class="line">       <span class="keyword">LEFT</span>(<span class="built_in">date</span>, <span class="number">10</span>) <span class="keyword">AS</span> cleaned_date,</span><br><span class="line">       <span class="keyword">RIGHT</span>(<span class="built_in">date</span>, <span class="keyword">LENGTH</span>(<span class="built_in">date</span>) - <span class="number">11</span>) <span class="keyword">AS</span> cleaned_time</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br></pre></td></tr></table></figure></p>
+<p><strong>TRIM</strong><br><code>TRIM([position] &#39;charaters to be trimemd&#39; FROM col_name)</code>可以用来去掉某个string的开头和结尾的characters<br>postion: leading, trailing, both<br>charaters to be trimmed: e.g. ‘()’ ‘/‘</p>
+<p>sample code: 去掉location中前后的括号<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> location,</span><br><span class="line">       <span class="keyword">TRIM</span>(<span class="keyword">both</span> <span class="string">'()'</span> <span class="keyword">FROM</span> location),</span><br><span class="line">       <span class="keyword">TRIM</span>(<span class="keyword">leading</span> <span class="string">'('</span> <span class="keyword">FROM</span> location),</span><br><span class="line">       <span class="keyword">TRIM</span>(trailing <span class="string">')'</span> <span class="keyword">FROM</span> location)</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br></pre></td></tr></table></figure></p>
+<p><strong>POSTION and STRPOS</strong><br><code>POSITION(&#39;A&#39; IN B)</code>: 找到‘A’在B中从左数第一次出现的位置<br><code>STRPOS(B, &#39;A&#39;)</code>: 同上</p>
+<p><em>注意：这两个函数都是case sensitive的。如果想要把大小写都找出来，最好先用UPPER/LOWER把原string全变大写/小写再找</em></p>
+<p>sample code:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> incidnt_num,</span><br><span class="line">       descript,</span><br><span class="line">       <span class="keyword">POSITION</span>(<span class="string">'A'</span> <span class="keyword">IN</span> descript) <span class="keyword">AS</span> a_position</span><br><span class="line">       STRPOS(descript, <span class="string">'A'</span>) <span class="keyword">AS</span> a_position_s</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br></pre></td></tr></table></figure></p>
+<p><strong>SUBSTR</strong><br><code>SUBSTR(string, p, n)</code>: 取一条string中从第p数n个characters<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> incidnt_num,</span><br><span class="line">       <span class="built_in">date</span>,</span><br><span class="line">       <span class="keyword">SUBSTR</span>(<span class="built_in">date</span>, <span class="number">4</span>, <span class="number">2</span>) <span class="keyword">AS</span> <span class="keyword">day</span></span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br></pre></td></tr></table></figure></p>
+<p><em>Practice question</em>: 将location column中(lat, lon)分为两个column：lat, lon<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> location,</span><br><span class="line">       lat,</span><br><span class="line">       lon,</span><br><span class="line">       <span class="keyword">SUBSTR</span>(location, </span><br><span class="line">              <span class="keyword">POSITION</span>(<span class="string">'('</span> <span class="keyword">IN</span> location) + <span class="number">1</span>, </span><br><span class="line">              <span class="keyword">POSITION</span>(<span class="string">','</span> <span class="keyword">IN</span> location) - <span class="keyword">POSITION</span>(<span class="string">'('</span> <span class="keyword">IN</span> location) - <span class="number">1</span>) <span class="keyword">AS</span> LAT1,</span><br><span class="line">       <span class="keyword">SUBSTR</span>(location, </span><br><span class="line">              <span class="keyword">POSITION</span>(<span class="string">','</span> <span class="keyword">IN</span> location) + <span class="number">1</span>, </span><br><span class="line">              <span class="keyword">POSITION</span>(<span class="string">')'</span> <span class="keyword">IN</span> location) - <span class="keyword">POSITION</span>(<span class="string">','</span> <span class="keyword">IN</span> location) - <span class="number">1</span>) <span class="keyword">AS</span> LON1</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br></pre></td></tr></table></figure></p>
+<p>方法二：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> location,</span><br><span class="line">       <span class="keyword">TRIM</span>(<span class="keyword">leading</span> <span class="string">'('</span> <span class="keyword">FROM</span> <span class="keyword">LEFT</span>(location, <span class="keyword">POSITION</span>(<span class="string">','</span> <span class="keyword">IN</span> location) - <span class="number">1</span>)) <span class="keyword">AS</span> lattitude,</span><br><span class="line">       <span class="keyword">TRIM</span>(trailing <span class="string">')'</span> <span class="keyword">FROM</span> <span class="keyword">RIGHT</span>(location, <span class="keyword">LENGTH</span>(location) - <span class="keyword">POSITION</span>(<span class="string">','</span> <span class="keyword">IN</span> location) ) ) <span class="keyword">AS</span> longitude</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br></pre></td></tr></table></figure></p>
+<p><strong>CONCAT</strong><br><code>CONCAT(a, &#39;,&#39;, b))</code>: 将分别的两个column a和b concat为’a,b’<br><code>a || &#39;,&#39; || b</code>: 同上</p>
+<p>sample code:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> incidnt_num,</span><br><span class="line">       day_of_week,</span><br><span class="line">       <span class="built_in">date</span>,</span><br><span class="line">       <span class="keyword">LEFT</span>(<span class="built_in">date</span>, <span class="number">10</span>) <span class="keyword">AS</span> cleaned_date,</span><br><span class="line">       <span class="keyword">CONCAT</span>(day_of_week, <span class="string">', '</span>, <span class="keyword">LEFT</span>(<span class="built_in">date</span>, <span class="number">10</span>)) <span class="keyword">AS</span> day_and_date</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br></pre></td></tr></table></figure></p>
+<p><em>Practice question</em>: Concatenate the <code>lat</code> and <code>lon</code> fields to form a field that is equivalent to the location field.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> lat,</span><br><span class="line">       lon,</span><br><span class="line">       location,</span><br><span class="line">       <span class="keyword">CONCAT</span>(<span class="string">'('</span>, lat, <span class="string">', '</span>, lon, <span class="string">')'</span>) <span class="keyword">AS</span> loc</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br></pre></td></tr></table></figure></p>
+<p>or<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> lat,</span><br><span class="line">       lon,</span><br><span class="line">       location,</span><br><span class="line">       <span class="string">'('</span> || lat || <span class="string">', '</span> || lon || <span class="string">')'</span> <span class="keyword">AS</span> loc</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br></pre></td></tr></table></figure></p>
+<p><em>Practice question 2: Write a query that creates a date column formatted YYYY-MM-DD.</em></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">date</span>,</span><br><span class="line">       <span class="keyword">SUBSTR</span>(<span class="built_in">date</span>, <span class="number">7</span>, <span class="number">4</span>) || <span class="string">'-'</span> || <span class="keyword">LEFT</span>(<span class="built_in">date</span> <span class="number">2</span>) || <span class="string">'-'</span> || <span class="keyword">SUBSTR</span>(<span class="built_in">date</span>, <span class="number">4</span>, <span class="number">2</span>) <span class="keyword">AS</span> new_date</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br></pre></td></tr></table></figure>
+<p><strong>UPPER and LOWER</strong><br><code>UPPER(string)</code>: 把string全改为大写<br><code>LOWER(string)</code>: 把string全改为小写</p>
+<p><em>Practice question: Write a query that returns the <code>category</code> field, but with the first letter capitalized and the rest of the letters in lower-case.</em><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">category</span>,</span><br><span class="line">       <span class="keyword">LEFT</span>(<span class="keyword">category</span>, <span class="number">1</span>) || <span class="keyword">LOWER</span>(<span class="keyword">RIGHT</span>(<span class="keyword">category</span>, <span class="keyword">LENGTH</span>(<span class="keyword">category</span>) - <span class="number">1</span>))</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br></pre></td></tr></table></figure></p>
+<h4 id="Turning-Strings-into-Dates"><a href="#Turning-Strings-into-Dates" class="headerlink" title="Turning Strings into Dates"></a>Turning Strings into Dates</h4><p>可以<code>CAST</code>或<code>::</code>成date, timestamp(有时分秒)</p>
+<p>sample code:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> incidnt_num,</span><br><span class="line">       <span class="built_in">date</span>,</span><br><span class="line">       (<span class="keyword">SUBSTR</span>(<span class="built_in">date</span>, <span class="number">7</span>, <span class="number">4</span>) || <span class="string">'-'</span> || <span class="keyword">LEFT</span>(<span class="built_in">date</span>, <span class="number">2</span>) ||</span><br><span class="line">        <span class="string">'-'</span> || <span class="keyword">SUBSTR</span>(<span class="built_in">date</span>, <span class="number">4</span>, <span class="number">2</span>))::<span class="built_in">date</span> <span class="keyword">AS</span> cleaned_date</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br></pre></td></tr></table></figure></p>
+<p><em>Practice question: Write a query that creates an accurate timestamp using the <code>date</code> and <code>time</code> columns in <code>tutorial.sf_crime_incidents_2014_01</code>. Include a field that is exactly 1 week later as well.</em><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">date</span>,</span><br><span class="line">       <span class="keyword">time</span>,</span><br><span class="line">       (<span class="keyword">SUBSTR</span>(<span class="built_in">date</span>, <span class="number">7</span>, <span class="number">4</span>) || <span class="string">'-'</span> || <span class="keyword">LEFT</span>(<span class="built_in">date</span>, <span class="number">2</span>) || <span class="string">'-'</span> || <span class="keyword">SUBSTR</span>(<span class="built_in">date</span>, <span class="number">4</span>, <span class="number">2</span>) || <span class="string">' '</span> || <span class="keyword">time</span>) ::<span class="keyword">timestamp</span> <span class="keyword">AS</span> acc_timestamp,</span><br><span class="line">       (<span class="keyword">SUBSTR</span>(<span class="built_in">date</span>, <span class="number">7</span>, <span class="number">4</span>) || <span class="string">'-'</span> || <span class="keyword">LEFT</span>(<span class="built_in">date</span>, <span class="number">2</span>) || <span class="string">'-'</span> || <span class="keyword">SUBSTR</span>(<span class="built_in">date</span>, <span class="number">4</span>, <span class="number">2</span>) || <span class="string">' '</span> || <span class="keyword">time</span>) ::<span class="keyword">timestamp</span> + <span class="built_in">INTERVAL</span> <span class="string">'1 week'</span> <span class="keyword">AS</span> timestamp_1w</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br></pre></td></tr></table></figure></p>
+<h4 id="Turning-Dates-into-More-Useful-Dates"><a href="#Turning-Dates-into-More-Useful-Dates" class="headerlink" title="Turning Dates into More Useful Dates"></a>Turning Dates into More Useful Dates</h4><p>用<code>EXTRACT</code>从date格式的数据里提取自己需要的部分<br>sample code:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> cleaned_date,</span><br><span class="line">       <span class="keyword">EXTRACT</span>(<span class="string">'year'</span>   <span class="keyword">FROM</span> cleaned_date) <span class="keyword">AS</span> <span class="keyword">year</span>,</span><br><span class="line">       <span class="keyword">EXTRACT</span>(<span class="string">'month'</span>  <span class="keyword">FROM</span> cleaned_date) <span class="keyword">AS</span> <span class="keyword">month</span>,</span><br><span class="line">       <span class="keyword">EXTRACT</span>(<span class="string">'day'</span>    <span class="keyword">FROM</span> cleaned_date) <span class="keyword">AS</span> <span class="keyword">day</span>,</span><br><span class="line">       <span class="keyword">EXTRACT</span>(<span class="string">'hour'</span>   <span class="keyword">FROM</span> cleaned_date) <span class="keyword">AS</span> <span class="keyword">hour</span>,</span><br><span class="line">       <span class="keyword">EXTRACT</span>(<span class="string">'minute'</span> <span class="keyword">FROM</span> cleaned_date) <span class="keyword">AS</span> <span class="keyword">minute</span>,</span><br><span class="line">       <span class="keyword">EXTRACT</span>(<span class="string">'second'</span> <span class="keyword">FROM</span> cleaned_date) <span class="keyword">AS</span> <span class="keyword">second</span>,</span><br><span class="line">       <span class="keyword">EXTRACT</span>(<span class="string">'decade'</span> <span class="keyword">FROM</span> cleaned_date) <span class="keyword">AS</span> decade, <span class="comment">/*YYYY年份的前三位*/</span></span><br><span class="line">       <span class="keyword">EXTRACT</span>(<span class="string">'dow'</span>    <span class="keyword">FROM</span> cleaned_date) <span class="keyword">AS</span> day_of_week</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_cleandate</span><br></pre></td></tr></table></figure></p>
+<p>用<code>DATE_TRUNC</code>把date格式的数据round为某个时间单位精度的值，比如你只需要精确到天，就把时分秒全变00:00:00；如果只需要到年，就把月份变为01-01。<br>sample code:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> cleaned_date,</span><br><span class="line">       DATE_TRUNC(<span class="string">'year'</span>   , cleaned_date) <span class="keyword">AS</span> <span class="keyword">year</span>,</span><br><span class="line">       DATE_TRUNC(<span class="string">'month'</span>  , cleaned_date) <span class="keyword">AS</span> <span class="keyword">month</span>,</span><br><span class="line">       DATE_TRUNC(<span class="string">'week'</span>   , cleaned_date) <span class="keyword">AS</span> <span class="keyword">week</span>, <span class="comment">/*当周的周一*/</span></span><br><span class="line">       DATE_TRUNC(<span class="string">'day'</span>    , cleaned_date) <span class="keyword">AS</span> <span class="keyword">day</span>,</span><br><span class="line">       DATE_TRUNC(<span class="string">'hour'</span>   , cleaned_date) <span class="keyword">AS</span> <span class="keyword">hour</span>,</span><br><span class="line">       DATE_TRUNC(<span class="string">'minute'</span> , cleaned_date) <span class="keyword">AS</span> <span class="keyword">minute</span>,</span><br><span class="line">       DATE_TRUNC(<span class="string">'second'</span> , cleaned_date) <span class="keyword">AS</span> <span class="keyword">second</span>,</span><br><span class="line">       DATE_TRUNC(<span class="string">'decade'</span> , cleaned_date) <span class="keyword">AS</span> decade</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_cleandate</span><br></pre></td></tr></table></figure></p>
+<p><em>practice question: Write a query that counts the number of incidents reported by week. Cast the week as a date to get rid of the hours/minutes/seconds.</em><br><strong>注意这里不需要再套一个subquery，做出来第一个column直接就可以用为groupby条件了</strong><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> DATE_TRUNC(<span class="string">'week'</span>, cleaned_date) :: <span class="built_in">date</span> <span class="keyword">AS</span> <span class="keyword">week</span>,</span><br><span class="line">       <span class="keyword">COUNT</span>(incidnt_num) <span class="keyword">as</span> cnt</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_cleandate</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="Extract-Current-Time"><a href="#Extract-Current-Time" class="headerlink" title="Extract Current Time"></a>Extract Current Time</h4><p>如果需要今天的日期或者当下的timestamp，可以用对应的直接call出来<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CURRENT_DATE</span> <span class="keyword">AS</span> <span class="built_in">date</span>,</span><br><span class="line">       <span class="keyword">CURRENT_TIME</span> <span class="keyword">AS</span> <span class="keyword">time</span>,</span><br><span class="line">       <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">AS</span> <span class="keyword">timestamp</span>,</span><br><span class="line">       <span class="keyword">LOCALTIME</span> <span class="keyword">AS</span> <span class="keyword">localtime</span>,</span><br><span class="line">       <span class="keyword">LOCALTIMESTAMP</span> <span class="keyword">AS</span> <span class="keyword">localtimestamp</span>,</span><br><span class="line">       <span class="keyword">NOW</span>() <span class="keyword">AS</span> <span class="keyword">now</span> <span class="comment">/*timestamp*/</span></span><br></pre></td></tr></table></figure></p>
+<p>如果要换到别的时区：<br><a href="https://www.postgresql.org/docs/7.2/static/timezones.html" target="_blank" rel="noopener">a complete list of time zones</a><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CURRENT_TIME</span> <span class="keyword">AS</span> <span class="keyword">time</span>,</span><br><span class="line">       <span class="keyword">CURRENT_TIME</span> <span class="keyword">AT</span> <span class="keyword">TIME</span> ZONE <span class="string">'PST'</span> <span class="keyword">AS</span> time_pst</span><br></pre></td></tr></table></figure></p>
+<p><em>practice question: Write a query that shows exactly how long ago each indicent was reported. Assume that the dataset is in Pacific Standard Time (UTC - 8).</em><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> incidnt_num,</span><br><span class="line">       cleaned_date,</span><br><span class="line">       <span class="keyword">NOW</span>() <span class="keyword">AT</span> <span class="keyword">TIME</span> ZONE <span class="string">'PST'</span> <span class="keyword">AS</span> <span class="keyword">now</span>,</span><br><span class="line">       <span class="keyword">NOW</span>() <span class="keyword">AT</span> <span class="keyword">TIME</span> ZONE <span class="string">'PST'</span> - cleaned_date <span class="keyword">AS</span> time_ago </span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_cleandate</span><br></pre></td></tr></table></figure></p>
+<h4 id="COALESCE"><a href="#COALESCE" class="headerlink" title="COALESCE"></a>COALESCE</h4><p><code>COALESCE(expression1, expresson2, ...)</code>:return第一个非null的值。比如<code>SELECT COALESCE(NULL, 1, 2, &#39;W3Schools.com&#39;)</code>会return1.</p>
+<p>如果想将所有<code>null</code>替换为别的值，可以用<code>COALESCE(col, &#39;string&#39;)</code>。所有非null值仍为原值，null则被替换为<code>&#39;string&#39;</code>。<br>sample code: 把所有descript中的null换为’No Description’<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> incidnt_num,</span><br><span class="line">       descript,</span><br><span class="line">       <span class="keyword">COALESCE</span>(descript, <span class="string">'No Description'</span>)</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_cleandate</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> descript <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="Writing-Suqueries-in-SQL"><a href="#Writing-Suqueries-in-SQL" class="headerlink" title="Writing Suqueries in SQL"></a>Writing Suqueries in SQL</h2><h3 id="Using-Subqueries-to-Aggregate-in-Multiple-Stages"><a href="#Using-Subqueries-to-Aggregate-in-Multiple-Stages" class="headerlink" title="Using Subqueries to Aggregate in Multiple Stages"></a>Using Subqueries to Aggregate in Multiple Stages</h3><p>How many incidents happen, on average, on every day of week in each month?<br>思路：要求avg需要的是一个月某一个dow的四个count，在这四个之中求average。所以要先求发生在每一个周五的事件总数，然后group by月份求每月的average。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LEFT</span>(<span class="built_in">date</span>, <span class="number">2</span>) <span class="keyword">AS</span> <span class="keyword">month</span>,</span><br><span class="line">       a.dow,</span><br><span class="line">       <span class="keyword">AVG</span>(a.cnt) <span class="keyword">AS</span> <span class="keyword">avg</span></span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">      <span class="keyword">SELECT</span> day_of_week <span class="keyword">AS</span> dow, <span class="built_in">date</span>, <span class="keyword">COUNT</span>(incidnt_num) <span class="keyword">as</span> cnt</span><br><span class="line">      <span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br><span class="line">      <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">      <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span>, <span class="number">2</span>) a</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span>, <span class="number">2</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span>, <span class="number">2</span></span><br></pre></td></tr></table></figure></p>
+<p><em>Practice question: Write a query that displays the average number of monthly incidents for each category.</em><br>算每个category里12个monthly sum的average<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.category, </span><br><span class="line">       <span class="keyword">AVG</span>(a.cnt) <span class="keyword">AS</span> average</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> <span class="keyword">EXTRACT</span>(<span class="string">'MONTH'</span> <span class="keyword">FROM</span> cleaned_date) <span class="keyword">AS</span> <span class="keyword">month</span>, </span><br><span class="line">           <span class="keyword">category</span>, </span><br><span class="line">           <span class="keyword">COUNT</span>(incidnt_num) <span class="keyword">AS</span> cnt</span><br><span class="line">    <span class="keyword">FROM</span> tutorial.sf_crime_incidents_cleandate</span><br><span class="line">    <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">) a</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Subqueries-in-Conditional-Logic"><a href="#Subqueries-in-Conditional-Logic" class="headerlink" title="Subqueries in Conditional Logic"></a>Subqueries in Conditional Logic</h3><p>可以再WHERE, JOIN/ON, CASE上用subquery。<em>但注意这种时候就不需要再写alias了，因为subquery在这里并没有被当成一个table，而是当成了a set of values)</em></p>
+<p>sample code: <code>WHERE = subquery</code><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br><span class="line"><span class="keyword">WHERE</span> <span class="built_in">Date</span> = (<span class="keyword">SELECT</span> <span class="keyword">MIN</span>(<span class="built_in">date</span>)</span><br><span class="line">                 <span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br><span class="line">              )</span><br></pre></td></tr></table></figure></p>
+<p>sample code: <code>WHERE IN subquery</code><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br><span class="line"><span class="keyword">WHERE</span> <span class="built_in">Date</span> <span class="keyword">IN</span> (<span class="keyword">SELECT</span> <span class="built_in">date</span></span><br><span class="line">                 <span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br><span class="line">                <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="built_in">date</span></span><br><span class="line">                <span class="keyword">LIMIT</span> <span class="number">5</span></span><br><span class="line">              )</span><br></pre></td></tr></table></figure></p>
+<h3 id="Joining-Subqueries"><a href="#Joining-Subqueries" class="headerlink" title="Joining Subqueries"></a>Joining Subqueries</h3><p>或者直接用join来filter。下面code结果同上：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01 incidents</span><br><span class="line"><span class="keyword">JOIN</span></span><br><span class="line">    (<span class="keyword">SELECT</span> <span class="built_in">date</span></span><br><span class="line">   <span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br><span class="line">   <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="built_in">date</span> <span class="keyword">LIMIT</span> <span class="number">5</span> ) sub</span><br><span class="line"><span class="keyword">ON</span> incidents.date = sub.date</span><br></pre></td></tr></table></figure></p>
+<p>join还有一个很好的优势在于，可以把groupby aggregate的结果再join回原表，使得每一行数据都能附上一个aggregated value。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> incidents.*,</span><br><span class="line">       sub.incidents <span class="keyword">AS</span> incidents_that_day</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01 incidents</span><br><span class="line"><span class="keyword">JOIN</span> ( <span class="keyword">SELECT</span> <span class="built_in">date</span>,</span><br><span class="line">          <span class="keyword">COUNT</span>(incidnt_num) <span class="keyword">AS</span> incidents</span><br><span class="line">           <span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br><span class="line">          <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span></span><br><span class="line">       ) sub</span><br><span class="line">    <span class="keyword">ON</span> incidents.date = sub.date</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> sub.incidents <span class="keyword">DESC</span>, <span class="keyword">time</span></span><br></pre></td></tr></table></figure></p>
+<p>If you’d like to aggregate the numbers of all of the companies receiving investment and companies acquired each month:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COALESCE</span>(acquisitions.month, investments.month) <span class="keyword">AS</span> <span class="keyword">month</span>,</span><br><span class="line">       <span class="comment">--因为是fulljoin，所以可能会有的acquisition月份在investments里面没有，COALESCE是将null的月份用investment的月份补足了，这样相当于union了两个subqueries里的month。</span></span><br><span class="line">       acquisitions.companies_acquired,</span><br><span class="line">       investments.companies_rec_investment</span><br><span class="line"><span class="keyword">FROM</span> ( </span><br><span class="line">    <span class="keyword">SELECT</span> acquired_month <span class="keyword">AS</span> <span class="keyword">month</span>,</span><br><span class="line">           <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> company_permalink) <span class="keyword">AS</span> companies_acquired</span><br><span class="line">    <span class="keyword">FROM</span> tutorial.crunchbase_acquisitions</span><br><span class="line">    <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span> ) acquisitions</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">JOIN</span> ( </span><br><span class="line">    <span class="keyword">SELECT</span> funded_month <span class="keyword">AS</span> <span class="keyword">month</span>,</span><br><span class="line">           <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> company_permalink) <span class="keyword">AS</span> companies_rec_investment</span><br><span class="line">    <span class="keyword">FROM</span> tutorial.crunchbase_investments</span><br><span class="line">    <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span> )investments</span><br><span class="line"><span class="keyword">ON</span> acquisitions.month = investments.month</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span> <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure></p>
+<p><em>Practice question: Write a query that counts the number of companies founded and acquired by quarter starting in Q1 2012. Create the aggregations in two separate queries, then join them.</em><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COALESCE</span>(companies.founded_quarter, acquisitions.acquired_quarter) <span class="keyword">AS</span> <span class="keyword">quarter</span>,</span><br><span class="line">       companies.num_founded,</span><br><span class="line">       acquisitions.num_acquired</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">  <span class="keyword">SELECT</span> founded_quarter,</span><br><span class="line">         <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> permalink) <span class="keyword">AS</span> num_founded</span><br><span class="line">  <span class="keyword">FROM</span> tutorial.crunchbase_companies</span><br><span class="line">  <span class="keyword">WHERE</span> founded_year &gt;= <span class="number">2012</span></span><br><span class="line">  <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span>) companies</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">JOIN</span> (</span><br><span class="line">  <span class="keyword">SELECT</span> acquired_quarter,</span><br><span class="line">         <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> company_permalink) <span class="keyword">AS</span> num_acquired</span><br><span class="line">  <span class="keyword">FROM</span> tutorial.crunchbase_acquisitions </span><br><span class="line">  <span class="keyword">WHERE</span> acquired_year &gt;= <span class="number">2012</span></span><br><span class="line">  <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span>) acquisitions</span><br><span class="line"><span class="keyword">ON</span> companies.founded_quarter = acquired_quarter</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Subqueries-and-UNIONs"><a href="#Subqueries-and-UNIONs" class="headerlink" title="Subqueries and UNIONs"></a>Subqueries and UNIONs</h3><p>用<code>UNION ALL</code>在subquery中合并被分成几块的数据：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*) <span class="keyword">AS</span> total_rows</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> *</span><br><span class="line">    <span class="keyword">FROM</span> tutorial.crunchbase_investments_part1</span><br><span class="line"></span><br><span class="line">    <span class="keyword">UNION</span> ALL</span><br><span class="line"></span><br><span class="line">    <span class="keyword">SELECT</span> *</span><br><span class="line">    <span class="keyword">FROM</span> tutorial.crunchbase_investments_part2</span><br><span class="line">     ) sub</span><br></pre></td></tr></table></figure></p>
+<p><em>Practice question: Write a query that ranks investors from the combined dataset above by the total number of investments they have made.</em><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> sub.investor_name,</span><br><span class="line">       <span class="keyword">COUNT</span>(sub.company_permalink) <span class="keyword">as</span> num_investments</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> *</span><br><span class="line">    <span class="keyword">FROM</span> tutorial.crunchbase_investments_part1</span><br><span class="line"></span><br><span class="line">    <span class="keyword">UNION</span> ALL</span><br><span class="line"></span><br><span class="line">    <span class="keyword">SELECT</span> *</span><br><span class="line">    <span class="keyword">FROM</span> tutorial.crunchbase_investments_part2</span><br><span class="line">     ) sub</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">2</span> <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure></p>
+<p><em>Practice question 2: Write a query that does the same thing as in the previous problem, except only for companies that are still operating. Hint: operating status is in tutorial.crunchbase_companies.</em><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">## Window Functions</span><br><span class="line"></span><br><span class="line">### Basic windowing syntax</span><br><span class="line">```sql</span><br><span class="line"><span class="keyword">SELECT</span> duration_seconds,</span><br><span class="line">       <span class="keyword">SUM</span>(duration_seconds) <span class="keyword">OVER</span> (<span class="keyword">ORDER</span> <span class="keyword">BY</span> start_time) <span class="keyword">AS</span> running_total</span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br></pre></td></tr></table></figure></p>
+<p>这是在求running total，也就是到当前时间为止的cumulative sum（这一点是由ORDER BY决定的，下面会说只用partition不用ORDER BY的情况)</p>
+<p>如果还需要进一步细化，针对每个group来求running total，每换一个新group就清零重记，这时候就需要partition<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       <span class="keyword">SUM</span>(duration_seconds) <span class="keyword">OVER</span></span><br><span class="line">         (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal <span class="keyword">ORDER</span> <span class="keyword">BY</span> start_time)</span><br><span class="line">         <span class="keyword">AS</span> running_total</span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br></pre></td></tr></table></figure></p>
+<p>这里先是用PARTITION按照start_terminal分组，然后在每个组里order by start_time求running sum</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       <span class="keyword">SUM</span>(duration_seconds) <span class="keyword">OVER</span></span><br><span class="line">         (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal <span class="keyword">ORDER</span> <span class="keyword">BY</span> start_time)</span><br><span class="line">         <span class="keyword">AS</span> running_total</span><br><span class="line">  <span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"> <span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br></pre></td></tr></table></figure>
+<p>这里把ORDER BY去掉了，只剩partition，这里就是在根据partition求每个partition里的sum，跟GROUP BY的概念是一样的，但是Window function可以让每一行都出现这个sum，而不需要aggregate。</p>
+<p><em>注意：GROUP BY和Partition不可共存，换句话说，在WINDOW FUNCTIONS中不可以有GROUP BY clause</em></p>
+<p>还可以求每一行record的duration_seconds占每个partition sum的百分比：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- Write a query modification of the above example query that </span></span><br><span class="line"><span class="comment">--- shows the duration of each ride as a percentage </span></span><br><span class="line"><span class="comment">--- of the total time accrued by riders from each start_terminal</span></span><br><span class="line"><span class="keyword">SELECT</span> start_terminal, duration_seconds,</span><br><span class="line">       <span class="keyword">SUM</span>(duration_seconds) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal) <span class="keyword">AS</span> start_terminal_sum,</span><br><span class="line">       (duration_seconds / <span class="keyword">SUM</span>(duration_seconds) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal))*<span class="number">100</span> <span class="keyword">AS</span> perc_of_parti_sum</span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span>, <span class="number">4</span> <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure></p>
+<p>除了running sum, 我们还可以做 <code>COUNT</code>, <code>AVG</code>.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       <span class="keyword">SUM</span>(duration_seconds) <span class="keyword">OVER</span></span><br><span class="line">         (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal) <span class="keyword">AS</span> running_total,</span><br><span class="line">       <span class="keyword">COUNT</span>(duration_seconds) <span class="keyword">OVER</span></span><br><span class="line">         (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal) <span class="keyword">AS</span> running_count,</span><br><span class="line">       <span class="keyword">AVG</span>(duration_seconds) <span class="keyword">OVER</span></span><br><span class="line">         (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal) <span class="keyword">AS</span> running_avg</span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br></pre></td></tr></table></figure></p>
+<p>or with <code>ORDER BY</code>:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       <span class="keyword">SUM</span>(duration_seconds) <span class="keyword">OVER</span></span><br><span class="line">         (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal <span class="keyword">ORDER</span> <span class="keyword">BY</span> start_time)</span><br><span class="line">         <span class="keyword">AS</span> running_total,</span><br><span class="line">       <span class="keyword">COUNT</span>(duration_seconds) <span class="keyword">OVER</span></span><br><span class="line">         (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal <span class="keyword">ORDER</span> <span class="keyword">BY</span> start_time)</span><br><span class="line">         <span class="keyword">AS</span> running_count,</span><br><span class="line">       <span class="keyword">AVG</span>(duration_seconds) <span class="keyword">OVER</span></span><br><span class="line">         (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal <span class="keyword">ORDER</span> <span class="keyword">BY</span> start_time)</span><br><span class="line">         <span class="keyword">AS</span> running_avg</span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br></pre></td></tr></table></figure></p>
+<p><em>Another practice question:</em><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- Write a query that shows a running total of the duration of bike rides (similar to the last example), but grouped by end_terminal, and with ride duration sorted in descending order.</span></span><br><span class="line"><span class="keyword">SELECT</span> end_terminal,</span><br><span class="line">       <span class="keyword">SUM</span>(duration_seconds) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> end_terminal <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds <span class="keyword">DESC</span>) <span class="keyword">AS</span> running_total</span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="ROW-NUMBER"><a href="#ROW-NUMBER" class="headerlink" title="ROW_NUMBER()"></a>ROW_NUMBER()</h3><p>ROW_NUMBER()可以显示当前行数，根据ORDER BY的顺序从1开始。比如下面的语句就是根据start_time排的序：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       start_time,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       ROW_NUMBER() <span class="keyword">OVER</span> (<span class="keyword">ORDER</span> <span class="keyword">BY</span> start_time)<span class="keyword">AS</span> row_number</span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br></pre></td></tr></table></figure></p>
+<p>加上<code>PARTITION BY</code>则可以在每个partition从1开始数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       start_time,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       ROW_NUMBER() <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                          <span class="keyword">ORDER</span> <span class="keyword">BY</span> start_time) <span class="keyword">AS</span> row_number</span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="RANK-and-DENSE-RANK"><a href="#RANK-and-DENSE-RANK" class="headerlink" title="RANK() and DENSE_RANK()"></a>RANK() and DENSE_RANK()</h3><p>ROW_NUMBER对于并列的情况没有考虑，而是直接assign两个不同的row number给两个相同值的record。比如上面<code>ORDER BY start_time</code>，很有可能有相同的<code>start_time</code>，但<code>ROW_NUMBER()</code>依然会给这两个相同的值不同的row number。</p>
+<p>而<code>RANK()</code>则考虑了这种情况，对相同的值就赋予相同的rank，下一级就跳一个数。比如有两个第四名时，下一个就是第六名。<br><code>DENSE_RANK()</code>处理方式稍有不同，在有两个第四名时，下一个仍是第五名，它不会skip rank。<br>sample code:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       <span class="keyword">RANK</span>() <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                    <span class="keyword">ORDER</span> <span class="keyword">BY</span> start_time) <span class="keyword">AS</span> <span class="keyword">rank</span></span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br></pre></td></tr></table></figure></p>
+<p><em>Practice question</em>:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- Write a query that shows the 5 longest rides from each starting terminal, ordered by terminal, and longest to shortest rides within each terminal. Limit to rides that occurred before Jan. 8, 2012.</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       <span class="keyword">RANK</span>() <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                    <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> <span class="keyword">rank</span></span><br><span class="line">    <span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line">    <span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br><span class="line">) a</span><br><span class="line"><span class="keyword">WHERE</span> a.rank &lt;=<span class="number">5</span></span><br></pre></td></tr></table></figure></p>
+<p>这个问题要输出前5个，所以用RANK()直接选到5就可以，如果有第五名并列的情况就再考虑。</p>
+<h3 id="NTILE"><a href="#NTILE" class="headerlink" title="NTILE"></a>NTILE</h3><p><code>NTILE()</code>可以用来找当前record的percentile，syntax是<code>NTILE(# of buckets you want)</code>。比如<code>NTILE(4)</code>是等分成4分相当于quartile，<code>NTILE(1000)</code>是等分成100份相当于percentile。算percentile的对象是<code>ORDER BY</code>后面的field</p>
+<p>sample code：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       NTILE(<span class="number">4</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                      <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> quartile,</span><br><span class="line">       NTILE(<span class="number">5</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                      <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> quintile,</span><br><span class="line">       NTILE(<span class="number">100</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                        <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> percentile</span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> start_terminal,</span><br><span class="line">         duration_seconds</span><br></pre></td></tr></table></figure></p>
+<p><em>需要注意的是如果dataset太小（行数小于Buckets的数量），那PERCENTILE就会像ROW_NUMBER()一样算下去，无法准确表示PERCENTILE</em></p>
+<p><em>Practice question</em>:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- Write a query that shows only the duration of the trip and the percentile into which that duration falls (across the entire dataset—not partitioned by terminal), and order by duration_seconds</span></span><br><span class="line"><span class="keyword">SELECT</span> duration_seconds,</span><br><span class="line">       NTILE(<span class="number">100</span>) <span class="keyword">OVER</span> (<span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">as</span> percentile</span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span> <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="LAG-AND-LEAD"><a href="#LAG-AND-LEAD" class="headerlink" title="LAG AND LEAD"></a>LAG AND LEAD</h3><p>LAG和LEAD可以让你pull当前record之前和之后的records，具体pull之前的第几条在括号内specify即可。如<code>LAG(duration_seconds, 1)</code>取的是之前一条的duration_seconds, <code>LEAD(duration_seconds, 1)</code>取的是后一条的duration_seconds。当然排列顺序也由<code>ORDER BY</code>决定。</p>
+<p>Sample code: 算的是每一个start_terminal中按duration seconds从短到长排<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       LAG(duration_seconds, <span class="number">1</span>) <span class="keyword">OVER</span></span><br><span class="line">         (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> lag,</span><br><span class="line">       <span class="keyword">LEAD</span>(duration_seconds, <span class="number">1</span>) <span class="keyword">OVER</span></span><br><span class="line">         (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> <span class="keyword">lead</span></span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> start_terminal, duration_seconds</span><br></pre></td></tr></table></figure></p>
+<p>在不同行之间计算<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       duration_seconds - LAG(duration_seconds, <span class="number">1</span>) <span class="keyword">OVER</span></span><br><span class="line">         (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds)<span class="keyword">AS</span> <span class="keyword">difference</span></span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> start_terminal, duration_seconds</span><br></pre></td></tr></table></figure></p>
+<p><em>注意：拿LAG(X, 1)和LEAD(X, 1)来做例子，对于PARTITION里第一条（没有前一条），LAG为空。对于PARTITION里最后一条（没有后一条），LEAD为空</em><br>如果想去掉null，可以用一个outer query<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  ( <span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">           duration_seconds,</span><br><span class="line">           duration_seconds -LAG(duration_seconds, <span class="number">1</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                                                            <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> <span class="keyword">difference</span></span><br><span class="line">   <span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line">   <span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br><span class="line">   <span class="keyword">ORDER</span> <span class="keyword">BY</span> start_terminal,</span><br><span class="line">            duration_seconds ) sub</span><br><span class="line"><span class="keyword">WHERE</span> sub.difference <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Defining-a-Window-Alias"><a href="#Defining-a-Window-Alias" class="headerlink" title="Defining a Window Alias"></a>Defining a Window Alias</h3><p>如果需要写多个window function用相同的window，可以给window一个alias，就不用重复写很多遍window1的代码了。比如将下面一段：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       NTILE(<span class="number">4</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                      <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> quartile,</span><br><span class="line">       NTILE(<span class="number">5</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                      <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> quintile,</span><br><span class="line">       NTILE(<span class="number">100</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                        <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> percentile</span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> start_terminal,</span><br><span class="line">         duration_seconds</span><br></pre></td></tr></table></figure></p>
+<p>改为用alias的：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       NTILE(<span class="number">4</span>) <span class="keyword">OVER</span> ntile_window <span class="keyword">AS</span> quartile,</span><br><span class="line">       NTILE(<span class="number">5</span>) <span class="keyword">OVER</span> ntile_window <span class="keyword">AS</span> quintile,</span><br><span class="line">       NTILE(<span class="number">100</span>) <span class="keyword">OVER</span> ntile_window <span class="keyword">AS</span> percentile</span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span> </span><br><span class="line">WINDOW ntile_window <span class="keyword">AS</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                                                        <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> start_terminal,</span><br><span class="line">         duration_seconds</span><br></pre></td></tr></table></figure></p>
+<p>需要注意的是<code>WINDOW</code>clause必须在<code>WHERE</code>clause之后。</p>
+<hr>
+<h2 id="Performance-Tuning-SQL-Queries"><a href="#Performance-Tuning-SQL-Queries" class="headerlink" title="Performance Tuning SQL Queries"></a>Performance Tuning SQL Queries</h2><p>想让SQL跑的更快，主要是要减少calculation的数量。下面几点是对calculation数量有明显影响，且controllable的：</p>
+<ol>
+<li>Table size: 数据量</li>
+<li>Joins: 如果join出来的行数过多，很可能计算量会很大</li>
+<li>Aggregations: combining rows比光retrieve rows需要更大的计算量</li>
+</ol>
+<p>同时还有其他uncontrollable的因素：</p>
+<ol>
+<li>Other users running queries: 运算量是有限且shared的</li>
+<li>Database software and optimization:</li>
+</ol>
+<p>下面我们只看如何处理controllable的因素。</p>
+<h3 id="Reducing-Table-Size"><a href="#Reducing-Table-Size" class="headerlink" title="Reducing Table Size"></a>Reducing Table Size</h3><ol>
+<li>用Filter减少行数：可以用subset先做exploratory analysis，确保query能跑，结果正确，再去fullset上跑</li>
+<li>在aggregate之前，先用subquery减少行数（比如在subquery里放LIMIT，但要注意这样可能出来的结果不正确，只能用于test query)</li>
+</ol>
+<h3 id="Making-Joins-Less-Complicated"><a href="#Making-Joins-Less-Complicated" class="headerlink" title="Making Joins Less Complicated"></a>Making Joins Less Complicated</h3><p>在join之前先尽量减少table size。对于数据量本身很大的table来说增益尤为明显。</p>
+<h3 id="EXPLAIN"><a href="#EXPLAIN" class="headerlink" title="EXPLAIN"></a>EXPLAIN</h3><p>在query之前加<code>EXPLAIN</code>可以查看每一步entry大概用了多少row，需要cost大约多久时间。可以用这个方法来为你提供revise query的思路。</p>
+<hr>
+<h2 id="Pivoting-Data-in-SQL"><a href="#Pivoting-Data-in-SQL" class="headerlink" title="Pivoting Data in SQL"></a>Pivoting Data in SQL</h2><h3 id="Pivoting-Rows-to-Columns"><a href="#Pivoting-Rows-to-Columns" class="headerlink" title="Pivoting Rows to Columns"></a>Pivoting Rows to Columns</h3><p>现有的dataset有三列：conference（conference类别）, year(FR, SO, JR, SR四类年份), players（人数）。我们想让一条record能展示conference，该会总player人数，及各类年份player人数。这就需要把year的值提到colunm name上。<br>想将每一行里的值放在column name上，首先得做aggregation<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> teams.conference <span class="keyword">AS</span> conference,</span><br><span class="line">       players.year,</span><br><span class="line">       <span class="keyword">COUNT</span>(<span class="number">1</span>) <span class="keyword">AS</span> players</span><br><span class="line"><span class="keyword">FROM</span> benn.college_football_players players</span><br><span class="line"><span class="keyword">JOIN</span> benn.college_football_teams teams</span><br><span class="line"><span class="keyword">ON</span> teams.school_name = players.school_name</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span>,<span class="number">2</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span>,<span class="number">2</span></span><br></pre></td></tr></table></figure></p>
+<p>想清楚什么不动，什么要放到column name上。然后把不动的作为最外层group by的条件，用<code>CASE+aggregation</code>来制作每个column，内层subquery放上一步做好的aggregation table：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> conference,</span><br><span class="line">       <span class="keyword">SUM</span>(players) <span class="keyword">AS</span> total_players,</span><br><span class="line">       <span class="keyword">SUM</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">year</span> = <span class="string">'FR'</span> <span class="keyword">THEN</span> players <span class="keyword">ELSE</span> <span class="literal">NULL</span> <span class="keyword">END</span>) <span class="keyword">AS</span> fr,</span><br><span class="line">       <span class="keyword">SUM</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">year</span> = <span class="string">'SO'</span> <span class="keyword">THEN</span> players <span class="keyword">ELSE</span> <span class="literal">NULL</span> <span class="keyword">END</span>) <span class="keyword">AS</span> so,</span><br><span class="line">       <span class="keyword">SUM</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">year</span> = <span class="string">'JR'</span> <span class="keyword">THEN</span> players <span class="keyword">ELSE</span> <span class="literal">NULL</span> <span class="keyword">END</span>) <span class="keyword">AS</span> jr,</span><br><span class="line">       <span class="keyword">SUM</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">year</span> = <span class="string">'SR'</span> <span class="keyword">THEN</span> players <span class="keyword">ELSE</span> <span class="literal">NULL</span> <span class="keyword">END</span>) <span class="keyword">AS</span> sr</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> teams.conference <span class="keyword">AS</span> conference,</span><br><span class="line">           players.year,</span><br><span class="line">           <span class="keyword">COUNT</span>(<span class="number">1</span>) <span class="keyword">AS</span> players</span><br><span class="line">    <span class="keyword">FROM</span> benn.college_football_players players</span><br><span class="line">    <span class="keyword">JOIN</span> benn.college_football_teams teams</span><br><span class="line">    <span class="keyword">ON</span> teams.school_name = players.school_name</span><br><span class="line">    <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span>,<span class="number">2</span></span><br><span class="line">    ) sub</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">2</span> <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Pivoting-Columns-to-Rows"><a href="#Pivoting-Columns-to-Rows" class="headerlink" title="Pivoting Columns to Rows"></a>Pivoting Columns to Rows</h3><p>现有的dataset column name是年份(2000-2012)，row name是magnitude(约10个级别)，cell value是地震对应的数量。对于这种需要的数据出现在了column name的情况，我们可以把他转换为一个三个column的表格：”magnitude”, “year”, and “number of earthquakes”.</p>
+<p>首先要建一个新表，使所有column name都变为rows。这里就是把年份放到rows中。原来是row name的magnitude不用管，因为它本来就是一个column了。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">year</span></span><br><span class="line">  <span class="keyword">FROM</span> (<span class="keyword">VALUES</span> (<span class="number">2000</span>),(<span class="number">2001</span>),(<span class="number">2002</span>),(<span class="number">2003</span>),(<span class="number">2004</span>),(<span class="number">2005</span>),(<span class="number">2006</span>),(<span class="number">2007</span>),(<span class="number">2008</span>),(<span class="number">2009</span>),(<span class="number">2010</span>),(<span class="number">2011</span>),(<span class="number">2012</span>)) v(<span class="keyword">year</span>)</span><br></pre></td></tr></table></figure></p>
+<p>因为本身这张表就是所有magnitude和年份的排列组合，所以我们可以这一列年份直接跟原表(row为magnitude)做CROSS JOIN(即cartesian product)，那么这样所有的magnitude和年份的组合就有了。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> years.*,</span><br><span class="line">       earthquakes.*</span><br><span class="line"><span class="keyword">FROM</span> tutorial.worldwide_earthquakes earthquakes</span><br><span class="line"><span class="keyword">CROSS</span> <span class="keyword">JOIN</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> <span class="keyword">year</span></span><br><span class="line">    <span class="keyword">FROM</span> (<span class="keyword">VALUES</span> (<span class="number">2000</span>),(<span class="number">2001</span>),(<span class="number">2002</span>),(<span class="number">2003</span>),(<span class="number">2004</span>),(<span class="number">2005</span>),(<span class="number">2006</span>),(<span class="number">2007</span>),(<span class="number">2008</span>),(<span class="number">2009</span>),(<span class="number">2010</span>),(<span class="number">2011</span>),(<span class="number">2012</span>)) v(<span class="keyword">year</span>)</span><br><span class="line">) <span class="keyword">years</span></span><br></pre></td></tr></table></figure></p>
+<p>再利用CASE在这张大表中对”number of earthquakes”做筛选，只取对应年份的值。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> years.*,</span><br><span class="line">       earthquakes.magnitude,<span class="comment">/*这里把row给定位住了*/</span></span><br><span class="line">       <span class="keyword">CASE</span> <span class="keyword">year</span></span><br><span class="line">         <span class="keyword">WHEN</span> <span class="number">2000</span> <span class="keyword">THEN</span> year_2000<span class="comment">/*这里定位要取的是哪个column的值*/</span></span><br><span class="line">         <span class="keyword">WHEN</span> <span class="number">2001</span> <span class="keyword">THEN</span> year_2001</span><br><span class="line">         <span class="keyword">WHEN</span> <span class="number">2002</span> <span class="keyword">THEN</span> year_2002</span><br><span class="line">         <span class="keyword">WHEN</span> <span class="number">2003</span> <span class="keyword">THEN</span> year_2003</span><br><span class="line">         <span class="keyword">WHEN</span> <span class="number">2004</span> <span class="keyword">THEN</span> year_2004</span><br><span class="line">         <span class="keyword">WHEN</span> <span class="number">2005</span> <span class="keyword">THEN</span> year_2005</span><br><span class="line">         <span class="keyword">WHEN</span> <span class="number">2006</span> <span class="keyword">THEN</span> year_2006</span><br><span class="line">         <span class="keyword">WHEN</span> <span class="number">2007</span> <span class="keyword">THEN</span> year_2007</span><br><span class="line">         <span class="keyword">WHEN</span> <span class="number">2008</span> <span class="keyword">THEN</span> year_2008</span><br><span class="line">         <span class="keyword">WHEN</span> <span class="number">2009</span> <span class="keyword">THEN</span> year_2009</span><br><span class="line">         <span class="keyword">WHEN</span> <span class="number">2010</span> <span class="keyword">THEN</span> year_2010</span><br><span class="line">         <span class="keyword">WHEN</span> <span class="number">2011</span> <span class="keyword">THEN</span> year_2011</span><br><span class="line">         <span class="keyword">WHEN</span> <span class="number">2012</span> <span class="keyword">THEN</span> year_2012</span><br><span class="line">         <span class="keyword">ELSE</span> <span class="literal">NULL</span> <span class="keyword">END</span></span><br><span class="line">         <span class="keyword">AS</span> number_of_earthquakes</span><br><span class="line"><span class="keyword">FROM</span> tutorial.worldwide_earthquakes earthquakes</span><br><span class="line"><span class="keyword">CROSS</span> <span class="keyword">JOIN</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> <span class="keyword">year</span></span><br><span class="line">    <span class="keyword">FROM</span> (<span class="keyword">VALUES</span> (<span class="number">2000</span>),(<span class="number">2001</span>),(<span class="number">2002</span>),(<span class="number">2003</span>),(<span class="number">2004</span>),(<span class="number">2005</span>),(<span class="number">2006</span>),(<span class="number">2007</span>),(<span class="number">2008</span>),(<span class="number">2009</span>),(<span class="number">2010</span>),(<span class="number">2011</span>),(<span class="number">2012</span>)) v(<span class="keyword">year</span>)</span><br><span class="line">    ) <span class="keyword">years</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sql/" rel="tag"># sql</a>
+          
+            <a href="/tags/interview/" rel="tag"># interview</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/13/LinkedIn_SQL/" rel="next" title="LinkedIn SQL Interview Questions">
+                <i class="fa fa-chevron-left"></i> LinkedIn SQL Interview Questions
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Joanna</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-Data-types"><span class="nav-number">1.</span> <span class="nav-text">SQL Data types</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Changing-a-column’s-data-type"><span class="nav-number">1.1.</span> <span class="nav-text">Changing a column’s data type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL-Date-Format"><span class="nav-number">1.2.</span> <span class="nav-text">SQL Date Format</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Wrangling-with-SQL"><span class="nav-number">2.</span> <span class="nav-text">Data Wrangling with SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-SQL-String-Functions-to-Clean-Data"><span class="nav-number">2.1.</span> <span class="nav-text">Using SQL String Functions to Clean Data</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cleaning-Strings"><span class="nav-number">2.1.1.</span> <span class="nav-text">Cleaning Strings</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Turning-Strings-into-Dates"><span class="nav-number">2.1.2.</span> <span class="nav-text">Turning Strings into Dates</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Turning-Dates-into-More-Useful-Dates"><span class="nav-number">2.1.3.</span> <span class="nav-text">Turning Dates into More Useful Dates</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Extract-Current-Time"><span class="nav-number">2.1.4.</span> <span class="nav-text">Extract Current Time</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#COALESCE"><span class="nav-number">2.1.5.</span> <span class="nav-text">COALESCE</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Writing-Suqueries-in-SQL"><span class="nav-number">3.</span> <span class="nav-text">Writing Suqueries in SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-Subqueries-to-Aggregate-in-Multiple-Stages"><span class="nav-number">3.1.</span> <span class="nav-text">Using Subqueries to Aggregate in Multiple Stages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Subqueries-in-Conditional-Logic"><span class="nav-number">3.2.</span> <span class="nav-text">Subqueries in Conditional Logic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Joining-Subqueries"><span class="nav-number">3.3.</span> <span class="nav-text">Joining Subqueries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Subqueries-and-UNIONs"><span class="nav-number">3.4.</span> <span class="nav-text">Subqueries and UNIONs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ROW-NUMBER"><span class="nav-number">3.5.</span> <span class="nav-text">ROW_NUMBER()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RANK-and-DENSE-RANK"><span class="nav-number">3.6.</span> <span class="nav-text">RANK() and DENSE_RANK()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NTILE"><span class="nav-number">3.7.</span> <span class="nav-text">NTILE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LAG-AND-LEAD"><span class="nav-number">3.8.</span> <span class="nav-text">LAG AND LEAD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Defining-a-Window-Alias"><span class="nav-number">3.9.</span> <span class="nav-text">Defining a Window Alias</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Performance-Tuning-SQL-Queries"><span class="nav-number">4.</span> <span class="nav-text">Performance Tuning SQL Queries</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reducing-Table-Size"><span class="nav-number">4.1.</span> <span class="nav-text">Reducing Table Size</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Making-Joins-Less-Complicated"><span class="nav-number">4.2.</span> <span class="nav-text">Making Joins Less Complicated</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXPLAIN"><span class="nav-number">4.3.</span> <span class="nav-text">EXPLAIN</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pivoting-Data-in-SQL"><span class="nav-number">5.</span> <span class="nav-text">Pivoting Data in SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pivoting-Rows-to-Columns"><span class="nav-number">5.1.</span> <span class="nav-text">Pivoting Rows to Columns</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pivoting-Columns-to-Rows"><span class="nav-number">5.2.</span> <span class="nav-text">Pivoting Columns to Rows</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joanna</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz',
+        appKey: 'cDbeqqCJt4dq4hu7C9GaCrHB',
+        placeholder: 'Leave your comment here',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz", "cDbeqqCJt4dq4hu7C9GaCrHB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
