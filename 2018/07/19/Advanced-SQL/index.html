@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="en">
+<html class="theme-next gemini use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -83,11 +83,11 @@
 <meta name="keywords" content="sql,interview">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Advanced SQL Techniques">
-<meta property="og:url" content="http://yoursite.com/2018/07/19/Advanced-SQL/index.html">
+<meta property="og:url" content="https://joannaoyzl.github.io/2018/07/19/Advanced-SQL/index.html">
 <meta property="og:site_name" content="Joanna">
 <meta property="og:description" content="Notes on advanced SQL techniques on Mode.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-24T05:59:48.758Z">
+<meta property="og:updated_time" content="2018-12-11T23:56:45.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Advanced SQL Techniques">
 <meta name="twitter:description" content="Notes on advanced SQL techniques on Mode.">
@@ -98,7 +98,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -120,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/19/Advanced-SQL/"/>
+  <link rel="canonical" href="https://joannaoyzl.github.io/2018/07/19/Advanced-SQL/"/>
 
 
 
@@ -220,6 +220,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
 
       
     </ul>
@@ -253,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/Advanced-SQL/">
+    <link itemprop="mainEntityOfPage" href="https://joannaoyzl.github.io/2018/07/19/Advanced-SQL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Joanna">
@@ -318,16 +328,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/07/19/Advanced-SQL/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/07/19/Advanced-SQL/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -365,7 +365,7 @@
       
         <p>Notes on advanced SQL techniques on <a href="https://community.modeanalytics.com/sql/tutorial/sql-data-types/" target="_blank" rel="noopener">Mode</a>.<br><a id="more"></a></p>
 <hr>
-<h2 id="SQL-Data-types"><a href="#SQL-Data-types" class="headerlink" title="SQL Data types"></a>SQL Data types</h2><p>数据看起来可能是Numeric的，但有可能里面有逗号或者货币符号，在存进database的时候就被当成了Non-numeric的，由于COUNT/SUM这类函数只有在numeric的时候才能用，data类的函数也只能用在明确是date/time的格式的数据，所以要注意这一点。</p>
+<h2 id="SQL-Data-types"><a href="#SQL-Data-types" class="headerlink" title="SQL Data types"></a>SQL Data types</h2><p>数据看起来可能是Numeric的，但有可能里面有逗号或者货币符号，在存进database的时候就被当成了Non-numeric的，由于COUNT/SUM这类函数只有在numeric的时候才能用，date类的函数也只能用在明确是date/time的格式的数据，所以要注意这一点。</p>
 <h3 id="Changing-a-column’s-data-type"><a href="#Changing-a-column’s-data-type" class="headerlink" title="Changing a column’s data type"></a>Changing a column’s data type</h3><p><code>CAST(column_name AS integer)</code>, <code>column_name::integer</code> OR <code>CONVERT(integer, column_name)</code> can all do the trick.</p>
 <p>Example code:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CAST</span>(funding_total_usd <span class="keyword">AS</span> <span class="built_in">varchar</span>) funding_total_usd, </span><br><span class="line">       founded_at_clean::<span class="built_in">varchar</span> founded_at_clean</span><br><span class="line"><span class="keyword">FROM</span> tutorial.crunchbase_companies_clean_date</span><br></pre></td></tr></table></figure></p>
 <h3 id="SQL-Date-Format"><a href="#SQL-Date-Format" class="headerlink" title="SQL Date Format"></a>SQL Date Format</h3><p>存成YYYY-MM-DD的才好排序，MM-DD-YYYY会有排序问题。</p>
@@ -412,8 +412,8 @@
 <h3 id="Subqueries-in-Conditional-Logic"><a href="#Subqueries-in-Conditional-Logic" class="headerlink" title="Subqueries in Conditional Logic"></a>Subqueries in Conditional Logic</h3><p>可以再WHERE, JOIN/ON, CASE上用subquery。<em>但注意这种时候就不需要再写alias了，因为subquery在这里并没有被当成一个table，而是当成了a set of values)</em></p>
 <p>sample code: <code>WHERE = subquery</code><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br><span class="line"><span class="keyword">WHERE</span> <span class="built_in">Date</span> = (<span class="keyword">SELECT</span> <span class="keyword">MIN</span>(<span class="built_in">date</span>)</span><br><span class="line">                 <span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br><span class="line">              )</span><br></pre></td></tr></table></figure></p>
 <p>sample code: <code>WHERE IN subquery</code><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br><span class="line"><span class="keyword">WHERE</span> <span class="built_in">Date</span> <span class="keyword">IN</span> (<span class="keyword">SELECT</span> <span class="built_in">date</span></span><br><span class="line">                 <span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br><span class="line">                <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="built_in">date</span></span><br><span class="line">                <span class="keyword">LIMIT</span> <span class="number">5</span></span><br><span class="line">              )</span><br></pre></td></tr></table></figure></p>
-<h3 id="Joining-Subqueries"><a href="#Joining-Subqueries" class="headerlink" title="Joining Subqueries"></a>Joining Subqueries</h3><p>或者直接用join来filter。下面code结果同上：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01 incidents</span><br><span class="line"><span class="keyword">JOIN</span></span><br><span class="line">    (<span class="keyword">SELECT</span> <span class="built_in">date</span></span><br><span class="line">   <span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br><span class="line">   <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="built_in">date</span> <span class="keyword">LIMIT</span> <span class="number">5</span> ) sub</span><br><span class="line"><span class="keyword">ON</span> incidents.date = sub.date</span><br></pre></td></tr></table></figure></p>
-<p>join还有一个很好的优势在于，可以把groupby aggregate的结果再join回原表，使得每一行数据都能附上一个aggregated value。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> incidents.*,</span><br><span class="line">       sub.incidents <span class="keyword">AS</span> incidents_that_day</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01 incidents</span><br><span class="line"><span class="keyword">JOIN</span> ( <span class="keyword">SELECT</span> <span class="built_in">date</span>,</span><br><span class="line">          <span class="keyword">COUNT</span>(incidnt_num) <span class="keyword">AS</span> incidents</span><br><span class="line">           <span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br><span class="line">          <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span></span><br><span class="line">       ) sub</span><br><span class="line">    <span class="keyword">ON</span> incidents.date = sub.date</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> sub.incidents <span class="keyword">DESC</span>, <span class="keyword">time</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Joining-Subqueries"><a href="#Joining-Subqueries" class="headerlink" title="Joining Subqueries"></a>Joining Subqueries</h3><p>或者直接用join来filter。下面code结果同上：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01 incidents</span><br><span class="line"><span class="keyword">JOIN</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> <span class="built_in">date</span></span><br><span class="line">    <span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br><span class="line">    <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="built_in">date</span> <span class="keyword">LIMIT</span> <span class="number">5</span></span><br><span class="line">    ) sub</span><br><span class="line"><span class="keyword">ON</span> incidents.date = sub.date</span><br></pre></td></tr></table></figure></p>
+<p>join还有一个很好的优势在于，可以把groupby aggregate的结果再join回原表，使得每一行数据都能附上一个aggregated value。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> incidents.*,</span><br><span class="line">       sub.incidents <span class="keyword">AS</span> incidents_that_day</span><br><span class="line"><span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01 incidents</span><br><span class="line"><span class="keyword">JOIN</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> <span class="built_in">date</span>,</span><br><span class="line">    <span class="keyword">COUNT</span>(incidnt_num) <span class="keyword">AS</span> incidents</span><br><span class="line">    <span class="keyword">FROM</span> tutorial.sf_crime_incidents_2014_01</span><br><span class="line">    <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span></span><br><span class="line">    ) sub</span><br><span class="line"><span class="keyword">ON</span> incidents.date = sub.date</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> sub.incidents <span class="keyword">DESC</span>, <span class="keyword">time</span></span><br></pre></td></tr></table></figure></p>
 <p>If you’d like to aggregate the numbers of all of the companies receiving investment and companies acquired each month:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COALESCE</span>(acquisitions.month, investments.month) <span class="keyword">AS</span> <span class="keyword">month</span>,</span><br><span class="line">       <span class="comment">--因为是fulljoin，所以可能会有的acquisition月份在investments里面没有，COALESCE是将null的月份用investment的月份补足了，这样相当于union了两个subqueries里的month。</span></span><br><span class="line">       acquisitions.companies_acquired,</span><br><span class="line">       investments.companies_rec_investment</span><br><span class="line"><span class="keyword">FROM</span> ( </span><br><span class="line">    <span class="keyword">SELECT</span> acquired_month <span class="keyword">AS</span> <span class="keyword">month</span>,</span><br><span class="line">           <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> company_permalink) <span class="keyword">AS</span> companies_acquired</span><br><span class="line">    <span class="keyword">FROM</span> tutorial.crunchbase_acquisitions</span><br><span class="line">    <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span> ) acquisitions</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">JOIN</span> ( </span><br><span class="line">    <span class="keyword">SELECT</span> funded_month <span class="keyword">AS</span> <span class="keyword">month</span>,</span><br><span class="line">           <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> company_permalink) <span class="keyword">AS</span> companies_rec_investment</span><br><span class="line">    <span class="keyword">FROM</span> tutorial.crunchbase_investments</span><br><span class="line">    <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span> )investments</span><br><span class="line"><span class="keyword">ON</span> acquisitions.month = investments.month</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span> <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure></p>
 <p><em>Practice question: Write a query that counts the number of companies founded and acquired by quarter starting in Q1 2012. Create the aggregations in two separate queries, then join them.</em><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COALESCE</span>(companies.founded_quarter, acquisitions.acquired_quarter) <span class="keyword">AS</span> <span class="keyword">quarter</span>,</span><br><span class="line">       companies.num_founded,</span><br><span class="line">       acquisitions.num_acquired</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">  <span class="keyword">SELECT</span> founded_quarter,</span><br><span class="line">         <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> permalink) <span class="keyword">AS</span> num_founded</span><br><span class="line">  <span class="keyword">FROM</span> tutorial.crunchbase_companies</span><br><span class="line">  <span class="keyword">WHERE</span> founded_year &gt;= <span class="number">2012</span></span><br><span class="line">  <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span>) companies</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">JOIN</span> (</span><br><span class="line">  <span class="keyword">SELECT</span> acquired_quarter,</span><br><span class="line">         <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> company_permalink) <span class="keyword">AS</span> num_acquired</span><br><span class="line">  <span class="keyword">FROM</span> tutorial.crunchbase_acquisitions </span><br><span class="line">  <span class="keyword">WHERE</span> acquired_year &gt;= <span class="number">2012</span></span><br><span class="line">  <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span>) acquisitions</span><br><span class="line"><span class="keyword">ON</span> companies.founded_quarter = acquired_quarter</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="Subqueries-and-UNIONs"><a href="#Subqueries-and-UNIONs" class="headerlink" title="Subqueries and UNIONs"></a>Subqueries and UNIONs</h3><p>用<code>UNION ALL</code>在subquery中合并被分成几块的数据：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*) <span class="keyword">AS</span> total_rows</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> *</span><br><span class="line">    <span class="keyword">FROM</span> tutorial.crunchbase_investments_part1</span><br><span class="line"></span><br><span class="line">    <span class="keyword">UNION</span> ALL</span><br><span class="line"></span><br><span class="line">    <span class="keyword">SELECT</span> *</span><br><span class="line">    <span class="keyword">FROM</span> tutorial.crunchbase_investments_part2</span><br><span class="line">     ) sub</span><br></pre></td></tr></table></figure></p>
@@ -434,7 +434,7 @@
 <h3 id="RANK-and-DENSE-RANK"><a href="#RANK-and-DENSE-RANK" class="headerlink" title="RANK() and DENSE_RANK()"></a>RANK() and DENSE_RANK()</h3><p>ROW_NUMBER对于并列的情况没有考虑，而是直接assign两个不同的row number给两个相同值的record。比如上面<code>ORDER BY start_time</code>，很有可能有相同的<code>start_time</code>，但<code>ROW_NUMBER()</code>依然会给这两个相同的值不同的row number。</p>
 <p>而<code>RANK()</code>则考虑了这种情况，对相同的值就赋予相同的rank，下一级就跳一个数。比如有两个第四名时，下一个就是第六名。<br><code>DENSE_RANK()</code>处理方式稍有不同，在有两个第四名时，下一个仍是第五名，它不会skip rank。<br>sample code:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       <span class="keyword">RANK</span>() <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                    <span class="keyword">ORDER</span> <span class="keyword">BY</span> start_time) <span class="keyword">AS</span> <span class="keyword">rank</span></span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br></pre></td></tr></table></figure></p>
 <p><em>Practice question</em>:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- Write a query that shows the 5 longest rides from each starting terminal, ordered by terminal, and longest to shortest rides within each terminal. Limit to rides that occurred before Jan. 8, 2012.</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       <span class="keyword">RANK</span>() <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                    <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> <span class="keyword">rank</span></span><br><span class="line">    <span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line">    <span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br><span class="line">) a</span><br><span class="line"><span class="keyword">WHERE</span> a.rank &lt;=<span class="number">5</span></span><br></pre></td></tr></table></figure></p>
-<p>这个问题要输出前5个，所以用RANK()直接选到5就可以，如果有第五名并列的情况就再考虑。</p>
+<p>这个问题要输出前5个，所以用RANK()直接选到5就可以，如果有并列的情况就用DENSE_RANK。</p>
 <h3 id="NTILE"><a href="#NTILE" class="headerlink" title="NTILE"></a>NTILE</h3><p><code>NTILE()</code>可以用来找当前record的percentile，syntax是<code>NTILE(# of buckets you want)</code>。比如<code>NTILE(4)</code>是等分成4分相当于quartile，<code>NTILE(1000)</code>是等分成100份相当于percentile。算percentile的对象是<code>ORDER BY</code>后面的field</p>
 <p>sample code：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       NTILE(<span class="number">4</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                      <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> quartile,</span><br><span class="line">       NTILE(<span class="number">5</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                      <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> quintile,</span><br><span class="line">       NTILE(<span class="number">100</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                        <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> percentile</span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> start_terminal,</span><br><span class="line">         duration_seconds</span><br></pre></td></tr></table></figure></p>
 <p><em>需要注意的是如果dataset太小（行数小于Buckets的数量），那PERCENTILE就会像ROW_NUMBER()一样算下去，无法准确表示PERCENTILE</em></p>
@@ -442,9 +442,9 @@
 <h3 id="LAG-AND-LEAD"><a href="#LAG-AND-LEAD" class="headerlink" title="LAG AND LEAD"></a>LAG AND LEAD</h3><p>LAG和LEAD可以让你pull当前record之前和之后的records，具体pull之前的第几条在括号内specify即可。如<code>LAG(duration_seconds, 1)</code>取的是之前一条的duration_seconds, <code>LEAD(duration_seconds, 1)</code>取的是后一条的duration_seconds。当然排列顺序也由<code>ORDER BY</code>决定。</p>
 <p>Sample code: 算的是每一个start_terminal中按duration seconds从短到长排<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       LAG(duration_seconds, <span class="number">1</span>) <span class="keyword">OVER</span></span><br><span class="line">         (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> lag,</span><br><span class="line">       <span class="keyword">LEAD</span>(duration_seconds, <span class="number">1</span>) <span class="keyword">OVER</span></span><br><span class="line">         (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> <span class="keyword">lead</span></span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> start_terminal, duration_seconds</span><br></pre></td></tr></table></figure></p>
 <p>在不同行之间计算<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       duration_seconds - LAG(duration_seconds, <span class="number">1</span>) <span class="keyword">OVER</span></span><br><span class="line">         (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds)<span class="keyword">AS</span> <span class="keyword">difference</span></span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> start_terminal, duration_seconds</span><br></pre></td></tr></table></figure></p>
-<p><em>注意：拿LAG(X, 1)和LEAD(X, 1)来做例子，对于PARTITION里第一条（没有前一条），LAG为空。对于PARTITION里最后一条（没有后一条），LEAD为空</em><br>如果想去掉null，可以用一个outer query<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  ( <span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">           duration_seconds,</span><br><span class="line">           duration_seconds -LAG(duration_seconds, <span class="number">1</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                                                            <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> <span class="keyword">difference</span></span><br><span class="line">   <span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line">   <span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br><span class="line">   <span class="keyword">ORDER</span> <span class="keyword">BY</span> start_terminal,</span><br><span class="line">            duration_seconds ) sub</span><br><span class="line"><span class="keyword">WHERE</span> sub.difference <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br></pre></td></tr></table></figure></p>
+<p><em>注意：拿LAG(X, 1)和LEAD(X, 1)来做例子，对于PARTITION里第一条（没有前一条），LAG为空。对于PARTITION里最后一条（没有后一条），LEAD为空</em><br>如果想去掉null，可以用一个outer query<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  ( <span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">           duration_seconds,</span><br><span class="line">           duration_seconds - LAG(duration_seconds, <span class="number">1</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                                                            <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> <span class="keyword">difference</span></span><br><span class="line">   <span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line">   <span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br><span class="line">   <span class="keyword">ORDER</span> <span class="keyword">BY</span> start_terminal,</span><br><span class="line">            duration_seconds ) sub</span><br><span class="line"><span class="keyword">WHERE</span> sub.difference <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="Defining-a-Window-Alias"><a href="#Defining-a-Window-Alias" class="headerlink" title="Defining a Window Alias"></a>Defining a Window Alias</h3><p>如果需要写多个window function用相同的window，可以给window一个alias，就不用重复写很多遍window1的代码了。比如将下面一段：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       NTILE(<span class="number">4</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                      <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> quartile,</span><br><span class="line">       NTILE(<span class="number">5</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                      <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> quintile,</span><br><span class="line">       NTILE(<span class="number">100</span>) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                        <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds) <span class="keyword">AS</span> percentile</span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> start_terminal,</span><br><span class="line">         duration_seconds</span><br></pre></td></tr></table></figure></p>
-<p>改为用alias的：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       NTILE(<span class="number">4</span>) <span class="keyword">OVER</span> ntile_window <span class="keyword">AS</span> quartile,</span><br><span class="line">       NTILE(<span class="number">5</span>) <span class="keyword">OVER</span> ntile_window <span class="keyword">AS</span> quintile,</span><br><span class="line">       NTILE(<span class="number">100</span>) <span class="keyword">OVER</span> ntile_window <span class="keyword">AS</span> percentile</span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span> </span><br><span class="line">WINDOW ntile_window <span class="keyword">AS</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal</span><br><span class="line">                                                        <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> start_terminal,</span><br><span class="line">         duration_seconds</span><br></pre></td></tr></table></figure></p>
+<p>改为用alias的：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> start_terminal,</span><br><span class="line">       duration_seconds,</span><br><span class="line">       NTILE(<span class="number">4</span>) <span class="keyword">OVER</span> ntile_window <span class="keyword">AS</span> quartile,</span><br><span class="line">       NTILE(<span class="number">5</span>) <span class="keyword">OVER</span> ntile_window <span class="keyword">AS</span> quintile,</span><br><span class="line">       NTILE(<span class="number">100</span>) <span class="keyword">OVER</span> ntile_window <span class="keyword">AS</span> percentile</span><br><span class="line"><span class="keyword">FROM</span> tutorial.dc_bikeshare_q1_2012</span><br><span class="line"><span class="keyword">WHERE</span> start_time &lt; <span class="string">'2012-01-08'</span> </span><br><span class="line">WINDOW ntile_window <span class="keyword">AS</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> start_terminal <span class="keyword">ORDER</span> <span class="keyword">BY</span> duration_seconds)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> start_terminal,</span><br><span class="line">         duration_seconds</span><br></pre></td></tr></table></figure></p>
 <p>需要注意的是<code>WINDOW</code>clause必须在<code>WHERE</code>clause之后。</p>
 <hr>
 <h2 id="Performance-Tuning-SQL-Queries"><a href="#Performance-Tuning-SQL-Queries" class="headerlink" title="Performance Tuning SQL Queries"></a>Performance Tuning SQL Queries</h2><p>想让SQL跑的更快，主要是要减少calculation的数量。下面几点是对calculation数量有明显影响，且controllable的：</p>
@@ -606,10 +606,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
+                <a href="/categories/index.html">
                   <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
-                
+                </a>
               </div>
             
 
@@ -617,10 +617,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
+                <a href="/tags/index.html">
                   <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
@@ -671,7 +671,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -689,7 +689,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
 
 
 
@@ -789,6 +789,13 @@
   
   
 
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
@@ -832,28 +839,6 @@
 
 
 
-
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: false,
-        appId: 'sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz',
-        appKey: 'cDbeqqCJt4dq4hu7C9GaCrHB',
-        placeholder: 'Leave your comment here',
-        avatar:'mm',
-        guest_info:guest,
-        pageSize:'10' || 10,
-    });
-  </script>
 
 
 
