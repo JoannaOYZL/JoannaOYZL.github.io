@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Joanna">
 <meta property="og:description" content="Makeover Monday 2019 Week 6">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-18T04:20:47.340Z">
+<meta property="og:updated_time" content="2019-02-25T03:23:07.483Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chinese New Year vs. American Thanksgiving">
 <meta name="twitter:description" content="Makeover Monday 2019 Week 6">
@@ -375,7 +375,7 @@
 <p>To be more specific, <em>“Each week we post a link to a chart, and its data, and then you rework the chart. Maybe you retell the story more effectively, or find a new story in the data. We’re curious to see the different approaches you all take. Whether it’s a simple bar chart or an elaborate infographic, we encourage everyone of all skills to partake. Together we can have broader conversations about and with data.”</em></p>
 <p>Inspired by <a href="https://yudong-94.github.io/personal-website/" target="_blank" rel="noopener">Dong Yu</a> (an amazing data analyst also graduated from USC), I started this project from January 2019 and hope to better understand how to interpret data and translate insights into impactful visualizations.</p>
 <p>All my Tableau visualizations can be found <strong><a href="https://public.tableau.com/profile/zhuolin.ouyang#!/" target="_blank" rel="noopener">here</a></strong> through my Teableau Public profile.</p>
-<h2 id="Makeover-Monday-Week-6"><a href="#Makeover-Monday-Week-6" class="headerlink" title="Makeover Monday Week 6"></a>Makeover Monday Week 6</h2><p>This week the dataset is pretty simple and straighforward, yet very interesting. We focused on visualizing the differences between how Chinese and American celebrate their own major holidays: Chinese New Year and Thanksgiving, respectively. </p>
+<h2 id="Makeover-Monday-Week-6"><a href="#Makeover-Monday-Week-6" class="headerlink" title="Makeover Monday Week 6"></a>Makeover Monday Week 6</h2><p>This week the dataset is pretty simple and straighforward, yet very interesting. The project focused on visualizing the differences between how Chinese and American celebrate their own major holidays: Chinese New Year and Thanksgiving, respectively. </p>
 <p>The original visualization and dataset is <a href="https://data.world/makeovermonday/2019w6" target="_blank" rel="noopener">here</a> in case you are interested, and the data source is from <a href="https://www.statista.com/chart/3246/how-chinese-new-year-compares-with-thanksgiving/" target="_blank" rel="noopener">Statista</a>.</p>
 <p>I reshaped the dataset from long format to wide format, and took into account the population of the two countries by using the per capita amount in each category. I have attached my simple R code below.<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(readxl)</span><br><span class="line"><span class="keyword">library</span>(dplyr)</span><br><span class="line"><span class="keyword">library</span>(tidyr)</span><br><span class="line"></span><br><span class="line">setwd(<span class="string">"~/Documents/USC/Career/Makeover Monday/Week06"</span>)</span><br><span class="line">data = read_excel(<span class="string">"Chinese New Year vs Thanksgiving.xlsx"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Extract the total population for both China and USA </span></span><br><span class="line">china_pop = data %&gt;% </span><br><span class="line">  filter(Category == <span class="string">"Population Census 2010"</span>,</span><br><span class="line">         Country == <span class="string">"China"</span>) %&gt;% </span><br><span class="line">  select(Amount) %&gt;% </span><br><span class="line">  .$Amount</span><br><span class="line"></span><br><span class="line">usa_pop = data %&gt;% </span><br><span class="line">  filter(Category == <span class="string">"Population Census 2010"</span>,</span><br><span class="line">         Country == <span class="string">"USA"</span>) %&gt;% </span><br><span class="line">  select(Amount) %&gt;% </span><br><span class="line">  .$Amount</span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculate per capita amount for each category</span></span><br><span class="line">data = data %&gt;% </span><br><span class="line">  filter(Category != <span class="string">"Population Census 2010"</span>) %&gt;% </span><br><span class="line">  mutate(amt_per_capita = if_else(</span><br><span class="line">    Country == <span class="string">"China"</span>, Amount / china_pop, Amount / usa_pop</span><br><span class="line">  ))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reshape the dataset from long to wide format, remove redundant columns, and rename new columns</span></span><br><span class="line">wide_data = data %&gt;% </span><br><span class="line">  spread(Category, amt_per_capita, <span class="string">""</span>) %&gt;% </span><br><span class="line">  select(-Amount, -Unit) %&gt;% </span><br><span class="line">  rename(`Expenditure per Person` = `Holiday retail and restaurant expenditure`,</span><br><span class="line">         `Trips per Person` = `Number of trips during holiday`,</span><br><span class="line">         `TV Viewership Percentage` = `Holiday TV viewership`)</span><br><span class="line"></span><br><span class="line">write.csv(wide_data, <span class="string">"reshaped dataset.csv"</span>)</span><br></pre></td></tr></table></figure></p>
 <p>I used bar chart below to visualize the differences in each category.</p>
@@ -430,6 +430,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/16/MM07/" rel="prev" title="Trump’s Executive Time">
+                Trump’s Executive Time <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -506,7 +510,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
