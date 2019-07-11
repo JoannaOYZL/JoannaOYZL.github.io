@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="SQL," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Datacamp course notes on relational db in SQL.">
+<meta name="keywords" content="SQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction to Relational Databases in SQL">
+<meta property="og:url" content="https://joannaoyzl.github.io/2019/07/10/Relational-DB-in-SQL/index.html">
+<meta property="og:site_name" content="Joanna">
+<meta property="og:description" content="Datacamp course notes on relational db in SQL.">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-07-11T07:00:28.563Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Introduction to Relational Databases in SQL">
+<meta name="twitter:description" content="Datacamp course notes on relational db in SQL.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://joannaoyzl.github.io/2019/07/10/Relational-DB-in-SQL/"/>
+
+
+
+
+
+  <title>Introduction to Relational Databases in SQL | Joanna</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-134453862-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joanna</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://joannaoyzl.github.io/2019/07/10/Relational-DB-in-SQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joanna">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joanna">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Introduction to Relational Databases in SQL</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-10T13:06:45-07:00">
+                2019-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Course-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Course Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/10/Relational-DB-in-SQL/" class="leancloud_visitors" data-flag-title="Introduction to Relational Databases in SQL">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Datacamp course notes on relational db in SQL.<br><a id="more"></a></p>
+<h1 id="Basic-Concepts"><a href="#Basic-Concepts" class="headerlink" title="Basic Concepts"></a>Basic Concepts</h1><p>Advantages of relational database:</p>
+<ol>
+<li>real-life entities become tables. Each table will only contain information/attributes that are directed related to that entity.</li>
+<li>reduced redundancy. No need to repeat the same person’s name multiple times if he shows up in multiple entities.</li>
+<li>data integrity by relationships. one - one, one - many, many - many</li>
+</ol>
+<h1 id="Dealing-with-Redundancy"><a href="#Dealing-with-Redundancy" class="headerlink" title="Dealing with Redundancy"></a>Dealing with Redundancy</h1><p>Sometimes we may detect redundancy in one table, since it contains multiple entities and repetitive information. We can seperate those information into multiple tables by creating new tables, and then migrate the data into them. </p>
+<ul>
+<li><p><strong>Create Tables</strong></p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line">column_a data_type,</span><br><span class="line">column_b data_type,</span><br><span class="line">column_c data_type</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*EXAMPLE*/</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> weather (</span><br><span class="line">    clouds <span class="built_in">text</span>,</span><br><span class="line">    temperature <span class="built_in">numeric</span>,</span><br><span class="line">    weather_station <span class="built_in">char</span>(<span class="number">5</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Add Columns</strong><br>We can add columns into table.</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">COLUMN</span> column_name data_type;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*EXAMPLE*/</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> professors</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">COLUMN</span> university_shortname <span class="built_in">text</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Change Column Name</strong></p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">RENAME</span> <span class="keyword">COLUMN</span> old_name <span class="keyword">TO</span> new_name;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Drop a Column</strong><br>Sometimes we would find that the rest of the columns can already uniquely identify a row, so the column becomes redundant. We can drop that by the following operation.</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">COLUMN</span> column_name;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Migrate Data</strong><br>We can migrate data from one table to another.</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*university_professors --&gt; organizations*/</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> organizations </span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> <span class="keyword">organization</span>, organization_sector</span><br><span class="line"><span class="comment">/*The above DISTINCT applies to all listed columns*/</span> </span><br><span class="line"><span class="keyword">FROM</span> university_professors;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*normal case below*/</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name (column_a, column_b)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="string">"value_a"</span>, <span class="string">"value_b"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*EXAMPLE*/</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> transactions (transaction_date, amount, fee) </span><br><span class="line"><span class="keyword">VALUES</span> (<span class="string">'2018-24-09'</span>, <span class="number">5454</span>, <span class="string">'30'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Drop a Table</strong><br>After migrating the data, we can delete the redundant table by the following operation</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> table_name;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints"></a>Constraints</h1><p>With the specified constraints, we can achieve better data quality.</p>
+<ul>
+<li><p>Types</p>
+<ol>
+<li><strong>Integrity constraints</strong>, e.g. data types on columns<br>Implementing such a type on a column would disallow anything that doesn’t fit the structure specified.</li>
+<li><strong>Key constraints</strong>, e.g. primary keys</li>
+<li><strong>Referential integrity constraints</strong>, enforced through foreign keys</li>
+</ol>
+</li>
+<li><p>Why constraints?</p>
+<ul>
+<li>Constraints give the data structure</li>
+<li>Constraints help with consistency, and thus data quality</li>
+<li>Data quality is a business advantage/ data science prerequisite</li>
+<li>Enforcing is difficult, but PostgreSQL helps</li>
+</ul>
+</li>
+</ul>
+<h2 id="Dealing-with-Data-Types"><a href="#Dealing-with-Data-Types" class="headerlink" title="Dealing with Data Types"></a>Dealing with Data Types</h2><ul>
+<li><p>Basics</p>
+<ol>
+<li>Enforced on columns (i.e. attributes)</li>
+<li>Define the so-called “domain” of a column</li>
+<li>Define what operations are possible</li>
+<li>Enfore consistent storage of values, e.g. the number of characters</li>
+</ol>
+</li>
+<li><p>Most common types</p>
+<ul>
+<li><strong>text</strong>: character strings of any length</li>
+<li><strong>varchar [(x)]</strong>: a <strong>maximum</strong> of n characters</li>
+<li><strong>char [(x)]</strong>: a <strong>fixed-length</strong> string of n characters</li>
+<li>boolean: can only take three states, e.g. TRUE, FALSE and NULL (unknown)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>Alter types after table creation</strong></p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> students</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> <span class="keyword">name</span> </span><br><span class="line"><span class="keyword">TYPE</span> <span class="built_in">varchar</span>(<span class="number">128</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> students</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> average_grade</span><br><span class="line"><span class="keyword">TYPE</span> <span class="built_in">integer</span></span><br><span class="line"><span class="comment">-- Round to the nearest integer, </span></span><br><span class="line"><span class="comment">-- so that it turns 5.54 into 6, not 5, before altering the type</span></span><br><span class="line"><span class="keyword">USING</span> <span class="keyword">ROUND</span>(average_grade); </span><br><span class="line"></span><br><span class="line"><span class="comment">-- Truncate the string before converting the varchar to shorter length</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> column_name</span><br><span class="line"><span class="keyword">TYPE</span> <span class="built_in">varchar</span>(x)</span><br><span class="line"><span class="keyword">USING</span> <span class="keyword">SUBSTRING</span>(column_name <span class="keyword">FROM</span> <span class="number">1</span> <span class="keyword">FOR</span> x)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Using <code>CAST()</code> to convert data type on-the-fly</strong></p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> temperature * <span class="keyword">CAST</span>(wind_speed <span class="keyword">AS</span> <span class="built_in">integer</span>) <span class="keyword">AS</span> wind_chill</span><br><span class="line"><span class="keyword">FROM</span> weather;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Not-NULL-Constraint"><a href="#Not-NULL-Constraint" class="headerlink" title="Not NULL Constraint"></a>Not NULL Constraint</h2><ul>
+<li>Basics:<ul>
+<li>Disallow NULL values in a certain column</li>
+<li>Must hold true for the current state</li>
+<li>Must hold true for any future state</li>
+</ul>
+</li>
+</ul>
+<p>Two null values must not have the same meaning.</p>
+<p>When creating a table:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> students (</span><br><span class="line"> ssn <span class="built_in">integer</span> <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line"> lastname <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line"> home_phone <span class="built_in">integer</span>,</span><br><span class="line"> office_phone <span class="built_in">integer</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<p>When changing the constraint after the table has been created:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- add constraint</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> students </span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> home_phone </span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- remove constraint</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> students </span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> ssn </span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Unique-Constraint"><a href="#Unique-Constraint" class="headerlink" title="Unique Constraint"></a>Unique Constraint</h2><ul>
+<li>Basics<ul>
+<li>Disallow duplicate values in a column</li>
+<li>Must hold true for the current state</li>
+<li>Must hold true for any future state</li>
+</ul>
+</li>
+</ul>
+<p>When creating a table:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line"> column_name <span class="keyword">UNIQUE</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<p>When adding the constraint after the table has been created:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> some_name <span class="keyword">UNIQUE</span>(column_name);</span><br><span class="line"><span class="comment">-- some_name is the name of the constraint, which is arbitrary by you, but has to be set</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="Keys"><a href="#Keys" class="headerlink" title="Keys"></a>Keys</h1><p><strong>What is a Key?</strong></p>
+<ul>
+<li>Attribute(s) that identify a record uniquely</li>
+<li>As long as attributes can be removed: <strong>superkey</strong> (the combination of attributes can still uniquely identify each row after removing one or more attributes)</li>
+<li>If no more attributes can be removed: <strong>minimal superkey</strong> or <strong>key</strong> (the combination of attributes can no longer uniquely identify each row after removing any attributes)</li>
+<li>There can be multiple keys that satisfy the above <strong>minimal superkey</strong> requirement, and thus are all called <strong>candidate keys</strong>.</li>
+</ul>
+<h2 id="Primary-Key"><a href="#Primary-Key" class="headerlink" title="Primary Key"></a>Primary Key</h2><p><strong>What is a Primary Key?</strong></p>
+<ul>
+<li><strong>One</strong> primary key per database table, chosen from candidate keys</li>
+<li>Uniquely identifies records, e.g. for referencing in other tables</li>
+<li><strong>Unique</strong> and <strong>not-null</strong> constraints both apply</li>
+<li>Primary keys are time-invariant: choose columns wisely! They must hold for both the current data and future data. </li>
+</ul>
+<p><br></p>
+<ul>
+<li><p><strong>Specifying Primary Key</strong><br>When creating a table:</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- set one attribute as primary key</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> products (</span><br><span class="line">    product_no <span class="built_in">integer</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">    <span class="keyword">name</span> <span class="built_in">text</span>,</span><br><span class="line">    price <span class="built_in">numeric</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- set more than one attributes as primary key</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> example (</span><br><span class="line">    a <span class="built_in">integer</span>,</span><br><span class="line">    b <span class="built_in">integer</span>,</span><br><span class="line">    c <span class="built_in">integer</span>,</span><br><span class="line">    PRIMARY <span class="keyword">KEY</span> (a, c)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>  When specifying primary key after creating the table</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> some_name PRIMARY <span class="keyword">KEY</span> (column_name)</span><br><span class="line"><span class="comment">-- have to give the constraint "some_name"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>What is a Surrogate Key?</strong><br>It is an artificial primary key, and we create it for the following reasons:</p>
+<ol>
+<li>Primary keys should be built from as few columns as possible</li>
+<li>Primary keys should never change over time</li>
+</ol>
+<ul>
+<li><p><strong>Ways to create a surrogate key</strong></p>
+<ol>
+<li><p>Adding a surrogate key with serial data type<br>Add a column called ‘id’, which is a series on incrementing numbers so that it can uniquely identify each row. (like row number)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> cars</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">COLUMN</span> <span class="keyword">id</span> <span class="built_in">serial</span> PRIMARY <span class="keyword">KEY</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Whenever you add a new record to the table, </span></span><br><span class="line"><span class="comment">-- it will automatically get a number that does not exist yet</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> cars</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="string">'Volkswagen'</span>, <span class="string">'Blitz'</span>, <span class="string">'black'</span>); <span class="comment">-- insert another row and generates a new id with it</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- If you try to specify an ID that already exists,</span></span><br><span class="line"><span class="comment">-- the primary key constraint will prevent you from doing so</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> cars</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="string">'Opel'</span>, <span class="string">'Astra'</span>, <span class="string">'green'</span>, <span class="number">1</span>); <span class="comment">-- throws error since 1 already exists</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Combining several columns into a new one</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- create a new column</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">COLUMN</span> column_c <span class="built_in">varchar</span>(<span class="number">256</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- concat two existing columns together and set the result into the new column </span></span><br><span class="line"><span class="keyword">UPDATE</span> table_name</span><br><span class="line"><span class="keyword">SET</span> column_c = <span class="keyword">CONCAT</span>(column_a, column_b);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- set the new column as surrogate primary key</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> pk PRIMARY <span class="keyword">KEY</span> (column_c);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="Foreign-Key"><a href="#Foreign-Key" class="headerlink" title="Foreign Key"></a>Foreign Key</h2><p><strong>What is a Foregin Key?</strong></p>
+<ul>
+<li>A foreign key (FK) points to the primary key (PK) of another table</li>
+<li>Domain of FK must be equal to domain of PK (same data type)</li>
+<li>Each value of FK <strong>must exist</strong> in <strong>PK</strong> of the other table (FK constraint or “<strong>referential integrity</strong>“)</li>
+<li>FKs are not actual keys (can have duplicates and NULL)</li>
+</ul>
+<p>When creating table with foreign key:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Create manufacturers table</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> manufacturers (</span><br><span class="line"> <span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">255</span>) PRIMARY <span class="keyword">KEY</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> manufacturers </span><br><span class="line"><span class="keyword">VALUES</span> (<span class="string">'Ford'</span>), (<span class="string">'VW'</span>), (<span class="string">'GM'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- create car table, and reference the columne manufacturer_name </span></span><br><span class="line"><span class="comment">-- to manufacturers table's name column, </span></span><br><span class="line"><span class="comment">-- which is manufacturer table's primary key</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> cars (</span><br><span class="line"> <span class="keyword">model</span> <span class="built_in">varchar</span>(<span class="number">255</span>) PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line"> manufacturer_name <span class="built_in">integer</span> <span class="keyword">REFERENCES</span> manufacturers (<span class="keyword">name</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- From now on, only cars with valid and existing manufacturers </span></span><br><span class="line"><span class="comment">-- may be entered into the car table, </span></span><br><span class="line"><span class="comment">-- due to the foreign key constraint.</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> cars </span><br><span class="line"><span class="keyword">VALUES</span> (<span class="string">'Ranger'</span>, <span class="string">'Ford'</span>), (<span class="string">'Beetle'</span>, <span class="string">'VW'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>When specifying foreign keys to existing tables:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> a </span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> a_fkey FOREIGN <span class="keyword">KEY</span> (b_id) <span class="keyword">REFERENCES</span> b (<span class="keyword">id</span>);</span><br></pre></td></tr></table></figure></p>
+<h3 id="N-M-relationship"><a href="#N-M-relationship" class="headerlink" title="N:M relationship"></a>N:M relationship</h3><p>How to implement this kind of relationship?</p>
+<ul>
+<li>Create a table</li>
+<li>Add foreign keys for <strong>every connected table</strong></li>
+<li>Add additional attributes</li>
+<li><strong>No primary key!</strong> Can possibly combine several attributes together to have some form of unique constraint in that table.</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> affiliations (</span><br><span class="line">    professor_id <span class="built_in">integer</span> <span class="keyword">REFERENCES</span> professors (<span class="keyword">id</span>),</span><br><span class="line">    organization_id <span class="built_in">varchar</span>(<span class="number">256</span>) <span class="keyword">REFERENCES</span> <span class="keyword">organization</span> (<span class="keyword">id</span>),</span><br><span class="line">    <span class="keyword">function</span> <span class="built_in">varchar</span>(<span class="number">256</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="Referential-Integrity"><a href="#Referential-Integrity" class="headerlink" title="Referential Integrity"></a>Referential Integrity</h3><p><strong>What is Referential Integrity?</strong></p>
+<ul>
+<li>A record referencing another table must refer to an existing record in that table.</li>
+<li>Specified between two tables</li>
+<li>Enforced through foreign keys</li>
+</ul>
+<p><strong>Referential Integrity Violations</strong><br>Referential integrity from table A to table B is violated… (A has a foreign key that references from B)</p>
+<ul>
+<li>…if a record in table B that is referenced from a record in table A is deleted.</li>
+<li>…if a record in table A referencing a non-existing record from table B is inserted.</li>
+<li>Foreign keys prevent violations!</li>
+</ul>
+<p><strong>Dealing with violations</strong><br>ON DELETE…</p>
+<ul>
+<li><p>…NO ACTION: Throw an error</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> a (</span><br><span class="line"><span class="keyword">id</span> <span class="built_in">integer</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">column_a <span class="built_in">varchar</span>(<span class="number">64</span>), </span><br><span class="line">...,</span><br><span class="line">b_id <span class="built_in">integer</span> <span class="keyword">REFERENCES</span> b (<span class="keyword">id</span>) <span class="keyword">ON</span> <span class="keyword">DELETE</span> <span class="keyword">NO</span> <span class="keyword">ACTION</span></span><br><span class="line">);</span><br><span class="line"><span class="comment">-- will throw an error if violation happens</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>…CASCADE: Delete all referencing records</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> a (</span><br><span class="line"><span class="keyword">id</span> <span class="built_in">integer</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">column_a <span class="built_in">varchar</span>(<span class="number">64</span>), </span><br><span class="line">...,</span><br><span class="line">b_id <span class="built_in">integer</span> <span class="keyword">REFERENCES</span> b (<span class="keyword">id</span>) <span class="keyword">ON</span> <span class="keyword">DELETE</span> <span class="keyword">CASCADE</span></span><br><span class="line">);</span><br><span class="line"><span class="comment">-- cascade the deletion</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>…RESTRICT: Throw an error</p>
+</li>
+<li>…SET NULL: Set the referencing column to NULL</li>
+<li>…SET DEFAULT: Set the referencing column to its default value</li>
+</ul>
+<p>To change the default behavior <code>ON DELETE NO ACTION</code>, we have to delete the key constraint and then add a new one with a different ON DELETE behavior.</p>
+<p>For deleting constraints, though, we need to know their name. This information is also stored in <code>information_schema</code>.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Identify the correct constraint name</span></span><br><span class="line"><span class="keyword">SELECT</span> constraint_name, table_name, constraint_type</span><br><span class="line"><span class="keyword">FROM</span> information_schema.table_constraints</span><br><span class="line"><span class="keyword">WHERE</span> constraint_type = <span class="string">'FOREIGN KEY'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Drop the right foreign key constraint</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> affiliations</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span> affiliations_organization_id_fkey;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Add a new foreign key constraint from affiliations to organizations which cascades deletion</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> affiliations</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> affiliations_organization_id_fkey FOREIGN <span class="keyword">KEY</span> (organization_id) <span class="keyword">REFERENCES</span> organizations (<span class="keyword">id</span>) <span class="keyword">ON</span> <span class="keyword">DELETE</span> <span class="keyword">CASCADE</span>;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL/" rel="tag"># SQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/09/Python Cookbook/" rel="next" title="Python Cookbook">
+                <i class="fa fa-chevron-left"></i> Python Cookbook
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/11/Statistical-Thinking-in-Python/" rel="prev" title="Statistical Thinking in Python">
+                Statistical Thinking in Python <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview sidebar-nav-active" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Joanna" />
+            
+              <p class="site-author-name" itemprop="name">Joanna</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic-Concepts"><span class="nav-text">Basic Concepts</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dealing-with-Redundancy"><span class="nav-text">Dealing with Redundancy</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Constraints"><span class="nav-text">Constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dealing-with-Data-Types"><span class="nav-text">Dealing with Data Types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Not-NULL-Constraint"><span class="nav-text">Not NULL Constraint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unique-Constraint"><span class="nav-text">Unique Constraint</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Keys"><span class="nav-text">Keys</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Primary-Key"><span class="nav-text">Primary Key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Foreign-Key"><span class="nav-text">Foreign Key</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#N-M-relationship"><span class="nav-text">N:M relationship</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Referential-Integrity"><span class="nav-text">Referential Integrity</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joanna</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz", "cDbeqqCJt4dq4hu7C9GaCrHB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

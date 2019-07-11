@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Notes on useful functions or operations in Python.">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python Cookbook">
+<meta property="og:url" content="https://joannaoyzl.github.io/2019/06/09/Python Cookbook/index.html">
+<meta property="og:site_name" content="Joanna">
+<meta property="og:description" content="Notes on useful functions or operations in Python.">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-07-10T05:02:09.833Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python Cookbook">
+<meta name="twitter:description" content="Notes on useful functions or operations in Python.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://joannaoyzl.github.io/2019/06/09/Python Cookbook/"/>
+
+
+
+
+
+  <title>Python Cookbook | Joanna</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-134453862-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joanna</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://joannaoyzl.github.io/2019/06/09/Python Cookbook/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joanna">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joanna">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python Cookbook</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-09T22:35:42-07:00">
+                2019-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Course-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Course Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/06/09/Python Cookbook/" class="leancloud_visitors" data-flag-title="Python Cookbook">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Notes on useful functions or operations in Python.<br><a id="more"></a></p>
+<h1 id="Basic-Calculations"><a href="#Basic-Calculations" class="headerlink" title="Basic Calculations"></a>Basic Calculations</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Exponentiation</span></span><br><span class="line"><span class="number">4</span> ** <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Modulo</span></span><br><span class="line"><span class="number">18</span> % <span class="number">7</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># String summation</span></span><br><span class="line"><span class="string">'ab'</span> + <span class="string">'cd'</span> <span class="comment"># returns ‘abcd'</span></span><br></pre></td></tr></table></figure>
+<h1 id="Basic-Manipulations"><a href="#Basic-Manipulations" class="headerlink" title="Basic Manipulations"></a>Basic Manipulations</h1><h2 id="Lists"><a href="#Lists" class="headerlink" title="Lists"></a>Lists</h2><p><strong>Characteristics</strong></p>
+<ul>
+<li>Name a collection of values. <code>d = [a,b,c]</code></li>
+<li>Can contain any type and different types</li>
+<li>List of lists: <code>d2 = [[a,1],[b,2],[c,3]]</code></li>
+</ul>
+<p><strong>Subsetting lists</strong><br>zero-based indexing: start from 0, <code>[start (inclusive):end (exclusive)]</code></p>
+<ul>
+<li><code>x[0]</code>: returns the first element</li>
+<li><code>x[-1]</code>: returns the last element</li>
+<li><code>x[-2]</code>: returns the last but one element</li>
+<li><code>x[3:5]</code>: returns the fourth and fifth element. <em>The element represented by index 5 is not selected, so this slicing is like [start:end) mathemetically</em></li>
+<li><code>x[:4]</code>: returns all the element from the start to the <strong>fourth</strong></li>
+<li><code>x[5:]</code>: returns all the element from the <strong>sixth</strong> element to the last one</li>
+</ul>
+<p><strong>List Manipulation</strong></p>
+<ul>
+<li><p>Replaced the indexed part of the list with desired values</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x[<span class="number">0</span>:<span class="number">2</span>] = [a, b]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Adding and removing elements</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># adding</span></span><br><span class="line">x = x + [a, b] <span class="comment">#append a and b to the end of the list</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># removing</span></span><br><span class="line"><span class="keyword">del</span>(x[<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>*Important Note</strong>: when you create a new list, what actually happens is that you store a list into the computer memory, and store the “address” of the list to the variable. This means that the variable actually does not contain all the list elements, but rather contains a reference to the list elements. This difference is especially important when you try to copy the list:*<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line">y = x</span><br><span class="line">y[<span class="number">1</span>] = <span class="string">'z'</span></span><br></pre></td></tr></table></figure></p>
+<p>Now if you print <code>y</code>, you will see the following output: <code>[&#39;a&#39;, &#39;z&#39;, &#39;c&#39;]</code>, while interestingly, the element in <code>x</code> is also changed into <code>[&#39;a&#39;, &#39;z&#39;, &#39;c&#39;]</code>. </p>
+<p>That is because when you copy <code>x</code> to <code>y</code> with an equal sign, you copied the reference to <code>y</code>, not the list elements themselves. Therefore, when you are updating an element in the list, which was stored in the computer memory, both <code>x</code> and <code>y</code>, whose reference point to this list, will return changed outcome.</p>
+<p>If you want to create a list <code>y</code> with a new list of elements but same values as <code>x</code>, you should use <code>y = list(x)</code> or <code>y = x[:]</code> to select all the elements explicitly. Now when you update the elements in <code>y</code>, <code>x</code> will not change accordingly.</p>
+<h2 id="Data-Frames"><a href="#Data-Frames" class="headerlink" title="Data Frames"></a>Data Frames</h2><p>Summing column-wise and row-wise<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># column-wise</span></span><br><span class="line">temp.sum()</span><br><span class="line"></span><br><span class="line"><span class="comment"># row-wise</span></span><br><span class="line">temp.sum(axis = <span class="string">'columns'</span>)</span><br></pre></td></tr></table></figure></p>
+<h1 id="Exploring-Dataset"><a href="#Exploring-Dataset" class="headerlink" title="Exploring Dataset"></a>Exploring Dataset</h1><h2 id="Initial-Examination"><a href="#Initial-Examination" class="headerlink" title="Initial Examination"></a>Initial Examination</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import the pandas library as pd</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reading Files</span></span><br><span class="line">data = pd.read_csv(<span class="string">'ransom.csv'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Examining the whole dataset</span></span><br><span class="line">data.info() <span class="comment">#shows number of cols and rows, variables' dayatype and memory usage</span></span><br><span class="line">data.describe() <span class="comment">#returns summary statistics of each column</span></span><br><span class="line">data.head() <span class="comment">#input number n to show top n lines</span></span><br><span class="line">data.tail() <span class="comment">#input number n to show bottom n lines</span></span><br><span class="line">data.shape <span class="comment">#number of cols and rows</span></span><br><span class="line">data.dtypes <span class="comment">#all columns' data types</span></span><br><span class="line">data.columns <span class="comment">#examine the columns</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Examning one variable</span></span><br><span class="line">type(variable_a) <span class="comment">#returns the data type of the variable</span></span><br><span class="line">data.col_a.value_counts() <span class="comment">#count unique values</span></span><br><span class="line">data.col_a.value_counts(normalize = <span class="keyword">True</span>) <span class="comment">#output proportions of unique values</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Tally table</span></span><br><span class="line">pd.crosstab(ri.driver_race, ri.driver_gender) <span class="comment">#shows a frequency table to tally how many times each combination of values occurs</span></span><br></pre></td></tr></table></figure>
+<h2 id="Merging-Data-Frames"><a href="#Merging-Data-Frames" class="headerlink" title="Merging Data Frames"></a>Merging Data Frames</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">apple_high = pd.merge(</span><br><span class="line">	left = apple, </span><br><span class="line">	right = high, </span><br><span class="line">	left_on = <span class="string">'date'</span>,</span><br><span class="line">	right_on = <span class="string">'DATE'</span>, </span><br><span class="line">	how = <span class="string">'left'</span>) <span class="comment"># type of join</span></span><br></pre></td></tr></table></figure>
+<h2 id="Converting-Data-Types"><a href="#Converting-Data-Types" class="headerlink" title="Converting Data Types"></a>Converting Data Types</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = float(b) <span class="comment"># convert into float</span></span><br><span class="line">str()</span><br><span class="line">int()</span><br><span class="line">bool()</span><br></pre></td></tr></table></figure>
+<p>When there are only a few different values in a column, it is more efficient in memory to convert it to a categorical data type. And it will also allows you to specify a logical order for the categories</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ri.stop_length.unique()</span><br><span class="line"><span class="comment"># Result: array(['short', 'medium', 'long'], dtype=object)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Specifying order</span></span><br><span class="line">cats = [<span class="string">'short'</span>, <span class="string">'medium'</span>, <span class="string">'long'</span>] <span class="comment"># a&lt;b&lt;c</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Convert the type</span></span><br><span class="line">ri[<span class="string">'stop_length'</span>] = ri.stop_length.astype(<span class="string">'category'</span>, ordered = <span class="keyword">True</span>, categories = cats)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Now you can use comparison operators on this column</span></span><br><span class="line">ri[ri.stop_length &gt; <span class="string">'short'</span>].shape <span class="comment"># filter only medium and long</span></span><br></pre></td></tr></table></figure>
+<h2 id="Data-Cleaning"><a href="#Data-Cleaning" class="headerlink" title="Data Cleaning"></a>Data Cleaning</h2><h3 id="Dealing-with-NAs"><a href="#Dealing-with-NAs" class="headerlink" title="Dealing with NAs"></a>Dealing with NAs</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Count the number of missing values in each column</span></span><br><span class="line">data.isnull().sum() </span><br><span class="line"></span><br><span class="line"><span class="comment"># Drop unuseful columns</span></span><br><span class="line">data.drop([<span class="string">'column_a'</span>, <span class="string">'column_b'</span>], axis = <span class="string">'columns'</span>, inplace = <span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Drop rows that have NAs in critical columns</span></span><br><span class="line">data.dropna(subset = [<span class="string">'column_a'</span>, <span class="string">'column_b'</span>], inplace = <span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Dealing-with-Data-Types"><a href="#Dealing-with-Data-Types" class="headerlink" title="Dealing with Data Types"></a>Dealing with Data Types</h3><ul>
+<li><p>Changing data types</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># examine the data types of all columns</span></span><br><span class="line">data.dtypes</span><br><span class="line"></span><br><span class="line"><span class="comment"># change the data type of one column</span></span><br><span class="line">data[<span class="string">'col_a'</span>] = data.col_a.astype(<span class="string">'bool'</span>)</span><br><span class="line"><span class="comment">## datetime, categorical</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Date time index</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Concatenate date and time columns</span></span><br><span class="line">combined = data.date.str.cat(data.time, sep = <span class="string">' '</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Convert 'combined' to datetime format</span></span><br><span class="line">data[<span class="string">'datetime'</span>] = pd.to_datetime(combined)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Setting datetime as index</span></span><br><span class="line">data.set_index(<span class="string">'datetime'</span>, inplace = <span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Examine the index</span></span><br><span class="line">data.index</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reset the index back to a column</span></span><br><span class="line">data.reset_index(inplace = <span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Data-Manipulation"><a href="#Data-Manipulation" class="headerlink" title="Data Manipulation"></a>Data Manipulation</h2><h3 id="Slicing-Columns-and-Rows"><a href="#Slicing-Columns-and-Rows" class="headerlink" title="Slicing Columns and Rows"></a>Slicing Columns and Rows</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># select column</span></span><br><span class="line">items = data.item</span><br><span class="line">items = data[<span class="string">'item'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># select rows using logicals</span></span><br><span class="line">expensive_items = data[data.price &gt; <span class="number">20</span>]</span><br><span class="line">expensive_items = data[data[<span class="string">'price 1'</span>] &gt; <span class="number">20</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="Aggregation"><a href="#Aggregation" class="headerlink" title="Aggregation"></a>Aggregation</h3><ul>
+<li><p>Using Groupby</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#groupby</span></span><br><span class="line">a = data.num_people.mean()</span><br><span class="line">a_by_month = data.groupby(data.index.month).num_people.mean()</span><br></pre></td></tr></table></figure>
+<p>  Or using multiple variables as groupby criteria to create multi-indexed series</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">search_rate = ri.groupby([<span class="string">'violation'</span>, <span class="string">'driver_gender'</span>]).search_conducted.mean()</span><br><span class="line"><span class="comment"># the resulted multi-indexed series is very similar to a data frame.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># we can use the loc accessor to slice it</span></span><br><span class="line">search_rate.loc[<span class="string">'Equipment'</span>, <span class="string">'M'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># we can also convert it to a data frame by unstacking it</span></span><br><span class="line">search_rate.unstack()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Using Pivot Table<br>To save the trouble of groupby and then unstacking, we can directly use pivot_table to achieve the same result.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pivot table use mean as a default aggregation method</span></span><br><span class="line">ri.pivot_table(</span><br><span class="line"> index = <span class="string">'violation'</span>,</span><br><span class="line"> columns = <span class="string">'driver_gender'</span>, </span><br><span class="line"> values = <span class="string">'search_conducted'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Using Resampling based on date time<br>The resulting groups will be the last day of each month, rather than just 1, 2, and 3 like the groupby ones.</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = data.num_people.resample(<span class="string">'M'</span>).mean()</span><br><span class="line"><span class="comment">#M indicates month, A indicates year(annual)</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Mapping"><a href="#Mapping" class="headerlink" title="Mapping"></a>Mapping</h3><p>Dictionary maps the values you have to the values you want.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mapping up to True, and down to False</span></span><br><span class="line">mapping = &#123;<span class="string">'up'</span>:<span class="keyword">True</span>, <span class="string">'down'</span>:<span class="keyword">False</span>&#125; <span class="comment"># before:after</span></span><br><span class="line">apple[<span class="string">'is_up'</span>] = apple.change.map(mapping)</span><br><span class="line"></span><br><span class="line"><span class="comment"># using mean() to calculate the percentage of up</span></span><br><span class="line">apple.is_up.mean()</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="Basic-Plots"><a href="#Basic-Plots" class="headerlink" title="Basic Plots"></a>Basic Plots</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment"># Line Plot</span></span><br><span class="line">plt.plot(x_values, y_values) <span class="comment"># add another plt.plot(x2,y2) below if want to disply multiple plots together</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># if you have already have a series with index, you can directly call without specifying x and y:</span></span><br><span class="line">plt.plot(indexed_series)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Scatter plot</span></span><br><span class="line">plt.scatter(</span><br><span class="line">	x_value, </span><br><span class="line">	y_value,</span><br><span class="line">	alpha = <span class="number">0.1</span> <span class="comment"># change marker transparency</span></span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Bar chart</span></span><br><span class="line">plt.bar(</span><br><span class="line">	x_value, </span><br><span class="line">	y_value,</span><br><span class="line">	yerr = df.sd_column </span><br><span class="line">	<span class="comment"># use one column in the data that shows sd,</span></span><br><span class="line">	<span class="comment"># this would display a straight line that sticks on the top of each bar</span></span><br><span class="line">	)</span><br><span class="line">plt.ylabel(<span class="string">'y_label'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Horizontal bar chart</span></span><br><span class="line">plt.barh(x_value, y_value)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Stacked bar chart</span></span><br><span class="line">plt.bar(x_value, y_value1, label = <span class="string">'1'</span>)</span><br><span class="line">plt.bar(x_value, y_value2, bottom = y_value1, label = <span class="string">'2'</span>)</span><br><span class="line"><span class="comment">## this will make y_value2 to be stacked on y_value1</span></span><br><span class="line">plt.legend()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Histogram</span></span><br><span class="line">plt.hist(</span><br><span class="line">	value,</span><br><span class="line">	bins = <span class="number">40</span>, <span class="comment"># number of bins</span></span><br><span class="line">	range = (<span class="number">50</span>, <span class="number">100</span>), <span class="comment"># set the min and max range</span></span><br><span class="line">	density = <span class="keyword">True</span> <span class="comment"># Normalization</span></span><br><span class="line">	<span class="comment">## Normalization reduces the height of each bar by a constant factor,</span></span><br><span class="line">	<span class="comment">## so that the sum of the areas of each bar adds to one. We do it when</span></span><br><span class="line">	<span class="comment">## we try to compare two dataset with very different sizes</span></span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line"><span class="comment"># remember to show the plot in the end</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h2 id="Styling-Graphs"><a href="#Styling-Graphs" class="headerlink" title="Styling Graphs"></a>Styling Graphs</h2><p>Change overall styles:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.style.use(<span class="string">"fivethirtyeight"</span>) <span class="comment">#change a set of styles, including the background, legends ...</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Overall Styles: fivethirtyeight, ggplot, seaborn, default, etc.</li>
+</ul>
+<p>Change some specific styles:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(</span><br><span class="line">	x_values, </span><br><span class="line">	y_values, </span><br><span class="line">	color = <span class="string">"tomato"</span>, <span class="comment"># colors can be found on by "web color" in wikipedia</span></span><br><span class="line">	linewidth = <span class="number">1</span>, <span class="comment">#help to emphasize a certain line</span></span><br><span class="line">	linestyle = <span class="string">"--"</span>, <span class="comment">#line type</span></span><br><span class="line">	marker = <span class="string">"x"</span> <span class="comment">#marker to notify a point</span></span><br><span class="line">	)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>Linestyle: </p>
+<ol>
+<li>“–”: dashed line</li>
+<li>“-.”: dot/dash line</li>
+<li>“:”: dotted line</li>
+</ol>
+</li>
+<li><p>Marker:</p>
+<ol>
+<li>“x”: cross</li>
+<li>“s”: solid square</li>
+<li>“o”: solid circle</li>
+<li>“d”: solid diamond</li>
+<li>“*“: solid pentagon</li>
+<li>“h”: solid hexagon</li>
+</ol>
+</li>
+</ul>
+<h2 id="Adding-text-to-plots"><a href="#Adding-text-to-plots" class="headerlink" title="Adding text to plots"></a>Adding text to plots</h2><p>put them before plt.show()<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># title</span></span><br><span class="line">plt.xlabel(<span class="string">"x axis title"</span>)</span><br><span class="line">plt.ylabel(<span class="string">"y axis title"</span>)</span><br><span class="line">plt.title(<span class="string">"plot title"</span>, fontsize = <span class="number">20</span>, color = <span class="string">'green'</span>) <span class="comment"># change text fontsize, color</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># legend</span></span><br><span class="line">plt.plot(x_values, y_values, label = <span class="string">"A"</span>) <span class="comment">#Label keyword argument, which will show in our legend</span></span><br><span class="line">plt.plot(x_values, y_values, label = <span class="string">"B"</span>)</span><br><span class="line">plt.plot(x_values, y_values, label = <span class="string">"C"</span>)</span><br><span class="line">plt.legend() <span class="comment"># tells matplotlib to show legends</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># text to a certain point</span></span><br><span class="line">plt.text(xcoord, ycoord, <span class="string">"Text Message"</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Making-Comparisons"><a href="#Making-Comparisons" class="headerlink" title="Making Comparisons"></a>Making Comparisons</h2><h3 id="Line-graph"><a href="#Line-graph" class="headerlink" title="Line graph"></a>Line graph</h3><p>Usually deal with time related comparisons. We want to compare the trend of two variables across time.</p>
+<p>We can compare two variables after conducting the same aggregation on both of them with one plot.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># calculate the aggregation for both variables</span></span><br><span class="line">monthly_price = apple.price.resample(<span class="string">'M'</span>).mean()</span><br><span class="line">monthly_volume = apple.volume.resample(<span class="string">'M'</span>).mean()</span><br><span class="line"></span><br><span class="line"><span class="comment"># concat the two variables side by side</span></span><br><span class="line">monthly = pd.concat([monthly_price, monthly_volume], axis = <span class="string">'columns'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># plot two variables</span></span><br><span class="line"><span class="comment">## specifying to put the two variables into two subplots since two variables often have different scales</span></span><br><span class="line">monthly.plot(subplots = <span class="keyword">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<h3 id="Bar-chart"><a href="#Bar-chart" class="headerlink" title="Bar chart"></a>Bar chart</h3><p>If we only have one categorical variable, we can simply plot it with a bart chart and sort the order<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># output a series with categorical values on the index, calculated numbers in the column (sorted in alphabetical order)</span></span><br><span class="line">search_rate = ri.groupby(<span class="string">'violation'</span>).search_conducted.mean()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Sort the series in descending order by its value before plotting</span></span><br><span class="line">search_rate.sort_values().plot(kind = <span class="string">'bar'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># makes the label easier to read by rotation the bars</span></span><br><span class="line">search_rate.sort_values().plot(kind = <span class="string">'barh'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>If we have two categorical variables, we may want to compare the counts of different combinations of categories.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">table.plot(kind = <span class="string">'bar'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#stacked bar chart</span></span><br><span class="line">table.plot(kind = <span class="string">'bar'</span>, stacked = <span class="keyword">True</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Box-Plot"><a href="#Box-Plot" class="headerlink" title="Box Plot"></a>Box Plot</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">weather[[<span class="string">'TMIN'</span>, <span class="string">'TAVG'</span>, <span class="string">'TMAX'</span>]].plot(kind = <span class="string">'box'</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="Strings"><a href="#Strings" class="headerlink" title="Strings"></a>Strings</h1><h2 id="Regular-Expression"><a href="#Regular-Expression" class="headerlink" title="Regular Expression"></a>Regular Expression</h2><ol>
+<li><code>*</code> represents 1 character</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/02/MM09/" rel="next" title="Economic Value of the Bicycle Industry">
+                <i class="fa fa-chevron-left"></i> Economic Value of the Bicycle Industry
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/10/Relational-DB-in-SQL/" rel="prev" title="Introduction to Relational Databases in SQL">
+                Introduction to Relational Databases in SQL <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview sidebar-nav-active" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Joanna" />
+            
+              <p class="site-author-name" itemprop="name">Joanna</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic-Calculations"><span class="nav-text">Basic Calculations</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic-Manipulations"><span class="nav-text">Basic Manipulations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lists"><span class="nav-text">Lists</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Frames"><span class="nav-text">Data Frames</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exploring-Dataset"><span class="nav-text">Exploring Dataset</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Initial-Examination"><span class="nav-text">Initial Examination</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Merging-Data-Frames"><span class="nav-text">Merging Data Frames</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Converting-Data-Types"><span class="nav-text">Converting Data Types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Cleaning"><span class="nav-text">Data Cleaning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dealing-with-NAs"><span class="nav-text">Dealing with NAs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dealing-with-Data-Types"><span class="nav-text">Dealing with Data Types</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Manipulation"><span class="nav-text">Data Manipulation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Slicing-Columns-and-Rows"><span class="nav-text">Slicing Columns and Rows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Aggregation"><span class="nav-text">Aggregation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mapping"><span class="nav-text">Mapping</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic-Plots"><span class="nav-text">Basic Plots</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Styling-Graphs"><span class="nav-text">Styling Graphs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adding-text-to-plots"><span class="nav-text">Adding text to plots</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Making-Comparisons"><span class="nav-text">Making Comparisons</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Line-graph"><span class="nav-text">Line graph</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bar-chart"><span class="nav-text">Bar chart</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Box-Plot"><span class="nav-text">Box Plot</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Strings"><span class="nav-text">Strings</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Regular-Expression"><span class="nav-text">Regular Expression</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joanna</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz", "cDbeqqCJt4dq4hu7C9GaCrHB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
