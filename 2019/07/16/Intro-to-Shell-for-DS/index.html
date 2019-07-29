@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Shell," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Learning shell commands for data science (DataCamp).">
+<meta name="keywords" content="Shell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction to Shell for Data Science">
+<meta property="og:url" content="https://joannaoyzl.github.io/2019/07/16/Intro-to-Shell-for-DS/index.html">
+<meta property="og:site_name" content="Joanna">
+<meta property="og:description" content="Learning shell commands for data science (DataCamp).">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-07-18T02:03:12.181Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Introduction to Shell for Data Science">
+<meta name="twitter:description" content="Learning shell commands for data science (DataCamp).">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://joannaoyzl.github.io/2019/07/16/Intro-to-Shell-for-DS/"/>
+
+
+
+
+
+  <title>Introduction to Shell for Data Science | Joanna</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-134453862-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joanna</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://joannaoyzl.github.io/2019/07/16/Intro-to-Shell-for-DS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joanna">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joanna">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Introduction to Shell for Data Science</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-16T18:19:58-07:00">
+                2019-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Course-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Course Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/16/Intro-to-Shell-for-DS/" class="leancloud_visitors" data-flag-title="Introduction to Shell for Data Science">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Learning shell commands for data science (DataCamp).<br><a id="more"></a></p>
+<h1 id="Manipulating-Files-and-Directories"><a href="#Manipulating-Files-and-Directories" class="headerlink" title="Manipulating Files and Directories"></a>Manipulating Files and Directories</h1><h2 id="Navigate"><a href="#Navigate" class="headerlink" title="Navigate"></a>Navigate</h2><ul>
+<li><code>pwd</code> shows <strong>where you are</strong> in the filesystem, short for: “print working directory”.</li>
+<li><code>ls</code> <strong>lists the contents</strong> of your <strong>current</strong> directory.<ul>
+<li><code>ls /home/repl</code> lists the content of the specified directory.</li>
+</ul>
+</li>
+<li>If the shell begins with <code>/</code> then it’s <strong>absolute</strong>, if not, then it’s <strong>relative</strong>. <ul>
+<li>e.g. <code>/home/repl/seasonal/winter.csv.</code> is absolute, <code>seasonal/winter.csv</code> is relative.</li>
+</ul>
+</li>
+<li><code>cd</code> <strong>change directory</strong> to the specified one.<ul>
+<li><code>cd ~</code> takes you to your “your home directory”, such as <code>/home/repl</code>. <code>~/people/aaa.txt</code>  = <code>/home/repl/people/aaa.txt</code></li>
+<li><code>cd ..</code> moves you up one level of directory, means “the directory above the one I’m currently in”. (a single dot on its own <code>.</code> always means “the current directory”)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Move"><a href="#Move" class="headerlink" title="Move"></a>Move</h2><ul>
+<li><code>mv</code> <strong>moves file</strong> from one directory to another. <ul>
+<li>e.g. <code>mv autumn.csv winter.csv ..</code> moves the files <code>autumn.csv</code> and <code>winter.csv</code> from the current working directory up one level to its parent directory.</li>
+<li>it can also be used to <strong>rename files or directories</strong>. <code>mv course.txt old-course.txt</code> changes the name <code>course.txt</code> to <code>old-course.txt</code>, and <code>mv seasonal by-season</code> changes the name of the <code>seasonal</code> directory to <code>by-season</code><ul>
+<li>Warning: just like <code>cp</code>, <code>mv</code> will overwrite existing files. If, for example, you already have a file called <code>old-course.txt</code>, then the command shown above will replace it with whatever is in <code>course.txt</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Copy"><a href="#Copy" class="headerlink" title="Copy"></a>Copy</h2><ul>
+<li><code>cp original.txt duplicate.txt</code> <strong>creates a copy</strong> of <code>original.txt</code> called <code>duplicate.txt</code>. <ul>
+<li>If there already was a file called <code>duplicate.txt</code>, it is overwritten. </li>
+<li>If the last parameter to <code>cp</code> is an existing directory, then a command like: <code>cp seasonal/autumn.csv seasonal/winter.csv backup</code> copies all of the files into that directory.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h2><ul>
+<li><code>rm</code> can remove files<ul>
+<li>e.g. <code>rm thesis.txt backup/thesis-2017-08.txt</code> removes both <code>thesis.txt</code> and <code>backup/thesis-2017-08.txt</code></li>
+</ul>
+</li>
+<li><code>rmdir</code> can remove directory, and only works when the directory is empty, so you must delete the files in a directory before you delete the directory. </li>
+</ul>
+<h2 id="Create-New-Directory"><a href="#Create-New-Directory" class="headerlink" title="Create New Directory"></a>Create New Directory</h2><ul>
+<li><code>mkdir</code> can create directory. <code>mkdir directory_name</code></li>
+<li><code>/tmp</code> is where people and programs often keep files they only need briefly. It is immediately below the root directory <code>/</code>, not below your home directory.)</li>
+</ul>
+<h1 id="Manipulating-Data"><a href="#Manipulating-Data" class="headerlink" title="Manipulating Data"></a>Manipulating Data</h1><h2 id="View-File-Contents"><a href="#View-File-Contents" class="headerlink" title="View File Contents"></a>View File Contents</h2><ul>
+<li><code>cat</code> prints the contents of files onto the screen<ul>
+<li>Its name is short for “concatenate”, meaning “to link things together”, since it will print all the files whose names you give it, one after the other.</li>
+</ul>
+</li>
+<li><code>less</code> print content page by page.<ul>
+<li>When you <code>less</code> a file, one page is displayed at a time; you can press spacebar to page down or type <code>q</code> to quit.</li>
+<li>If you give <code>less</code> the names of several files, <ul>
+<li>you can type <code>:n</code> to move to the next file, </li>
+<li><code>:p</code> to go back to the previous one, </li>
+<li>or <code>:q</code> to quit.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>head</code> prints the first few lines of a file (where “a few” means 10). If there aren’t 10 lines in the file, it will display as many lines as there are.</li>
+<li><code>tail</code> prings the last few lines of a file.</li>
+<li>You can use single quotes, <code>&#39;</code>, or double quotes, <code>&quot;</code>, around the file names when there are spaces in the names.</li>
+</ul>
+<h2 id="Tricks"><a href="#Tricks" class="headerlink" title="Tricks"></a>Tricks</h2><ul>
+<li><strong>Pressing tab</strong> after typing partially the name of the directory can help you type less.<ul>
+<li>For example, if you type <code>sea</code> and press tab, it will fill in the directory name <code>seasonal/</code> (with a trailing slash). If you then type <code>a</code> and tab, it will complete the path as <code>seasonal/autumn.csv</code>.</li>
+<li>If the path is ambiguous, such as <code>seasonal/s</code>, pressing tab a second time will display a list of possibilities. Typing another character or two to make your path more specific and then pressing tab will fill in the rest of the name.</li>
+</ul>
+</li>
+<li><strong>Command-line flag</strong> or <strong>flag</strong> can help you customize the behavior of certain commands. Command flags don’t have to be a <code>-</code> followed by a single letter, but it’s a widely-used convention. It’s considered good style to put all flags before any filenames:<ul>
+<li><code>-n</code> means to signal “number of lines”. <code>head -n 3 seasonal/summer.csv</code> will only display the first three lines of the file.</li>
+<li><code>-R</code> means “recursive”. <code>ls -R</code> shows everything underneath a directory, no matter how deeply nested it is. This shows every file and directory in the current level, then everything in each sub-directory, and so on.</li>
+<li><code>-F</code>. <code>ls -F</code> prints a <code>/</code> after the name of every directory and a <code>*</code> after the name of every runnable program. </li>
+</ul>
+</li>
+<li>To get help for a command, we use <code>man</code> (short for “manual”)<ul>
+<li>e.g. <code>man head</code> brings up information about <code>head</code>.</li>
+<li><code>man</code> automatically invokes <code>less</code>, so you may need to press spacebar to page through the information and :q to quit.</li>
+</ul>
+</li>
+<li><code>history</code> will print a list of commands you have run recently. <ul>
+<li>Each one is preceded by a serial number to make it easy to re-run particular commands: just type <code>!55</code> to re-run the 55th command in your history (if you have that many).</li>
+<li>You can also re-run a command by typing an exclamation mark followed by the command’s name, such as <code>!head</code> or <code>!cut</code>, which will re-run the most recent use of that command.</li>
+</ul>
+</li>
+<li><code>Ctrl</code>+<code>C</code> can end a running program. This is often written ^C in Unix documentation; note that the ‘c’ can be lower-case.</li>
+</ul>
+<h2 id="Select-data"><a href="#Select-data" class="headerlink" title="Select data"></a>Select data</h2><ul>
+<li><code>cut</code> allows you to select columns. <ul>
+<li>e.g. <code>cut -f 2-5,8 -d , values.csv</code> means “select columns 2 through 5 and columns 8, using comma as the separator”. <code>cut</code> uses <code>-f</code> (meaning “fields”) to specify columns and <code>-d</code> (meaning “delimiter”) to specify the separator. You need to specify the latter because some files may use spaces, tabs, or colons to separate columns.</li>
+<li><code>cut</code> is a simple-minded command. In particular, it doesn’t understand quoted strings.</li>
+</ul>
+</li>
+<li><code>paste</code> can combine data files together. But it treat data files as text, so be careful.</li>
+<li><code>grep</code> selects lines according to what they contain. In its simplest form, <code>grep</code> takes a piece of text followed by one or more filenames and prints all of the lines in those files that contain that text.<ul>
+<li>e.g. <code>grep bicuspid seasonal/winter.csv</code> prints lines from <code>winter.csv</code> that contain “bicuspid”.</li>
+<li><code>grep</code>‘s common flags:<ul>
+<li><code>-c</code>: print a count of matching lines rather than the lines themselves</li>
+<li><code>-h</code>: do not print the names of files when searching multiple files</li>
+<li><code>-i</code>: ignore case (e.g., treat “Regression” and “regression” as matches)</li>
+<li><code>-l</code>: print the names of files that contain matches, not the matches</li>
+<li><code>-n</code>: print line numbers for matching lines</li>
+<li><code>-v</code>: invert the match, i.e., only show lines that don’t match</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Wildcard<ul>
+<li><code>*</code>, which means “<strong>match zero or more characters</strong>“<ul>
+<li>e.g. <code>cut -d , -f 1 seasonal/*</code> or <code>cut -d , -f 1 seasonal/*.csv</code> can perform column selection on multiple files at the same time.</li>
+</ul>
+</li>
+<li><code>?</code> matches <strong>a single character</strong>, so <code>201?.txt</code> will match <code>2017.txt</code> or <code>2018.txt</code>, but not <code>2017-01.txt</code>.</li>
+<li><code>[...]</code> matches <strong>any one of the characters</strong> inside the square brackets, so <code>201[78].txt</code> matches <code>2017.txt</code> or <code>2018.txt</code>, but not <code>2016.txt</code>.</li>
+<li><code>{...}</code> matches <strong>any of the comma-separated patterns</strong> inside the curly brackets, so <code>{*.txt, *.csv}</code> matches any file whose name ends with <code>.txt</code> or <code>.csv</code>, but not files whose names end with <code>.pdf</code>.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Combining-Tools"><a href="#Combining-Tools" class="headerlink" title="Combining Tools"></a>Combining Tools</h1><ul>
+<li><code>&gt;</code> saves command’s output anywhere you want.<ul>
+<li>e.g. <code>head -n 5 seasonal/summer.csv &gt; top.csv</code> saves the top 5 lines of <code>summer.csv</code> into <code>top.csv</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h2><ul>
+<li><code>|</code> The pipe symbol tells the shell to use the output of the command on the left as the input to the command on the right.<ul>
+<li>e.g. <code>head -n 5 seasonal/summer.csv | tail -n 3</code> select 3-5 lines from <code>summer.csv</code>.</li>
+<li>e.g. <code>cut -d , -f 2 seasonal/summer.csv | grep -v Tooth | head -n 1</code> select all of the tooth names from column 2 of the comma delimited file <code>seasonal/summer.csv</code>, then pipe the result to <code>grep</code>, with an inverted match, to exclude the header line containing the word “Tooth”, and then select the very first tooth name.</li>
+</ul>
+</li>
+<li><code>wc</code> prints the number of characters, words, and lines in a file. You can make it print only one of these using <code>-c</code>, <code>-w</code>, or <code>-l</code> respectively.<ul>
+<li>e.g. <code>grep 2017-07 seasonal/spring.csv | wc -l</code> Count how many records in <code>seasonal/spring.csv</code> have dates in July 2017.</li>
+</ul>
+</li>
+<li><code>sort</code> puts data in order. By default it does this in ascending alphabetical order, <ul>
+<li><code>-n</code> and <code>-r</code> can be used to sort numerically and reverse the order of its output, </li>
+<li><code>-b</code> tells it to ignore leading blanks </li>
+<li><code>-f</code> tells it to fold case (i.e., be case-insensitive). </li>
+<li>Pipelines often use <code>grep</code> to get rid of unwanted records and then <code>sort</code> to put the remaining records in order.</li>
+</ul>
+</li>
+<li><code>uniq</code> removes adjacent duplicated lines. The reason is that <code>uniq</code> is built to work with very large files. In order to remove non-adjacent lines from a file, it would have to keep the whole file in memory (or at least, all the unique lines seen so far). By only removing adjacent duplicates, it only has to keep the most recent unique line in memory.<ul>
+<li><code>-c</code> can be used to count the occurence of each unique item. e.g. <code>cut -d , -f 2 seasonal/winter.csv |grep -v Tooth | sort | uniq -c</code></li>
+</ul>
+</li>
+<li>To save the output of a pipeline, add <code>&gt; xxx.txt</code> at the beginning or the end of the pipeline. </li>
+</ul>
+<h1 id="Batch-Processing"><a href="#Batch-Processing" class="headerlink" title="Batch Processing"></a>Batch Processing</h1><ul>
+<li>The shell stores information in variables. Some of these, called <strong>environment variables</strong>, are available all the time. Environment variables’ names are conventionally written in upper case, and a few of the more commonly-used ones are shown below. To get a complete list (which is quite long), you can type set in the shell.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Variable</th>
+<th style="text-align:center">Purpose</th>
+<th style="text-align:center">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">HOME</td>
+<td style="text-align:center">User’s home directory</td>
+<td style="text-align:center">/home/repl</td>
+</tr>
+<tr>
+<td style="text-align:center">PWD</td>
+<td style="text-align:center">Present working directory</td>
+<td style="text-align:center">Same as pwd command</td>
+</tr>
+<tr>
+<td style="text-align:center">SHELL</td>
+<td style="text-align:center">Which shell program is being used</td>
+<td style="text-align:center">/bin/bash</td>
+</tr>
+<tr>
+<td style="text-align:center">USER</td>
+<td style="text-align:center">User’s ID</td>
+<td style="text-align:center">repl</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><code>echo</code> prints its arguments.</p>
+<ul>
+<li><code>echo hello DataCamp!</code> prints <code>hello DataCamp!</code></li>
+<li><code>echo USER</code> prints variable name <code>USER</code></li>
+<li><code>echo $USER</code> prints variable’s value <code>repl</code></li>
+</ul>
+</li>
+<li><p>The other kind of variable is called a <strong>shell variable</strong>, which is like a local variable in a programming language.</p>
+<ul>
+<li>To create a shell variable, you simply assign a value to a name: <code>training=seasonal/summer.csv</code> <strong><em>without</em></strong> any spaces before or after the <code>=</code> sign.</li>
+<li>To access the value in the variable, simply add <code>$</code> before the variable. <code>head -n 1 $training</code> returns the first line of <code>seasonal/summer.csv</code>, which is defined above.</li>
+</ul>
+</li>
+</ul>
+<h2 id="For"><a href="#For" class="headerlink" title="For"></a>For</h2><p>Shell variables are also used in loops, which repeat commands many times. e.g. <code>for filetype in gif jpg png; do echo $filetype; done</code>, it produces: <code>gif jpg png</code></p>
+<ul>
+<li>Notice these things about the loop:<ol>
+<li>The structure is <code>for</code> …variable… <code>in</code> …list… <code>; do</code> …body… <code>; done</code></li>
+<li>The list of things the loop is to process (in our case, the words <code>gif</code>, <code>jpg</code>, and <code>png</code>).</li>
+<li>The variable that keeps track of which thing the loop is currently processing (in our case, <code>filetype</code>).</li>
+<li>The body of the loop that does the processing (in our case, <code>echo $filetype</code>).</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><code>for filename in seasonal/*.csv; do echo $filename; done</code> will print all csv files in <code>seasonal</code> directory. Sometimes we often set a variable using a wildcard expression to record a list of filenames. <code>datasets=seasonal/*.csv</code> then <code>for filename in $datasets; do echo $filename; done</code><ul>
+<li>common mistake: <code>files=seasonal/*.csv</code> then <code>for f in files; do echo $f; done</code></li>
+</ul>
+</li>
+<li><code>for file in seasonal/*.csv; do grep -h 2017-07 $file; done</code> will print all lines on 2017-07 in all files without printing the file names.</li>
+</ul>
+<p>A loop can also contain any number of commands. To tell the shell where one ends and the next begins, you must separate them with <strong>semi-colons</strong>: <code>for f in seasonal/*.csv; do echo $f; head -n 2 $f | tail -n 1; done</code></p>
+<h1 id="Creating-New-Tools"><a href="#Creating-New-Tools" class="headerlink" title="Creating New Tools"></a>Creating New Tools</h1><h2 id="Edit-a-File"><a href="#Edit-a-File" class="headerlink" title="Edit a File"></a>Edit a File</h2><ul>
+<li><code>nano filename</code> will open <code>filename</code> for editing (or create it if it doesn’t already exist). You can move around with the arrow keys, delete characters using backspace, and do other operations with control-key combinations:<ul>
+<li><code>Ctrl</code> + <code>K</code>: delete a line.</li>
+<li><code>Ctrl</code> + <code>U</code>: un-delete a line.</li>
+<li><code>Ctrl</code> + <code>O</code>: save the file (‘O’ stands for ‘output’).</li>
+<li><code>Ctrl</code> + <code>X</code>: exit the editor.</li>
+<li>copy and paste: navigating to the line you want to copy, pressing <code>CTRL</code> + <code>K</code> to cut the line, then <code>CTRL</code> + <code>U</code> <strong>twice</strong> to paste <strong>two copies</strong> of it.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Automate-a-command"><a href="#Automate-a-command" class="headerlink" title="Automate a command"></a>Automate a command</h2><ul>
+<li><p>To keep a record of the commands you used, you can do this by the following:</p>
+<ol>
+<li>Run <code>history</code></li>
+<li>Pipe its output to <code>tail -n 10</code> (or however many recent steps you want to save).</li>
+<li>Redirect that to a file called something like <code>figure-5.history</code>.<br>e.g. <code>history | tail -n 3 &gt; steps.txt</code></li>
+</ol>
+</li>
+<li><p>We can also store the commands in files for the shell to run over and over again. </p>
+<ul>
+<li>e.g. We store the following command <code>head -n 1 seasonal/*.csv</code> in a file called <code>headers.sh</code>, then we run <code>bash headers.sh</code> to run the commands inside</li>
+</ul>
+</li>
+<li><p><code>$@</code> means “all of the command-line parameters given to the script”</p>
+<ul>
+<li>e.g. if <code>unique-lines.sh</code> contains this: <code>sort $@ | uniq</code>, then you run: <code>bash unique-lines.sh seasonal/summer.csv</code>, the shell replaces <code>$@</code> with <code>seasonal/summer.csv</code> and processes one file.</li>
+<li>if you run this: <code>bash unique-lines.sh seasonal/summer.csv seasonal/autumn.csv</code>, it processes two files, and so on.</li>
+</ul>
+</li>
+<li><code>@1</code>, <code>@2</code> and so on can also be used to refer to specific command-line parameters. You can use this to write commands that feel simpler or more natural than the shell’s. <ul>
+<li>For example, you can create a script called <code>column.sh</code> that selects a single column from a CSV file when the user provides the filename as the first parameter and the column as the second: <code>cut -d , -f $2 $1</code> and then run it using: <code>bash column.sh seasonal/autumn.csv 1</code>.</li>
+<li>Notice how the script uses the two parameters in reverse order.</li>
+</ul>
+</li>
+<li>You can also write multiple lines of commands in the file and run all of them at once.</li>
+<li><p>It is OK to split loops across lines without semi-colons to make them more readable:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Print the first and last data records of each file.</span><br><span class="line">for filename in $@</span><br><span class="line">do</span><br><span class="line">    head -n 2 $filename | tail -n 1</span><br><span class="line">    tail -n 1 $filename</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<ul>
+<li>You don’t have to indent the commands inside the loop, but doing so makes things clearer.</li>
+</ul>
+</li>
+<li>You can pipe the output of the program by directly adding commands behind it. e.g. <code>bash date-range.sh seasonal/*.csv | sort</code></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Shell/" rel="tag"># Shell</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/11/Statistical-Thinking-in-Python/" rel="next" title="Statistical Thinking in Python">
+                <i class="fa fa-chevron-left"></i> Statistical Thinking in Python
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/17/Supervised-Learning-with-scikit-learn/" rel="prev" title="Supervised Learning with scikit-learn">
+                Supervised Learning with scikit-learn <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview sidebar-nav-active" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Joanna" />
+            
+              <p class="site-author-name" itemprop="name">Joanna</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Manipulating-Files-and-Directories"><span class="nav-text">Manipulating Files and Directories</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Navigate"><span class="nav-text">Navigate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Move"><span class="nav-text">Move</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Copy"><span class="nav-text">Copy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Delete"><span class="nav-text">Delete</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-New-Directory"><span class="nav-text">Create New Directory</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Manipulating-Data"><span class="nav-text">Manipulating Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#View-File-Contents"><span class="nav-text">View File Contents</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tricks"><span class="nav-text">Tricks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Select-data"><span class="nav-text">Select data</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Combining-Tools"><span class="nav-text">Combining Tools</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pipeline"><span class="nav-text">Pipeline</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Batch-Processing"><span class="nav-text">Batch Processing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#For"><span class="nav-text">For</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Creating-New-Tools"><span class="nav-text">Creating New Tools</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Edit-a-File"><span class="nav-text">Edit a File</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Automate-a-command"><span class="nav-text">Automate a command</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joanna</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz", "cDbeqqCJt4dq4hu7C9GaCrHB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

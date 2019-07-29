@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python, Machine Learning, scikit-learn, Supervised Learning," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Supervised learning in Python with scikit-learn (DataCamp).">
+<meta name="keywords" content="Python, Machine Learning, scikit-learn, Supervised Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Supervised Learning with scikit-learn">
+<meta property="og:url" content="https://joannaoyzl.github.io/2019/07/17/Supervised-Learning-with-scikit-learn/index.html">
+<meta property="og:site_name" content="Joanna">
+<meta property="og:description" content="Supervised learning in Python with scikit-learn (DataCamp).">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-07-22T21:07:22.335Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Supervised Learning with scikit-learn">
+<meta name="twitter:description" content="Supervised learning in Python with scikit-learn (DataCamp).">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://joannaoyzl.github.io/2019/07/17/Supervised-Learning-with-scikit-learn/"/>
+
+
+
+
+
+  <title>Supervised Learning with scikit-learn | Joanna</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-134453862-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joanna</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://joannaoyzl.github.io/2019/07/17/Supervised-Learning-with-scikit-learn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joanna">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joanna">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Supervised Learning with scikit-learn</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-17T19:00:59-07:00">
+                2019-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Course-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Course Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/17/Supervised-Learning-with-scikit-learn/" class="leancloud_visitors" data-flag-title="Supervised Learning with scikit-learn">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Supervised learning in Python with scikit-learn (DataCamp).<br><a id="more"></a></p>
+<p>What is <strong>machine learning</strong>?</p>
+<ul>
+<li>The art and science of :<ul>
+<li>Giving computers the ability to learn to make decisions from data</li>
+<li>… without being explicitly programmed.</li>
+</ul>
+</li>
+<li>e.g.<ul>
+<li>Learning to predict whether an email is spam or not.</li>
+<li>Clustering wikipedia entries into different categories</li>
+</ul>
+</li>
+</ul>
+<p><strong>Supervised learning</strong>: predict the target variable, given the predictor variables</p>
+<ul>
+<li>Key features:<ul>
+<li>Automate time-consuiming or expensive manual tasks (e.g. Doctor’s diagnosis)</li>
+<li>Make predictions about the future (e.g. will a customer click or not?)</li>
+<li>Need labeled data<ul>
+<li>Historical data with labels</li>
+<li>Experiments to get labeled data</li>
+<li>Crowd-sourcing labeled data</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Types:<ul>
+<li>Classification: Target variable consists of categories</li>
+<li>Regression: Target variable is continuous</li>
+</ul>
+</li>
+</ul>
+<p><strong>Unsupervised learning</strong>: Uncovering hidden patterns from unlabeled data</p>
+<ul>
+<li>e.g.<ul>
+<li>Grouping customers into distinct categories (Clustering)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Reinforcement learning</strong>: software agents interect with an environment.</p>
+<ul>
+<li>Key features:<ul>
+<li>Learn how to optimize their behavior</li>
+<li>Given a system of <strong>rewards</strong> and <strong>punishments</strong></li>
+<li>Draws inspiration from behavioral psychology</li>
+</ul>
+</li>
+<li>Applications<ul>
+<li>Economics</li>
+<li>Genetics</li>
+<li>Game playing</li>
+</ul>
+</li>
+</ul>
+<p>All machine learning models implemented as Python classes:</p>
+<ul>
+<li>They implement the algorithms for learning and predicting</li>
+<li>Store the information learned from the data</li>
+<li>Traning a model on the data = ‘fitting’ a model to the data: <code>.fit()</code> method</li>
+<li>To predict the labels of new data: <code>.predict()</code> method.</li>
+</ul>
+<h1 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h1><h2 id="EDA"><a href="#EDA" class="headerlink" title="EDA"></a>EDA</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use plot style 'ggplot'</span></span><br><span class="line">plt.style.use(<span class="string">'ggplot'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load iris dataset</span></span><br><span class="line">iris = datasets.load_iris()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Check what information is included</span></span><br><span class="line">print(iris.keys()) </span><br><span class="line"><span class="comment">## 'data', data columns</span></span><br><span class="line"><span class="comment">## 'target_names', name of the target variable</span></span><br><span class="line"><span class="comment">## 'DESCR', description of the dataset</span></span><br><span class="line"><span class="comment">## 'feature_names', names of the features</span></span><br><span class="line"><span class="comment">## 'target' target variable</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># transform arrays into one dataframe</span></span><br><span class="line">X = df.data</span><br><span class="line">y = df.target</span><br><span class="line">df = pd.DataFrame(X, columns = iris.feature_names)</span><br><span class="line"></span><br><span class="line"><span class="comment"># visual EDA. </span></span><br><span class="line"><span class="comment"># diagonal are histograms, off-diagonal are scatter plots</span></span><br><span class="line">_ = pd.scatter_matrix(</span><br><span class="line">    df, <span class="comment">#data</span></span><br><span class="line">    c = y, <span class="comment">#color, ensuring our dataset will be colored by the target variables</span></span><br><span class="line">    figsize = [<span class="number">8</span>, <span class="number">8</span>], <span class="comment">#figure size</span></span><br><span class="line">    s = <span class="number">150</span>, <span class="comment">#marker size</span></span><br><span class="line">    marker = <span class="string">'D'</span> <span class="comment">#marker shape</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"><span class="comment"># seaborn countplot (use another set of data set as illustration)</span></span><br><span class="line">plt.figure()</span><br><span class="line">sns.countplot(</span><br><span class="line">    x = <span class="string">'education'</span>, <span class="comment">#one feature name</span></span><br><span class="line">    hue = <span class="string">'party'</span>, <span class="comment">#target variable</span></span><br><span class="line">    data = df, </span><br><span class="line">    palette = <span class="string">'RdBu'</span>) <span class="comment">#red and blue color pallete</span></span><br><span class="line">plt.xticks([<span class="number">0</span>,<span class="number">1</span>], [<span class="string">'No'</span>, <span class="string">'Yes'</span>]) <span class="comment">#set 0 as 'No', 1 as 'Yes' and show as legend.</span></span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># seaborn heatmap shows correlation between each variables.</span></span><br><span class="line">sns.heatmap(df.corr(), square = <span class="keyword">True</span>, cmap = <span class="string">'RdYlGn'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="KNN"><a href="#KNN" class="headerlink" title="KNN"></a>KNN</h2><p>K-Nearest Neighbors</p>
+<ul>
+<li>Basic idea: Predict the label of a data point by<ul>
+<li>Looking at the <code>k</code> closest labeled data points</li>
+<li>Taking a majority vote</li>
+</ul>
+</li>
+<li>Model Complexity<ul>
+<li>larger k = smoother decision boundary = less complex model</li>
+<li>smaller k = more complex model = can lead to overfitting and sensitive to noise</li>
+<li>Use Model Complexity curve to decide your best k</li>
+</ul>
+</li>
+</ul>
+<h3 id="Measuring-Model-Performance"><a href="#Measuring-Model-Performance" class="headerlink" title="Measuring Model Performance"></a>Measuring Model Performance</h3><ul>
+<li>Split data into training and test set</li>
+<li>Fit the classifier on the training set</li>
+<li>Make predictions on the test set</li>
+<li>Compare predictions with the known labels</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import necessary modules</span></span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create feature and target arrays</span></span><br><span class="line">X = digits.data</span><br><span class="line">y = digits.target</span><br><span class="line"></span><br><span class="line"><span class="comment"># Split into training and test set</span></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(</span><br><span class="line">    X, y, </span><br><span class="line">    test_size = <span class="number">0.2</span>, <span class="comment"># percent of data in test set</span></span><br><span class="line">    random_state = <span class="number">42</span>, <span class="comment"># set random seed </span></span><br><span class="line">    stratify = y) <span class="comment">#Stratify the split according to the labels so that they are distributed in the training and test sets as they are in the original dataset.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a k-NN classifier with 7 neighbors: knn</span></span><br><span class="line">knn = KNeighborsClassifier(n_neighbors = <span class="number">7</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit the classifier to the training data</span></span><br><span class="line">knn.fit(X_train, y_train) <span class="comment">#3 requirements: 1.np array or df. 2. continuous value. 3. No missing data</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the accuracy</span></span><br><span class="line">print(knn.score(X_test, y_test))</span><br></pre></td></tr></table></figure>
+<p>Model Complexity curve<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Setup arrays to store train and test accuracies</span></span><br><span class="line">neighbors = np.arange(<span class="number">1</span>, <span class="number">9</span>)</span><br><span class="line">train_accuracy = np.empty(len(neighbors))</span><br><span class="line">test_accuracy = np.empty(len(neighbors))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Loop over different values of k</span></span><br><span class="line"><span class="keyword">for</span> i, k <span class="keyword">in</span> enumerate(neighbors):</span><br><span class="line">    <span class="comment"># Setup a k-NN Classifier with k neighbors: knn</span></span><br><span class="line">    knn = KNeighborsClassifier(n_neighbors = k)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Fit the classifier to the training data</span></span><br><span class="line">    knn.fit(X_train, y_train)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#Compute accuracy on the training set</span></span><br><span class="line">    train_accuracy[i] = knn.score(X_train, y_train)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#Compute accuracy on the testing set</span></span><br><span class="line">    test_accuracy[i] = knn.score(X_test, y_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Generate plot</span></span><br><span class="line">plt.title(<span class="string">'k-NN: Varying Number of Neighbors'</span>)</span><br><span class="line">plt.plot(neighbors, test_accuracy, label = <span class="string">'Testing Accuracy'</span>)</span><br><span class="line">plt.plot(neighbors, train_accuracy, label = <span class="string">'Training Accuracy'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.xlabel(<span class="string">'Number of Neighbors'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Accuracy'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<h1 id="Regression"><a href="#Regression" class="headerlink" title="Regression"></a>Regression</h1><h2 id="Importing-data"><a href="#Importing-data" class="headerlink" title="Importing data"></a>Importing data</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import numpy and pandas</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read the CSV file into a DataFrame: df</span></span><br><span class="line">df = pd.read_csv(<span class="string">'gapminder.csv'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create arrays for features and target variable</span></span><br><span class="line">y = df.life.values <span class="comment">#transform as np array</span></span><br><span class="line">X = df.fertility.values</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the dimensions of X and y before reshaping</span></span><br><span class="line">print(<span class="string">"Dimensions of y before reshaping: &#123;&#125;"</span>.format(y.shape))</span><br><span class="line">print(<span class="string">"Dimensions of X before reshaping: &#123;&#125;"</span>.format(X.shape)) <span class="comment">#(139, )</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Reshape X and y (since we are only using one feature to predict)</span></span><br><span class="line">y = y.reshape(<span class="number">-1</span>, <span class="number">1</span>)</span><br><span class="line">X = X.reshape(<span class="number">-1</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the dimensions of X and y after reshaping</span></span><br><span class="line">print(<span class="string">"Dimensions of y after reshaping: &#123;&#125;"</span>.format(y.shape))</span><br><span class="line">print(<span class="string">"Dimensions of X after reshaping: &#123;&#125;"</span>.format(X.shape)) <span class="comment"># (139, 1)</span></span><br></pre></td></tr></table></figure>
+<h2 id="Linear-Regression"><a href="#Linear-Regression" class="headerlink" title="Linear Regression"></a>Linear Regression</h2><ul>
+<li><code>y = ax + b</code><ul>
+<li><code>y</code> = target</li>
+<li><code>x</code> = single feature</li>
+<li><code>a</code>, <code>b</code> = parameters of model</li>
+</ul>
+</li>
+<li>How to choose <code>a</code> and <code>b</code>?<ul>
+<li>Define an error/loss/cost function for any given line</li>
+<li>Choose the line that minimizes the error function</li>
+</ul>
+</li>
+</ul>
+<p>Using only one feature to predict.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import LinearRegression</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the regressor: reg</span></span><br><span class="line">reg = LinearRegression()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the prediction space</span></span><br><span class="line">prediction_space = np.linspace(</span><br><span class="line">    min(X_fertility), </span><br><span class="line">    max(X_fertility)</span><br><span class="line">    ).reshape(<span class="number">-1</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit the model to the data</span></span><br><span class="line">reg.fit(X_fertility, y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute predictions over the prediction space: y_pred</span></span><br><span class="line">y_pred = reg.predict(prediction_space)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print R^2 </span></span><br><span class="line">print(reg.score(X_fertility, y))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot regression line</span></span><br><span class="line">plt.plot(prediction_space, y_pred, color = <span class="string">'black'</span>, linewidth = <span class="number">3</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p>Using the whole dataset to predict with training and testing set split.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import necessary modules</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create training and test sets</span></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = <span class="number">0.3</span>, random_state=<span class="number">42</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the regressor: reg_all</span></span><br><span class="line">reg_all = LinearRegression()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit the regressor to the training data</span></span><br><span class="line">reg_all.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Predict on the test data: y_pred</span></span><br><span class="line">y_pred = reg_all.predict(X_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute and print R^2 and RMSE</span></span><br><span class="line">print(<span class="string">"R^2: &#123;&#125;"</span>.format(reg_all.score(X_test, y_test)))</span><br><span class="line">rmse = np.sqrt(mean_squared_error(y_test, y_pred))</span><br><span class="line">print(<span class="string">"Root Mean Squared Error: &#123;&#125;"</span>.format(rmse))</span><br></pre></td></tr></table></figure></p>
+<h2 id="Cross-validation"><a href="#Cross-validation" class="headerlink" title="Cross-validation"></a>Cross-validation</h2><p>To prevent your metric of choice being dependent on the train test split, we can use k-fold cross validation. The larger the k, the more computationality expensive it is. Therefore, it is common practice to choose 5 or 10 folds.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import the necessary modules</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a linear regression object: reg</span></span><br><span class="line">reg = LinearRegression()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute 5-fold cross-validation scores: cv_scores</span></span><br><span class="line">cv_scores = cross_val_score(reg, X, y, cv = <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the 5-fold cross-validation scores</span></span><br><span class="line">print(cv_scores)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"Average 5-Fold CV Score: &#123;&#125;"</span>.format(np.mean(cv_scores)))</span><br></pre></td></tr></table></figure></p>
+<p>You can use <code>%timeit</code> to see how long each 3-fold CV takes compared to 10-fold CV by executing the following <code>cv = 3</code> and <code>cv = 10</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%timeit cross_val_score(reg, X, y, cv = ____)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Regularization"><a href="#Regularization" class="headerlink" title="Regularization"></a>Regularization</h2><p>Linear regression is essentially minimizing a loss function, during which it needs to choose a coefficient $a_i$ for each feature variable. If we allow this coefficients or parameters to be super large, we can get <strong>overfitting</strong>, especially when it is in a high dimensional space. For this reason, it is common practice to alter the loss function so that it penalizes for large coefficients. </p>
+<h3 id="Ridge-Regression"><a href="#Ridge-Regression" class="headerlink" title="Ridge Regression"></a>Ridge Regression</h3><p>$L2$ regularization</p>
+<ul>
+<li>Loss function = OLS loss function + $\alpha * \sum\limits_{i=1}^na^2_i$</li>
+</ul>
+<p>With this loss function, when minimizing the loss function to fit to our data, models are penalized for coefficients with a large magnitude: <em>large positive and negative coefficients</em>. </p>
+<p>Therefore, $\alpha$ (which is often called $\lambda$ in the wild) is a hyperparameter here that needs tuning. $\alpha$ controls model complexity.</p>
+<ul>
+<li>$\alpha = 0$: original OLS. Can lead to overfitting</li>
+<li>$\alpha = \infin$: can lead to underfitting</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br><span class="line">ridge = Ridge(</span><br><span class="line">    alpha = <span class="number">0.1</span>, </span><br><span class="line">    normalize = <span class="keyword">True</span>) <span class="comment"># all variables are on the same scale</span></span><br></pre></td></tr></table></figure>
+<h3 id="Lasso-Regression"><a href="#Lasso-Regression" class="headerlink" title="Lasso Regression"></a>Lasso Regression</h3><p>$L1$ regularization</p>
+<ul>
+<li>Loss function = OLS loss function + $\alpha * \sum\limits_{i=1}^n|a_i|$</li>
+</ul>
+<p>Lasso regression can be usde to select important features of a dataset, because it shrinks the coefficients of less important features to exactly 0. The features whose coefficients are not shrunk to zero are ‘selected’ by the LASSO algorithm. Therefore, it is a very good method to use in reality for reporting purposes.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import Lasso</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Lasso</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate a lasso regressor: lasso</span></span><br><span class="line">lasso = Lasso(alpha = <span class="number">0.4</span>, normalize = <span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit the regressor to the data</span></span><br><span class="line">lasso.fit(X, y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute and print the coefficients</span></span><br><span class="line">lasso_coef = lasso.fit(X, y).coef_</span><br><span class="line">print(lasso_coef)</span><br><span class="line"></span><br><span class="line"><span class="comment"># plotting the coefficients as a function of feature name</span></span><br><span class="line">_ = plt.plot(range(len(names)), lasso_coef)</span><br><span class="line">_ = plt.xticks(range(len(names)), names, rotation = <span class="number">60</span>)</span><br><span class="line">_ = plt.ylabel(<span class="string">'Coefficients'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import necessary modules</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"></span><br><span class="line"><span class="comment"># Setup the array of alphas and lists to store scores</span></span><br><span class="line">alpha_space = np.logspace(<span class="number">-4</span>, <span class="number">0</span>, <span class="number">50</span>)</span><br><span class="line">ridge_scores = []</span><br><span class="line">ridge_scores_std = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a ridge regressor: ridge</span></span><br><span class="line">ridge = Ridge(normalize = <span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute scores over range of alphas</span></span><br><span class="line"><span class="keyword">for</span> alpha <span class="keyword">in</span> alpha_space:</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Specify the alpha value to use: ridge.alpha</span></span><br><span class="line">    ridge.alpha = alpha</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Perform 10-fold CV: ridge_cv_scores</span></span><br><span class="line">    ridge_cv_scores = cross_val_score(ridge, X, y, cv = <span class="number">10</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Append the mean of ridge_cv_scores to ridge_scores</span></span><br><span class="line">    ridge_scores.append(np.mean(ridge_cv_scores))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Append the std of ridge_cv_scores to ridge_scores_std</span></span><br><span class="line">    ridge_scores_std.append(np.std(ridge_cv_scores))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define a funtcion to draw the plot</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">display_plot</span><span class="params">(cv_scores, cv_scores_std)</span>:</span></span><br><span class="line">    fig = plt.figure()</span><br><span class="line">    ax = fig.add_subplot(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">    ax.plot(alpha_space, cv_scores)</span><br><span class="line"></span><br><span class="line">    std_error = cv_scores_std / np.sqrt(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    ax.fill_between(alpha_space, cv_scores + std_error, cv_scores - std_error, alpha = <span class="number">0.2</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">'CV Score +/- Std Error'</span>)</span><br><span class="line">    ax.set_xlabel(<span class="string">'Alpha'</span>)</span><br><span class="line">    ax.axhline(np.max(cv_scores), linestyle = <span class="string">'--'</span>, color = <span class="string">'.5'</span>)</span><br><span class="line">    ax.set_xlim([alpha_space[<span class="number">0</span>], alpha_space[<span class="number">-1</span>]])</span><br><span class="line">    ax.set_xscale(<span class="string">'log'</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Display the plot to see how cv scores vary across different alpha</span></span><br><span class="line">display_plot(ridge_scores, ridge_scores_std)</span><br></pre></td></tr></table></figure>
+<h3 id="Elastic-Net"><a href="#Elastic-Net" class="headerlink" title="Elastic Net"></a>Elastic Net</h3><p><code>L1 ratio</code> regularization</p>
+<ul>
+<li>Loss function = OLS loss function + $\alpha <em> L1 + b </em> L2$</li>
+</ul>
+<p>In scikit-learn, this term is represented by the <code>&#39;l1_ratio&#39;</code> parameter: An <code>&#39;l1_ratio&#39;</code> of 1 corresponds to an L1 penalty, and anything lower is a combination of $L1$ and $L2$.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import necessary modules</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> ElasticNet</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create train and test sets</span></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = <span class="number">0.4</span>, random_state = <span class="number">42</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the hyperparameter grid</span></span><br><span class="line">l1_space = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="number">30</span>)</span><br><span class="line">param_grid = &#123;<span class="string">'l1_ratio'</span>: l1_space&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate the ElasticNet regressor: elastic_net</span></span><br><span class="line">elastic_net = ElasticNet()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Setup the GridSearchCV object: gm_cv</span></span><br><span class="line">gm_cv = GridSearchCV(elastic_net, param_grid, cv = <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit it to the training data</span></span><br><span class="line">gm_cv.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Predict on the test set and compute metrics</span></span><br><span class="line">y_pred = gm_cv.predict(X_test)</span><br><span class="line">r2 = gm_cv.score(X_test, y_test)</span><br><span class="line">mse = mean_squared_error(y_test, y_pred)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"Tuned ElasticNet l1 ratio: &#123;&#125;"</span>.format(gm_cv.best_params_))</span><br><span class="line">print(<span class="string">"Tuned ElasticNet R squared: &#123;&#125;"</span>.format(r2))</span><br><span class="line">print(<span class="string">"Tuned ElasticNet MSE: &#123;&#125;"</span>.format(mse))</span><br></pre></td></tr></table></figure>
+<h1 id="Fine-tuning-the-Model"><a href="#Fine-tuning-the-Model" class="headerlink" title="Fine-tuning the Model"></a>Fine-tuning the Model</h1><h2 id="Classification-Model-Evaluation"><a href="#Classification-Model-Evaluation" class="headerlink" title="Classification Model Evaluation"></a>Classification Model Evaluation</h2><p>Normally, accuracy is a good enough metric to evaluate the performance. However, for imbalanced dataset, when we are trying to predict on a small amount of positively labeled data, accuracy rate cannot reflect the true “performance” of the model.</p>
+<h3 id="Confusion-matrix"><a href="#Confusion-matrix" class="headerlink" title="Confusion matrix"></a>Confusion matrix</h3><table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:center">Predicted：Spam Email</th>
+<th style="text-align:center">Predicted: Real Email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Actual: Spam Email</strong></td>
+<td style="text-align:center">True Positive</td>
+<td style="text-align:center">False Negative</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Actual: Real Email</strong></td>
+<td style="text-align:center">False Positive</td>
+<td style="text-align:center">True Negative</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>TP rate</strong> = $\frac{tp}{tp + fn}$</li>
+<li><strong>FP rate</strong> = $\frac{fp}{fp + tn}$ = 1 - <strong>Specificity</strong></li>
+<li><strong>Accuracy</strong> = $\frac{tp + tn}{tp + tn + fp + fn}$</li>
+<li><strong>Precision</strong> = $\frac{tp}{tp + fp}$<ul>
+<li>High precision means: In emails that are predicted as spam, most of them are predicted correctly.</li>
+</ul>
+</li>
+<li><strong>Recall</strong> = $\frac{tp}{tp + fn}$, which is also the <strong>True Positvie Rate</strong> and <strong>Sensitivity</strong>.<ul>
+<li>High recall means: In the actual spam emails, most of them were predicted correctly.</li>
+</ul>
+</li>
+<li><strong>F1 Score</strong> = $2 <em> \frac{\text{precision} </em> \text{recall}}{\text{precision} + \text{recall}}$ The harmonic mean of precision and recall.</li>
+<li><strong>the classification report</strong> consisted of three rows, and an additional support column. The support gives the number of samples of the true response that lie in that class.</li>
+<li><strong>Sensitivity</strong> = recall = TP rate = $\frac{tp}{tp + fn}$</li>
+<li><strong>Specificity</strong> = selectivity = TN rate = $\frac{tn}{tn + fn}$</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import packages</span></span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> classification_report</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> confusion_matrix</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create training and test set</span></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = <span class="number">0.4</span>, random_state = <span class="number">42</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate a k-NN classifier: knn</span></span><br><span class="line">knn = KNeighborsClassifier(n_neighbors = <span class="number">6</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit the classifier to the training data</span></span><br><span class="line">knn.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Predict the labels of the test data: y_pred</span></span><br><span class="line">y_pred = knn.predict(X_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Generate the confusion matrix and classification report</span></span><br><span class="line">print(confusion_matrix(y_test, y_pred))</span><br><span class="line">print(classification_report(y_test, y_pred))</span><br></pre></td></tr></table></figure>
+<h4 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h4><p><strong>Logistic regression for binary classification</strong></p>
+<ul>
+<li>Logistic regression outputs probabilities.<ul>
+<li>If the probability ‘p’ is greater than 0.5, the data is labeled ‘1’</li>
+<li>If the probability ‘p’ is less than 0.5, the data is labeled ‘0’</li>
+</ul>
+</li>
+<li>The above rules create a linear decision boundary.</li>
+<li>0.5 is actually a threshold and can be changed according to different scenarios. Here, we use the ROC curve to help us decide the threshold.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import the necessary modules</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> confusion_matrix, classification_report</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create training and test sets</span></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = <span class="number">0.4</span>, random_state=<span class="number">42</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the classifier: logreg</span></span><br><span class="line">logreg = LogisticRegression()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit the classifier to the training data</span></span><br><span class="line">logreg.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Predict the labels of the test set: y_pred</span></span><br><span class="line">y_pred = logreg.predict(X_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute and print the confusion matrix and classification report</span></span><br><span class="line">print(confusion_matrix(y_test, y_pred))</span><br><span class="line">print(classification_report(y_test, y_pred))</span><br></pre></td></tr></table></figure>
+<h3 id="ROC-Curve"><a href="#ROC-Curve" class="headerlink" title="ROC Curve"></a>ROC Curve</h3><ul>
+<li>X-axis: <strong>FP rate</strong>, Y-axis: <strong>TP rate</strong></li>
+<li>When threshold = 0, <em>the model predicts 1 for all data points</em>, then the FP and TP rates are all 1.</li>
+<li>When threshold = 1, <em>the model predicts 0 for all data points</em>, then the FP and TP rates are all 0.</li>
+<li>If we vary the threshold between the two extremes, we get a series of different fp and tp rates. The curve we get when trying all possible thresholds is called the Recevier Operating Characteristic curve or ROC curve.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import necessary modules</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_curve</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute predicted probabilities: y_pred_prob</span></span><br><span class="line">y_pred_prob = logreg.predict_proba(X_test)[:,<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Generate ROC curve values: fpr, tpr, thresholds</span></span><br><span class="line">fpr, tpr, thresholds = roc_curve(y_test, y_pred_prob)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot ROC curve</span></span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>], <span class="string">'k--'</span>)</span><br><span class="line">plt.plot(fpr, tpr)</span><br><span class="line">plt.xlabel(<span class="string">'False Positive Rate'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'True Positive Rate'</span>)</span><br><span class="line">plt.title(<span class="string">'ROC Curve'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><strong>Precision-recall Curve</strong> can also serve as a similar purpose.</p>
+<h4 id="Area-under-the-ROC-curve-AUC"><a href="#Area-under-the-ROC-curve-AUC" class="headerlink" title="Area under the ROC curve (AUC)"></a>Area under the ROC curve (AUC)</h4><p>Larger area under the ROC curve = better model<br>The idea is that: if we can produce a model with tp rate = 1 and fp rate = 0, it would be magnificent! Therefore, we can see that the area under the ROC curve, commonly denoted as AUC, is another popular metric for classification models. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import necessary modules</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_auc_score</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute predicted probabilities: y_pred_prob</span></span><br><span class="line">y_pred_prob = logreg.predict_proba(X_test)[:,<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute and print AUC score</span></span><br><span class="line">print(<span class="string">"AUC: &#123;&#125;"</span>.format(roc_auc_score(y_test, y_pred_prob)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute cross-validated AUC scores: cv_auc</span></span><br><span class="line">cv_auc = cross_val_score(logreg, X, y, cv = <span class="number">5</span>, scoring = <span class="string">'roc_auc'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print list of AUC scores</span></span><br><span class="line">print(<span class="string">"AUC scores computed using 5-fold cross-validation: &#123;&#125;"</span>.format(cv_auc))</span><br></pre></td></tr></table></figure>
+<h2 id="Hyperparameter-Tuning"><a href="#Hyperparameter-Tuning" class="headerlink" title="Hyperparameter Tuning"></a>Hyperparameter Tuning</h2><p>Hyperparameters are the ones that cannot be learned by fitting the model. The steps to choose the correct parameters are as follows:</p>
+<ol>
+<li>Try a bunch of different hyperparameter values</li>
+<li>Fit all of them separately</li>
+<li>See how well each performs (make sure to us cv to avoid overfitting)</li>
+<li>Choose the best performing one</li>
+</ol>
+<p>When implementing the tuning, we generally use grid search method.</p>
+<p>Like the $\alpha$ parameter of lasso and ridge regularization that you saw earlier, logistic regression also has a regularization parameter: $C$. $C$ controls the inverse of the regularization strength, and this is what you will tune below. </p>
+<p>A large $C$ can lead to an overfit model, while a small $C$ can lead to an underfit model.</p>
+<p>In addition to $C$, logistic regression has a <code>&#39;penalty&#39;</code> hyperparameter which specifies whether to use $L1$ or $L2$ regularization.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import necessary modules</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the hyperparameter grid</span></span><br><span class="line">c_space = np.logspace(<span class="number">-5</span>, <span class="number">8</span>, <span class="number">15</span>)</span><br><span class="line">param_grid = &#123;<span class="string">'C'</span>: c_space, <span class="string">'penalty'</span>: [<span class="string">'l1'</span>, <span class="string">'l2'</span>]&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate the logistic regression classifier: logreg</span></span><br><span class="line">logreg = LogisticRegression()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create train and test sets</span></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = <span class="number">0.4</span>, random_state = <span class="number">42</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate the GridSearchCV object: logreg_cv</span></span><br><span class="line">logreg_cv = GridSearchCV(logreg, param_grid, cv = <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit it to the training data</span></span><br><span class="line">logreg_cv.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the optimal parameters and best score</span></span><br><span class="line">print(<span class="string">"Tuned Logistic Regression Parameter: &#123;&#125;"</span>.format(logreg_cv.best_params_))</span><br><span class="line">print(<span class="string">"Tuned Logistic Regression Accuracy: &#123;&#125;"</span>.format(logreg_cv.best_score_))</span><br></pre></td></tr></table></figure></p>
+<p>GridSearchCV can be computationally expensive, especially if you are searching over a large hyperparameter space and dealing with multiple hyperparameters. A solution to this is to use <code>RandomizedSearchCV</code>, in which not all hyperparameter values are tried out. Instead, a fixed number of hyperparameter settings is sampled from specified probability distributions.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import necessary modules</span></span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> randint</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> RandomizedSearchCV</span><br><span class="line"></span><br><span class="line"><span class="comment"># Setup the parameters and distributions to sample from: param_dist</span></span><br><span class="line">param_dist = &#123;<span class="string">"max_depth"</span>: [<span class="number">3</span>, <span class="keyword">None</span>],</span><br><span class="line">              <span class="string">"max_features"</span>: randint(<span class="number">1</span>, <span class="number">9</span>), <span class="comment">#Return a random integer N such that 1 &lt;= N &lt;= 9.</span></span><br><span class="line">              <span class="string">"min_samples_leaf"</span>: randint(<span class="number">1</span>, <span class="number">9</span>),</span><br><span class="line">              <span class="string">"criterion"</span>: [<span class="string">"gini"</span>, <span class="string">"entropy"</span>]&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate a Decision Tree classifier: tree</span></span><br><span class="line">tree = DecisionTreeClassifier()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate the RandomizedSearchCV object: tree_cv</span></span><br><span class="line">tree_cv = RandomizedSearchCV(tree, param_dist, cv = <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit it to the data</span></span><br><span class="line">tree_cv.fit(X, y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the tuned parameters and score</span></span><br><span class="line">print(<span class="string">"Tuned Decision Tree Parameters: &#123;&#125;"</span>.format(tree_cv.best_params_))</span><br><span class="line">print(<span class="string">"Best score is &#123;&#125;"</span>.format(tree_cv.best_score_))</span><br></pre></td></tr></table></figure>
+<h3 id="Hold-out-Set"><a href="#Hold-out-Set" class="headerlink" title="Hold-out Set"></a>Hold-out Set</h3><p>How well can the model perform on never before seen data, given my scoring function of choice? </p>
+<p>We should split the dataset into training and testing before training the model and carry out the cv, so that we can evaluate the final performance of our model on a never-seen-dataset after we finalized the hyperparameters, which is the testing set/hold-out set.</p>
+<h1 id="Preprocessing-and-Pipelines"><a href="#Preprocessing-and-Pipelines" class="headerlink" title="Preprocessing and Pipelines"></a>Preprocessing and Pipelines</h1><h2 id="Categorical-features"><a href="#Categorical-features" class="headerlink" title="Categorical features"></a>Categorical features</h2><p><strong>Dummy coding</strong>:</p>
+<ul>
+<li><strong>0</strong>: Observation that does not belong to this category</li>
+<li><strong>1</strong>: Observation that belongs to this category</li>
+<li>Remember to remove one variable after dummy coding to prevent duplicating information. Since if there are only 3 categories and we know sth is not A or B, then it must be C. This can be achieved by specifying <code>drop_first=True</code> in <code>pd.get_dummies()</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import necessary modules</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read 'gapminder.csv' into a DataFrame: df</span></span><br><span class="line">df = pd.read_csv(<span class="string">'gapminder.csv'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create dummy variables with drop_first=True: df_region</span></span><br><span class="line">df_region = pd.get_dummies(df, drop_first = <span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the new columns of df_region</span></span><br><span class="line">print(df_region.columns)</span><br></pre></td></tr></table></figure>
+<h2 id="Missing-data"><a href="#Missing-data" class="headerlink" title="Missing data"></a>Missing data</h2><p>Even when <code>df.info()</code> suggests that all columns are not null, there are still many other possible forms of missing data. For instance, 0, ?, !, .. ,etc. </p>
+<p><strong>Ways to deal with missing data:</strong></p>
+<ol>
+<li>Dropping missing data: <code>df.dropna()</code> (generally a bad idea)</li>
+<li>Imputing missing data<ol>
+<li>Using the mean of the non-missing entries</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Convert '?' to NaN</span></span><br><span class="line">df[df == <span class="string">'?'</span>] = np.nan</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the number of NaNs</span></span><br><span class="line">print(df.isnull().sum())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print shape of original DataFrame</span></span><br><span class="line">print(<span class="string">"Shape of Original DataFrame: &#123;&#125;"</span>.format(df.shape))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Drop missing values and print shape of new DataFrame</span></span><br><span class="line">df = df.dropna()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print shape of new DataFrame</span></span><br><span class="line">print(<span class="string">"Shape of DataFrame After Dropping All Rows with Missing Values: &#123;&#125;"</span>.format(df.shape))</span><br></pre></td></tr></table></figure>
+<p><strong>Pipeline</strong>: each step but the last must be a transformer and the last must be an estimator, such as, a classifier or a regressor.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import the Imputer module</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> Imputer</span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> Pipeline</span><br><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</span><br><span class="line"></span><br><span class="line"><span class="comment"># Setup the Imputation transformer: imp</span></span><br><span class="line">imp = Imputer(missing_values = <span class="string">'NaN'</span>, strategy = <span class="string">'most_frequent'</span>, axis = <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate the SVC classifier: clf</span></span><br><span class="line">clf = SVC()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Setup the pipeline with the required steps: steps</span></span><br><span class="line">steps = [(<span class="string">'imputation'</span>, imp),</span><br><span class="line">        (<span class="string">'SVM'</span>, clf)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the pipeline: pipeline</span></span><br><span class="line">pipeline = Pipeline(steps)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create training and test sets</span></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = <span class="number">0.3</span>, random_state = <span class="number">42</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit the pipeline to the train set</span></span><br><span class="line">pipeline.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Predict the labels of the test set</span></span><br><span class="line">y_pred = pipeline.predict(X_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute metrics</span></span><br><span class="line">print(classification_report(y_test, y_pred))</span><br></pre></td></tr></table></figure>
+<h2 id="Centering-and-Scaling"><a href="#Centering-and-Scaling" class="headerlink" title="Centering and Scaling"></a>Centering and Scaling</h2><p>Why we need scaling/normalizing?</p>
+<ul>
+<li>Many models use some form of distance to inform them. Therefore, features on larger scales can unduly influence the model.</li>
+<li>We want features to be on a similar scale.</li>
+</ul>
+<p><strong>Ways to normalize data:</strong></p>
+<ul>
+<li><strong>Standardization</strong>: Subtract the mean and divide by variance.<ul>
+<li>All features are centered around zero and have variance one.</li>
+</ul>
+</li>
+<li>Subtract the minumum and divide by the range.<ul>
+<li>Minimum zero and maximum one</li>
+</ul>
+</li>
+<li>Normalize the range from -1 to +1</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import scale</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> scale</span><br><span class="line"></span><br><span class="line"><span class="comment"># Scale the features: X_scaled</span></span><br><span class="line">X_scaled = scale(X)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the mean and standard deviation of the unscaled features</span></span><br><span class="line">print(<span class="string">"Mean of Unscaled Features: &#123;&#125;"</span>.format(np.mean(X))) </span><br><span class="line">print(<span class="string">"Standard Deviation of Unscaled Features: &#123;&#125;"</span>.format(np.std(X)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the mean and standard deviation of the scaled features</span></span><br><span class="line">print(<span class="string">"Mean of Scaled Features: &#123;&#125;"</span>.format(np.mean(X_scaled))) </span><br><span class="line">print(<span class="string">"Standard Deviation of Scaled Features: &#123;&#125;"</span>.format(np.std(X_scaled)))</span><br></pre></td></tr></table></figure>
+<p>Using pipeline to scale the data together with modeling.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import the necessary modules</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> Pipeline</span><br><span class="line"></span><br><span class="line"><span class="comment"># Setup the pipeline steps: steps</span></span><br><span class="line">steps = [(<span class="string">'scaler'</span>, StandardScaler()),</span><br><span class="line">        (<span class="string">'knn'</span>, KNeighborsClassifier())]</span><br><span class="line">        </span><br><span class="line"><span class="comment"># Create the pipeline: pipeline</span></span><br><span class="line">pipeline = Pipeline(steps)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create train and test sets</span></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = <span class="number">0.3</span>, random_state = <span class="number">42</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit the pipeline to the training set: knn_scaled</span></span><br><span class="line">knn_scaled = pipeline.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate and fit a k-NN classifier to the unscaled data</span></span><br><span class="line">knn_unscaled = KNeighborsClassifier().fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute and print metrics</span></span><br><span class="line">print(<span class="string">'Accuracy with Scaling: &#123;&#125;'</span>.format(knn_scaled.score(X_test, y_test)))</span><br><span class="line">print(<span class="string">'Accuracy without Scaling: &#123;&#125;'</span>.format(knn_unscaled.score(X_test, y_test)))</span><br></pre></td></tr></table></figure></p>
+<h1 id="All-together"><a href="#All-together" class="headerlink" title="All together"></a>All together</h1><h2 id="Pipeline-for-classification"><a href="#Pipeline-for-classification" class="headerlink" title="Pipeline for classification"></a>Pipeline for classification</h2><p>It is time now to piece together everything you have learned so far into a pipeline for classification! Your job in this exercise is to build a pipeline that includes scaling and hyperparameter tuning to classify wine quality.</p>
+<p>You’ll return to using the SVM classifier you were briefly introduced to earlier in this chapter. The hyperparameters you will tune are $C$ and $\gamma$ (gamma). $C$ controls the regularization strength. It is analogous to the $C$ you tuned for logistic regression, while $\gamma$ controls the kernel coefficient.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> Pipeline</span><br><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split, GridSearchCV</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> classification_report, accuracy_score</span><br><span class="line"></span><br><span class="line"><span class="comment"># Setup the pipeline</span></span><br><span class="line">steps = [(<span class="string">'scaler'</span>, StandardScaler()),</span><br><span class="line">         (<span class="string">'SVM'</span>, SVC())]</span><br><span class="line"></span><br><span class="line">pipeline = Pipeline(steps)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Specify the hyperparameter space, 'step_name__parameter_name'</span></span><br><span class="line">parameters = &#123;<span class="string">'SVM__C'</span>:[<span class="number">1</span>, <span class="number">10</span>, <span class="number">100</span>],</span><br><span class="line">              <span class="string">'SVM__gamma'</span>:[<span class="number">0.1</span>, <span class="number">0.01</span>]&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create train and test sets</span></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = <span class="number">0.2</span>, random_state = <span class="number">21</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate the GridSearchCV object: cv</span></span><br><span class="line">cv = GridSearchCV(pipeline, parameters, cv = <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit to the training set</span></span><br><span class="line">cv.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Predict the labels of the test set: y_pred</span></span><br><span class="line">y_pred = cv.predict(X_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute and print metrics</span></span><br><span class="line">print(<span class="string">"Accuracy: &#123;&#125;"</span>.format(cv.score(X_test, y_test)))</span><br><span class="line">print(classification_report(y_test, y_pred))</span><br><span class="line">print(<span class="string">"Tuned Model Parameters: &#123;&#125;"</span>.format(cv.best_params_))</span><br></pre></td></tr></table></figure>
+<h2 id="Pipeline-for-regression"><a href="#Pipeline-for-regression" class="headerlink" title="Pipeline for regression"></a>Pipeline for regression</h2><p>Your job is to build a pipeline that imputes the missing data, scales the features, and fits an ElasticNet to the Gapminder data. You will then tune the l1_ratio of your ElasticNet using GridSearchCV.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> Pipeline</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> ElasticNet</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split, GridSearchCV</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> classification_report, accuracy_score</span><br><span class="line"></span><br><span class="line"><span class="comment"># Setup the pipeline steps: steps</span></span><br><span class="line">steps = [(<span class="string">'imputation'</span>, Imputer(missing_values=<span class="string">'NaN'</span>, strategy=<span class="string">'mean'</span>, axis=<span class="number">0</span>)),</span><br><span class="line">         (<span class="string">'scaler'</span>, StandardScaler()),</span><br><span class="line">         (<span class="string">'elasticnet'</span>, ElasticNet())]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the pipeline: pipeline </span></span><br><span class="line">pipeline = Pipeline(steps)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Specify the hyperparameter space</span></span><br><span class="line">parameters = &#123;<span class="string">'elasticnet__l1_ratio'</span>:np.linspace(<span class="number">0</span>,<span class="number">1</span>,<span class="number">30</span>)&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create train and test sets</span></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = <span class="number">0.4</span>, random_state = <span class="number">42</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the GridSearchCV object: gm_cv</span></span><br><span class="line">gm_cv = GridSearchCV(pipeline, parameters, cv = <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit to the training set</span></span><br><span class="line">gm_cv.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute and print the metrics</span></span><br><span class="line">r2 = gm_cv.score(X_test, y_test)</span><br><span class="line">print(<span class="string">"Tuned ElasticNet Alpha: &#123;&#125;"</span>.format(gm_cv.best_params_))</span><br><span class="line">print(<span class="string">"Tuned ElasticNet R squared: &#123;&#125;"</span>.format(r2))</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python-Machine-Learning-scikit-learn-Supervised-Learning/" rel="tag"># Python, Machine Learning, scikit-learn, Supervised Learning</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/16/Intro-to-Shell-for-DS/" rel="next" title="Introduction to Shell for Data Science">
+                <i class="fa fa-chevron-left"></i> Introduction to Shell for Data Science
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/22/ML-with-School-Budgets/" rel="prev" title="NLP Case Study - School Budgets">
+                NLP Case Study - School Budgets <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview sidebar-nav-active" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Joanna" />
+            
+              <p class="site-author-name" itemprop="name">Joanna</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Classification"><span class="nav-text">Classification</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#EDA"><span class="nav-text">EDA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KNN"><span class="nav-text">KNN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Measuring-Model-Performance"><span class="nav-text">Measuring Model Performance</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Regression"><span class="nav-text">Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Importing-data"><span class="nav-text">Importing data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Regression"><span class="nav-text">Linear Regression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cross-validation"><span class="nav-text">Cross-validation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regularization"><span class="nav-text">Regularization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ridge-Regression"><span class="nav-text">Ridge Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lasso-Regression"><span class="nav-text">Lasso Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elastic-Net"><span class="nav-text">Elastic Net</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fine-tuning-the-Model"><span class="nav-text">Fine-tuning the Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Classification-Model-Evaluation"><span class="nav-text">Classification Model Evaluation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Confusion-matrix"><span class="nav-text">Confusion matrix</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Logistic-Regression"><span class="nav-text">Logistic Regression</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ROC-Curve"><span class="nav-text">ROC Curve</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Area-under-the-ROC-curve-AUC"><span class="nav-text">Area under the ROC curve (AUC)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hyperparameter-Tuning"><span class="nav-text">Hyperparameter Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hold-out-Set"><span class="nav-text">Hold-out Set</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Preprocessing-and-Pipelines"><span class="nav-text">Preprocessing and Pipelines</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Categorical-features"><span class="nav-text">Categorical features</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Missing-data"><span class="nav-text">Missing data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Centering-and-Scaling"><span class="nav-text">Centering and Scaling</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#All-together"><span class="nav-text">All together</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pipeline-for-classification"><span class="nav-text">Pipeline for classification</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pipeline-for-regression"><span class="nav-text">Pipeline for regression</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joanna</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz", "cDbeqqCJt4dq4hu7C9GaCrHB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

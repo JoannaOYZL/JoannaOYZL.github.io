@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python, Machine Learning, scikit-learn, NLP, Supervised Learning," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="NLP project in Python to classify items into different categories. (DataCamp).">
+<meta name="keywords" content="Python, Machine Learning, scikit-learn, NLP, Supervised Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NLP Case Study - School Budgets">
+<meta property="og:url" content="https://joannaoyzl.github.io/2019/07/22/ML-with-School-Budgets/index.html">
+<meta property="og:site_name" content="Joanna">
+<meta property="og:description" content="NLP project in Python to classify items into different categories. (DataCamp).">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-07-29T00:25:50.626Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NLP Case Study - School Budgets">
+<meta name="twitter:description" content="NLP project in Python to classify items into different categories. (DataCamp).">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://joannaoyzl.github.io/2019/07/22/ML-with-School-Budgets/"/>
+
+
+
+
+
+  <title>NLP Case Study - School Budgets | Joanna</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-134453862-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joanna</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://joannaoyzl.github.io/2019/07/22/ML-with-School-Budgets/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joanna">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joanna">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NLP Case Study - School Budgets</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-22T14:08:53-07:00">
+                2019-07-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Course-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Course Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/22/ML-with-School-Budgets/" class="leancloud_visitors" data-flag-title="NLP Case Study - School Budgets">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>NLP project in Python to classify items into different categories. (DataCamp).<br><a id="more"></a></p>
+<h1 id="Introduction-to-the-Challange"><a href="#Introduction-to-the-Challange" class="headerlink" title="Introduction to the Challange"></a>Introduction to the Challange</h1><p>Budgets for schools are huge, complex, and not standardized. Hundredds of hours each year are spent manually labelling.</p>
+<ul>
+<li>Goal: Build a machine learning algorithm that can autiomate the process</li>
+<li>Dataset: <ul>
+<li>Line-item: text description of each item</li>
+<li>9 Target variables: labels like ‘Textbooks’, ‘Math’, ‘Middle School’</li>
+</ul>
+</li>
+<li>Supervised classification problem.</li>
+</ul>
+<p>We want to build a <strong>human-in-loop machine learning system</strong>. We don’t want to make direct prediction on whether each item is A or B, but want to say that “we are 60% sure that is belongs to A. If not, we are 30% sure it belongs to B…”.</p>
+<h2 id="Basic-EDA"><a href="#Basic-EDA" class="headerlink" title="Basic EDA"></a>Basic EDA</h2><p>I removed the frequently used ones for simplicity. e.g. <code>df.describe()</code>, <code>df.info()</code>…, etc.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_csv(<span class="string">'TrainingData.csv'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Counts the number of different data types</span></span><br><span class="line">df.dtypes.value_counts()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set columns that should be categorical variables</span></span><br><span class="line">LABELS = [<span class="string">'Function'</span>,</span><br><span class="line"> <span class="string">'Use'</span>,</span><br><span class="line"> <span class="string">'Sharing'</span>,</span><br><span class="line"> <span class="string">'Reporting'</span>,</span><br><span class="line"> <span class="string">'Student_Type'</span>,</span><br><span class="line"> <span class="string">'Position_Type'</span>,</span><br><span class="line"> <span class="string">'Object_Type'</span>,</span><br><span class="line"> <span class="string">'Pre_K'</span>,</span><br><span class="line"> <span class="string">'Operating_Status'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define the lambda function: categorize_label</span></span><br><span class="line">categorize_label = <span class="keyword">lambda</span> x: x.astype(<span class="string">'category'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Convert df[LABELS] to a categorical type</span></span><br><span class="line">df[LABELS] = df[LABELS].apply(categorize_label, axis = <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the converted dtypes</span></span><br><span class="line">print(df[LABELS].dtypes)</span><br></pre></td></tr></table></figure></p>
+<p>Check the number of labels under each category:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import matplotlib.pyplot</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculate number of unique values for each label: num_unique_labels</span></span><br><span class="line">num_unique_labels = df[LABELS].apply(pd.Series.nunique)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot number of unique values for each label</span></span><br><span class="line">num_unique_labels.plot(kind = <span class="string">'bar'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Label the axes</span></span><br><span class="line">plt.xlabel(<span class="string">'Labels'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Number of unique values'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Display the plot</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<h2 id="Performance-Measurement"><a href="#Performance-Measurement" class="headerlink" title="Performance Measurement"></a>Performance Measurement</h2><p>The metric used in this problem is <strong>log loss</strong>. It is a loss function and a measure of error. Our goal is to minimize the error with our model.</p>
+<ul>
+<li>Log Loss for <strong>binary classification</strong><ul>
+<li>Actual value: $y$ = {1 = yes, 0 = no}</li>
+<li>Prediction (Probability that the value is 1): $p$</li>
+<li>$logloss = -\frac{1}{N}\sum\limits_{i=1}^{N}(y_i\log(p_i) + (1-y_i)\log(1-p_i))$</li>
+<li>The function sets that it is better to be less confident than confident and wrong, i.e., a high probability is assigned to the incorrect class.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compute_log_loss</span><span class="params">(predicted, actual, eps = <span class="number">1e-14</span>)</span>:</span></span><br><span class="line">    <span class="string">""" Computes the logarithmic loss between predicted and</span></span><br><span class="line"><span class="string">    actual when these are 1D arrays.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :param predicted: The predicted probabilities as floats between 0-1</span></span><br><span class="line"><span class="string">    :param actual: The actual binary labels. Either 0 or 1.</span></span><br><span class="line"><span class="string">    :param eps (optional): log(0) is inf, so we need to offset our</span></span><br><span class="line"><span class="string">    predicted values slightly by eps from 0 or 1.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    predicted = np.clip(predicted, eps, <span class="number">1</span> - eps)</span><br><span class="line">    loss = <span class="number">-1</span> * np.mean(actual * np.log(predicted)</span><br><span class="line">              + (<span class="number">1</span> - actual) </span><br><span class="line">              * np.log(<span class="number">1</span> - predicted))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> loss</span><br></pre></td></tr></table></figure>
+<p>We can test the logic of our loss function by the following tests:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set up cases for testing</span></span><br><span class="line">actual_labels = np.array([<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>])</span><br><span class="line">correct_confident = np.array([<span class="number">0.95</span>, <span class="number">0.95</span>, <span class="number">0.95</span>, <span class="number">0.95</span>, <span class="number">0.95</span>, <span class="number">0.05</span>, <span class="number">0.05</span>, <span class="number">0.05</span>, <span class="number">0.05</span>, <span class="number">0.05</span>])</span><br><span class="line">correct_not_confident = np.array([<span class="number">0.65</span>, <span class="number">0.65</span>, <span class="number">0.65</span>, <span class="number">0.65</span>, <span class="number">0.65</span>, <span class="number">0.35</span>, <span class="number">0.35</span>, <span class="number">0.35</span>, <span class="number">0.35</span>, <span class="number">0.35</span>])</span><br><span class="line">wrong_not_confident = np.array([<span class="number">0.35</span>, <span class="number">0.35</span>, <span class="number">0.35</span>, <span class="number">0.35</span>, <span class="number">0.35</span>, <span class="number">0.65</span>, <span class="number">0.65</span>, <span class="number">0.65</span>, <span class="number">0.65</span>, <span class="number">0.65</span>])</span><br><span class="line">wrong_confident = np.array([<span class="number">0.05</span>, <span class="number">0.05</span>, <span class="number">0.05</span>, <span class="number">0.05</span>, <span class="number">0.05</span>, <span class="number">0.95</span>, <span class="number">0.95</span>, <span class="number">0.95</span>, <span class="number">0.95</span>, <span class="number">0.95</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute and print log loss for 1st case</span></span><br><span class="line">correct_confident_loss = compute_log_loss(correct_confident, actual_labels)</span><br><span class="line">print(<span class="string">"Log loss, correct and confident: &#123;&#125;"</span>.format(correct_confident_loss)) </span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute log loss for 2nd case</span></span><br><span class="line">correct_not_confident_loss = compute_log_loss(correct_not_confident, actual_labels)</span><br><span class="line">print(<span class="string">"Log loss, correct and not confident: &#123;&#125;"</span>.format(correct_not_confident_loss)) </span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute and print log loss for 3rd case</span></span><br><span class="line">wrong_not_confident_loss = compute_log_loss(wrong_not_confident, actual_labels)</span><br><span class="line">print(<span class="string">"Log loss, wrong and not confident: &#123;&#125;"</span>.format(wrong_not_confident_loss)) </span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute and print log loss for 4th case</span></span><br><span class="line">wrong_confident_loss = compute_log_loss(wrong_confident, actual_labels)</span><br><span class="line">print(<span class="string">"Log loss, wrong and confident: &#123;&#125;"</span>.format(wrong_confident_loss)) </span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute and print log loss for actual labels</span></span><br><span class="line">actual_labels_loss = compute_log_loss(actual_labels, actual_labels)</span><br><span class="line">print(<span class="string">"Log loss, actual labels: &#123;&#125;"</span>.format(actual_labels_loss)) </span><br><span class="line"></span><br><span class="line"><span class="comment"># &lt;script.py&gt; output:</span></span><br><span class="line"><span class="comment">#     Log loss, correct and confident: 0.05129329438755058</span></span><br><span class="line"><span class="comment">#     Log loss, correct and not confident: 0.4307829160924542</span></span><br><span class="line"><span class="comment">#     Log loss, wrong and not confident: 1.049822124498678</span></span><br><span class="line"><span class="comment">#     Log loss, wrong and confident: 2.9957322735539904</span></span><br><span class="line"><span class="comment">#     Log loss, actual labels: 9.99200722162646e-15</span></span><br></pre></td></tr></table></figure></p>
+<p>We can see that log loss penalizes highly confident wrong answers much more than any other type. This will be a good metric to use on your models.</p>
+<h1 id="Create-a-Simple-Model"><a href="#Create-a-Simple-Model" class="headerlink" title="Create a Simple Model"></a>Create a Simple Model</h1><p>Many more things can go wrong in complex models. It is always a good approach to start with a very simple model, which can gives a sense of how challenging the problem is, and how much signal can we pull out using basic methods.</p>
+<h2 id="Model-with-Numeric-Data-Only"><a href="#Model-with-Numeric-Data-Only" class="headerlink" title="Model with Numeric Data Only"></a>Model with Numeric Data Only</h2><p><strong>Basic model outline:</strong></p>
+<ul>
+<li>Train basic model on numeric data only: we want to go from raw data to predictions quickly.</li>
+<li><strong>Multi-class logistic regression</strong><ul>
+<li>Train classifier on each label separately and use those to predict</li>
+</ul>
+</li>
+</ul>
+<p>Splitting the multi-class dataset is a little tricky in this case. </p>
+<ul>
+<li>We have multiple target variables, and some of the labels have very few data points.</li>
+<li>Solution: StratifiedShuffleSplit –&gt; multilabel_train_test_split() (detailedly set in <a href="https://github.com/drivendataorg/box-plots-sklearn/blob/master/src/data/multilabel.py" target="_blank" rel="noopener">this link</a>)</li>
+<li><code>OneVsRestClassifier()</code><ul>
+<li>Treats each column of y independently</li>
+<li>Fits a separate classifier for each of the columns</li>
+</ul>
+</li>
+</ul>
+<p>The first step is to split the data into a training set and a test set. Some labels don’t occur very often, but we want to make sure that they appear in both the training and the test sets. We provide a function that will make sure at least <code>min_count</code> examples of each label appear in each split: <code>multilabel_train_test_split</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import classifiers</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"><span class="keyword">from</span> sklearn.multiclass <span class="keyword">import</span> OneVsRestClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the DataFrame: numeric_data_only</span></span><br><span class="line">numeric_data_only = df[NUMERIC_COLUMNS].fillna(<span class="number">-1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get labels and convert to dummy variables: label_dummies</span></span><br><span class="line">label_dummies = pd.get_dummies(df[LABELS])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create training and test sets</span></span><br><span class="line">X_train, X_test, y_train, y_test = multilabel_train_test_split(</span><br><span class="line">    numeric_data_only,</span><br><span class="line">    label_dummies,</span><br><span class="line">    size = <span class="number">0.2</span>, </span><br><span class="line">    seed = <span class="number">123</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate the classifier: clf</span></span><br><span class="line">clf = OneVsRestClassifier(LogisticRegression())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit the classifier to the training data</span></span><br><span class="line">clf.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load the holdout data: holdout</span></span><br><span class="line">holdout = pd.read_csv(<span class="string">'HoldoutData.csv'</span>, index_col = <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Generate predictions: predictions</span></span><br><span class="line">predictions = clf.predict_proba(holdout[NUMERIC_COLUMNS].fillna(<span class="number">-1000</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Format predictions in DataFrame: prediction_df</span></span><br><span class="line">prediction_df = pd.DataFrame(</span><br><span class="line">    columns = pd.get_dummies(df[LABELS]).columns,</span><br><span class="line">    index = holdout.index,</span><br><span class="line">    data = predictions)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Save prediction_df to csv</span></span><br><span class="line">prediction_df.to_csv(<span class="string">'predictions.csv'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Submit the predictions for scoring: score</span></span><br><span class="line">score = score_submission(pred_path = <span class="string">'predictions.csv'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print score</span></span><br><span class="line">print(<span class="string">'Your model, trained with numeric data only, yields logloss score: &#123;&#125;'</span>.format(score))</span><br></pre></td></tr></table></figure>
+<h2 id="Introduction-to-NLP"><a href="#Introduction-to-NLP" class="headerlink" title="Introduction to NLP"></a>Introduction to NLP</h2><p><strong>Tokenization</strong></p>
+<ul>
+<li>Splitting a string into segments<ul>
+<li>The rule of separation can be customized, e.g. by space, or comma, or a combination of several ones.</li>
+</ul>
+</li>
+<li>Store segments as list</li>
+<li>e.g. ‘Natural Language Processing’ –&gt; [‘Natural’, ‘Language’, ‘Processing’]</li>
+</ul>
+<p><strong>Bag of Words</strong></p>
+<ul>
+<li>Count the number of times a particular token appears.</li>
+<li>But discards information about word order.</li>
+<li><code>CountVectorizer()</code><ul>
+<li>Tokenizes all strings</li>
+<li>Builds a ‘vocabulary’</li>
+<li>Counts the occurences of each token in the vocabulary.<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import CountVectorizer</span></span><br><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> CountVectorizer</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the token pattern: TOKENS_ALPHANUMERIC (creating tokens that contain only alphanumeric characters)</span></span><br><span class="line">TOKENS_ALPHANUMERIC = <span class="string">'[A-Za-z0-9]+(?=\\s+)'</span> <span class="comment">#refer to resources online for how to define this pattern</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Fill missing values in df.Position_Extra</span></span><br><span class="line">df.Position_Extra.fillna(<span class="string">''</span>, inplace = <span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate the CountVectorizer: vec_alphanumeric</span></span><br><span class="line">vec_alphanumeric = CountVectorizer(token_pattern = TOKENS_ALPHANUMERIC)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit to the data</span></span><br><span class="line">vec_alphanumeric.fit(df.Position_Extra)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the number of tokens and first 15 tokens</span></span><br><span class="line">msg = <span class="string">"There are &#123;&#125; tokens in Position_Extra if we split on non-alpha numeric"</span></span><br><span class="line">print(msg.format(len(vec_alphanumeric.get_feature_names())))</span><br><span class="line">print(vec_alphanumeric.get_feature_names()[:<span class="number">15</span>])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>In order to get a bag-of-words representation for all of the text data in our DataFrame, you must first convert the text data in each row of the DataFrame into a single string.</p>
+<p>In the previous exercise, this wasn’t necessary because you only looked at one column of data, so each row was already just a single string. <strong><code>CountVectorizer</code> expects each row to just be a single string, so in order to use all of the text columns, you’ll need a method to turn a list of strings into a single string.</strong></p>
+<p>In this exercise, you’ll complete the function definition <code>combine_text_columns()</code>. When completed, this function will convert all training text data in your DataFrame to a single string per row that can be passed to the vectorizer object and made into a bag-of-words using the <code>.fit_transform()</code> method.</p>
+<p>Note that the function uses <code>NUMERIC_COLUMNS</code> and <code>LABELS</code> to determine which columns to drop. These lists have been loaded into the workspace.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define combine_text_columns()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">combine_text_columns</span><span class="params">(data_frame, to_drop = NUMERIC_COLUMNS + LABELS)</span>:</span></span><br><span class="line">    <span class="string">""" converts all text in each row of data_frame to single vector """</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Drop non-text columns that are in the df</span></span><br><span class="line">    to_drop = set(to_drop) &amp; set(data_frame.columns.tolist()) <span class="comment">#取交集</span></span><br><span class="line">    text_data = data_frame.drop(to_drop, axis = <span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Replace nans with blanks</span></span><br><span class="line">    text_data.fillna(<span class="string">""</span>, inplace = <span class="keyword">True</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Join all text items in a row that have a space in between</span></span><br><span class="line">    <span class="keyword">return</span> text_data.apply(<span class="keyword">lambda</span> x: <span class="string">" "</span>.join(x), axis = <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import the CountVectorizer</span></span><br><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> CountVectorizer</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the basic token pattern</span></span><br><span class="line">TOKENS_BASIC = <span class="string">'\\S+(?=\\s+)'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the alphanumeric token pattern</span></span><br><span class="line">TOKENS_ALPHANUMERIC = <span class="string">'[A-Za-z0-9]+(?=\\s+)'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate basic CountVectorizer: vec_basic</span></span><br><span class="line">vec_basic = CountVectorizer(token_pattern = TOKENS_BASIC)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate alphanumeric CountVectorizer: vec_alphanumeric</span></span><br><span class="line">vec_alphanumeric = CountVectorizer(token_pattern = TOKENS_ALPHANUMERIC)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the text vector</span></span><br><span class="line">text_vector = combine_text_columns(df)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit and transform vec_basic</span></span><br><span class="line">vec_basic.fit_transform(text_vector)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print number of tokens of vec_basic</span></span><br><span class="line">print(<span class="string">"There are &#123;&#125; tokens in the dataset"</span>.format(len(vec_basic.get_feature_names())))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit and transform vec_alphanumeric</span></span><br><span class="line">vec_alphanumeric.fit_transform(text_vector)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print number of tokens of vec_alphanumeric</span></span><br><span class="line">print(<span class="string">"There are &#123;&#125; alpha-numeric tokens in the dataset"</span>.format(len(vec_alphanumeric.get_feature_names())))</span><br></pre></td></tr></table></figure>
+<p><strong>N-grams</strong></p>
+<ul>
+<li>N-gram means to include n consecutive words in each segment.</li>
+<li>Maintain the information about word order.</li>
+</ul>
+<h1 id="Model-Improvements"><a href="#Model-Improvements" class="headerlink" title="Model Improvements"></a>Model Improvements</h1><h2 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h2><p>Pipeline is a repeatable way to go from raw data to trained model.</p>
+<ul>
+<li>Pipeline object takes sequential list of steps. Output of one step is input to next step</li>
+<li>We can even have a sub-pipeline as one of the steps</li>
+<li>Each step is a tuple with two elements:<ul>
+<li>Name: string</li>
+<li>Transform: obj implementing <code>.fit()</code> and <code>.transform()</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import Pipeline</span></span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> Pipeline</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import other necessary modules</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"><span class="keyword">from</span> sklearn.multiclass <span class="keyword">import</span> OneVsRestClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import the Imputer object</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> Imputer</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create training and test sets using only numeric data</span></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(</span><br><span class="line">    sample_df[[<span class="string">'numeric'</span>, <span class="string">'with_missing'</span>]],</span><br><span class="line">    pd.get_dummies(sample_df[<span class="string">'label'</span>]), </span><br><span class="line">    random_state = <span class="number">456</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Insantiate Pipeline object: pl</span></span><br><span class="line">pl = Pipeline([</span><br><span class="line">        (<span class="string">'imp'</span>, Imputer()),</span><br><span class="line">        (<span class="string">'clf'</span>, OneVsRestClassifier(LogisticRegression()))</span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit the pipeline to the training data</span></span><br><span class="line">pl.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute and print accuracy</span></span><br><span class="line">accuracy = pl.score(X_test, y_test)</span><br><span class="line">print(<span class="string">"\nAccuracy on sample data - all numeric, incl nans: "</span>, accuracy)</span><br></pre></td></tr></table></figure>
+<h2 id="Preprocessing-Multiple-Dtypes"><a href="#Preprocessing-Multiple-Dtypes" class="headerlink" title="Preprocessing Multiple Dtypes"></a>Preprocessing Multiple Dtypes</h2><p>We definitely want to use all available features in one pipeline. </p>
+<ul>
+<li><strong>Problem</strong>: the pipeline steps for numeric and text preprocessing can’t follow each other. <ul>
+<li>e.g., output of CountVectorizer can’t be input to Imputer.</li>
+</ul>
+</li>
+<li><strong>Solution</strong>: Function Transformer() &amp; FeartuerUnion()</li>
+<li><strong>Function Transformer</strong><ul>
+<li>Turns a Python function into an object that a scikit-learn pipeline can understand</li>
+<li>Need to write two functions for pipeline preprocessing<ul>
+<li>Take entire DF, return numeric columns</li>
+<li>Take entire DF, return text columns</li>
+</ul>
+</li>
+<li>Can then preprocess numeric and text data in separate pipelines.</li>
+<li><code>validate = False</code> indicates no need to check the input’s data types or missing values.</li>
+</ul>
+</li>
+<li><strong>FeatureUnion</strong><ul>
+<li>Combine two sets of features together as a single array, which will be the input to our classifier.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import FunctionTransformer</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> FunctionTransformer</span><br><span class="line"></span><br><span class="line"><span class="comment"># Obtain the text data: get_text_data</span></span><br><span class="line">get_text_data = FunctionTransformer(<span class="keyword">lambda</span> x: x[<span class="string">'text'</span>], validate=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Obtain the numeric data: get_numeric_data</span></span><br><span class="line">get_numeric_data = FunctionTransformer(<span class="keyword">lambda</span> x: x[[<span class="string">'numeric'</span>, <span class="string">'with_missing'</span>]], validate = <span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit and transform the text data: just_text_data</span></span><br><span class="line">just_text_data = get_text_data.fit_transform(sample_df)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit and transform the numeric data: just_numeric_data</span></span><br><span class="line">just_numeric_data = get_numeric_data.fit_transform(sample_df)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import FeatureUnion</span></span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> FeatureUnion</span><br><span class="line"></span><br><span class="line"><span class="comment"># Split using ALL data in sample_df</span></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(</span><br><span class="line">    sample_df[[<span class="string">'numeric'</span>, <span class="string">'with_missing'</span>, <span class="string">'text'</span>]],</span><br><span class="line">    pd.get_dummies(sample_df[<span class="string">'label'</span>]), </span><br><span class="line">    random_state = <span class="number">22</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a FeatureUnion with nested pipeline: process_and_join_features</span></span><br><span class="line">process_and_join_features = FeatureUnion(</span><br><span class="line">    transformer_list = [</span><br><span class="line">        (<span class="string">'numeric_features'</span>, Pipeline([</span><br><span class="line">            (<span class="string">'selector'</span>, get_numeric_data),</span><br><span class="line">            (<span class="string">'imputer'</span>, Imputer())</span><br><span class="line">        ])),</span><br><span class="line">        (<span class="string">'text_features'</span>, Pipeline([</span><br><span class="line">            (<span class="string">'selector'</span>, get_text_data),</span><br><span class="line">            (<span class="string">'vectorizer'</span>, CountVectorizer())</span><br><span class="line">        ]))</span><br><span class="line">    ]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate nested pipeline: pl</span></span><br><span class="line">pl = Pipeline([</span><br><span class="line">        (<span class="string">'union'</span>, process_and_join_features),</span><br><span class="line">        (<span class="string">'clf'</span>, OneVsRestClassifier(LogisticRegression()))</span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit pl to the training data</span></span><br><span class="line">pl.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute and print accuracy</span></span><br><span class="line">accuracy = pl.score(X_test, y_test)</span><br><span class="line">print(<span class="string">"\nAccuracy on sample data - all data: "</span>, accuracy)</span><br></pre></td></tr></table></figure>
+<h2 id="Choose-a-Classification-Model"><a href="#Choose-a-Classification-Model" class="headerlink" title="Choose a Classification Model"></a>Choose a Classification Model</h2><p>The flexibility of the pipeline structure allows us to quickly try different models, since we only need to edit the model step, and leave the preprocessing steps unchanged.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import FunctionTransformer</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> FunctionTransformer</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the dummy encoding of the labels</span></span><br><span class="line">dummy_labels = pd.get_dummies(df[LABELS])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the columns that are features in the original df</span></span><br><span class="line">NON_LABELS = [c <span class="keyword">for</span> c <span class="keyword">in</span> df.columns <span class="keyword">if</span> c <span class="keyword">not</span> <span class="keyword">in</span> LABELS]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Split into training and test sets</span></span><br><span class="line">X_train, X_test, y_train, y_test = multilabel_train_test_split(</span><br><span class="line">    df[NON_LABELS],</span><br><span class="line">    dummy_labels,</span><br><span class="line">    <span class="number">0.2</span>, </span><br><span class="line">    seed = <span class="number">123</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Preprocess the text data: get_text_data</span></span><br><span class="line">get_text_data = FunctionTransformer(combine_text_columns, validate = <span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Preprocess the numeric data: get_numeric_data</span></span><br><span class="line">get_numeric_data = FunctionTransformer(<span class="keyword">lambda</span> x: x[NUMERIC_COLUMNS], validate = <span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Complete the pipeline: pl</span></span><br><span class="line">pl = Pipeline([</span><br><span class="line">        (<span class="string">'union'</span>, FeatureUnion(</span><br><span class="line">            transformer_list = [</span><br><span class="line">                (<span class="string">'numeric_features'</span>, Pipeline([</span><br><span class="line">                    (<span class="string">'selector'</span>, get_numeric_data),</span><br><span class="line">                    (<span class="string">'imputer'</span>, Imputer())</span><br><span class="line">                ])),</span><br><span class="line">                (<span class="string">'text_features'</span>, Pipeline([</span><br><span class="line">                    (<span class="string">'selector'</span>, get_text_data),</span><br><span class="line">                    (<span class="string">'vectorizer'</span>, CountVectorizer())</span><br><span class="line">                ]))</span><br><span class="line">             ]</span><br><span class="line">        )),</span><br><span class="line">        (<span class="string">'clf'</span>, OneVsRestClassifier(LogisticRegression()))</span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit to the training data</span></span><br><span class="line">pl.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute and print accuracy</span></span><br><span class="line">accuracy = pl.score(X_test, y_test)</span><br><span class="line">print(<span class="string">"\nAccuracy on budget dataset: "</span>, accuracy)</span><br></pre></td></tr></table></figure>
+<p>Change to Random Forest with one parameter specified.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import random forest classifer</span></span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># Edit model step in pipeline</span></span><br><span class="line">pl = Pipeline([</span><br><span class="line">        (<span class="string">'union'</span>, FeatureUnion(</span><br><span class="line">            transformer_list = [</span><br><span class="line">                (<span class="string">'numeric_features'</span>, Pipeline([</span><br><span class="line">                    (<span class="string">'selector'</span>, get_numeric_data),</span><br><span class="line">                    (<span class="string">'imputer'</span>, Imputer())</span><br><span class="line">                ])),</span><br><span class="line">                (<span class="string">'text_features'</span>, Pipeline([</span><br><span class="line">                    (<span class="string">'selector'</span>, get_text_data),</span><br><span class="line">                    (<span class="string">'vectorizer'</span>, CountVectorizer())</span><br><span class="line">                ]))</span><br><span class="line">             ]</span><br><span class="line">        )),</span><br><span class="line">        (<span class="string">'clf'</span>, RandomForestClassifier(n_estimators = <span class="number">15</span>))</span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit to the training data</span></span><br><span class="line">pl.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute and print accuracy</span></span><br><span class="line">accuracy = pl.score(X_test, y_test)</span><br><span class="line">print(<span class="string">"\nAccuracy on budget dataset: "</span>, accuracy)</span><br></pre></td></tr></table></figure></p>
+<h1 id="Expert-Tricks"><a href="#Expert-Tricks" class="headerlink" title="Expert Tricks"></a>Expert Tricks</h1><h2 id="Text-Preprocessing"><a href="#Text-Preprocessing" class="headerlink" title="Text Preprocessing"></a>Text Preprocessing</h2><ul>
+<li>NLP tricks for text data<ul>
+<li>Tokenize on punctuation to avoid hyphens, underscores, etc.</li>
+<li>Include unigrams and bi-grams in the model to capture important information involving multiple tokens - e.g., ‘middle school’</li>
+</ul>
+</li>
+</ul>
+<p><strong>Special functions</strong>: You’ll notice a couple of new steps provided in the pipeline in this and many of the remaining exercises. Specifically, the <code>dim_red</code> step following the <code>vectorizer</code> step , and the <code>scale</code> step preceeding the <code>clf</code> (classification) step.</p>
+<p>These have been added in order to account for the fact that you’re using a reduced-size sample of the full dataset in this course. To make sure the models perform as the expert competition winner intended, we have to apply a dimensionality reduction technique, which is what the <code>dim_red</code> step does, and we have to scale the features to lie between -1 and 1, which is what the <code>scale</code> step does.</p>
+<p>The <code>dim_red</code> step uses a scikit-learn function called <code>SelectKBest()</code>, applying something called the chi-squared test to select the K “best” features. The <code>scale</code> step uses a scikit-learn function called <code>MaxAbsScaler()</code> in order to squash the relevant features into the interval -1 to 1.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import pipeline</span></span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> Pipeline</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import classifiers</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"><span class="keyword">from</span> sklearn.multiclass <span class="keyword">import</span> OneVsRestClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import CountVectorizer</span></span><br><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> CountVectorizer</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import other preprocessing modules</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> Imputer</span><br><span class="line"><span class="keyword">from</span> sklearn.feature_selection <span class="keyword">import</span> chi2, SelectKBest</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select 300 best features</span></span><br><span class="line">chi_k = <span class="number">300</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Import functional utilities</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> FunctionTransformer, MaxAbsScaler</span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> FeatureUnion</span><br><span class="line"></span><br><span class="line"><span class="comment"># Perform preprocessing</span></span><br><span class="line">get_text_data = FunctionTransformer(combine_text_columns, validate = <span class="keyword">False</span>)</span><br><span class="line">get_numeric_data = FunctionTransformer(<span class="keyword">lambda</span> x: x[NUMERIC_COLUMNS], validate = <span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the token pattern: TOKENS_ALPHANUMERIC</span></span><br><span class="line">TOKENS_ALPHANUMERIC = <span class="string">'[A-Za-z0-9]+(?=\\s+)'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate pipeline: pl</span></span><br><span class="line">pl = Pipeline([</span><br><span class="line">        (<span class="string">'union'</span>, FeatureUnion(</span><br><span class="line">            transformer_list = [</span><br><span class="line">                (<span class="string">'numeric_features'</span>, Pipeline([</span><br><span class="line">                    (<span class="string">'selector'</span>, get_numeric_data),</span><br><span class="line">                    (<span class="string">'imputer'</span>, Imputer())</span><br><span class="line">                ])),</span><br><span class="line">                (<span class="string">'text_features'</span>, Pipeline([</span><br><span class="line">                    (<span class="string">'selector'</span>, get_text_data),</span><br><span class="line">                    (<span class="string">'vectorizer'</span>, CountVectorizer(</span><br><span class="line">                        token_pattern = TOKENS_ALPHANUMERIC,</span><br><span class="line">                        ngram_range = (<span class="number">1</span>, <span class="number">2</span>))),</span><br><span class="line">                    (<span class="string">'dim_red'</span>, SelectKBest(chi2, chi_k))</span><br><span class="line">                ]))</span><br><span class="line">             ]</span><br><span class="line">        )),</span><br><span class="line">        (<span class="string">'scale'</span>, MaxAbsScaler()),</span><br><span class="line">        (<span class="string">'clf'</span>, OneVsRestClassifier(LogisticRegression()))</span><br><span class="line">    ])</span><br></pre></td></tr></table></figure>
+<h2 id="Interaction-Terms"><a href="#Interaction-Terms" class="headerlink" title="Interaction Terms"></a>Interaction Terms</h2><p>Interatiomn terms let us mathametically describe when tokens appear together. In scikit-learn, it is called <code>PolynomialFeartures()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> PolynomialFeartures</span><br><span class="line">interaction = PolynomialFeatures(</span><br><span class="line">    degree = <span class="number">2</span>,</span><br><span class="line">    interaction_only = <span class="keyword">True</span>, <span class="comment">#does not multiple the column by itself</span></span><br><span class="line">    include_bias = <span class="keyword">False</span> <span class="comment">#whether to include bias term in our model</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>Bias term allows model to have non-zero y value when x value is zero.</p>
+<ul>
+<li>e.g. A baby has weight once it’s born.</li>
+</ul>
+<p>The number of interaction terms grows exponentially. Our vectorizer saves memory by using a sparse matrix. However, PolynomialFeartures does not support sparse matrices. <code>SparseInteractions()</code> does. You can get the code for SparseInteractions at <a href="https://github.com/drivendataorg/box-plots-sklearn/blob/master/src/features/SparseInteractions.py" target="_blank" rel="noopener">this GitHub Gist</a>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Instantiate pipeline: pl</span></span><br><span class="line">pl = Pipeline([</span><br><span class="line">        (<span class="string">'union'</span>, FeatureUnion(</span><br><span class="line">            transformer_list = [</span><br><span class="line">                (<span class="string">'numeric_features'</span>, Pipeline([</span><br><span class="line">                    (<span class="string">'selector'</span>, get_numeric_data),</span><br><span class="line">                    (<span class="string">'imputer'</span>, Imputer())</span><br><span class="line">                ])),</span><br><span class="line">                (<span class="string">'text_features'</span>, Pipeline([</span><br><span class="line">                    (<span class="string">'selector'</span>, get_text_data),</span><br><span class="line">                    (<span class="string">'vectorizer'</span>, CountVectorizer(token_pattern=TOKENS_ALPHANUMERIC,</span><br><span class="line">                                                   ngram_range=(<span class="number">1</span>, <span class="number">2</span>))),  </span><br><span class="line">                    (<span class="string">'dim_red'</span>, SelectKBest(chi2, chi_k))</span><br><span class="line">                ]))</span><br><span class="line">             ]</span><br><span class="line">        )),</span><br><span class="line">        (<span class="string">'int'</span>, SparseInteractions(degree = <span class="number">2</span>)),</span><br><span class="line">        (<span class="string">'scale'</span>, MaxAbsScaler()),</span><br><span class="line">        (<span class="string">'clf'</span>, OneVsRestClassifier(LogisticRegression()))</span><br><span class="line">    ])</span><br></pre></td></tr></table></figure>
+<h2 id="Hashing"><a href="#Hashing" class="headerlink" title="Hashing"></a>Hashing</h2><p>Adding new features may cause enormous increase in array size. As the array grows, we need more computational power to complete our calculation. The “Hashing” trick is a way of increasing memory efficiency, by limiting the size of the matrix without sacrificing too much model accuracy. </p>
+<p>A hash function takes an imput, in this case a token, and outputs a hash value. For example, the input may be a string and the hash value may be an integer. The original paper about the hashing function demonstrates that even if two tokens hashed to the same value, there is very little effect on model accuracy in real world problems.</p>
+<p>Hashing is extremely useful when it comes to dimension reduction. Some problems are memory-bound and not easily parallelizable, and hashing enforces a <strong>fixed length computation</strong> instead of using a mutable datatype (like a dictionary). Here, instead of using the <code>CountVectorizer()</code>, which creates the bag of words representation, we change to <code>HashingVectorizer()</code>.</p>
+<p>In the end, the model that won the competition is the simple Logistic Regression. It shows that it is not the complex algorithm that matters the most, but the feature constructions and the implementing tricks.</p>
+<p>The scikit-learn implementation of <code>HashingVectorizer</code>:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import HashingVectorizer</span></span><br><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> HashingVectorizer </span><br><span class="line"></span><br><span class="line"><span class="comment"># Get text data: text_data</span></span><br><span class="line">text_data = combine_text_columns(X_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the token pattern: TOKENS_ALPHANUMERIC</span></span><br><span class="line">TOKENS_ALPHANUMERIC = <span class="string">'[A-Za-z0-9]+(?=\\s+)'</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate the HashingVectorizer: hashing_vec</span></span><br><span class="line">hashing_vec = HashingVectorizer(token_pattern = TOKENS_ALPHANUMERIC)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit and transform the Hashing Vectorizer</span></span><br><span class="line">hashed_text = hashing_vec.fit_transform(text_data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create DataFrame and print the head</span></span><br><span class="line">hashed_df = pd.DataFrame(hashed_text.data)</span><br><span class="line">print(hashed_df.head())</span><br></pre></td></tr></table></figure></p>
+<p>Using <code>HashingVectorizer</code> in a pipeline:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import the hashing vectorizer</span></span><br><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> HashingVectorizer</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate the winning model pipeline: pl</span></span><br><span class="line">pl = Pipeline([</span><br><span class="line">        (<span class="string">'union'</span>, FeatureUnion(</span><br><span class="line">            transformer_list = [</span><br><span class="line">                (<span class="string">'numeric_features'</span>, Pipeline([</span><br><span class="line">                    (<span class="string">'selector'</span>, get_numeric_data),</span><br><span class="line">                    (<span class="string">'imputer'</span>, Imputer())</span><br><span class="line">                ])),</span><br><span class="line">                (<span class="string">'text_features'</span>, Pipeline([</span><br><span class="line">                    (<span class="string">'selector'</span>, get_text_data),</span><br><span class="line">                    (<span class="string">'vectorizer'</span>, HashingVectorizer(</span><br><span class="line">                        token_pattern = TOKENS_ALPHANUMERIC,</span><br><span class="line">                        non_negative = <span class="keyword">True</span>, </span><br><span class="line">                        norm = <span class="keyword">None</span>, </span><br><span class="line">                        binary = <span class="keyword">False</span>,</span><br><span class="line">                        ngram_range = (<span class="number">1</span>, <span class="number">2</span>))),</span><br><span class="line">                    (<span class="string">'dim_red'</span>, SelectKBest(chi2, chi_k))</span><br><span class="line">                ]))</span><br><span class="line">             ]</span><br><span class="line">        )),</span><br><span class="line">        (<span class="string">'int'</span>, SparseInteractions(degree = <span class="number">2</span>)),</span><br><span class="line">        (<span class="string">'scale'</span>, MaxAbsScaler()),</span><br><span class="line">        (<span class="string">'clf'</span>, OneVsRestClassifier(LogisticRegression()))</span><br><span class="line">    ])</span><br></pre></td></tr></table></figure></p>
+<p>If you want to use this model locally, <a href="https://github.com/datacamp/course-resources-ml-with-experts-budgets/blob/master/notebooks/1.0-full-model.ipynb" target="_blank" rel="noopener">this Jupyter notebook</a> contains all the code you’ve worked so hard on. You can now take that code and build on it!</p>
+<h1 id="To-Do-Better"><a href="#To-Do-Better" class="headerlink" title="To Do Better"></a>To Do Better</h1><ul>
+<li><strong>NLP</strong>: stemming, stop-word removel</li>
+<li><strong>Model</strong>: RandomForest, k-NN, Naive Bayes</li>
+<li><strong>Numeric Preprocessing</strong>: Imputation strategies</li>
+<li><strong>Optimization</strong>: Grid search over pipeline objects</li>
+<li>Experiment with new <code>scikit-learn</code> techniques</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python-Machine-Learning-scikit-learn-NLP-Supervised-Learning/" rel="tag"># Python, Machine Learning, scikit-learn, NLP, Supervised Learning</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/17/Supervised-Learning-with-scikit-learn/" rel="next" title="Supervised Learning with scikit-learn">
+                <i class="fa fa-chevron-left"></i> Supervised Learning with scikit-learn
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview sidebar-nav-active" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Joanna" />
+            
+              <p class="site-author-name" itemprop="name">Joanna</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction-to-the-Challange"><span class="nav-text">Introduction to the Challange</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-EDA"><span class="nav-text">Basic EDA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Performance-Measurement"><span class="nav-text">Performance Measurement</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Create-a-Simple-Model"><span class="nav-text">Create a Simple Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-with-Numeric-Data-Only"><span class="nav-text">Model with Numeric Data Only</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-to-NLP"><span class="nav-text">Introduction to NLP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model-Improvements"><span class="nav-text">Model Improvements</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pipeline"><span class="nav-text">Pipeline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Preprocessing-Multiple-Dtypes"><span class="nav-text">Preprocessing Multiple Dtypes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Choose-a-Classification-Model"><span class="nav-text">Choose a Classification Model</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Expert-Tricks"><span class="nav-text">Expert Tricks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Text-Preprocessing"><span class="nav-text">Text Preprocessing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Interaction-Terms"><span class="nav-text">Interaction Terms</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hashing"><span class="nav-text">Hashing</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#To-Do-Better"><span class="nav-text">To Do Better</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joanna</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz", "cDbeqqCJt4dq4hu7C9GaCrHB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
