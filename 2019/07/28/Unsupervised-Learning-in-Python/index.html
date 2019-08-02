@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python, Machine Learning, scikit-learn, Unsupervised Learning, Clustering," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Learn how to cluster, transform, visualize, and extract insights from unlabeled datasets using scikit-learn and scipy (DataCamp).">
+<meta name="keywords" content="Python, Machine Learning, scikit-learn, Unsupervised Learning, Clustering">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unsupervised Learning in Python">
+<meta property="og:url" content="https://joannaoyzl.github.io/2019/07/28/Unsupervised-Learning-in-Python/index.html">
+<meta property="og:site_name" content="Joanna">
+<meta property="og:description" content="Learn how to cluster, transform, visualize, and extract insights from unlabeled datasets using scikit-learn and scipy (DataCamp).">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-07-31T06:02:51.482Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Unsupervised Learning in Python">
+<meta name="twitter:description" content="Learn how to cluster, transform, visualize, and extract insights from unlabeled datasets using scikit-learn and scipy (DataCamp).">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://joannaoyzl.github.io/2019/07/28/Unsupervised-Learning-in-Python/"/>
+
+
+
+
+
+  <title>Unsupervised Learning in Python | Joanna</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-134453862-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joanna</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://joannaoyzl.github.io/2019/07/28/Unsupervised-Learning-in-Python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joanna">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joanna">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Unsupervised Learning in Python</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-28T17:27:53-07:00">
+                2019-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Course-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Course Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/28/Unsupervised-Learning-in-Python/" class="leancloud_visitors" data-flag-title="Unsupervised Learning in Python">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Learn how to cluster, transform, visualize, and extract insights from unlabeled datasets using <code>scikit-learn</code> and <code>scipy</code> (DataCamp).<br><a id="more"></a></p>
+<p><strong>Unsupervised learning finds patterns in data, but without a specific prediction task in mind.</strong></p>
+<ul>
+<li>e.g. clustering customers by their purchase patterns</li>
+</ul>
+<h1 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h1><p>K-means clustering</p>
+<ul>
+<li>Finds clusters of samples</li>
+<li>Number of clusters must be specified</li>
+<li>New samples can be assigned to existing clusters</li>
+<li>k-means remembers the mean of each cluster (the “centroids”)</li>
+<li>Finds the nearest centroid to each new sample</li>
+</ul>
+<h2 id="Performance-Evaluation"><a href="#Performance-Evaluation" class="headerlink" title="Performance Evaluation"></a>Performance Evaluation</h2><p><strong>Possible methods</strong>:</p>
+<ol>
+<li>Compared to the existing labels using a cross table (if there are).</li>
+</ol>
+<p><em>In this exercise, cluster the grain samples into three clusters, and compare the clusters to the grain varieties using a cross-tabulation.</em></p>
+<p><em>You have the array samples of grain samples, and a list varieties giving the grain variety for each sample.</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create a KMeans model with 3 clusters: model</span></span><br><span class="line">model = KMeans(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use fit_predict to fit model and obtain cluster labels: labels</span></span><br><span class="line">labels = model.fit_predict(samples)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a DataFrame with labels and varieties as columns: df</span></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">'labels'</span>: labels, <span class="string">'varieties'</span>: varieties&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create crosstab: ct</span></span><br><span class="line">ct = pd.crosstab(df[<span class="string">'labels'</span>], df[<span class="string">'varieties'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Display ct</span></span><br><span class="line">print(ct)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>Measures how spread out the clusters are (Inertia)<ul>
+<li><strong>Inertia</strong>: Distance from each sample to centroid of its cluster</li>
+<li>It is available after <code>fit()</code> as attribute <code>inertia_</code></li>
+<li>A good clustering has tight clusters, which means the inertia is low, but also doesn’t have too many clusters.</li>
+<li>k-means attemps to minimize the inertia when choosing clusters, and more clusters means lower inertia.<ul>
+<li>What is the best neumber of clusters?<ul>
+<li>A good rule of thumb is to choose the elbow in the inertia plot, where the inertia begins to decrease more slowly.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">ks = range(<span class="number">1</span>, <span class="number">6</span>)</span><br><span class="line">inertias = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> ks:</span><br><span class="line">    <span class="comment"># Create a KMeans instance with k clusters: model</span></span><br><span class="line">    model = KMeans(n_clusters = k)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Fit model to samples</span></span><br><span class="line">    model.fit(samples)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Append the inertia to the list of inertias</span></span><br><span class="line">    inertias.append(model.inertia_)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Plot ks vs inertias</span></span><br><span class="line">plt.plot(ks, inertias, <span class="string">'-o'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'number of clusters, k'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'inertia'</span>)</span><br><span class="line">plt.xticks(ks)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h2 id="Improve-Performance"><a href="#Improve-Performance" class="headerlink" title="Improve Performance"></a>Improve Performance</h2><h3 id="Transforming-features"><a href="#Transforming-features" class="headerlink" title="Transforming features"></a>Transforming features</h3><p>Clustering does not work well on features that have very different variances, since in K-means, feature variance = feature influence.</p>
+<p>To solve this problem, we can use <code>StandardScaler</code> to transform each feature to have mean 0 and variance 1. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Perform the necessary imports</span></span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> make_pipeline</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create scaler: scaler</span></span><br><span class="line">scaler = StandardScaler()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create KMeans instance: kmeans</span></span><br><span class="line">kmeans = KMeans(n_clusters = <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create pipeline: pipeline</span></span><br><span class="line">pipeline = make_pipeline(scaler, kmeans)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit the pipeline to samples</span></span><br><span class="line">pipeline.fit(samples)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculate the cluster labels: labels</span></span><br><span class="line">labels = pipeline.predict(samples)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a DataFrame with labels and species as columns: df</span></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">'labels'</span>:labels, <span class="string">'species'</span>:species&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create crosstab: ct</span></span><br><span class="line">ct = pd.crosstab(df[<span class="string">'labels'</span>], df[<span class="string">'species'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Display ct</span></span><br><span class="line">print(ct)</span><br></pre></td></tr></table></figure>
+<p><code>MaxAbsScaler</code> and <code>Normalizer</code> are other scalers available in the library.</p>
+<p>Note that <code>Normalizer()</code> is different to <code>StandardScaler()</code>. While <code>StandardScaler()</code> standardizes features by removing the mean and scaling to unit variance, <code>Normalizer()</code> rescales each sample independently of the other. <strong>Normalization</strong> typically means rescales the values into a range of <code>[0,1]</code>. <strong>Standardization</strong> typically means rescales data to have a mean of 0 and a standard deviation of 1 (unit variance).</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Perform the necessary imports</span></span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> make_pipeline</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> Normalizer</span><br><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a normalizer: normalizer</span></span><br><span class="line">normalizer = Normalizer()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a KMeans model with 10 clusters: kmeans</span></span><br><span class="line">kmeans = KMeans(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Make a pipeline chaining normalizer and kmeans: pipeline</span></span><br><span class="line">pipeline = make_pipeline(normalizer, kmeans)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit pipeline to the daily price movements</span></span><br><span class="line">pipeline.fit(movements)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Predict the cluster labels: labels</span></span><br><span class="line">labels = pipeline.predict(movements)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a DataFrame aligning labels and companies: df</span></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">'labels'</span>: labels, <span class="string">'companies'</span>: companies&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Display df sorted by cluster label</span></span><br><span class="line">print(df.sort_values(<span class="string">'labels'</span>))</span><br></pre></td></tr></table></figure>
+<h1 id="Exploratory-Visualizations"><a href="#Exploratory-Visualizations" class="headerlink" title="Exploratory Visualizations"></a>Exploratory Visualizations</h1><h2 id="t-SNE"><a href="#t-SNE" class="headerlink" title="t-SNE"></a>t-SNE</h2><ul>
+<li>t-SNE = “t-distributed stochastic neighbor embedding”</li>
+<li>Maps samples to 2D space (3D)</li>
+<li>Map approximately preserves nearness of samples</li>
+<li>Great for inspecting datasets</li>
+</ul>
+<p>Technical details about t-SNE:</p>
+<ul>
+<li>Only has a <code>fit_transform()</code> method, which simultaneously fits and transforms the data. <ul>
+<li>Does not have <code>fit()</code> and <code>transform()</code>, which means it cannot extend the map to include new data points, and must start over each time.</li>
+</ul>
+</li>
+<li>Learning rate is importance in delivering a good model<ul>
+<li>Try values between 50 and 200</li>
+<li>Wrong choice will lead to points bunch together</li>
+</ul>
+</li>
+<li>The axes of the t-SNE plot do not have any interpretable meaning, and are different every time t-SNE is applied, even on the same data.<ul>
+<li>However, the clusters’ positions relative to each other are the same.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import TSNE</span></span><br><span class="line"><span class="keyword">from</span> sklearn.manifold <span class="keyword">import</span> TSNE</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a TSNE instance: model</span></span><br><span class="line">model = TSNE(learning_rate = <span class="number">200</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply fit_transform to samples: tsne_features</span></span><br><span class="line">tsne_features = model.fit_transform(samples)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select the 0th feature: xs</span></span><br><span class="line">xs = tsne_features[:,<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select the 1st feature: ys</span></span><br><span class="line">ys = tsne_features[:,<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Scatter plot, coloring by variety_numbers</span></span><br><span class="line">plt.scatter(xs, ys, c = variety_numbers)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>Or to quickly extract insights from high-dimensional data (see how some samples are close to each other)<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import TSNE</span></span><br><span class="line"><span class="keyword">from</span> sklearn.manifold <span class="keyword">import</span> TSNE</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a TSNE instance: model</span></span><br><span class="line">model = TSNE(learning_rate = <span class="number">50</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply fit_transform to normalized_movements: tsne_features</span></span><br><span class="line">tsne_features = model.fit_transform(normalized_movements)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select the 0th feature: xs</span></span><br><span class="line">xs = tsne_features[:, <span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select the 1th feature: ys</span></span><br><span class="line">ys = tsne_features[:, <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Scatter plot</span></span><br><span class="line">plt.scatter(xs, ys, alpha = <span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Annotate the points</span></span><br><span class="line"><span class="keyword">for</span> x, y, company <span class="keyword">in</span> zip(xs, ys, companies):</span><br><span class="line">    plt.annotate(company, (x, y), fontsize=<span class="number">5</span>, alpha=<span class="number">0.75</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<h2 id="Hierachical-Clustering"><a href="#Hierachical-Clustering" class="headerlink" title="Hierachical Clustering"></a>Hierachical Clustering</h2><p>Arranges samples into hierachical clusters.</p>
+<p><strong>Dendrogram</strong><br>It groups the samples into larger and larger clusters, and should be read from bottom up. Each vertical line represent a cluster, and a joining of lines indicates a merging of clusters.</p>
+<ul>
+<li>Steps for <strong>“agglomerative” hierarchical clustering</strong>:<ol>
+<li>Every country begins in a separate cluster</li>
+<li>At each step, the two closest clusters are merged</li>
+<li>Continue until all countries in a single cluster</li>
+</ol>
+</li>
+<li><strong>“Divisive clustering”</strong> works the other way around.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Perform the necessary imports</span></span><br><span class="line"><span class="keyword">from</span> scipy.cluster.hierarchy <span class="keyword">import</span> linkage, dendrogram</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import normalize</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> normalize</span><br><span class="line"></span><br><span class="line"><span class="comment"># Normalize the movements: normalized_movements </span></span><br><span class="line"><span class="comment">#(note that hierarchical clustering cannot be fit into a pipeline</span></span><br><span class="line"><span class="comment"># so we do it this way)</span></span><br><span class="line">normalized_movements = normalize(movements)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculate the linkage: mergings</span></span><br><span class="line">mergings = linkage(normalized_movements, method = <span class="string">'complete'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot the dendrogram</span></span><br><span class="line">dendrogram(</span><br><span class="line">    mergings,</span><br><span class="line">    labels = companies,</span><br><span class="line">    leaf_rotation = <span class="number">90</span>,</span><br><span class="line">    leaf_font_size = <span class="number">6</span></span><br><span class="line">)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Height on dendrogram (y-axis) = distance between merging clusters.</li>
+<li>If we specify the max value of the height, we can ask the model to stop merging clusters once the distance reached the specified value.</li>
+<li>This is specified by the <code>&#39;method&#39;</code> parameter in <code>linkage()</code>.<ul>
+<li>In <strong><em>complete</em></strong> linkage, the distance between clusters is the distance between the <strong>furthest points</strong> of the clusters. </li>
+<li>In <strong><em>single</em></strong> linkage, the distance between clusters is the distance between the <strong>closest points</strong> of the clusters.</li>
+</ul>
+</li>
+</ul>
+<p>Using different method will create different dendrogram on the same dataset.</p>
+<p>We can also extract the cluster labels using the <code>fcluster</code> method.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Perform the necessary imports</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> scipy.cluster.hierarchy <span class="keyword">import</span> linkage, dendrogram</span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculate the linkage: mergings</span></span><br><span class="line">mergings = linkage(samples, method = <span class="string">'single'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot the dendrogram</span></span><br><span class="line">dendrogram(</span><br><span class="line">    mergings,</span><br><span class="line">    labels = country_names,</span><br><span class="line">    leaf_rotation = <span class="number">90</span>,</span><br><span class="line">    leaf_font_size = <span class="number">6</span></span><br><span class="line">)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Perform the necessary imports</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> scipy.cluster.hierarchy <span class="keyword">import</span> fcluster</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use fcluster to extract labels: labels</span></span><br><span class="line"><span class="comment">## speficy a maximum height of 6</span></span><br><span class="line">labels = fcluster(mergings, <span class="number">6</span>, criterion = <span class="string">'distance'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a DataFrame with labels and varieties as columns: df</span></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">'labels'</span>: labels, <span class="string">'varieties'</span>: varieties&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create crosstab: ct</span></span><br><span class="line">ct = pd.crosstab(df[<span class="string">'labels'</span>], df[<span class="string">'varieties'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Display ct</span></span><br><span class="line">print(ct)</span><br></pre></td></tr></table></figure></p>
+<h1 id="Dimension-Reduction"><a href="#Dimension-Reduction" class="headerlink" title="Dimension Reduction"></a>Dimension Reduction</h1><p>Basics:</p>
+<ul>
+<li>More efficient storage and computation</li>
+<li>Remove less-informative “noise” features, which cause problems for prediction tasks, e.g. classification, regression</li>
+</ul>
+<h2 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h2><p>PCA = “Principal Component Analysis”, which is a fundamental dime nsion reduction technique. It learns the “pricipal components” of the data, which are the directions that the samples vary the most.</p>
+<ul>
+<li><p><strong>Steps</strong>:</p>
+<ol>
+<li>Decorrelation<ul>
+<li>Rotate data samples to be alinged with axes (decorrelates the data), which are also the direction of the principal components.<ul>
+<li>Note that we are talking about the axes of the point cloud here, not the actual x and y axis on the plot.</li>
+</ul>
+</li>
+<li>Shift data samples so they have mean 0</li>
+<li>No information is lost</li>
+</ul>
+</li>
+<li>Reduces Dimension<ul>
+<li>Discard the low variance “noisy” features, and preserve only the high variance “informative” features.</li>
+<li>We only need to specify the numbers of PCs to execute the redutcion.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong>Technical Details</strong></p>
+<ul>
+<li>PCA is a scikit-learn component like <code>KMeans</code> or <code>StandardScaler</code><ul>
+<li><code>fit()</code> learns the transformation from given data</li>
+<li><code>transform()</code> applies the learned transformation, and can also be applied to new data</li>
+</ul>
+</li>
+<li>PCs are available as <code>components_</code> attribute of PCA object</li>
+</ul>
+</li>
+</ul>
+<h3 id="Step-1-Decorrelation"><a href="#Step-1-Decorrelation" class="headerlink" title="Step 1: Decorrelation"></a>Step 1: Decorrelation</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import PCA</span></span><br><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create PCA instance: model</span></span><br><span class="line">model = PCA()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply the fit_transform method of model to grains: pca_features</span></span><br><span class="line">pca_features = model.fit_transform(grains)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Assign 0th column of pca_features: xs</span></span><br><span class="line">xs = pca_features[:,<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Assign 1st column of pca_features: ys</span></span><br><span class="line">ys = pca_features[:,<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Scatter plot xs vs ys</span></span><br><span class="line">plt.scatter(xs, ys)</span><br><span class="line">plt.axis(<span class="string">'equal'</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculate the Pearson correlation of xs and ys</span></span><br><span class="line">correlation, pvalue = pearsonr(xs, ys) </span><br><span class="line"></span><br><span class="line"><span class="comment"># Display the correlation</span></span><br><span class="line">print(correlation) <span class="comment">#0.0</span></span><br></pre></td></tr></table></figure>
+<h3 id="Step-2-Dimension-Reduction"><a href="#Step-2-Dimension-Reduction" class="headerlink" title="Step 2: Dimension Reduction"></a>Step 2: Dimension Reduction</h3><ul>
+<li><strong>Intrinsic Dimension</strong><ul>
+<li>Intrinsic dimension = number of features needed to approximate the dataset. It helps to answer “<em>What is the most compact representation of the samples?</em>“</li>
+<li>PCA identifies intrinsic dimension, which is the <em>number of PCA features with significant variance</em></li>
+<li>There is not always one correct answer on choosing the number of PCs.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Make a scatter plot of the untransformed points</span></span><br><span class="line">plt.scatter(grains[:,<span class="number">0</span>], grains[:,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a PCA instance: model</span></span><br><span class="line">model = PCA()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit model to points</span></span><br><span class="line">model.fit(grains)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the mean of the grain samples: mean</span></span><br><span class="line">mean = model.mean_</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the first principal component: first_pc</span></span><br><span class="line">first_pc = model.components_[<span class="number">0</span>, :]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot first_pc as an arrow, starting at mean</span></span><br><span class="line">plt.arrow(mean[<span class="number">0</span>], mean[<span class="number">1</span>], first_pc[<span class="number">0</span>], first_pc[<span class="number">1</span>], color = <span class="string">'red'</span>, width = <span class="number">0.01</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Keep axes on same scale</span></span><br><span class="line">plt.axis(<span class="string">'equal'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>Variance of each PC<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Perform the necessary imports</span></span><br><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> make_pipeline</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create scaler: scaler</span></span><br><span class="line">scaler = StandardScaler()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a PCA instance: pca</span></span><br><span class="line">pca = PCA()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create pipeline: pipeline</span></span><br><span class="line">pipeline = make_pipeline(scaler, pca)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit the pipeline to 'samples'</span></span><br><span class="line">pipeline.fit(samples)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot the explained variances</span></span><br><span class="line">features = range(pca.n_components_)</span><br><span class="line">plt.bar(features, pca.explained_variance_)</span><br><span class="line">plt.xlabel(<span class="string">'PCA feature'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'variance'</span>)</span><br><span class="line">plt.xticks(features)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p>Performing reduction<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import PCA</span></span><br><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a PCA model with 2 components: pca</span></span><br><span class="line">pca = PCA(n_components = <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit the PCA instance to the scaled samples</span></span><br><span class="line">pca.fit(scaled_samples)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Transform the scaled samples: pca_features</span></span><br><span class="line">pca_features = pca.transform(scaled_samples)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the shape of pca_features</span></span><br><span class="line">print(pca_features.shape)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Special-Case"><a href="#Special-Case" class="headerlink" title="Special Case"></a>Special Case</h3><p>Sometimes, PCA cannot work on a particular type of dataset, like the <em>tf-idf word frequency arrays</em>.</p>
+<p>For this, use the <code>TfidfVectorizer</code> from sklearn. It transforms a list of documents into a word frequency array, which it outputs as a <code>csr_matrix</code>. It has <code>fit()</code> and <code>transform()</code> methods like other sklearn objects.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import TfidfVectorizer</span></span><br><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> TfidfVectorizer</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a TfidfVectorizer: tfidf</span></span><br><span class="line">tfidf = TfidfVectorizer() </span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply fit_transform to document: csr_mat</span></span><br><span class="line">csr_mat = tfidf.fit_transform(documents)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print result of toarray() method</span></span><br><span class="line">print(csr_mat.toarray())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the words: words</span></span><br><span class="line">words = tfidf.get_feature_names()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print words</span></span><br><span class="line">print(words)</span><br></pre></td></tr></table></figure>
+<p>This array is “sparse”, because most entries are zero. We can use <code>scipy.sparse.csr_matrix</code> instead of NumPy array. Since <code>csr_matrix</code> remembers only the non-zero entries, it saves lots of memory space. </p>
+<p>However, scikit-learn PCA doesn’t support <code>csr_matrix</code>. We use scikit-learn <code>TruncatedSVD</code> instead, which performs the same transformation as PCA.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Perform the necessary imports</span></span><br><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> TruncatedSVD</span><br><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> make_pipeline</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a TruncatedSVD instance: svd</span></span><br><span class="line">svd = TruncatedSVD(n_components = <span class="number">50</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a KMeans instance: kmeans</span></span><br><span class="line">kmeans = KMeans(n_clusters = <span class="number">6</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a pipeline: pipeline</span></span><br><span class="line">pipeline = make_pipeline(svd, kmeans)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import pandas</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit the pipeline to articles</span></span><br><span class="line">pipeline.fit(articles)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculate the cluster labels: labels</span></span><br><span class="line">labels = pipeline.predict(articles)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a DataFrame aligning labels and titles: df</span></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">'label'</span>: labels, <span class="string">'article'</span>: titles&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Display df sorted by cluster label</span></span><br><span class="line">print(df.sort_values(<span class="string">'label'</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="NMF"><a href="#NMF" class="headerlink" title="NMF"></a>NMF</h2><p>NMF = “non-negative matrix factorization”, is also a dimension reduction technique. Compared with PCA, NMF models are interpretable. However, all sample features must be non-negative (&gt;=0). It achieves its interpretability by decomposing samples as sums of their parts.</p>
+<p>Basics:</p>
+<ul>
+<li>NMF has components, just like PCA has principal components.</li>
+<li>Dimension of components = number of features in each sample</li>
+<li>Reconstruction of sample:<ul>
+<li><code>nmf_features * components</code> = original sample (product of matrices), which can me performed by <code>@</code> in python 3.5</li>
+<li>This is the “Matrix Factorization” in NMF</li>
+</ul>
+</li>
+</ul>
+<p>Technical details:</p>
+<ul>
+<li>Follows <code>fit()</code> / <code>transform()</code> pattern</li>
+<li>Must specify number of components e.g. <code>NMF(n_components = 2)</code></li>
+<li>Works with <code>NumPy</code> arrays and with <code>csr_matrix</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import NMF</span></span><br><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> NMF</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create an NMF instance: model</span></span><br><span class="line">model = NMF(n_components = <span class="number">6</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit the model to articles</span></span><br><span class="line">model.fit(articles)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Transform the articles: nmf_features</span></span><br><span class="line">nmf_features = model.transform(articles)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import pandas</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a pandas DataFrame: df</span></span><br><span class="line">df = pd.DataFrame(nmf_features, index = titles)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the row for 'Anne Hathaway'</span></span><br><span class="line">print(df.loc[<span class="string">'Anne Hathaway'</span>, :])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the row for 'Denzel Washington'</span></span><br><span class="line">print(df.loc[<span class="string">'Denzel Washington'</span>, :])</span><br></pre></td></tr></table></figure>
+<p><em>Notice that for both actors, the NMF feature 3 has by far the highest value. This means that both articles are reconstructed using mainly the 3rd NMF component. In the next video, you’ll see why: NMF components represent topics (for instance, acting!).</em></p>
+<h3 id="Word-Frequencies"><a href="#Word-Frequencies" class="headerlink" title="Word Frequencies"></a>Word Frequencies</h3><p>NMF decomposes documents as combinations of common topics (or “themes”). </p>
+<ul>
+<li>Suppose we now have a word frequency array, 4 words, many documents.</li>
+<li>Measure presence of words in each document using “tf-idf”<ul>
+<li><strong>“tf”</strong> = frequency of word in document<ul>
+<li>e.g. If 10% of the words are “datacamp”, then the “tf” of the word “datacamp” will be 0.1</li>
+</ul>
+</li>
+<li><strong>“idf”</strong> = a weighting scheme that reduces the influence of frequent words, like “the”</li>
+</ul>
+</li>
+<li>NMF components represent topics, and NMF features combine topics into documents</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import NMF</span></span><br><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> NMF</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create an NMF instance: model</span></span><br><span class="line">model = NMF(<span class="number">6</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit the model to articles</span></span><br><span class="line">model.fit(articles)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Transform the articles: nmf_features</span></span><br><span class="line">nmf_features = model.transform(articles)</span><br></pre></td></tr></table></figure>
+<p><em>Previously, you saw that the 3rd NMF feature value was high for the articles about actors Anne Hathaway and Denzel Washington. In this exercise, identify the topic of the corresponding NMF component.</em></p>
+<p><em>The NMF model you built earlier is available as model, while words is a list of the words that label the columns of the word-frequency array.</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import pandas</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a DataFrame: components_df</span></span><br><span class="line">components_df = pd.DataFrame(model.components_, columns = words)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the shape of the DataFrame</span></span><br><span class="line">print(components_df.shape)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select row 3: component</span></span><br><span class="line">component = components_df.iloc[<span class="number">3</span>,:]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print result of nlargest</span></span><br><span class="line">print(component.nlargest())</span><br></pre></td></tr></table></figure>
+<h3 id="Encoded-Images"><a href="#Encoded-Images" class="headerlink" title="Encoded Images"></a>Encoded Images</h3><p>NMF decomposes images as combinations of common patterns.</p>
+<ul>
+<li>NMF components represents patterns that frequently occur in the images, and NMF features combine patterns into a whole image.</li>
+<li>“Grayscale” image = no colors, only shades of gray.<ul>
+<li>Since there are only shades of grey, it can be encoded by the brightness of every pixel.<ul>
+<li>Brightness $\in[0,1]$, with 0 as black, 1 as white.</li>
+</ul>
+</li>
+<li>Therefore, we can convert a 2D image to a 2D array, with each number representing one pixel.</li>
+<li>We can then flatten the arrays by enumerate the entries:<ul>
+<li>Read the 2D array row-by-row and from left to right.</li>
+</ul>
+</li>
+<li>Then, for a collection of images of the same size, we can further encode them as a 2D array:<ul>
+<li>Each row corresponds to an image</li>
+<li>Each column corresponds to a location of a pixel</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The entries are all non-negative, and thus can apply NMF.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import pyplot</span></span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select the 0th row: digit</span></span><br><span class="line">digit = samples[<span class="number">0</span>, :]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print digit: an array of 0 and 1s</span></span><br><span class="line">print(digit)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reshape digit to a 13x8 array: bitmap</span></span><br><span class="line">bitmap = digit.reshape((<span class="number">13</span>, <span class="number">8</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print bitmap</span></span><br><span class="line">print(bitmap)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use plt.imshow to display bitmap</span></span><br><span class="line">plt.imshow(bitmap, cmap = <span class="string">'gray'</span>, interpolation = <span class="string">'nearest'</span>)</span><br><span class="line">plt.colorbar()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>NMF expressed the digit as a sum of the components<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import NMF</span></span><br><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> NMF</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define function to show component as image:</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_as_image</span><span class="params">(sample)</span>:</span></span><br><span class="line">    bitmap = sample.reshape((<span class="number">13</span>, <span class="number">8</span>))</span><br><span class="line">    plt.figure()</span><br><span class="line">    plt.imshow(bitmap, cmap = <span class="string">'gray'</span>, interpolation = <span class="string">'nearest'</span>)</span><br><span class="line">    plt.colorbar()</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create an NMF model: model</span></span><br><span class="line">model = NMF(<span class="number">7</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply fit_transform to samples: features</span></span><br><span class="line">features = model.fit_transform(samples)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Call show_as_image on each component</span></span><br><span class="line"><span class="keyword">for</span> component <span class="keyword">in</span> model.components_:</span><br><span class="line">    show_as_image(component)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Assign the 0th row of features: digit_features</span></span><br><span class="line">digit_features = features[<span class="number">0</span>, :]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print digit_features</span></span><br><span class="line">print(digit_features)</span><br></pre></td></tr></table></figure></p>
+<p>If we do the same thing for PCA, we would notice that the components of PCA do not represent meaningful parts of images of LED digits<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import PCA</span></span><br><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a PCA instance: model</span></span><br><span class="line">model = PCA(<span class="number">7</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply fit_transform to samples: features</span></span><br><span class="line">features = model.fit_transform(samples)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Call show_as_image on each component</span></span><br><span class="line"><span class="keyword">for</span> component <span class="keyword">in</span> model.components_:</span><br><span class="line">    show_as_image(component)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Building-Recommender-System"><a href="#Building-Recommender-System" class="headerlink" title="Building Recommender System"></a>Building Recommender System</h3><p>Suppose your task is to recommend articles similar to article being read by customer.</p>
+<p>Since similar articles should have similar topics, we can apply NMF to the word-frequency array, and use the resulting NMF features, whose values describe the topics. Therefore, similar documents should have <strong>similar NMF feature values</strong>.</p>
+<ul>
+<li><strong>Problem</strong>: However, although different versions of the same documents have similar topic proportions, the exact feature values may be different.<ul>
+<li>E.g. one version may use many meaningless words to convey the same thing.</li>
+</ul>
+</li>
+<li><strong>Solution</strong>: <ul>
+<li>On a scatter plot, all these similar versions of the same document <strong>lie on a single line</strong> passing through the origin.</li>
+<li>Therefore, when comparing two documents, it’s a good idea to compare these <strong>lines</strong>. </li>
+<li>We can achieve that by looking at the <strong>cosine similarity</strong>, which uses the angle between the lines.<ul>
+<li>Higher values indicate greater similarity</li>
+<li>max = 1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><em>In this exercise and the next, you’ll use what you’ve learned about NMF to recommend popular music artists! You are given a sparse array <code>artists</code> whose rows correspond to artists and whose column correspond to users. The entries give the number of times each artist was listened to by each user.</em></p>
+<p><em>In this exercise, build a pipeline and transform the array into normalized NMF features. The first step in the pipeline, <code>MaxAbsScaler</code>, transforms the data so that all users have the same influence on the model, regardless of how many different artists they’ve listened to. In the next exercise, you’ll use the resulting normalized NMF features for recommendation!</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Perform the necessary imports</span></span><br><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> NMF</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> Normalizer, MaxAbsScaler</span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> make_pipeline</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a MaxAbsScaler: scaler</span></span><br><span class="line">scaler = MaxAbsScaler()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create an NMF model: nmf</span></span><br><span class="line">nmf = NMF(<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a Normalizer: normalizer</span></span><br><span class="line">normalizer = Normalizer()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a pipeline: pipeline</span></span><br><span class="line">pipeline = make_pipeline(scaler, nmf, normalizer)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply fit_transform to artists: norm_features</span></span><br><span class="line">norm_features = pipeline.fit_transform(artists)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import pandas</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a DataFrame: df</span></span><br><span class="line">df = pd.DataFrame(norm_features, index = artist_names)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select row of 'Bruce Springsteen': artist</span></span><br><span class="line">artist = df.loc[<span class="string">'Bruce Springsteen'</span>, :]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute cosine similarities: similarities</span></span><br><span class="line">similarities = df.dot(artist)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Display those with highest cosine similarity</span></span><br><span class="line">print(similarities.nlargest())</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python-Machine-Learning-scikit-learn-Unsupervised-Learning-Clustering/" rel="tag"># Python, Machine Learning, scikit-learn, Unsupervised Learning, Clustering</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/22/ML-with-School-Budgets/" rel="next" title="NLP Case Study - School Budgets">
+                <i class="fa fa-chevron-left"></i> NLP Case Study - School Budgets
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/30/Tree-based-Model-in-Python/" rel="prev" title="Tree-based Models in Python">
+                Tree-based Models in Python <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview sidebar-nav-active" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Joanna" />
+            
+              <p class="site-author-name" itemprop="name">Joanna</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Clustering"><span class="nav-text">Clustering</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Performance-Evaluation"><span class="nav-text">Performance Evaluation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Improve-Performance"><span class="nav-text">Improve Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Transforming-features"><span class="nav-text">Transforming features</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exploratory-Visualizations"><span class="nav-text">Exploratory Visualizations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#t-SNE"><span class="nav-text">t-SNE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hierachical-Clustering"><span class="nav-text">Hierachical Clustering</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dimension-Reduction"><span class="nav-text">Dimension Reduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PCA"><span class="nav-text">PCA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1-Decorrelation"><span class="nav-text">Step 1: Decorrelation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2-Dimension-Reduction"><span class="nav-text">Step 2: Dimension Reduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Special-Case"><span class="nav-text">Special Case</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NMF"><span class="nav-text">NMF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Word-Frequencies"><span class="nav-text">Word Frequencies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Encoded-Images"><span class="nav-text">Encoded Images</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Building-Recommender-System"><span class="nav-text">Building Recommender System</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joanna</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz", "cDbeqqCJt4dq4hu7C9GaCrHB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

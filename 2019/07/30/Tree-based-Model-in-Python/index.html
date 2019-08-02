@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python, Machine Learning, scikit-learn, Supervised Learning, Tree," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Learn how to use tree-based models and ensembles for regression and  classification with scikit-learn in python (DataCamp).">
+<meta name="keywords" content="Python, Machine Learning, scikit-learn, Supervised Learning, Tree">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tree-based Models in Python">
+<meta property="og:url" content="https://joannaoyzl.github.io/2019/07/30/Tree-based-Model-in-Python/index.html">
+<meta property="og:site_name" content="Joanna">
+<meta property="og:description" content="Learn how to use tree-based models and ensembles for regression and  classification with scikit-learn in python (DataCamp).">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7ou1knlj31ka0uu7ni.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7nsyec2j31fc0wkgqm.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7nfd1buj31420ua438.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7muxfpwj30yo0u2gtc.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7mbb24sj32280zwtk6.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7lqb6a4j322o10611n.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7lecfp2j31ri0zotie.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7io8kejj31gs0wagu3.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7hxsn1tj31jm0v4k2j.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006lr8qAly1g5l77wlo8zj31go0scgts.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7xv8wfaj31ko0vywmk.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006lr8qAly1g5lbcejrrwj31ei0win57.jpg">
+<meta property="og:updated_time" content="2019-08-02T07:03:26.035Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tree-based Models in Python">
+<meta name="twitter:description" content="Learn how to use tree-based models and ensembles for regression and  classification with scikit-learn in python (DataCamp).">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7ou1knlj31ka0uu7ni.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://joannaoyzl.github.io/2019/07/30/Tree-based-Model-in-Python/"/>
+
+
+
+
+
+  <title>Tree-based Models in Python | Joanna</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-134453862-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joanna</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://joannaoyzl.github.io/2019/07/30/Tree-based-Model-in-Python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joanna">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joanna">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Tree-based Models in Python</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-30T23:04:48-07:00">
+                2019-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Course-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Course Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/30/Tree-based-Model-in-Python/" class="leancloud_visitors" data-flag-title="Tree-based Models in Python">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Learn how to use tree-based models and ensembles for regression and  classification with scikit-learn in python (DataCamp).<br><a id="more"></a></p>
+<h1 id="Classification-and-Regression-Trees"><a href="#Classification-and-Regression-Trees" class="headerlink" title="Classification and Regression Trees"></a>Classification and Regression Trees</h1><p>Classification and Regression Trees (CART) are a set of supervised learning models used for problems involving classification and regression.</p>
+<ul>
+<li><strong>Decision-Tree</strong>: data structure consisting of a hierarchy of nodes</li>
+<li><strong>Node</strong>: question or prediction<ul>
+<li><strong>Root</strong>: <em>no</em> parent node, question giving rise to <em>two</em> children nodes.</li>
+<li><strong>Internal node</strong>: <em>one</em> parent node, question giving rise to <em>two</em> children nodes.</li>
+<li><strong>Leaf</strong>: <em>one</em> parent node, <em>no</em> children nodes –&gt; <em>prediction</em>.</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7ou1knlj31ka0uu7ni.jpg" alt=""></p>
+<h2 id="Classification-Tree"><a href="#Classification-Tree" class="headerlink" title="Classification Tree"></a>Classification Tree</h2><ul>
+<li>Sequence of if-else questions about individual features, and learns patterns from the features in such a way to produce the purest leafs.<ul>
+<li>In the end, in each leaf, one class-label is predominant.</li>
+</ul>
+</li>
+<li><strong>Objective</strong>: infer class labels</li>
+<li>Able to capture non-linear relationships between features and labels</li>
+<li>Don’t require feature scaling (e.g. Standardization, ..)</li>
+</ul>
+<p><strong>Decision Regions</strong></p>
+<ul>
+<li><strong>Decision region</strong>: region in the feature space where all instances are assigned to one class label.</li>
+<li><strong>Decision Boundary</strong>: surface separating different decision regions.<ul>
+<li>Linear boundary</li>
+<li>Non-linear boundary</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import DecisionTreeClassifier from sklearn.tree</span></span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import accuracy_score</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate a DecisionTreeClassifier 'dt' with a maximum depth of 6</span></span><br><span class="line">dt = DecisionTreeClassifier(max_depth = <span class="number">6</span>, random_state = <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit dt to the training set</span></span><br><span class="line">dt.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Predict test set labels</span></span><br><span class="line">y_pred = dt.predict(X_test)</span><br><span class="line">print(y_pred[<span class="number">0</span>:<span class="number">5</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute test set accuracy  </span></span><br><span class="line">acc = accuracy_score(y_test, y_pred)</span><br><span class="line">print(<span class="string">"Test set accuracy: &#123;:.2f&#125;"</span>.format(acc))</span><br></pre></td></tr></table></figure>
+<h3 id="Information-Gain"><a href="#Information-Gain" class="headerlink" title="Information Gain"></a>Information Gain</h3><p><strong>How does a classification-Tree learn?</strong></p>
+<ul>
+<li>The nodes of a classification tree are grown <strong>recursively</strong>: the obtention of an internal node or a leaf depends on the state of its predecessors.</li>
+<li>To produce the purest leaves possible, at each node, a tree asks a question involving <strong>one feature $f$</strong> and <strong>a split-point $sp$</strong>. </li>
+<li><em>But how does it know which feature and which split-point to pick?</em> It does so by maximizing information gain, i.e. maxmize $IG(node)$<ul>
+<li><strong>If it is a unconstrained tree</strong> and the $IG(node)$ = 0, declare the node a leaf.</li>
+<li><strong>If it is a constrained tree</strong>, like the max_depth was set to 2, then it will stop at the set depth no matter the value of the $IG(node)$.</li>
+</ul>
+</li>
+</ul>
+<p>The tree considers that every node contains information and aims at maximizing the information gain obtained after each split.</p>
+<p><img src="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7nsyec2j31fc0wkgqm.jpg" alt=""></p>
+<p>$$IG(f, sp) = I(parent) - \Big(\frac{N_{left}}{N}I(left) + \frac{N_{right}}{N}I(right)\Big)$$</p>
+<p>To measure the information gain, we measure the impurity of a node:</p>
+<ul>
+<li>Criteria to measure the impurity of a node $I(node)$:<ul>
+<li>gini index</li>
+<li>entropy</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<p>Compare accuracy between models trained with entropy and gini index:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import DecisionTreeClassifier from sklearn.tree</span></span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate dt_entropy, set 'entropy' as the information criterion</span></span><br><span class="line">dt_entropy = DecisionTreeClassifier(max_depth = <span class="number">8</span>, criterion = <span class="string">'entropy'</span>, random_state = <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit dt_entropy to the training set</span></span><br><span class="line">dt_entropy.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import accuracy_score from sklearn.metrics</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use dt_entropy to predict test set labels</span></span><br><span class="line">y_pred= dt_entropy.predict(X_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Evaluate accuracy_entropy</span></span><br><span class="line">accuracy_entropy = accuracy_score(y_pred, y_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print accuracy_entropy</span></span><br><span class="line">print(<span class="string">'Accuracy achieved by using entropy: '</span>, accuracy_entropy)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print accuracy_gini</span></span><br><span class="line">print(<span class="string">'Accuracy achieved by using the gini index: '</span>, accuracy_gini)</span><br><span class="line"></span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line">    <span class="comment"># Accuracy achieved by using entropy:  0.929824561404</span></span><br><span class="line">    <span class="comment"># Accuracy achieved by using the gini index:  0.929824561404</span></span><br></pre></td></tr></table></figure></p>
+<p><em>Notice how the two models achieve exactly the same accuracy. Most of the time, the gini index and entropy lead to the same results. The gini index is slightly faster to compute and is the default criterion used in the <code>DecisionTreeClassifier</code> model of scikit-learn.</em></p>
+<h2 id="Regression-Tree"><a href="#Regression-Tree" class="headerlink" title="Regression Tree"></a>Regression Tree</h2><p>Tree-based models help to make nonlinear predictions.</p>
+<p>When a regression tree is trained on a dataset, the impurity of a node is measured using the mean-squared error of the targets in that node:<br>$$I(node) = \text{MSE}(node) = \frac{1}{N_{node}}\sum\limits_{i\in\text{node}}(y^{(i)} - \hat{y}<em>{node})^2$$<br>$$\underbrace{\hat{y}</em>{node}}<em>{\text{mean target value}} = \frac{1}{N</em>{node}}\sum\limits_{i\in {node}}y^{(i)}$$<br>The regression tree tries to find the splits that produce leaves where in each leaf <strong>the target value</strong> are, on average, the closest possible to the <strong>mean-value of the labels</strong> in that particular leaf.</p>
+<p>When making <strong>predictions</strong>, a new instance traverses the tree and reaches a certain leaf, and its target variable ‘y’ is computed as the average of the target variables contained in that leaf.<br>$$\hat{y}<em>{pred}(leaf) = \frac{1}{N</em>{leaf}}\sum\limits_{i \in {leaf}}y^{(i)}$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import DecisionTreeRegressor from sklearn.tree</span></span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate dt</span></span><br><span class="line">dt = DecisionTreeRegressor(max_depth = <span class="number">8</span>,</span><br><span class="line">             min_samples_leaf = <span class="number">0.13</span>, <span class="comment"># stopping criteria, speficies the minimum % of dp in training set in each leaf</span></span><br><span class="line">            random_state = <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit dt to the training set</span></span><br><span class="line">dt.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import mean_squared_error from sklearn.metrics as MSE</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error <span class="keyword">as</span> MSE</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute y_pred</span></span><br><span class="line">y_pred = dt.predict(X_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute mse_dt</span></span><br><span class="line">mse_dt = MSE(y_test, y_pred)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute rmse_dt</span></span><br><span class="line">rmse_dt = mse_dt**(<span class="number">1</span>/<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Predict test set labels on linear regression</span></span><br><span class="line">y_pred_lr = lr.predict(X_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute mse_lr</span></span><br><span class="line">mse_lr = MSE(y_test, y_pred_lr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute rmse_lr</span></span><br><span class="line">rmse_lr = mse_lr**(<span class="number">1</span>/<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print rmse_lr</span></span><br><span class="line">print(<span class="string">'Linear Regression test set RMSE: &#123;:.2f&#125;'</span>.format(rmse_lr))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print rmse_dt</span></span><br><span class="line">print(<span class="string">'Regression Tree test set RMSE: &#123;:.2f&#125;'</span>.format(rmse_dt))</span><br></pre></td></tr></table></figure>
+<h1 id="Bias-Variance-Tradeoff"><a href="#Bias-Variance-Tradeoff" class="headerlink" title="Bias-Variance Tradeoff"></a>Bias-Variance Tradeoff</h1><p>In supervised learning, we make the assumption that there is a mapping $f$ between features and labels.<br>$$y = f(x)$$<br>Here, $f$ is an unknown function that you want to determine.</p>
+<p>In reality, data generation is always accompanied with randomness or noises. Therefore, our goal is to find a model $\hat{f}$ that best approximates $f$.</p>
+<ul>
+<li>$\hat{f}$ can be Logistic Regression, Decision Tree, Neural Network…</li>
+</ul>
+<p>In the process of training the model, we want to discard noises as much as possible, and also hoping to achieve a low predictive error on unseen datasets.</p>
+<h2 id="Generalization-Error"><a href="#Generalization-Error" class="headerlink" title="Generalization Error"></a>Generalization Error</h2><p><strong>Generalization Error of $\hat{f}$</strong>: Does $\hat{f}$ generalize well on unseen data?</p>
+<p>It can be decomposed as follows:<br>$$\text{GE of } \hat{f} = bias^2+variance + \text{irreducible error}$$</p>
+<p><strong>Bias</strong>: error term that tells you, on average, how much $\hat{f} \neq f$</p>
+<ul>
+<li>High bias models lead to underfitting, which means $\hat{f}$ is not flexible enough to approximate $f$.</li>
+<li>When underfitting, the training set error is roughly equal to the test set error, and both errors are relatively high.</li>
+</ul>
+<p><strong>Variance</strong>: error term that tells you how much $\hat{f}$ is inconsistent over different training sets.</p>
+<ul>
+<li>High variance models lead to overfitting, which means $\hat{f}(x)$ fits the training set noise. Thus it has very low predictive power on unseen data.</li>
+<li>When overfitting, the testing set error is much much higher than the training set error.</li>
+</ul>
+<p><strong>Irreducible error</strong>: the error contribution of noise, and always a constant.</p>
+<p><strong>Model Complexity</strong>: sets the flexibility of $\hat{f}$ to approximate the true function $f$, like setting maximum tree depth, minimum samples per leaf…</p>
+<ul>
+<li>When the model complexity increases, the variance increases while the bias decreases, and vice versa.</li>
+<li>The best model complexity corresponds to the lowest generalization error.</li>
+<li>This is known as the <strong>Bias-Variance Tradeoff</strong><br><img src="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7nfd1buj31420ua438.jpg" alt=""><br><img src="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7muxfpwj30yo0u2gtc.jpg" alt=""><h2 id="Evaluate-Performance"><a href="#Evaluate-Performance" class="headerlink" title="Evaluate Performance"></a>Evaluate Performance</h2>We cannot directly calculate the generalization error of a model because:</li>
+<li>$f$ is unknown</li>
+<li>usually you only have one dataset</li>
+<li>noise is unpredictable</li>
+</ul>
+<p>To <em>estimate</em> the generalization error of a model,</p>
+<ul>
+<li>split the data to training and test sets,</li>
+<li>fit $\hat{f}$ to the training set,</li>
+<li>evaluate the error of $\hat{f}$ on the unseen test set</li>
+<li>generalization error of $\hat{f} \approx$ test set error of $\hat{f}$</li>
+</ul>
+<p>Since test set should not be touched until we are confident about $\hat{f}$’s performance, and only want to use it to evaluate $\hat{f}$’s final performance, we introduce <strong>cross-validation</strong>.</p>
+<ul>
+<li>K-Fold CV: $\text{CV error} = \frac{E_1+…+E_{k}}{k}$</li>
+<li>Hold-Out CV</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7mbb24sj32280zwtk6.jpg" alt=""></p>
+<p><strong>Diagosis:</strong></p>
+<ol>
+<li>If CV error of $\hat{f}$ &gt; training set error of $\hat{f}$:<ul>
+<li>$\hat{f}$ suffers from <strong>high variance</strong> and is overfitting.</li>
+<li>Solutions:<ul>
+<li>Decrease model complexity (decrease max depth, increase min samples per leaf…)</li>
+<li>Gather more data</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>If CV error of $\hat{f} \approx$ training set error of $\hat{f} &gt;&gt;$ desired error:<ul>
+<li>$\hat{f}$ suffers from <strong>high bias</strong> and is underfitting<ul>
+<li>Solutions:<ul>
+<li>Increase model complexity (increase max depth, decrease min samples per leaf…)</li>
+<li>Gather more relevant features</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import train_test_split from sklearn.model_selection</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set SEED for reproducibility</span></span><br><span class="line">SEED = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Split the data into 70% train and 30% test</span></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = <span class="number">0.3</span>, random_state = SEED)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate a DecisionTreeRegressor dt</span></span><br><span class="line">dt = DecisionTreeRegressor(max_depth = <span class="number">4</span>, min_samples_leaf = <span class="number">0.26</span>, random_state = SEED)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute the array containing the 10-folds CV MSEs</span></span><br><span class="line"><span class="comment">## Note that since cross_val_score has only the option of evaluating the negative MSEs, </span></span><br><span class="line"><span class="comment">## its output should be multiplied by negative one to obtain the MSEs.</span></span><br><span class="line">MSE_CV_scores = - cross_val_score(dt, X_train, y_train, cv = <span class="number">10</span>, </span><br><span class="line">                       scoring = <span class="string">'neg_mean_squared_error'</span>,</span><br><span class="line">                       n_jobs=<span class="number">-1</span>) <span class="comment"># all cpus are used for calculation</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute the 10-folds CV RMSE</span></span><br><span class="line">RMSE_CV = (MSE_CV_scores.mean())**(<span class="number">1</span>/<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print RMSE_CV</span></span><br><span class="line">print(<span class="string">'CV RMSE: &#123;:.2f&#125;'</span>.format(RMSE_CV))</span><br><span class="line"><span class="comment"># CV RMSE: 5.14</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Import mean_squared_error from sklearn.metrics as MSE</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error <span class="keyword">as</span> MSE</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit dt to the training set</span></span><br><span class="line">dt.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Predict the labels of the training set</span></span><br><span class="line">y_pred_train = dt.predict(X_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Evaluate the training set RMSE of dt</span></span><br><span class="line">RMSE_train = (MSE(y_train, y_pred_train))**(<span class="number">1</span>/<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print RMSE_train</span></span><br><span class="line">print(<span class="string">'Train RMSE: &#123;:.2f&#125;'</span>.format(RMSE_train))</span><br><span class="line"><span class="comment">## output:</span></span><br><span class="line">    <span class="comment"># Train RMSE: 5.15</span></span><br></pre></td></tr></table></figure>
+<h2 id="Ensemble-Learning"><a href="#Ensemble-Learning" class="headerlink" title="Ensemble Learning"></a>Ensemble Learning</h2><ul>
+<li><strong>CART’s advantages</strong><ul>
+<li>Simple to understand and interpret</li>
+<li>Easy to use</li>
+<li><strong>Flexibility</strong>: ability to describe non-linear dependencies</li>
+<li><strong>Simple preprocessing</strong>: no need to standardize or normalize features</li>
+</ul>
+</li>
+<li><strong>CART’s limitation</strong><ul>
+<li>Classification can only produce <strong>orthogonal decision boundaries</strong> (rectangular)</li>
+<li>Sensitive to small variations in the training set</li>
+<li><strong>High variance</strong>: unconstrained CARTs may overfit the training set</li>
+</ul>
+</li>
+<li><strong>Solution</strong>: ensemble learning</li>
+</ul>
+<p><strong>Basics of Emsemble Learning</strong></p>
+<ul>
+<li>Train different models on the same dataset.</li>
+<li>Let each model make its prediction.</li>
+<li><strong>Meta-model</strong>: aggregates predictions ofindividual models.</li>
+<li>Final prediction: more robust and less prone to errors.</li>
+<li>Best results: models are skillful in different ways.</li>
+</ul>
+<h3 id="Voting-Classifier"><a href="#Voting-Classifier" class="headerlink" title="Voting Classifier"></a>Voting Classifier</h3><p>EXAMPLE: Binary classfication task</p>
+<ul>
+<li>$N$ classifiers make predictions: $P_1, P_2, …, P_N$ with $P_i = 0$ or $1$</li>
+<li>Meta-model prediction: <strong>hard voting</strong> (majority vote)<br><img src="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7lqb6a4j322o10611n.jpg" alt=""></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import functions to compute accuracy and split data</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import models, including VotingClassifier meta-model</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier <span class="keyword">as</span> KNN</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> VotingClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set seed for reproducibility</span></span><br><span class="line">SEED = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate lr</span></span><br><span class="line">lr = LogisticRegression(random_state = SEED)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate knn</span></span><br><span class="line">knn = KNN(n_neighbors = <span class="number">27</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate dt</span></span><br><span class="line">dt = DecisionTreeClassifier(min_samples_leaf = <span class="number">0.13</span>, random_state = SEED)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define the list classifiers</span></span><br><span class="line">classifiers = [(<span class="string">'Logistic Regression'</span>, lr), (<span class="string">'K Nearest Neighbours'</span>, knn), (<span class="string">'Classification Tree'</span>, dt)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Iterate over the pre-defined list of classifiers</span></span><br><span class="line"><span class="keyword">for</span> clf_name, clf <span class="keyword">in</span> classifiers:    </span><br><span class="line"> </span><br><span class="line">    <span class="comment"># Fit clf to the training set</span></span><br><span class="line">    clf.fit(X_train, y_train)    </span><br><span class="line">   </span><br><span class="line">    <span class="comment"># Predict y_pred</span></span><br><span class="line">    y_pred = clf.predict(X_test)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Calculate accuracy</span></span><br><span class="line">    accuracy = accuracy_score(y_pred, y_test) </span><br><span class="line">   </span><br><span class="line">    <span class="comment"># Evaluate clf's accuracy on the test set</span></span><br><span class="line">    print(<span class="string">'&#123;:s&#125; : &#123;:.3f&#125;'</span>.format(clf_name, accuracy))</span><br><span class="line"></span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line"><span class="comment">#     Logistic Regression : 0.747</span></span><br><span class="line"><span class="comment">#     K Nearest Neighbours : 0.724</span></span><br><span class="line"><span class="comment">#     Classification Tree : 0.730</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Import VotingClassifier from sklearn.ensemble</span></span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> VotingClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate a VotingClassifier vc</span></span><br><span class="line">vc = VotingClassifier(estimators = classifiers)     </span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit vc to the training set</span></span><br><span class="line">vc.fit(X_train, y_train)   </span><br><span class="line"></span><br><span class="line"><span class="comment"># Evaluate the test set predictions</span></span><br><span class="line">y_pred = vc.predict(X_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculate accuracy score</span></span><br><span class="line">accuracy = accuracy_score(y_pred, y_test)</span><br><span class="line">print(<span class="string">'Voting Classifier: &#123;:.3f&#125;'</span>.format(accuracy))</span><br><span class="line"></span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line"><span class="comment">#     Voting Classifier: 0.753</span></span><br></pre></td></tr></table></figure>
+<h1 id="Bagging-and-Random-Forests"><a href="#Bagging-and-Random-Forests" class="headerlink" title="Bagging and Random Forests"></a>Bagging and Random Forests</h1><h2 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h2><p>Bagging: Bootstrap Aggregation<br><img src="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7lecfp2j31ri0zotie.jpg" alt=""></p>
+<ul>
+<li>Uses a techinque known as bootstrap (sample with replacement for multiple times at a fixed size)</li>
+<li>Reduces variance of individual models in the ensemble.</li>
+<li>Train each model on a bootstrap subset of the traning set</li>
+<li>Output a final prediction:<ul>
+<li><strong>Classification</strong>: aggregates predictions by majority voting. <code>BaggingClassifier</code></li>
+<li><strong>Regression</strong>: aggregates predictions through averaging. <code>BaggingRegressor</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import DecisionTreeClassifier</span></span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import BaggingClassifier</span></span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> BaggingClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate dt</span></span><br><span class="line">dt = DecisionTreeClassifier(random_state = <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate bc</span></span><br><span class="line">bc = BaggingClassifier(</span><br><span class="line">    base_estimator = dt, </span><br><span class="line">    n_estimators = <span class="number">50</span>, <span class="comment"># number of bootstrap samples</span></span><br><span class="line">    random_state = <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit bc to the training set</span></span><br><span class="line">bc.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Predict test set labels</span></span><br><span class="line">y_pred = bc.predict(X_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Evaluate acc_test</span></span><br><span class="line">acc_test = accuracy_score(y_pred, y_test)</span><br><span class="line">print(<span class="string">'Test set accuracy of bc: &#123;:.2f&#125;'</span>.format(acc_test)) </span><br><span class="line"></span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line"><span class="comment">#     Test set accuracy of bc: 0.71</span></span><br><span class="line"><span class="comment"># A single tree dt would have achieved an accuracy of 63% </span></span><br><span class="line"><span class="comment"># which is 8% lower than bc's accuracy</span></span><br></pre></td></tr></table></figure>
+<h3 id="Out-of-Bag-Evaluation"><a href="#Out-of-Bag-Evaluation" class="headerlink" title="Out-of-Bag Evaluation"></a>Out-of-Bag Evaluation</h3><p>When performing a bootstrapping, there will be a lot of instances that have not been sampled. Therefore, we can use these unused data points to test the performance of the model, instead of using CV.</p>
+<p><img src="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7io8kejj31gs0wagu3.jpg" alt=""></p>
+<p>$$\text{Final OOB Score} = \frac{OOB_1+…+OOB_N}{N}$$</p>
+<p>In scikit-learn, OOB score corresponds to the accuracy of classifiers, while r-squared score are for regressors.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import DecisionTreeClassifier</span></span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import BaggingClassifier</span></span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> BaggingClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate dt</span></span><br><span class="line">dt = DecisionTreeClassifier(min_samples_leaf = <span class="number">8</span>, random_state = <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate bc</span></span><br><span class="line">bc = BaggingClassifier(base_estimator = dt, </span><br><span class="line">            n_estimators = <span class="number">50</span>,</span><br><span class="line">            oob_score = <span class="keyword">True</span>,</span><br><span class="line">            random_state = <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit bc to the training set </span></span><br><span class="line">bc.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Predict test set labels</span></span><br><span class="line">y_pred = bc.predict(X_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Evaluate test set accuracy</span></span><br><span class="line">acc_test = accuracy_score(y_pred, y_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Evaluate OOB accuracy</span></span><br><span class="line">acc_oob = bc.oob_score_</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print acc_test and acc_oob</span></span><br><span class="line">print(<span class="string">'Test set accuracy: &#123;:.3f&#125;, OOB accuracy: &#123;:.3f&#125;'</span>.format(acc_test, acc_oob))</span><br><span class="line"></span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line"><span class="comment">#     Test set accuracy: 0.698, OOB accuracy: 0.704</span></span><br></pre></td></tr></table></figure>
+<h2 id="Random-Forest"><a href="#Random-Forest" class="headerlink" title="Random Forest"></a>Random Forest</h2><p>Recall we talked above that for Bagging:</p>
+<ul>
+<li>Base estimator can be: Decision Tree, LogisticRegression, Neural Net, …</li>
+<li>Each estimator is trained on a distinct bootstrap sample of the training set</li>
+<li>Estimators use <strong>all features</strong> for training and prediction</li>
+</ul>
+<p><strong>Random Forest:</strong></p>
+<ul>
+<li>is an ensemble method </li>
+<li>Base estimator: Decision Tree</li>
+<li>Each estimator is trained on a different bootstrap sample <strong>having the same size as the training set</strong></li>
+<li>RF introduces further randomization in the training of individual trees<ul>
+<li><strong>$d$ features are sampled at each node</strong> <em>without replacement</em> ($d$ &lt; total number of features $D$)<ul>
+<li>The default value of $d$ is $\sqrt{D}$, where $D$ stands for the total number of features.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Output a final prediction:<ul>
+<li><strong>Classification</strong>: aggregates predictions by majority voting. <code>RandomForestClassifier</code></li>
+<li><strong>Regression</strong>: aggregates predictions through averaging. <code>RandomForestRegressor</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7hxsn1tj31jm0v4k2j.jpg" alt=""></p>
+<p>In general, random forest achieves a lower variance than an individual tree</p>
+<p><strong>Feature Importance</strong></p>
+<ul>
+<li>Tree-based methods enable measuring the importance of each feature in prediction.</li>
+<li>Intuitively, it means <strong>how much the tree nodes use a particular feature (weighted average) to reduce impurity</strong></li>
+<li>Can be accessed using the attribute <code>feature_importance_</code></li>
+<li>It is expressed as a <strong>percentage</strong> indicating the weight of that feature in training and prediction</li>
+<li>Visualization of feature importances:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a pd.Series of features importances</span></span><br><span class="line">importances_rf = pd.Series(rf.feature_importances_, index = X.columns)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Sort importances_rf</span></span><br><span class="line">sorted_importances_rf = importances_rf.sort_values()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Make a horizontal bar plot</span></span><br><span class="line">sorted_importances_rf.plot(kind = <span class="string">'barh'</span>, color = <span class="string">'lightgreen'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Performing RF regression<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import RandomForestRegressor</span></span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestRegressor</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate rf</span></span><br><span class="line">rf = RandomForestRegressor(n_estimators = <span class="number">25</span>,</span><br><span class="line">            random_state = <span class="number">2</span>)</span><br><span class="line">            </span><br><span class="line"><span class="comment"># Fit rf to the training set    </span></span><br><span class="line">rf.fit(X_train, y_train) </span><br><span class="line"></span><br><span class="line"><span class="comment"># Import mean_squared_error as MSE</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error <span class="keyword">as</span> MSE</span><br><span class="line"></span><br><span class="line"><span class="comment"># Predict the test set labels</span></span><br><span class="line">y_pred = rf.predict(X_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Evaluate the test set RMSE</span></span><br><span class="line">rmse_test = MSE(y_test, y_pred)**(<span class="number">1</span>/<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print rmse_test</span></span><br><span class="line">print(<span class="string">'Test set RMSE of rf: &#123;:.2f&#125;'</span>.format(rmse_test))</span><br><span class="line"></span><br><span class="line"><span class="comment">#output:</span></span><br><span class="line">    <span class="comment"># Test set RMSE of rf: 51.97</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h1><p>Boosting refers to an ensemble method in which many predictors are trained and each predictor learns from the errors of its predecessor.</p>
+<p><strong>Boosting</strong>: </p>
+<ul>
+<li>Ensemble method combining several weak learners to from a strong learner<ul>
+<li><strong>Weak learner</strong>: Model doing slightly better than radom guessing<ul>
+<li>e.g. Decision stump (CART whose max depth is 1)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Train predictors sequentially</li>
+<li>Each predictor tries to correct its predecessor</li>
+</ul>
+<h2 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h2><ul>
+<li>Stands for <strong>Adaptive Boosting</strong></li>
+<li>Each predictor pays more attention to the instances wrongly predicted by its predecessor, which is achieved by <strong>chaging the weights of training instances</strong> after each individual model.</li>
+<li>Each predictor is assigne d a coefficient $\alpha$, which depends on the predictor’s training error</li>
+<li>Details:<ul>
+<li>Suppose we have $N$ predictors in total.</li>
+<li>The $\text{predictor}_1$ is trained on the initial dataset $(X, y)$, and the training error $e_1$ is determined.</li>
+<li>We use $e_1$ to determine $\alpha_1$, which is $\text{predictor}_1$’s coefficient.</li>
+<li>$\eta\alpha_1$ is then used to determine $W_2$ of the training instances for $\text{predictor}_2$. <ul>
+<li>Here, <strong>the incorrectly predicted instances will gain a higher weight</strong>, which would force the next predictor to pay more attention to these instances.</li>
+</ul>
+</li>
+<li>The above process is repeated sequentially, until $N$ predictors forming the ensemble are trained.</li>
+</ul>
+</li>
+<li>An important parameter: learning rate $\eta$<ul>
+<li>$\eta \in [0,1]$</li>
+<li>It is used to shrink the coefficient $\alpha$ of a trained predictor</li>
+<li>Tradeoff between $\eta$ and the number of predictors<ul>
+<li>Small $\eta$ should be compensated by a greater number of predictors.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Output a final prediction:<ul>
+<li><strong>Classification</strong>: aggregates predictions by majority voting. <code>AdaBoostClassifier</code></li>
+<li><strong>Regression</strong>: aggregates predictions through averaging. <code>AdaBoostRegressor</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/006lr8qAly1g5l77wlo8zj31go0scgts.jpg" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import DecisionTreeClassifier</span></span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import AdaBoostClassifier</span></span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> AdaBoostClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate dt</span></span><br><span class="line">dt = DecisionTreeClassifier(max_depth = <span class="number">2</span>, random_state=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate ada</span></span><br><span class="line">ada = AdaBoostClassifier(base_estimator = dt, n_estimators = <span class="number">180</span>, random_state = <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit ada to the training set</span></span><br><span class="line">ada.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute the probabilities of obtaining the positive class</span></span><br><span class="line">y_pred_proba = ada.predict_proba(X_test)[:, <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import roc_auc_score</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_auc_score</span><br><span class="line"></span><br><span class="line"><span class="comment"># Evaluate test-set roc_auc_score</span></span><br><span class="line">ada_roc_auc = roc_auc_score(y_test, y_pred_proba)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print roc_auc_score</span></span><br><span class="line">print(<span class="string">'ROC AUC score: &#123;:.2f&#125;'</span>.format(ada_roc_auc))</span><br><span class="line"></span><br><span class="line"><span class="comment">#output:</span></span><br><span class="line">    <span class="comment"># ROC AUC score: 0.71</span></span><br></pre></td></tr></table></figure>
+<h2 id="Gradient-Boosting"><a href="#Gradient-Boosting" class="headerlink" title="Gradient Boosting"></a>Gradient Boosting</h2><ul>
+<li>Sequential correction of predecessor’s errors.</li>
+<li>Does not tweak the weights of training instances.</li>
+<li>Fit each predictor is trained using its predecessor’s <strong>residual errors</strong> as <em>labels</em>.</li>
+<li><strong>Gradient Boosted Trees</strong>: a CART is used as a base learner.</li>
+</ul>
+<p><strong>Gradient Boosted Trees for Regression</strong>:</p>
+<ul>
+<li>Details:<ul>
+<li>The ensemble consists $N$ trees</li>
+<li>$Tree_1$ is trained using feature matrix $X$ and the dataset labels $y$</li>
+<li>The prediction $\hat{y_1}$ are used to determine the training set residual errors $r_1$</li>
+<li>$Tree_2$ is then trained using feature matrix $X$ and residual error $r_1$ as labels.</li>
+<li>The predicted residuals times learning rate, $\eta r_1$, is then used to determine the residuals of residuals, which are labeled $r_2$</li>
+<li>This process is repeated until all of the $N$ trees forming the ensemble are trained.</li>
+</ul>
+</li>
+<li>Important parameter: learning rate $\eta$<ul>
+<li>$\eta \in [0,1]$</li>
+<li>It is used to shrink the labels of each tree, which is essentially $r$ of the previous trained tree</li>
+<li>Tradeoff between $\eta$ and the number of predictors<ul>
+<li>Small $\eta$ should be compensated by a greater number of predictors.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Output a final prediction:<ul>
+<li><strong>Classification</strong>: <ul>
+<li>not covered in this course</li>
+<li><code>GradientBoostingClassifier</code></li>
+</ul>
+</li>
+<li><strong>Regression</strong>: <ul>
+<li>$y_{pred} = y_1 + \eta r_1 + … + \eta r_N$</li>
+<li><code>GradientBoostingRegressor</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/006lr8qAly1g5l7xv8wfaj31ko0vywmk.jpg" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import GradientBoostingRegressor</span></span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> GradientBoostingRegressor</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate gb</span></span><br><span class="line">gb = GradientBoostingRegressor(max_depth = <span class="number">4</span>, </span><br><span class="line">            n_estimators = <span class="number">200</span>,</span><br><span class="line">            random_state = <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit gb to the training set</span></span><br><span class="line">gb.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Predict test set labels</span></span><br><span class="line">y_pred = gb.predict(X_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import mean_squared_error as MSE</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error <span class="keyword">as</span> MSE</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute MSE</span></span><br><span class="line">mse_test = MSE(y_test, y_pred)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute RMSE</span></span><br><span class="line">rmse_test = mse_test**(<span class="number">1</span>/<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print RMSE</span></span><br><span class="line">print(<span class="string">'Test set RMSE of gb: &#123;:.3f&#125;'</span>.format(rmse_test))</span><br><span class="line"></span><br><span class="line"><span class="comment">#output:</span></span><br><span class="line">    <span class="comment"># Test set RMSE of gb: 52.065</span></span><br></pre></td></tr></table></figure>
+<h2 id="Stochastic-Gradient-Boosting"><a href="#Stochastic-Gradient-Boosting" class="headerlink" title="Stochastic Gradient Boosting"></a>Stochastic Gradient Boosting</h2><p>Gradient Boosting has its limitations:</p>
+<ul>
+<li>GB involves an <strong>exhaustive search</strong> procedure.<ul>
+<li>Each CART is trained to find the best split points and features, and thus may lead to CARTs <strong>using the same split points and maybe the same features</strong>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Stochastic Gradient Boosting</strong> helps avoid this from happening:</p>
+<ul>
+<li>Each tree is trained on a random subset of rows of the training data.</li>
+<li>The sampled instances (40%-80% of the training set) are sampled without replacement.</li>
+<li>Features are sampled (without replacement) when choosing split points.</li>
+<li>Result: <strong>further ensemble diversity</strong>.</li>
+<li>Effect: adding further <strong>variance</strong> to the ensemble of trees.</li>
+</ul>
+<p>Details of SGB:</p>
+<ul>
+<li>We randomly sample only a fraction of the training set without replacement to feed into the first predictor $Tree_1$.</li>
+<li>Then, when it comes to features, we ramdomly sample a fraction of the features without replacement when considering makeing a split.</li>
+<li>Once a tree is trained, predictions ($\hat{y_1}$) are made and the residual errors $r_1$ on the training set can be calculated.</li>
+<li>These residual errors are then multiplied by learning rate $\eta$ and fed to the next tree in the ensemble.</li>
+<li>This procedure is repeated sequentially until all the trees in the ensemble are trained.</li>
+<li>The prediction procedure of SGB is similar to GB.</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/006lr8qAly1g5lbcejrrwj31ei0win57.jpg" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import GradientBoostingRegressor</span></span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> GradientBoostingRegressor</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate sgbr</span></span><br><span class="line">sgbr = GradientBoostingRegressor(</span><br><span class="line">    max_depth = <span class="number">4</span>, </span><br><span class="line">    subsample = <span class="number">0.9</span>, <span class="comment"># set the fraction of training set to use in each tree</span></span><br><span class="line">    max_features = <span class="number">0.75</span>, <span class="comment"># set the fraction of features to use when making a split</span></span><br><span class="line">    n_estimators = <span class="number">200</span>,</span><br><span class="line">    random_state = <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit sgbr to the training set</span></span><br><span class="line">sgbr.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Predict test set labels</span></span><br><span class="line">y_pred = sgbr.predict(X_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import mean_squared_error as MSE</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error <span class="keyword">as</span> MSE</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute test set MSE</span></span><br><span class="line">mse_test = MSE(y_pred, y_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute test set RMSE</span></span><br><span class="line">rmse_test = mse_test**(<span class="number">1</span>/<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print rmse_test</span></span><br><span class="line">print(<span class="string">'Test set RMSE of sgbr: &#123;:.3f&#125;'</span>.format(rmse_test))</span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line">    <span class="comment"># Test set RMSE of sgbr: 49.979</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The stochastic gradient boosting regressor achieves </span></span><br><span class="line"><span class="comment"># a lower test set RMSE than the gradient boosting regressor </span></span><br><span class="line"><span class="comment"># (which was 52.065)</span></span><br></pre></td></tr></table></figure>
+<h1 id="Model-Tuning"><a href="#Model-Tuning" class="headerlink" title="Model Tuning"></a>Model Tuning</h1><ul>
+<li><strong>Parameters</strong>: learned from data<ul>
+<li>CART example: split-point of a node, split-feature of a node, …</li>
+</ul>
+</li>
+<li><strong>Hyperparameters</strong>: not learned from data, set prior to training<ul>
+<li>CART example: max_depth , min_samples_leaf , splitting criterion …</li>
+</ul>
+</li>
+</ul>
+<p><strong>Hyperparameter Tuning</strong></p>
+<ul>
+<li><strong>Problem</strong>: search for a set of optimal hyperparameters for a learning algorithm.</li>
+<li><strong>Solution</strong>: find a set of optimal hyperparameters that results in an optimal model, which yields an optimal <em>score</em>.<ul>
+<li><strong>Score</strong>: in sklearn defaults to accuracy (classication) and R (regression).</li>
+</ul>
+</li>
+<li><strong>Cross validation</strong> is used to estimate the generalization performance.</li>
+<li>Possible approaches:<ul>
+<li>Grid Search</li>
+<li>Random Search</li>
+<li>Bayesian Optimization</li>
+<li>Genetic Algorithms</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<p><strong>Grid search cross validation</strong></p>
+<ul>
+<li>Manually set a grid of discrete hyperparameter values.</li>
+<li>Set a metric for scoring model performance.</li>
+<li>Search exhaustively through the grid.</li>
+<li>For each set of hyperparameters, evaluate each model’s CV score.</li>
+<li>The optimal hyperparameters are those ofthe model achieving <strong>the best CV score</strong>.</li>
+<li>It suffers from the <strong>curse of dimensionality</strong><ul>
+<li>it is computationally expensive</li>
+<li>and sometimes lead to very slight improvement</li>
+<li>We should always <strong>weigh the impact of tuning in the whole project</strong>!</li>
+</ul>
+</li>
+</ul>
+<p>Using <code>model.get_params()</code> helps you know what are the hyperparameters behind this model.</p>
+<p>If we set <code>refit</code> to <code>True</code> in grid search, the best model in the end will already be trained on the entire training set.</p>
+<p><code>verbose</code> controls verbosity. The higher the value, the more messages are outputted.</p>
+<h2 id="Tuning-CART"><a href="#Tuning-CART" class="headerlink" title="Tuning CART"></a>Tuning CART</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define params_dt</span></span><br><span class="line">params_dt = &#123;</span><br><span class="line">    <span class="string">'max_depth'</span>:[<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">    <span class="string">'min_samples_leaf'</span>: [<span class="number">0.12</span>, <span class="number">0.14</span>, <span class="number">0.16</span>, <span class="number">0.18</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import GridSearchCV</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate grid_dt</span></span><br><span class="line">grid_dt = GridSearchCV(estimator = dt,</span><br><span class="line">                       param_grid = params_dt,</span><br><span class="line">                       scoring = <span class="string">'roc_auc'</span>,</span><br><span class="line">                       cv = <span class="number">5</span>,</span><br><span class="line">                       n_jobs = <span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import roc_auc_score from sklearn.metrics</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_auc_score</span><br><span class="line"></span><br><span class="line"><span class="comment"># Extract the best estimator</span></span><br><span class="line">best_model = grid_dt.best_estimator_</span><br><span class="line"></span><br><span class="line"><span class="comment"># Predict the test set probabilities of the positive class</span></span><br><span class="line">y_pred_proba = best_model.predict_proba(X_test)[:, <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute test_roc_auc</span></span><br><span class="line">test_roc_auc = roc_auc_score(y_test, y_pred_proba)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print test_roc_auc</span></span><br><span class="line">print(<span class="string">'Test set ROC AUC score: &#123;:.3f&#125;'</span>.format(test_roc_auc))</span><br><span class="line"></span><br><span class="line"><span class="comment">#output:</span></span><br><span class="line">    <span class="comment"># Test set ROC AUC score: 0.610</span></span><br><span class="line"><span class="comment"># An untuned classification-tree would achieve a ROC AUC score of 0.54</span></span><br></pre></td></tr></table></figure>
+<h2 id="Tuning-Random-Forest"><a href="#Tuning-Random-Forest" class="headerlink" title="Tuning Random Forest"></a>Tuning Random Forest</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define the dictionary 'params_rf'</span></span><br><span class="line">params_rf = &#123;</span><br><span class="line">    <span class="string">'n_estimators'</span>:[<span class="number">100</span>, <span class="number">350</span>, <span class="number">500</span>],</span><br><span class="line">    <span class="string">'max_features'</span>:[<span class="string">'log2'</span>, <span class="string">'auto'</span>, <span class="string">'sqrt'</span>],</span><br><span class="line">    <span class="string">'min_samples_leaf'</span>:[<span class="number">2</span>, <span class="number">10</span>, <span class="number">30</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import GridSearchCV</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate grid_rf</span></span><br><span class="line">grid_rf = GridSearchCV(estimator = rf,</span><br><span class="line">                       param_grid = params_rf,</span><br><span class="line">                       scoring = <span class="string">'neg_mean_squared_error'</span>,</span><br><span class="line">                       cv = <span class="number">3</span>,</span><br><span class="line">                       verbose = <span class="number">1</span>,</span><br><span class="line">                       n_jobs = <span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import mean_squared_error from sklearn.metrics as MSE </span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error <span class="keyword">as</span> MSE</span><br><span class="line"></span><br><span class="line"><span class="comment"># Extract the best estimator</span></span><br><span class="line">best_model = grid_rf.best_estimator_</span><br><span class="line"></span><br><span class="line"><span class="comment"># Predict test set labels</span></span><br><span class="line">y_pred = best_model.predict(X_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute rmse_test</span></span><br><span class="line">rmse_test = MSE(y_pred, y_test)**(<span class="number">1</span>/<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print rmse_test</span></span><br><span class="line">print(<span class="string">'Test RMSE of best model: &#123;:.3f&#125;'</span>.format(rmse_test)) </span><br><span class="line"></span><br><span class="line"><span class="comment">#output:</span></span><br><span class="line">    <span class="comment"># Test RMSE of best model: 50.569</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python-Machine-Learning-scikit-learn-Supervised-Learning-Tree/" rel="tag"># Python, Machine Learning, scikit-learn, Supervised Learning, Tree</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/28/Unsupervised-Learning-in-Python/" rel="next" title="Unsupervised Learning in Python">
+                <i class="fa fa-chevron-left"></i> Unsupervised Learning in Python
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview sidebar-nav-active" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Joanna" />
+            
+              <p class="site-author-name" itemprop="name">Joanna</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Classification-and-Regression-Trees"><span class="nav-text">Classification and Regression Trees</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Classification-Tree"><span class="nav-text">Classification Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Information-Gain"><span class="nav-text">Information Gain</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regression-Tree"><span class="nav-text">Regression Tree</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bias-Variance-Tradeoff"><span class="nav-text">Bias-Variance Tradeoff</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Generalization-Error"><span class="nav-text">Generalization Error</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Evaluate-Performance"><span class="nav-text">Evaluate Performance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ensemble-Learning"><span class="nav-text">Ensemble Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Voting-Classifier"><span class="nav-text">Voting Classifier</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bagging-and-Random-Forests"><span class="nav-text">Bagging and Random Forests</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bagging"><span class="nav-text">Bagging</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Out-of-Bag-Evaluation"><span class="nav-text">Out-of-Bag Evaluation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Random-Forest"><span class="nav-text">Random Forest</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Boosting"><span class="nav-text">Boosting</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AdaBoost"><span class="nav-text">AdaBoost</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-Boosting"><span class="nav-text">Gradient Boosting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stochastic-Gradient-Boosting"><span class="nav-text">Stochastic Gradient Boosting</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model-Tuning"><span class="nav-text">Model Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tuning-CART"><span class="nav-text">Tuning CART</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tuning-Random-Forest"><span class="nav-text">Tuning Random Forest</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joanna</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("sEEYEudBHdtybAJf5AQkiOl2-gzGzoHsz", "cDbeqqCJt4dq4hu7C9GaCrHB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
